@@ -1,23 +1,22 @@
 #CXX = c++
+RM        += -r
 
-ROOT:=$(dir $(realpath $(lastword $(MAKEFILE_LIST))))
-	
-RM+=-r
+ROOT      := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
 
-CXXFLAGS:=$(shell pkg-config sfml-all --cflags)
-LDLIBS:=$(shell pkg-config sfml-all --libs)
+CXXFLAGS  := $(shell pkg-config sfml-all --cflags)
+LDLIBS    := $(shell pkg-config sfml-all --libs)
 
-#SRCS:=$(addprefix $(ROOT),$(wildcard src/*))
-SRCDIR = $(ROOT)/src/
-SRCS:=$(wildcard $(SRCDIR)/*.cpp)
-HDRS:=$(wildcard $(SRCDIR)/*.h)
+SRCDIR     = $(ROOT)/src/
+SRCFOLDERS = $(wildcard $(SRCDIR)/*)
 
-OBJDIR = $(ROOT)/obj/
-OBJS = $(addprefix $(OBJDIR)/,$(notdir $(SRCS:.cpp=.o)))
+SRCS      := $(wildcard $(SRCFOLDERS)/*.cpp)
+HDRS      := $(wildcard $(SRCDIR)/*.h)
 
-BUILDDIR = build/
+OBJDIR     = $(ROOT)/obj/
+OBJS       = $(addprefix $(OBJDIR)/,$(notdir $(SRCS:.cpp=.o)))
 
-MAIN = main
+BUILDDIR   = build/
+MAIN       = main
 
 run: $(MAIN)
 	./$(BUILDDIR)/$(MAIN)

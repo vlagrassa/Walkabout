@@ -15,19 +15,23 @@ HDRS      := $(wildcard $(SRCDIR)/*.h)
 OBJDIR     = $(ROOT)/obj/
 OBJS       = $(addprefix $(OBJDIR)/,$(notdir $(SRCS:.cpp=.o)))
 
-BUILDDIR   = build/
+BUILDDIR   = $(ROOT)/build/
 MAIN       = main
 
 run: $(MAIN)
 	./$(BUILDDIR)/$(MAIN)
 
-$(MAIN): $(OBJS)
+$(MAIN): $(OBJS) | $(BUILDDIR)
 	$(CXX) -o $(BUILDDIR)/$(MAIN) $(OBJS) $(LDLIBS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 	$(CXX) -c $< $(CXXFLAGS) -o $@
 
 $(OBJDIR):
+	echo $(SRCS)
+	mkdir $@
+
+$(BUILDDIR):
 	mkdir $@
 
 test:
@@ -36,4 +40,4 @@ test:
 
 .PHONY: clean
 clean:
-	$(RM) $(MAIN) $(OBJDIR)
+	$(RM) $(MAIN) $(OBJDIR) $(BUILDDIR)

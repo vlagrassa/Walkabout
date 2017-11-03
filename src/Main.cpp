@@ -3,7 +3,7 @@
 #include <cmath>
 #include <ctime>
 #include <cstdlib>
-#include "region/Region.h"
+#include "region/Region.hpp"
 
 int main() {
     Skippable test(5);

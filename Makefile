@@ -7,7 +7,7 @@ CXXFLAGS  := $(shell pkg-config sfml-all --cflags)
 LDLIBS    := $(shell pkg-config sfml-all --libs)
 
 SRCDIR     = $(ROOT)/src/
-SRCFOLDERS = $(wildcard $(SRCDIR)/*)
+SRCFOLDERS = $( $(wildcard $(SRCDIR)/*))
 
 SRCS      := $(wildcard $(SRCFOLDERS)/*.cpp)
 HDRS      := $(wildcard $(SRCDIR)/*.h)
@@ -28,7 +28,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 	$(CXX) -c $< $(CXXFLAGS) -o $@
 
 $(OBJDIR):
-	echo $(SRCS)
+	echo $(SRCFOLDERS)
 	mkdir $@
 
 $(BUILDDIR):

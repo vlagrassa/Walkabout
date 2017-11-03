@@ -1,3 +1,3 @@
-#include "Encounterable.h"
-#include "Skippable.h"
-#include "Unskippable.h"
+#include "Encounterable.hpp"
+#include "Skippable.hpp"
+#include "Unskippable.hpp"

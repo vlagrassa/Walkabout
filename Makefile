@@ -7,13 +7,17 @@ CXXFLAGS  := $(shell pkg-config sfml-all --cflags)
 LDLIBS    := $(shell pkg-config sfml-all --libs)
 
 SRCDIR     = $(ROOT)/src/
-SRCFOLDERS = $( $(wildcard $(SRCDIR)/*))
+#SRCFOLDERS = $(shell find src -type f -name '*.cpp')
 
-SRCS      := $(wildcard $(SRCFOLDERS)/*.cpp)
+CXXFLAGS  += -I $(SRCDIR)
+
+SRCS      := $(shell find src -type f -name '*.cpp')
 HDRS      := $(wildcard $(SRCDIR)/*.h)
 
 OBJDIR     = $(ROOT)/obj/
-OBJS       = $(addprefix $(OBJDIR)/,$(notdir $(SRCS:.cpp=.o)))
+OBJS       = $(subst $(SRCDIR), $(OBJDIR), $(SRCS:.cpp=.o))
+
+#$(addprefix $(OBJDIR)/, $(notdir $(SRCS:.cpp=.o)))
 
 BUILDDIR   = $(ROOT)/build/
 MAIN       = main
@@ -28,10 +32,11 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 	$(CXX) -c $< $(CXXFLAGS) -o $@
 
 $(OBJDIR):
-	echo $(SRCFOLDERS)
+	echo $(OBJS)
 	mkdir $@
 
 $(BUILDDIR):
+	echo $(OBJS)
 	mkdir $@
 
 test:

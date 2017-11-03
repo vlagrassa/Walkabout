@@ -1,4 +1,4 @@
-#include "Skippable.h"
+#include "Skippable.hpp"
 #include <SFML/Graphics.hpp>
 
 int Skippable::getTestValue() {
@@ -13,4 +13,6 @@ Skippable::Skippable(const Skippable& orig) {
     
 }
 
-virtual Skippable::~Skippable() {}
+virtual Skippable::~Skippable() {
+    
+}

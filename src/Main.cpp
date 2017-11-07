@@ -12,7 +12,6 @@ int main() {
     int x = test.getTestValue();
     std::cout << x;
     //std::cout << test.getTestValue();
-    int poop = 5;
     return EXIT_SUCCESS;
     
 }

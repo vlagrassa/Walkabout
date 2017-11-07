@@ -13,6 +13,6 @@ Skippable::Skippable(const Skippable& orig) {
     
 }
 
-virtual Skippable::~Skippable() {
+Skippable::~Skippable() {
     
 }

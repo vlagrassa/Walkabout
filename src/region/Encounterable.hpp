@@ -6,9 +6,14 @@
 
 class Encounterable {
 public:
-    //virtual void Encounterable() = 0;
-private:
+    Encounterable();
+    Encounterable(const Encounterable& orig);
+    virtual ~Encounterable();
     
+    bool isSkippable();
+    
+private:
+    bool skippable;
 };
 
 

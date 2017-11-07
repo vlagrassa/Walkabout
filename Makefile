@@ -23,7 +23,7 @@ BUILDDIR   = $(ROOT)/build/
 MAIN       = main
 
 run: $(MAIN)
-	./$(BUILDDIR)/$(MAIN)
+	/$(BUILDDIR)/$(MAIN)
 
 $(MAIN): $(OBJS) | $(BUILDDIR)
 	$(CXX) -o $(BUILDDIR)/$(MAIN) $(OBJS) $(LDLIBS)
@@ -32,11 +32,11 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 	$(CXX) -c $< $(CXXFLAGS) -o $@
 
 $(OBJDIR):
-	echo $(OBJS)
+	
 	mkdir $@
 
 $(BUILDDIR):
-	echo $(OBJS)
+	
 	mkdir $@
 
 test:

@@ -8,7 +8,7 @@
 
 class Room {
 public:
-    //Room(int d, Encounterable t);
+    Room(int d, Encounterable t);
     Room(int d);
     Room();
     Room(const Room& orig);

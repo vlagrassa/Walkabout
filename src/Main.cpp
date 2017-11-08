@@ -6,6 +6,7 @@
 #include <iostream>
 #include "region/Region.hpp"
 #include "region/Room.hpp"
+#include "region/Hall.hpp"
 
 int main() {
     Skippable test(10);
@@ -29,10 +30,19 @@ int main() {
     h.step(8);
     std::cout << "Player X = " << h.getPlayerX() << "\n";
     
-    h.addRoom(9);
-    std::cout << h.getActiveRoom();
+    Encounterable e;
+    Room* r = new Room(5);
+    std::cout << r->getSize() << "\n";
     
-    //Room r;
+    h.addRoom(r);
+    std::cout << "Size of active room = " << h.getActiveRoom()->getSize() << "\n";
+    std::cout << "Size of active room = " << h.getRoom(0)->getSize() << "\n";
+    
+    Room* t = h.getActiveRoom();
+    std::cout << t->getSize() << "\n";
+    
+    std::cout << *r << "\n";
+    std::cout << *(h.getRoom(0)) << "\n";
     
     return EXIT_SUCCESS;
 }

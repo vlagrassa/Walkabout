@@ -9,12 +9,6 @@
 #include "region/Hall.hpp"
 
 int main() {
-    Skippable test(10);
-    
-    int x = test.getTestValue();
-    std::cout << x << "\n";
-    std::cout << test.getTestValue() << "\n";
-    
     Hall h;
     std::cout << "Player X = " << h.getPlayerX() << "\n";
     h.stepRight();

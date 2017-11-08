@@ -3,7 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
-#include "Region.hpp"
 
 class Encounterable {
 public:

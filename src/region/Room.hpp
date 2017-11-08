@@ -18,7 +18,7 @@ public:
     int getDistance(); //return distance between player and Encounterable
     
 private:
-    //Encounterable thing; //the actual encounterable
+    Encounterable thing; //the actual encounterable
     int size;
     bool active;
     bool passed;

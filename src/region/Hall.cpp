@@ -24,7 +24,7 @@ int Hall::getPlayerX() {
 //    listOfRooms.push_back(newRoom);
 //}
 
-void Hall::addRoom(Room r) {
+void Hall::addRoom(Room* r) {
     listOfRooms.push_back(r);
 }
 
@@ -50,11 +50,11 @@ void Hall::stepRight(int n) {
     Hall::step(n);
 }
 
-Room Hall::getActiveRoom() {
+Room* Hall::getActiveRoom() {
     return getRoom(playerIndex);
 }
 
-Room Hall::getRoom(int index) {
+Room* Hall::getRoom(int index) {
     return listOfRooms.at(index);
 }
 

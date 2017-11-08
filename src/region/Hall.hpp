@@ -18,7 +18,7 @@ public:
     
     /* Add new room to the Hall */
     //void addRoom(Room newRoom);
-    void addRoom(Room n);
+    void addRoom(Room* r);
     void addRoom();
     
     /* Set the player's x position within the hall */
@@ -38,13 +38,13 @@ public:
     /* Set the active room */
     void changeActiveRoom(int n);
     
-    Room getActiveRoom();
-    Room getRoom(int index);
+    Room* getActiveRoom();
+    Room* getRoom(int index);
     
 private:
     /* List of Rooms in the Hall */
     //std::vector<int> testVector;
-    std::vector<Room> listOfRooms;
+    std::vector< Room* > listOfRooms;
     
     /* X coordinate of the player within the hall (in terms of tics) */
     int playerX;

@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
+#include "Room.hpp"
 
 
 class Hall {
@@ -16,8 +17,9 @@ public:
     int getPlayerX();
     
     /* Add new room to the Hall */
-    void addRoom(Room newRoom);
-    void addRoom(int seed);
+    //void addRoom(Room newRoom);
+    void addRoom(int n);
+    void addRoom();
     
     /* Set the player's x position within the hall */
     void goTo(int n);
@@ -36,9 +38,13 @@ public:
     /* Set the active room */
     void changeActiveRoom(int n);
     
+    int getActiveRoom();
+    int getRoom(int index);
+    
 private:
     /* List of Rooms in the Hall */
-    std::vector<Room> listOfThings;
+    std::vector<int> testVector;
+    //std::vector<Room> listOfRooms;
     
     /* X coordinate of the player within the hall (in terms of tics) */
     int playerX;
@@ -48,6 +54,9 @@ private:
     
     /* The seed to generate new rooms */
     int seed;
+    
+    /* Recalc values based on other conditions */
+    void updateIndexAndRoom();
 };
 
 #endif /* HALL_H */

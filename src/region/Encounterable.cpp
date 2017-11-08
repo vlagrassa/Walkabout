@@ -11,3 +11,7 @@ Encounterable::Encounterable(const Encounterable& orig) {
 Encounterable::~Encounterable() {
     
 }
+
+bool Encounterable::isSkippable() {
+    return skippable;
+}

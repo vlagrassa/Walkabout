@@ -1,5 +1,3 @@
 #include "Encounterable.hpp"
-#include "Skippable.hpp"
-#include "Unskippable.hpp"
 #include "Hall.hpp"
 #include "Room.hpp"

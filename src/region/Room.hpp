@@ -14,10 +14,12 @@ public:
     Room(const Room& orig);
     virtual ~Room();
     
+    int getSize() const;
     int getSize();
     int getDistance(); //return distance between player and Encounterable
     
 private:
+    friend std::ostream& operator<<(std::ostream &strm, const Room&);
     Encounterable thing; //the actual encounterable
     int size;
     bool active;

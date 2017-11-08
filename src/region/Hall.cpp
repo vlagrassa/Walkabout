@@ -87,5 +87,7 @@ void Hall::updateIndexAndRoom() {
 
 /* Generate and return a random seed */
 int Hall::genRandomSeed() {
-    return 5; //Temporary return value
+    //return 5; //Temporary return value
+    //srand(5);
+    return time();
 }

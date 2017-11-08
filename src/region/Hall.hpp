@@ -53,7 +53,7 @@ private:
     int playerIndex;
     
     /* The seed to generate new rooms */
-    const int seed;
+    int seed;
     
     /* Recalc values based on other conditions */
     void updateIndexAndRoom();

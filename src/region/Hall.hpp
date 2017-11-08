@@ -9,6 +9,7 @@
 class Hall {
 public:
     Hall();
+    Hall(int s);
     Hall(const Hall& orig);
     virtual ~Hall();
     
@@ -17,11 +18,10 @@ public:
     int getPlayerX();
     
     /* Add new room to the Hall */
-    //void addRoom(Room newRoom);
     void addRoom(Room* r);
     void addRoom();
     
-    /* Set the player's x position within the hall */
+    /* Set the player's x position within the Hall */
     void goTo(int n);
     
     /* Special applications of goTo */
@@ -36,7 +36,7 @@ public:
     void stepRoom(int n);
     
     /* Set the active room */
-    void changeActiveRoom(int n);
+    void setActiveRoom(int n);
     
     Room* getActiveRoom();
     Room* getRoom(int index);
@@ -53,10 +53,13 @@ private:
     int playerIndex;
     
     /* The seed to generate new rooms */
-    int seed;
+    const int seed;
     
     /* Recalc values based on other conditions */
     void updateIndexAndRoom();
+    
+    /* Generate and return a random seed */
+    int genRandomSeed();
 };
 
 #endif /* HALL_H */

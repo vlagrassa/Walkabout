@@ -27,7 +27,7 @@ $(MAIN): $(OBJS) | $(BUILDDIR)
 	$(CXX) -o $(BUILDDIR)/$(MAIN) $(OBJS) $(LDLIBS)
 
 $(OBJDIRSHORT)/%.o: $(SRCDIRSHORT)/%.cpp | $(OBJDIR)
-	$(CXX) -c $< $(CXXFLAGS) -o $@
+	$(CXX) -o $@ -c $< $(CXXFLAGS)
 
 $(OBJDIR):
 	mkdir $@

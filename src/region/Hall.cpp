@@ -24,8 +24,8 @@ int Hall::getPlayerX() {
 //    listOfRooms.push_back(newRoom);
 //}
 
-void Hall::addRoom(int n) {
-    testVector.push_back(n);
+void Hall::addRoom(Room r) {
+    listOfRooms.push_back(r);
 }
 
 void Hall::goTo(int n) {
@@ -50,8 +50,12 @@ void Hall::stepRight(int n) {
     Hall::step(n);
 }
 
-int Hall::getActiveRoom() {
-    return testVector.at(playerIndex);
+Room Hall::getActiveRoom() {
+    return getRoom(playerIndex);
+}
+
+Room Hall::getRoom(int index) {
+    return listOfRooms.at(index);
 }
 
 //Temporary function - change to reflect actual algorithm

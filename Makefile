@@ -15,7 +15,7 @@ SRCS      := $(shell find src -type f -name '*.cpp')
 HDRS      := $(wildcard $(SRCDIR)/*.h)
 
 OBJDIR     = obj
-OBJS       = $(subst $(SRCDIRSHORT),$(OBJDIRSHORT),$(SRCS:.cpp=.o))
+OBJS       = $(subst $(SRCDIR),$(OBJDIR),$(SRCS:.cpp=.o))
 
 BUILDDIR   = $(ROOT)/build/
 MAIN       = main
@@ -26,7 +26,7 @@ run: $(MAIN)
 $(MAIN): $(OBJS) | $(BUILDDIR)
 	$(CXX) -o $(BUILDDIR)/$(MAIN) $(OBJS) $(LDLIBS)
 
-$(OBJDIRSHORT)/%.o: $(SRCDIRSHORT)/%.cpp | $(OBJDIR)
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 	$(CXX) -o $@ -c $< $(CXXFLAGS)
 
 $(OBJDIR):

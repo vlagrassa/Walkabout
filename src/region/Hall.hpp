@@ -16,6 +16,7 @@ public:
     /* Get player position */
     int getPlayerIndex();
     int getPlayerX();
+    int getSeed();
     
     /* Add new room to the Hall */
     void addRoom(Room* r);

@@ -1,6 +1,7 @@
 #include "Hall.hpp"
 #include "Region.hpp"
 #include <SFML/Graphics.hpp>
+#include <ctime>
 
 /* Generate a random seed */
 Hall::Hall() {
@@ -27,6 +28,9 @@ int Hall::getPlayerIndex() {
 }
 int Hall::getPlayerX() {
     return playerX;
+}
+int Hall::getSeed() {
+    return seed;
 }
 
 void Hall::addRoom(Room* r) {
@@ -87,7 +91,7 @@ void Hall::updateIndexAndRoom() {
 
 /* Generate and return a random seed */
 int Hall::genRandomSeed() {
-    return 5; //Temporary return value
-    //srand(5);
-    //return time();
+    //return 5; //Temporary return value
+    return std::time(NULL);
+    //std::srand(static_cast<unsigned int>(std::time(NULL)));
 }

@@ -1,5 +1,4 @@
 #include "Encounterable.hpp"
-#include "Region.hpp"
 #include <SFML/Graphics.hpp>
 
 Encounterable::Encounterable() {

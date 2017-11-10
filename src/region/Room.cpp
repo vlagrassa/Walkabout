@@ -1,5 +1,4 @@
 #include "Room.hpp"
-#include "Region.hpp"
 #include <SFML/Graphics.hpp>
 
 Room::Room(int d, Encounterable t) {

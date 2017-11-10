@@ -1,5 +1,4 @@
 #include "Hall.hpp"
-#include "Region.hpp"
 #include <SFML/Graphics.hpp>
 #include <ctime>
 

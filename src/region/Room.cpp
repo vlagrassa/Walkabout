@@ -2,13 +2,16 @@
 #include <SFML/Graphics.hpp>
 
 Room::Room(int d, Encounterable t) {
+    active = false;
     size = d;
     thing = Encounterable(t);
 }
 Room::Room(int d) {
+    active = false;
     size = d;
 }
 Room::Room() {
+    active = false;
     size = -1;
 }
 Room::Room(const Room& orig) {

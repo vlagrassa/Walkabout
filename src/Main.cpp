@@ -8,52 +8,25 @@
 #include "region/Monster.hpp"
 
 int main() {
+    std::cout << "\n\n";
     Hall h;
-    std::cout << "Player X = " << h.getPlayerX() << "\n";
-    h.stepRight();
-    std::cout << "Player X = " << h.getPlayerX() << "\n";
-    h.stepRight(5);
-    std::cout << "Player X = " << h.getPlayerX() << "\n";
-    h.stepLeft();
-    std::cout << "Player X = " << h.getPlayerX() << "\n";
-    h.stepLeft(3);
-    std::cout << "Player X = " << h.getPlayerX() << "\n";
-    h.step(-10);
-    std::cout << "Player X = " << h.getPlayerX() << "\n";
-    h.step(8);
-    std::cout << "Player X = " << h.getPlayerX() << "\n";
-    
-    Encounterable e;
-    Room* r = new Room(5);
-    std::cout << r->getSize() << "\n";
-    
-    h.addRoom(r);
-    std::cout << "Size of active room = " << h.getActiveRoom()->getSize() << "\n";
-    std::cout << "Size of active room = " << h.getRoom(0)->getSize() << "\n";
-    
-    Room* t = h.getActiveRoom();
-    std::cout << t->getSize() << "\n";
-    
-    std::cout << *r << "\n";
-    std::cout << *(h.getRoom(0)) << "\n";
-    
-    std::cout << h.getSeed() << "\n";
-    
     Monster mon;
-    Room* m = new Room(9, mon);
     
-    std::cout << *t << "\n";
+    h.addRoom(new Room(5, *(new Encounterable())));
+    h.addRoom(new Room(9, mon));
+    
+    Room* t = h.getRoom(0);
+    Room* m = h.getRoom(1);
+    
     std::cout << *t << "\n";
     t->activate();
     std::cout << *t << "\n";
     t->deactivate();
     std::cout << *t << "\n";
-    std::cout << *t << "\n";
-    std::cout << *t << "\n";
-    std::cout << *t << "\n";
     std::cout << *m << "\n";
-    
-    m->activate();
+    m->setActive(true);
+    std::cout << *m << "\n";
+    m->setActive(false);
     std::cout << *m << "\n";
     
     return EXIT_SUCCESS;

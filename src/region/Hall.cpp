@@ -126,7 +126,14 @@ void Hall::initialize() {
 
 /* Calculate playerIndex based on playerX */
 void Hall::updateIndex() {
-    
+    unsigned l = 0;
+    for (unsigned i = 0; i < distances.size(); i++) {
+        l += distances.at(i);
+        if (l >= playerX) {
+            playerIndex = i;
+            playerT = distances.at(i) - (playerIndex - l);
+        }
+    }
 }
 
 /* Generate seed based on the current time */
@@ -158,7 +165,7 @@ void Hall::calcDistances() {
 
 void Hall::printDistances() {
     for (unsigned i = 0; i < distances.size(); i++) {
-        for (unsigned j = 0; j < distances.at(i)-1; j++) {
+        for (unsigned j = 0; j < (distances.at(i))-1; j++) {
             if (i == playerIndex && j == playerT) {
                 std::cout << "o ";
             } else {

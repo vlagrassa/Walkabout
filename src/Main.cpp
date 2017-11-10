@@ -20,8 +20,18 @@ int main() {
     std::cout << h << "\n";
     h.setActiveRoom(-1);
     std::cout << h << "\n";
-    h.setActiveRoom(1);
+    h.goToRoom(1, 3);
     std::cout << h << "\n";
+    h.printDistances();
+    h.goToRoom(0, 0);
+    h.printDistances();
+    h.goToRoom(0, 4);
+    h.printDistances();
+    h.goToRoom(1, 0);
+    h.printDistances();
+    h.goToRoom(1, -1);
+    h.printDistances();
+    h.goToRoom(0, 7);
     
     h.printDistances();
     

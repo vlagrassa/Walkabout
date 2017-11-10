@@ -21,9 +21,9 @@ Room::~Room() {
     
 }
 
-int Room::getSize() const {
+int Room::getLength() const {
     //const int c = size;
-    return size;
+    return length;
 }
 
 Encounterable Room::getEncounter() const {
@@ -56,6 +56,6 @@ std::ostream& operator<<(std::ostream &strm, const Room &r) {
     } else {
         strm << " Inactive ";
     }
-    strm << "size " << std::to_string(r.getSize()) << " " << r.getEncounter().getTypeName();
+    strm << "size " << std::to_string(r.getLength()) << " " << r.getEncounter().getTypeName();
     return strm;
 }

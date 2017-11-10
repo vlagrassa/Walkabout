@@ -66,8 +66,8 @@ void Hall::setActiveRoom() {
 /* Add a Room to the Hall */
 void Hall::addRoom(Room* r) {
     listOfRooms.push_back(r);
-    distances.push_back(r->getSize());
-    totalLength += r->getSize();
+    distances.push_back(r->getLength());
+    totalLength += r->getLength();
     setActiveRoom();
 }
 
@@ -162,8 +162,8 @@ void Hall::calcDistances() {
     distances.clear();
     totalLength = 0;
     for (Room* r : listOfRooms) {
-        distances.push_back(r->getSize());
-        totalLength += r->getSize();
+        distances.push_back(r->getLength());
+        totalLength += r->getLength();
     }
 }
 

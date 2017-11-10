@@ -73,8 +73,10 @@ private:
     /* The seed to generate new Rooms */
     int seed;
     
+    /* List of lengths of given rooms, for use in positioning player */
     std::vector<int> distances;
     
+    /* The sum of all the room lengths */
     int totalLength;
     
     /* Initialize values common to all constructors */

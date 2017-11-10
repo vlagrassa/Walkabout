@@ -30,7 +30,7 @@ public:
 private:
     friend std::ostream& operator<<(std::ostream &strm, const Room&);
     Encounterable thing; //the actual encounterable
-    int size;
+    int length;
     bool active;
     bool passed;
 };

@@ -21,15 +21,33 @@ Hall::~Hall() {
     
 }
 
-/* Getter methods */
-int Hall::getPlayerIndex() {
+/* Basic getter methods */
+int Hall::getPlayerIndex() const {
     return playerIndex;
 }
-int Hall::getPlayerX() {
+int Hall::getPlayerX() const {
     return playerX;
 }
-int Hall::getSeed() {
+int Hall::getSeed() const {
     return seed;
+}
+std::vector<Room*> Hall::getListOfRooms() const {
+    return listOfRooms;
+}
+
+/* Return the Room at the given index */
+Room* Hall::getRoom(int index) {
+    return listOfRooms.at(index);
+}
+
+/* Return the current active Room */
+Room* Hall::getActiveRoom() {
+    return getRoom(playerIndex);
+}
+
+/* Set index of the active Room and update list */
+void Hall::setActiveRoom(int n) {
+    playerIndex = n;
 }
 
 /* Add a Room to the Hall */
@@ -42,13 +60,13 @@ void Hall::addRoom() {
     
 }
 
-/* Set the player's x position within the Hall */
+/* Set the player's x position within the Hall (absolute) */
 void Hall::goTo(int n) {
     playerX = n;
     Hall::updateIndexAndRoom();
 }
 
-/* Set the player's x position relative to current position */
+/* Set the player's x position within the Hall (relative) */
 void Hall::step(int n) {
     Hall::goTo(playerX + n);
 }
@@ -67,47 +85,24 @@ void Hall::stepRight(int n) {
     Hall::step(n);
 }
 
-/* Set index of the active Room and update list */
-void Hall::setActiveRoom(int n) {
-    playerIndex = n;
-}
-
-/* Return the current active Room */
-Room* Hall::getActiveRoom() {
-    return getRoom(playerIndex);
-}
-
-/* Return the Room at the given index */
-Room* Hall::getRoom(int index) {
-    return listOfRooms.at(index);
-}
-
-/* Return the list of Rooms */
-std::vector<Room*> Hall::getListOfRooms() const {
-    return listOfRooms;
-}
-
-/* Send player to position steps within Room at index */
+/* Send player to position steps in given Room (absolute) */
 void Hall::goToRoom(int index, int steps) {
     
 }
-/* Send player to beginning of Room at given index */
 void Hall::goToRoom(int index) {
     goToRoom(index, 0);
 }
 
-/* Send player to position steps in a given Room relative to current Room */
+/* Send player to position steps in given Room (relative) */
 void Hall::stepRoom(int index, int steps) {
     goToRoom(playerIndex+index, steps);
 }
-
-/* Send player to given Room relative to current Room */
-void Hall::stepRoom(int n) {
+void Hall::stepRoom(int index) {
     stepRoom(index, 0);
 }
 
 /* Initialize values common to all constructors */
-void initialize() {
+void Hall::initialize() {
     playerIndex = 0;
     playerX = 0;
 }

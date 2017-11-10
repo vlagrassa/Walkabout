@@ -3,7 +3,7 @@
 
 Monster::Monster() {
     name = "John";
-    health = "20";
+    health = 20;
 }
 Monster::Monster(const Monster& orig) {
     

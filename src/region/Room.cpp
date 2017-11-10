@@ -33,7 +33,7 @@ Encounterable Room::getEncounter() const {
 }
 
 /* Setter method for length */
-void setLength(const int& n) {
+void Room::setLength(const int& n) {
     length = n;
 }
 

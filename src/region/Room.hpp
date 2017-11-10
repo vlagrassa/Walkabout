@@ -6,33 +6,56 @@
 #include "Encounterable.hpp"
 
 
+enum RoomType {
+    monster,
+    treasure,
+    puzzle
+};
+
 class Room {
 public:
+    /* Constructor, takes length and Encounterable */
     Room(int d, Encounterable t);
-    Room(int d);
-    Room();
+    
+    /* Default constructor */
     Room(const Room& orig);
+    
+    /* Default destructor */
     virtual ~Room();
     
-    int getSize() const;
-    void setSize(const int& n);
-    
+    /* Getter methods */
+    int getLength() const;
     int getDistance() const; //return distance between player and Encounterable
-    
     Encounterable getEncounter() const;
+    
+    /* Setter methods */
+    void setLength(const int& n);
     //void setEncounter(const Encounterable& e);
     
+    /* Check if the Room is active */
     bool isActive() const;
     void setActive(const bool& b);
     void activate();
     void deactivate();
     
 private:
-    friend std::ostream& operator<<(std::ostream &strm, const Room&);
-    Encounterable thing; //the actual encounterable
+    /* Encounterable held by the Room */
+    Encounterable thing;
+    
+    /* The type of Encounterable held in the Room */
+    RoomType type;
+    
+    /* Number of tics in the Room */
     int length;
+    
+    /* Whether the Room is the current active room of its Hall */
     bool active;
+    
+    /* Whether the Room has been "defeated" or not */
     bool passed;
+    
+    /* Return Room for a stream */
+    friend std::ostream& operator<<(std::ostream &strm, const Room&);
 };
 
 

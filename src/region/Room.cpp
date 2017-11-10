@@ -3,7 +3,7 @@
 
 Room::Room(int d, Encounterable t) {
     size = d;
-    thing = t;
+    thing = Encounterable(t);
 }
 Room::Room(int d) {
     size = d;
@@ -19,14 +19,40 @@ Room::~Room() {
 }
 
 int Room::getSize() const {
-    const int c = size;
-    return c;
-}
-
-int Room::getSize() {
+    //const int c = size;
     return size;
 }
 
+Encounterable Room::getEncounter() const {
+    return thing;
+}
+
+//void Room::setEncounter(const Encounterable& e) {
+//    thing = Encounterable(e);
+//}
+
+bool Room::isActive() const {
+    return active;
+}
+
+void Room::setActive(const bool& b) {
+    active = b;
+}
+void Room::activate() {
+    setActive(true);
+}
+void Room::deactivate() {
+    setActive(false);
+}
+
+
+
 std::ostream& operator<<(std::ostream &strm, const Room &r) {
-    return strm << "Print room test, size = " + std::to_string(r.getSize());
+    if (r.isActive()) {
+        strm << "*  ACTIVE ";
+    } else {
+        strm << " Inactive ";
+    }
+    strm << "size " << std::to_string(r.getSize());
+    return strm;
 }

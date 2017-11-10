@@ -15,10 +15,17 @@ public:
     virtual ~Room();
     
     int getSize() const;
-    int getSize();
-    int getDistance(); //return distance between player and Encounterable
+    void setSize(const int& n);
     
-    Encounterable getEncounter();
+    int getDistance() const; //return distance between player and Encounterable
+    
+    Encounterable getEncounter() const;
+    //void setEncounter(const Encounterable& e);
+    
+    bool isActive() const;
+    void setActive(const bool& b);
+    void activate();
+    void deactivate();
     
 private:
     friend std::ostream& operator<<(std::ostream &strm, const Room&);

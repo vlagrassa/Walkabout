@@ -4,9 +4,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <iostream>
-#include "region/Region.hpp"
-//#include "region/Room.hpp"
-//#include "region/Hall.hpp"
+#include "region/Hall.hpp"
 #include "region/Monster.hpp"
 
 int main() {
@@ -40,6 +38,19 @@ int main() {
     std::cout << *(h.getRoom(0)) << "\n";
     
     std::cout << h.getSeed() << "\n";
+    
+    Monster m;
+    std::cout << m.isSkippable() << "\n";
+    
+    std::cout << *t << "\n";
+    std::cout << *t << "\n";
+    t->activate();
+    std::cout << *t << "\n";
+    t->deactivate();
+    std::cout << *t << "\n";
+    std::cout << *t << "\n";
+    std::cout << *t << "\n";
+    std::cout << *t << "\n";
     
     return EXIT_SUCCESS;
 }

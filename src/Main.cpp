@@ -14,6 +14,7 @@ int main() {
     
     h.addRoom(new Room(5, *(new Encounterable())));
     h.addRoom(new Room(9, mon));
+    h.addRoom();
     
     std::cout << "\n\n" << h << "\n";
     h.setActiveRoom(0);
@@ -40,7 +41,7 @@ int main() {
         h.printDistances();
     }
     
-    h.addRoom();
+    
     
     return EXIT_SUCCESS;
 }

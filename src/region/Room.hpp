@@ -18,6 +18,8 @@ public:
     int getSize();
     int getDistance(); //return distance between player and Encounterable
     
+    Encounterable getEncounter();
+    
 private:
     friend std::ostream& operator<<(std::ostream &strm, const Room&);
     Encounterable thing; //the actual encounterable

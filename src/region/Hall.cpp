@@ -2,26 +2,26 @@
 #include <SFML/Graphics.hpp>
 #include <ctime>
 
-/* Generate a random seed */
+/* Constructor generating a random seed */
 Hall::Hall() {
-    playerIndex = 0;
-    playerX = 0;
+    initialize();
     seed = genRandomSeed();
 }
-/* Use the provided seed */
+/* Constructor using a provided seed */
 Hall::Hall(int s) {
-    playerIndex = 0;
-    playerX = 0;
+    initialize();
     seed = s;
 }
-
+/* Default constructor */
 Hall::Hall(const Hall& orig) {
     
 }
+/* Default destructor */
 Hall::~Hall() {
     
 }
 
+/* Getter methods */
 int Hall::getPlayerIndex() {
     return playerIndex;
 }
@@ -32,10 +32,12 @@ int Hall::getSeed() {
     return seed;
 }
 
+/* Add a Room to the Hall */
 void Hall::addRoom(Room* r) {
     listOfRooms.push_back(r);
 }
-/* Method to generate a random Room based on the seed */
+
+/* Generate a random Room from the seed */
 void Hall::addRoom() {
     
 }
@@ -46,10 +48,12 @@ void Hall::goTo(int n) {
     Hall::updateIndexAndRoom();
 }
 
-/* Special applications of goTo() */
+/* Set the player's x position relative to current position */
 void Hall::step(int n) {
     Hall::goTo(playerX + n);
 }
+
+/* Special applications of step() */
 void Hall::stepLeft() {
     Hall:stepLeft(1);
 }
@@ -63,26 +67,49 @@ void Hall::stepRight(int n) {
     Hall::step(n);
 }
 
+/* Set index of the active Room and update list */
 void Hall::setActiveRoom(int n) {
     playerIndex = n;
 }
 
+/* Return the current active Room */
 Room* Hall::getActiveRoom() {
     return getRoom(playerIndex);
 }
+
+/* Return the Room at the given index */
 Room* Hall::getRoom(int index) {
     return listOfRooms.at(index);
 }
 
+/* Return the list of Rooms */
 std::vector<Room*> Hall::getListOfRooms() const {
     return listOfRooms;
 }
 
-void Hall::goToRoom(int n) {
+/* Send player to position steps within Room at index */
+void Hall::goToRoom(int index, int steps) {
     
 }
+/* Send player to beginning of Room at given index */
+void Hall::goToRoom(int index) {
+    goToRoom(index, 0);
+}
+
+/* Send player to position steps in a given Room relative to current Room */
+void Hall::stepRoom(int index, int steps) {
+    goToRoom(playerIndex+index, steps);
+}
+
+/* Send player to given Room relative to current Room */
 void Hall::stepRoom(int n) {
-    goToRoom(playerIndex+n);
+    stepRoom(index, 0);
+}
+
+/* Initialize values common to all constructors */
+void initialize() {
+    playerIndex = 0;
+    playerX = 0;
 }
 
 //Temporary function - change to reflect actual algorithm
@@ -92,13 +119,14 @@ void Hall::updateIndexAndRoom() {
     //set new room to active
 }
 
-/* Generate and return a random seed */
+/* Generate seed based on the current time */
 int Hall::genRandomSeed() {
     //return 5; //Temporary return value
     return std::time(NULL);
     //std::srand(static_cast<unsigned int>(std::time(NULL)));
 }
 
+/* Return Hall for a stream */
 std::ostream& operator<<(std::ostream &strm, const Hall &h) {
     strm << "Hall:\n";
     for (Room* r : h.getListOfRooms()) {

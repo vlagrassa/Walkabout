@@ -53,6 +53,6 @@ std::ostream& operator<<(std::ostream &strm, const Room &r) {
     } else {
         strm << " Inactive ";
     }
-    strm << "size " << std::to_string(r.getSize());
+    strm << "size " << std::to_string(r.getSize()) << " " << r.getEncounter().getTypeName();
     return strm;
 }

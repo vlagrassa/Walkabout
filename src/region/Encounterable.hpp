@@ -12,6 +12,8 @@ public:
     
     bool isSkippable();
     
+    virtual std::string getTypeName() const;
+    
 private:
     bool skippable;
 };

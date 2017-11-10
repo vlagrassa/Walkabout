@@ -14,3 +14,7 @@ Encounterable::~Encounterable() {
 bool Encounterable::isSkippable() {
     return skippable;
 }
+
+std::string Encounterable::getTypeName() const {
+    return "Encounterable";
+}

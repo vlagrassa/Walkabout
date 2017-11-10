@@ -21,3 +21,7 @@ int Monster::getHealth() {
 std::vector<int> Monster::getReward() {
     return reward;
 }
+
+std::string Monster::getTypeName() const {
+    return "Monster";
+}

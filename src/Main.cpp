@@ -39,8 +39,8 @@ int main() {
     
     std::cout << h.getSeed() << "\n";
     
-    Monster m;
-    std::cout << m.isSkippable() << "\n";
+    Monster mon;
+    Room* m = new Room(9, mon);
     
     std::cout << *t << "\n";
     std::cout << *t << "\n";
@@ -51,6 +51,10 @@ int main() {
     std::cout << *t << "\n";
     std::cout << *t << "\n";
     std::cout << *t << "\n";
+    std::cout << *m << "\n";
+    
+    m->activate();
+    std::cout << *m << "\n";
     
     return EXIT_SUCCESS;
 }

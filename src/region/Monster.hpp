@@ -14,6 +14,8 @@ public:
     int getHealth();
     std::vector<int> getReward();
     
+    std::string getTypeName() const;
+    
 private:
     std::string name;
     int health;

@@ -127,13 +127,17 @@ void Hall::initialize() {
 /* Calculate playerIndex based on playerX */
 void Hall::updateIndex() {
     unsigned l = 0;
-    for (unsigned i = 0; i < distances.size(); i++) {
+    for (int i = 0; i < distances.size(); i++) {
         l += distances.at(i);
-        if (l >= playerX) {
+        if (l > playerX) {
             playerIndex = i;
-            playerT = distances.at(i) - (playerIndex - l);
+            playerT = distances.at(i) - (l - playerX);
+            //std::cout << "\n" << std::to_string(l-playerX);
+            std::cout << "\nSending to position " << std::to_string(playerT) << " in room " << std::to_string(playerIndex) << "\n";
+            return;
         }
     }
+    
 }
 
 /* Generate seed based on the current time */
@@ -164,6 +168,7 @@ void Hall::calcDistances() {
 }
 
 void Hall::printDistances() {
+    std::cout << "| ";
     for (unsigned i = 0; i < distances.size(); i++) {
         for (unsigned j = 0; j < (distances.at(i))-1; j++) {
             if (i == playerIndex && j == playerT) {
@@ -172,7 +177,11 @@ void Hall::printDistances() {
                 std::cout << "_ ";
             }
         }
-        std::cout << "X | ";
+        if (i == playerIndex && distances.at(i)-1 == playerT) {
+            std::cout << "Ø | ";
+        } else {
+            std::cout << "X | ";
+        }
     }
     std::cout << "\n";
 }

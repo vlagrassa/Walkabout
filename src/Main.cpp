@@ -25,15 +25,20 @@ int main() {
     h.printDistances();
     h.goToRoom(0, 0);
     h.printDistances();
-    h.goToRoom(0, 4);
-    h.printDistances();
-    h.goToRoom(1, 0);
-    h.printDistances();
-    h.goToRoom(1, -1);
-    h.printDistances();
-    h.goToRoom(0, 7);
     
+    std::cout << "\n\n";
+    
+    h.goTo(0);
     h.printDistances();
+    for (unsigned i = 0; i < 6; i++) {
+        h.stepRight(2);
+        h.printDistances();
+    }
+    
+    for (unsigned i = 0; i < 6; i++) {
+        h.stepLeft(2);
+        h.printDistances();
+    }
     
     return EXIT_SUCCESS;
 }

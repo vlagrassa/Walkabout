@@ -23,5 +23,7 @@ int main() {
     h.setActiveRoom(1);
     std::cout << h << "\n";
     
+    h.printDistances();
+    
     return EXIT_SUCCESS;
 }

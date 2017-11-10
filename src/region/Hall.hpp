@@ -54,6 +54,9 @@ public:
     void stepRoom(int index, int steps);
     void stepRoom(int index);
     
+    void calcDistances();
+    void printDistances();
+    
 private:
     /* List of Rooms in the Hall */
     std::vector< Room* > listOfRooms;
@@ -61,11 +64,18 @@ private:
     /* X coordinate of the player within the hall (in terms of tics) */
     int playerX;
     
+    /* X coordinate of the player within the current Room */
+    int playerT;
+    
     /* Index of the current active Room */
     int playerIndex;
     
     /* The seed to generate new Rooms */
     int seed;
+    
+    std::vector<int> distances;
+    
+    int totalLength;
     
     /* Initialize values common to all constructors */
     void initialize();

@@ -1,5 +1,7 @@
 #include "Hall.hpp"
 #include <SFML/Graphics.hpp>
+#include <cstdlib>
+#include <iostream>
 #include <ctime>
 
 /* Constructor generating a random seed */
@@ -64,6 +66,8 @@ void Hall::setActiveRoom() {
 /* Add a Room to the Hall */
 void Hall::addRoom(Room* r) {
     listOfRooms.push_back(r);
+    distances.push_back(r->getSize());
+    totalLength += r->getSize();
     setActiveRoom();
 }
 
@@ -99,7 +103,8 @@ void Hall::stepRight(int n) {
 
 /* Send player to position steps in given Room (absolute) */
 void Hall::goToRoom(int index, int steps) {
-    
+    playerIndex = index;
+    playerT = steps;
 }
 void Hall::goToRoom(int index) {
     goToRoom(index, 0);
@@ -138,4 +143,29 @@ std::ostream& operator<<(std::ostream &strm, const Hall &h) {
         strm << "  " << *r << "\n";
     }
     return strm;
+}
+
+
+
+void Hall::calcDistances() {
+    distances.clear();
+    totalLength = 0;
+    for (Room* r : listOfRooms) {
+        distances.push_back(r->getSize());
+        totalLength += r->getSize();
+    }
+}
+
+void Hall::printDistances() {
+    for (unsigned i = 0; i < distances.size(); i++) {
+        for (unsigned j = 0; j < distances.at(i)-1; j++) {
+            if (i == playerIndex && j == playerT) {
+                std::cout << "o ";
+            } else {
+                std::cout << "_ ";
+            }
+        }
+        std::cout << "X | ";
+    }
+    std::cout << "\n";
 }

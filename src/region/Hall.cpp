@@ -46,13 +46,25 @@ Room* Hall::getActiveRoom() {
 }
 
 /* Set index of the active Room and update list */
-void Hall::setActiveRoom(int n) {
-    playerIndex = n;
+void Hall::setActiveRoom(int index) {
+    if (playerIndex >= 0) {
+        listOfRooms.at(playerIndex)->deactivate();
+    }
+    playerIndex = index;
+    if (playerIndex >= 0) {
+        listOfRooms.at(playerIndex)->activate();
+    }
+}
+void Hall::setActiveRoom() {
+    if (playerIndex >= 0) {
+        listOfRooms.at(playerIndex)->activate();
+    }
 }
 
 /* Add a Room to the Hall */
 void Hall::addRoom(Room* r) {
     listOfRooms.push_back(r);
+    setActiveRoom();
 }
 
 /* Generate a random Room from the seed */
@@ -63,7 +75,7 @@ void Hall::addRoom() {
 /* Set the player's x position within the Hall (absolute) */
 void Hall::goTo(int n) {
     playerX = n;
-    Hall::updateIndexAndRoom();
+    Hall::updateIndex();
 }
 
 /* Set the player's x position within the Hall (relative) */
@@ -107,11 +119,9 @@ void Hall::initialize() {
     playerX = 0;
 }
 
-//Temporary function - change to reflect actual algorithm
-void Hall::updateIndexAndRoom() {
-    //set current room (listOfRooms[playerIndex]) to not active
-    //change index to reflect new playerX
-    //set new room to active
+/* Calculate playerIndex based on playerX */
+void Hall::updateIndex() {
+    
 }
 
 /* Generate seed based on the current time */

@@ -15,21 +15,13 @@ int main() {
     h.addRoom(new Room(5, *(new Encounterable())));
     h.addRoom(new Room(9, mon));
     
-    Room* t = h.getRoom(0);
-    Room* m = h.getRoom(1);
-    
-    std::cout << *t << "\n";
-    t->activate();
-    std::cout << *t << "\n";
-    t->deactivate();
-    std::cout << *t << "\n";
-    std::cout << *m << "\n";
-    m->setActive(true);
-    std::cout << *m << "\n";
-    m->setActive(false);
-    std::cout << *m << "\n";
-    
     std::cout << "\n\n" << h << "\n";
+    h.setActiveRoom(0);
+    std::cout << h << "\n";
+    h.setActiveRoom(-1);
+    std::cout << h << "\n";
+    h.setActiveRoom(1);
+    std::cout << h << "\n";
     
     return EXIT_SUCCESS;
 }

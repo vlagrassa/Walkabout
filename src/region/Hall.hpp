@@ -28,8 +28,9 @@ public:
     Room* getRoom(int index);
     Room* getActiveRoom();
     
-    /* Set index of the active Room and update list */
-    void setActiveRoom(int n);
+    /* Update playerIndex and corresponding Rooms */
+    void setActiveRoom(int index);
+    void setActiveRoom();
     
     /* Add a room to the Hall */
     void addRoom(Room* r);
@@ -70,7 +71,7 @@ private:
     void initialize();
     
     /* Recalculate values based on other conditions */
-    void updateIndexAndRoom();
+    void updateIndex();
     
     /* Generate seed based on the current time */
     int genRandomSeed();

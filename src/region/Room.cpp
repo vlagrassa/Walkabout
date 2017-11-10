@@ -7,6 +7,10 @@ Room::Room(int d, Encounterable t) {
     length = d;
     thing = Encounterable(t);
 }
+Room::Room(int seed) {
+    active = false;
+    length = (seed%15)+2;
+}
 /* Default constructor */
 Room::Room(const Room& orig) {
     

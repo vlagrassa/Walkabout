@@ -40,5 +40,7 @@ int main() {
         h.printDistances();
     }
     
+    h.addRoom();
+    
     return EXIT_SUCCESS;
 }

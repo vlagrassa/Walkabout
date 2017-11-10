@@ -17,6 +17,9 @@ public:
     /* Constructor, takes length and Encounterable */
     Room(int d, Encounterable t);
     
+    /* Constructor, generates random room from passed integer */
+    Room(int seed);
+    
     /* Default constructor */
     Room(const Room& orig);
     

@@ -73,7 +73,16 @@ void Hall::addRoom(Room* r) {
 
 /* Generate a random Room from the seed */
 void Hall::addRoom() {
-    
+    srand(seed);
+    for (unsigned i = 0; i < 10; i++) {
+        std::cout << std::to_string(i) << ": " << std::to_string(rand()%32) << "\n";
+    }
+    std::cout << "\n";
+    srand(seed);
+    for (unsigned i = 0; i < 10; i++) {
+        std::cout << std::to_string(i) << ": " << std::to_string(rand()%32) << "\n";
+    }
+    //Room* r(i);
 }
 
 /* Set the player's x position within the Hall (absolute) */

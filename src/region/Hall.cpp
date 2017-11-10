@@ -74,6 +74,10 @@ Room* Hall::getRoom(int index) {
     return listOfRooms.at(index);
 }
 
+std::vector<Room*> Hall::getListOfRooms() const {
+    return listOfRooms;
+}
+
 void Hall::goToRoom(int n) {
     
 }
@@ -93,4 +97,12 @@ int Hall::genRandomSeed() {
     //return 5; //Temporary return value
     return std::time(NULL);
     //std::srand(static_cast<unsigned int>(std::time(NULL)));
+}
+
+std::ostream& operator<<(std::ostream &strm, const Hall &h) {
+    strm << "Hall:\n";
+    for (Room* r : h.getListOfRooms()) {
+        strm << "  " << *r << "\n";
+    }
+    return strm;
 }

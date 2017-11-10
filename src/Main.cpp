@@ -29,5 +29,7 @@ int main() {
     m->setActive(false);
     std::cout << *m << "\n";
     
+    std::cout << "\n\n" << h << "\n";
+    
     return EXIT_SUCCESS;
 }

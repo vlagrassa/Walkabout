@@ -42,6 +42,8 @@ public:
     Room* getActiveRoom();
     Room* getRoom(int index);
     
+    std::vector<Room*> getListOfRooms() const;
+    
 private:
     /* List of Rooms in the Hall */
     //std::vector<int> testVector;
@@ -61,6 +63,9 @@ private:
     
     /* Generate and return a random seed */
     int genRandomSeed();
+    
+    /* Output Hall to stream */
+    friend std::ostream& operator<<(std::ostream &strm, const Hall&);
 };
 
 #endif /* HALL_H */

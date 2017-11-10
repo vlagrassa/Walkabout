@@ -5,8 +5,9 @@
 #include <cstdlib>
 #include <iostream>
 #include "region/Region.hpp"
-#include "region/Room.hpp"
-#include "region/Hall.hpp"
+//#include "region/Room.hpp"
+//#include "region/Hall.hpp"
+#include "region/Monster.hpp"
 
 int main() {
     Hall h;
@@ -37,6 +38,8 @@ int main() {
     
     std::cout << *r << "\n";
     std::cout << *(h.getRoom(0)) << "\n";
+    
+    std::cout << h.getSeed() << "\n";
     
     return EXIT_SUCCESS;
 }

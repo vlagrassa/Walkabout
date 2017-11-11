@@ -34,6 +34,7 @@ $(OBJDIRSHORT)/%.o: $(SRCDIRSHORT)/%.cpp | $(OBJDIR)
 $(OBJDIR):
 	mkdir $@
 	mkdir $@/region/
+	mkdir $@/player/
 
 $(BUILDDIR):
 	mkdir $@

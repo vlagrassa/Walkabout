@@ -25,6 +25,9 @@ public:
     
 private:
     int posX;
+    
+    /* Return Player for a stream */
+    friend std::ostream& operator<<(std::ostream &strm, const Player&);
 };
 
 #endif /* PLAYER_H */

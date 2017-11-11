@@ -5,7 +5,7 @@
 
 
 Player::Player() {
-    
+    posX = 0;
 }
 Player::Player(const Player& p) {
     
@@ -44,4 +44,10 @@ void Player::stepRight() {
 }
 void Player::stepRight(int n) {
     step(n);
+}
+
+/* Return Player for a stream */
+std::ostream& operator<<(std::ostream &strm, const Player &p) {
+    strm << "Player at position " << std::to_string(p.getX());
+    return strm;
 }

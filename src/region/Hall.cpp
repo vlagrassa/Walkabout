@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
+#include "../player/Player.hpp"
 
 /* Constructor generating a random seed */
 Hall::Hall() {
@@ -87,7 +88,7 @@ void Hall::addRoom() {
 /* Set the player's x position within the Hall (absolute) */
 void Hall::goTo(int n) {
     playerX = n;
-    Hall::updateIndex();
+    //Hall::updateIndex();
 }
 
 /* Set the player's x position within the Hall (relative) */
@@ -129,23 +130,36 @@ void Hall::stepRoom(int index) {
 /* Initialize values common to all constructors */
 void Hall::initialize() {
     playerIndex = 0;
-    playerX = 0;
+    //playerX = 0;
 }
 
 /* Calculate playerIndex based on playerX */
-void Hall::updateIndex() {
+void Hall::updateIndex(Player& p) {
     unsigned l = 0;
+    std::cout << "Blah " << std::to_string(p.getX()) << "\n";
     for (int i = 0; i < distances.size(); i++) {
         l += distances.at(i);
-        if (l > playerX) {
+        if (l > p.getX()) {
             playerIndex = i;
-            playerT = distances.at(i) - (l - playerX);
-            //std::cout << "\n" << std::to_string(l-playerX);
+            playerT = distances.at(i) - (l - p.getX());
+            //std::cout << "\n" << std::to_string(l-p.getX());
             std::cout << "\nSending to position " << std::to_string(playerT) << " in room " << std::to_string(playerIndex) << "\n";
             return;
         }
     }
     
+}
+
+int Hall::testThing(Player& p) {
+    std::cout << "Print player from Hall: " << p << "\n";
+    p.setX(9);
+    std::cout << "Print player from Hall: " << p << "\n";
+    return p.getX();
+}
+
+bool Hall::testThing(Player& p, int pX) {
+    std::cout << p.getX() << " == " << pX << " ";
+    return p.getX() == pX;
 }
 
 /* Generate seed based on the current time */

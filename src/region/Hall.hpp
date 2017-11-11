@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 #include "Room.hpp"
+#include "../player/Player.hpp"
 
 
 class Hall {
@@ -58,6 +59,12 @@ public:
     void calcDistances();
     void printDistances() const;
     
+    /* Recalculate values based on other conditions */
+    void updateIndex(Player& p);
+    
+    int testThing(Player& p);
+    bool testThing(Player& p, int pX);
+    
 private:
     /* List of Rooms in the Hall */
     std::vector< Room* > listOfRooms;
@@ -82,9 +89,6 @@ private:
     
     /* Initialize values common to all constructors */
     void initialize();
-    
-    /* Recalculate values based on other conditions */
-    void updateIndex();
     
     /* Generate seed based on the current time */
     int genRandomSeed();

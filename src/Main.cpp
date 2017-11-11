@@ -18,12 +18,22 @@ int main() {
     
     Player player;
     
+    std::cout << player << "\n";
     
+    player.goTo(4);
+    std::cout << player << "\n";
+    std::cout << "Player x: " << player.getX() << "\n";
+    std::cout << "Player x (from hall):\n" << h.testThing(player) << "\n";
+    h.updateIndex(player);
     std::cout << h << "\n";
+    
     h.goToRoom(1, 3);
     std::cout << h << "\n";
     h.goToRoom(0, 0);
     std::cout << h << "\n";
+    
+    std::cout << player.getX() << "\n";
+    std::cout << h.testThing(player, player.getX()) << "\n";
     
     return EXIT_SUCCESS;
 }

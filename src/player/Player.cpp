@@ -48,6 +48,6 @@ void Player::stepRight(int n) {
 
 /* Return Player for a stream */
 std::ostream& operator<<(std::ostream &strm, const Player &p) {
-    strm << "Player at position " << std::to_string(p.getX());
+    strm << "Player at position " << p.getX();
     return strm;
 }

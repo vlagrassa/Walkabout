@@ -13,6 +13,16 @@ public:
     int getX() const;
     void setX(int n);
     
+    /* Set player's x position (absolute) */
+    void goTo(int n);
+    
+    /* Set player's x position (relative) */
+    void step(int n);
+    void stepLeft();
+    void stepLeft(int n);
+    void stepRight();
+    void stepRight(int n);
+    
 private:
     int posX;
 };

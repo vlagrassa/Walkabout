@@ -73,10 +73,10 @@ void Hall::addRoom(Room* r) {
 
 /* Generate a random Room from the seed */
 void Hall::addRoom() {
-    srand(seed); //reset srand
-    //for length of listOfThings
-        //Generate a random number to catch up
-    
+    srand(seed);
+    for (unsigned i = 0; i < listOfRooms.size(); i++) {
+        rand();
+    }
     Room* r = new Room(rand());
     addRoom(r);
 }
@@ -108,7 +108,7 @@ void Hall::stepRight(int n) {
 
 /* Send player to position steps in given Room (absolute) */
 void Hall::goToRoom(int index, int steps) {
-    playerIndex = index;
+    setActiveRoom(index);
     playerT = steps;
 }
 void Hall::goToRoom(int index) {
@@ -135,7 +135,7 @@ void Hall::updateIndex() {
     for (int i = 0; i < distances.size(); i++) {
         l += distances.at(i);
         if (l > playerX) {
-            playerIndex = i;
+            setActiveRoom(i);
             playerT = distances.at(i) - (l - playerX);
             //std::cout << "\n" << std::to_string(l-playerX);
             std::cout << "\nSending to position " << std::to_string(playerT) << " in room " << std::to_string(playerIndex) << "\n";

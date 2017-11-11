@@ -78,9 +78,9 @@ void Hall::addRoom(Room* r) {
 /* Generate a random Room from the seed */
 void Hall::addRoom() {
     srand(seed); //reset srand
-    //for length of listOfThings
-        //Generate a random number to catch up
-    
+    for (unsigned i = 0; i < listOfRooms.size(); i++) {
+        rand();
+    }
     Room* r = new Room(rand());
     addRoom(r);
 }

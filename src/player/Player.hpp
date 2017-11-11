@@ -6,8 +6,12 @@
 
 class Player {
 public:
+    Player();
+    Player(const Player& p);
+    virtual ~Player();
+    
     int getX() const;
-    int setX();
+    void setX(int n);
     
 private:
     int posX;

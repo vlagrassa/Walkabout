@@ -30,6 +30,9 @@ int Hall::getPlayerIndex() const {
 int Hall::getPlayerX() const {
     return playerX;
 }
+int Hall::getPlayerT() const {
+    return playerT;
+}
 int Hall::getSeed() const {
     return seed;
 }
@@ -154,10 +157,11 @@ int Hall::genRandomSeed() {
 
 /* Return Hall for a stream */
 std::ostream& operator<<(std::ostream &strm, const Hall &h) {
-    strm << "Hall:\n";
+    strm << "Hall: Room " << h.getPlayerIndex() << ", Tic " << h.getPlayerT() << "\n";
     for (Room* r : h.getListOfRooms()) {
         strm << "  " << *r << "\n";
     }
+    h.printDistances();
     return strm;
 }
 
@@ -172,7 +176,7 @@ void Hall::calcDistances() {
     }
 }
 
-void Hall::printDistances() {
+void Hall::printDistances() const {
     std::cout << "| ";
     for (unsigned i = 0; i < distances.size(); i++) {
         for (unsigned j = 0; j < (distances.at(i))-1; j++) {

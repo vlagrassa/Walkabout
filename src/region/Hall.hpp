@@ -23,6 +23,7 @@ public:
     /* Getter methods */
     int getPlayerIndex() const;
     int getPlayerX() const;
+    int getPlayerT() const;
     int getSeed() const;
     std::vector<Room*> getListOfRooms() const;
     Room* getRoom(int index);
@@ -55,7 +56,7 @@ public:
     void stepRoom(int index);
     
     void calcDistances();
-    void printDistances();
+    void printDistances() const;
     
 private:
     /* List of Rooms in the Hall */

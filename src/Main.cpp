@@ -6,42 +6,24 @@
 #include <iostream>
 #include "region/Hall.hpp"
 #include "region/Monster.hpp"
+#include "player/Player.hpp"
 
 int main() {
     std::cout << "\n\n";
-    Hall h;
-    Monster mon;
     
-    h.addRoom(new Room(5, *(new Encounterable())));
-    h.addRoom(new Room(9, mon));
+    Hall h(5);
+    h.addRoom();
+    h.addRoom();
     h.addRoom();
     
-    std::cout << "\n\n" << h << "\n";
-    h.setActiveRoom(0);
-    std::cout << h << "\n";
-    h.setActiveRoom(-1);
+    Player player;
+    
+    
     std::cout << h << "\n";
     h.goToRoom(1, 3);
     std::cout << h << "\n";
-    h.printDistances();
     h.goToRoom(0, 0);
-    h.printDistances();
-    
-    std::cout << "\n\n";
-    
-    h.goTo(0);
-    h.printDistances();
-    for (unsigned i = 0; i < 6; i++) {
-        h.stepRight(2);
-        h.printDistances();
-    }
-    
-    for (unsigned i = 0; i < 6; i++) {
-        h.stepLeft(2);
-        h.printDistances();
-    }
-    
-    
+    std::cout << h << "\n";
     
     return EXIT_SUCCESS;
 }

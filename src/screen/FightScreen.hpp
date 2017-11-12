@@ -1,6 +1,7 @@
 #ifndef FIGHTSCREEN_H
 #define FIGHTSCREEN_H
 
+#include "ScreenMode.hpp"
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 

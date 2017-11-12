@@ -1,6 +1,7 @@
 #ifndef MENU_H
 #define MENU_H
 
+#include "ScreenMode.hpp"
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 

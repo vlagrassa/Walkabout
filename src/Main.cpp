@@ -36,5 +36,17 @@ int main() {
     h.updateIndex(player);
     std::cout << player << "\n" << h << "\n";
     
+    player.goTo(h.goToRoom(1));
+    h.updateIndex(player);
+    std::cout << player << "\n" << h << "\n";
+    
+    player.goTo(h.stepRoom(1));
+    h.updateIndex(player);
+    std::cout << player << "\n" << h << "\n";
+    
+    player.goTo(h.stepRoom(-1,5));
+    h.updateIndex(player);
+    std::cout << player << "\n" << h << "\n";
+    
     return EXIT_SUCCESS;
 }

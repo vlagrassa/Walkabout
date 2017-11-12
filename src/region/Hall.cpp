@@ -125,18 +125,6 @@ void Hall::updateIndex(Player& p) {
     
 }
 
-int Hall::testThing(Player& p) {
-    std::cout << "Print player from Hall: " << p << "\n";
-    p.setX(9);
-    std::cout << "Print player from Hall: " << p << "\n";
-    return p.getX();
-}
-
-bool Hall::testThing(Player& p, int pX) {
-    std::cout << p.getX() << " == " << pX << " ";
-    return p.getX() == pX;
-}
-
 /* Generate seed based on the current time */
 int Hall::genRandomSeed() {
     //return 5; //Temporary return value

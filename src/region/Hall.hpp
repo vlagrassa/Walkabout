@@ -51,9 +51,6 @@ public:
     /* Recalculate values based on other conditions */
     void updateIndex(Player& p);
     
-    int testThing(Player& p);
-    bool testThing(Player& p, int pX);
-    
 private:
     /* List of Rooms in the Hall */
     std::vector< Room* > listOfRooms;

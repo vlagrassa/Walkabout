@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 
-class Menu {
+class Menu: public ScreenMode {
 public:
     
 private:

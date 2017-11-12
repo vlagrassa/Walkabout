@@ -38,16 +38,6 @@ public:
     void addRoom(Room* r);
     void addRoom();
     
-    /* Set player's x position within the Hall (absolute) */
-    void goTo(int n);
-    
-    /* Set player's x position within the Hall (relative) */
-    void step(int n);
-    void stepLeft();
-    void stepLeft(int n);
-    void stepRight();
-    void stepRight(int n);
-     
     /* Get x position for number of steps into given Room (absolute) */
     int goToRoom(int index, int steps);
     int goToRoom(int index);

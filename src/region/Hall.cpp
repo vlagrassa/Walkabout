@@ -85,31 +85,6 @@ void Hall::addRoom() {
     addRoom(r);
 }
 
-/* Set the player's x position within the Hall (absolute) */
-void Hall::goTo(int n) {
-    playerX = n;
-    //Hall::updateIndex();
-}
-
-/* Set the player's x position within the Hall (relative) */
-void Hall::step(int n) {
-    Hall::goTo(playerX + n);
-}
-
-/* Special applications of step() */
-void Hall::stepLeft() {
-    Hall:stepLeft(1);
-}
-void Hall::stepLeft(int n) {
-    Hall::step(-n);
-}
-void Hall::stepRight() {
-    Hall:stepRight(1);
-}
-void Hall::stepRight(int n) {
-    Hall::step(n);
-}
-
 /* Get x position for number of steps into given Room (absolute) */
 int Hall::goToRoom(int index, int steps) {
     unsigned l = 0;

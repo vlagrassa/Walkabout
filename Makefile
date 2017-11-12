@@ -35,6 +35,7 @@ $(OBJDIR):
 	mkdir $@
 	mkdir $@/region/
 	mkdir $@/player/
+	mkdir $@/screen/
 
 $(BUILDDIR):
 	mkdir $@

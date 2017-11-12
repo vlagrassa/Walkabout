@@ -41,9 +41,9 @@ public:
     int goToRoom(int index, int steps);
     int goToRoom(int index);
 
-    /* Send player to position steps in given Room (relative) */
-    void stepRoom(int index, int steps);
-    void stepRoom(int index);
+    /* Get x position for number of steps into given Room (relative) */
+    int stepRoom(int index, int steps);
+    int stepRoom(int index);
     
     void calcDistances();
     void printDistances() const;

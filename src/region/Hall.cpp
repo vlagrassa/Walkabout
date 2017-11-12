@@ -94,12 +94,12 @@ int Hall::goToRoom(int index) {
     return goToRoom(index, 0);
 }
 
-/* Send player to position steps in given Room (relative) */
-void Hall::stepRoom(int index, int steps) {
-    goToRoom(playerIndex+index, steps);
+/* Get x position for number of steps into given Room (relative) */
+int Hall::stepRoom(int index, int steps) {
+    return goToRoom(playerIndex+index, steps);
 }
-void Hall::stepRoom(int index) {
-    stepRoom(index, 0);
+int Hall::stepRoom(int index) {
+    return stepRoom(index, 0);
 }
 
 /* Initialize values common to all constructors */

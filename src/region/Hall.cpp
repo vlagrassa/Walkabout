@@ -28,9 +28,6 @@ Hall::~Hall() {
 int Hall::getPlayerIndex() const {
     return playerIndex;
 }
-int Hall::getPlayerX() const {
-    return playerX;
-}
 int Hall::getPlayerT() const {
     return playerT;
 }

@@ -23,7 +23,6 @@ public:
     
     /* Getter methods */
     int getPlayerIndex() const;
-    int getPlayerX() const;
     int getPlayerT() const;
     int getSeed() const;
     std::vector<Room*> getListOfRooms() const;
@@ -58,9 +57,6 @@ public:
 private:
     /* List of Rooms in the Hall */
     std::vector< Room* > listOfRooms;
-    
-    /* X coordinate of the player within the hall (in terms of tics) */
-    int playerX;
     
     /* X coordinate of the player within the current Room */
     int playerT;

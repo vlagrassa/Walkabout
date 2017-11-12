@@ -110,13 +110,16 @@ void Hall::stepRight(int n) {
     Hall::step(n);
 }
 
-/* Send player to position steps in given Room (absolute) */
-void Hall::goToRoom(int index, int steps) {
-    setActiveRoom(index);
-    playerT = steps;
+/* Get x position for number of steps into given Room (absolute) */
+int Hall::goToRoom(int index, int steps) {
+    unsigned l = 0;
+    for (int i = 0; i < index; i++) {
+        l += distances.at(i);
+    }
+    return l + steps;
 }
-void Hall::goToRoom(int index) {
-    goToRoom(index, 0);
+int Hall::goToRoom(int index) {
+    return goToRoom(index, 0);
 }
 
 /* Send player to position steps in given Room (relative) */
@@ -136,7 +139,7 @@ void Hall::initialize() {
 /* Calculate playerIndex based on playerX */
 void Hall::updateIndex(Player& p) {
     unsigned l = 0;
-    std::cout << "Blah " << std::to_string(p.getX()) << "\n";
+    //std::cout << "Blah " << std::to_string(p.getX()) << "\n";
     for (int i = 0; i < distances.size(); i++) {
         l += distances.at(i);
         if (l > p.getX()) {

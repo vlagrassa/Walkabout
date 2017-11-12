@@ -48,9 +48,9 @@ public:
     void stepRight();
     void stepRight(int n);
      
-    /* Send player to position steps in given Room (absolute) */
-    void goToRoom(int index, int steps);
-    void goToRoom(int index);
+    /* Get x position for number of steps into given Room (absolute) */
+    int goToRoom(int index, int steps);
+    int goToRoom(int index);
 
     /* Send player to position steps in given Room (relative) */
     void stepRoom(int index, int steps);

@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
+#include "../screen/EncounterScreen.hpp"
 
 class Encounterable {
 public:
@@ -14,8 +15,11 @@ public:
     
     virtual std::string getTypeName() const;
     
+    EncounterScreen encounter();
+    
 private:
     bool skippable;
+    EncounterScreen screen;
 };
 
 

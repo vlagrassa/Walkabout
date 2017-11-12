@@ -11,7 +11,6 @@ public:
     virtual ~Player();
     
     int getX() const;
-    void setX(int n);
     
     /* Set player's x position (absolute) */
     void goTo(int n);

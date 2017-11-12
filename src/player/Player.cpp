@@ -18,10 +18,6 @@ int Player::getX() const {
     return posX;
 }
 
-void Player::setX(int n) {
-    posX = n;
-}
-
 /* Set the player's x position within the Hall (absolute) */
 void Player::goTo(int n) {
     posX = n;

@@ -10,6 +10,8 @@ public:
     FightScreen();
     FightScreen(const FightScreen&);
     virtual ~FightScreen();
+    
+    std::string testThing();
 private:
     
 };

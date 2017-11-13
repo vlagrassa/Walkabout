@@ -10,6 +10,8 @@ public:
     EncounterScreen();
     EncounterScreen(const EncounterScreen&);
     virtual ~EncounterScreen();
+    
+    virtual std::string testThing();
 private:
     
 };

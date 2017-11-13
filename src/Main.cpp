@@ -37,7 +37,11 @@ int main() {
     Monster mon;
     mon.encounter();
     
-    EncounterScreen s = mon.encounter();
+    EncounterScreen encounterscreen = mon.encounter();
+    std::cout << encounterscreen.testThing() << "\n";
+    
+    FightScreen fightscreen = mon.encounter();
+    std::cout << fightscreen.testThing() << "\n";
     
     return EXIT_SUCCESS;
 }

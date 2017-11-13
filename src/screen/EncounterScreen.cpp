@@ -10,3 +10,7 @@ EncounterScreen::EncounterScreen(const EncounterScreen& orig) {
 EncounterScreen::~EncounterScreen() {
     
 }
+
+std::string EncounterScreen::testThing() {
+    return "This is a default encounter!";
+}

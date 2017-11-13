@@ -5,10 +5,10 @@
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
 /* Constructor, takes length and Encounterable */
-Room::Room(int d, Encounterable t) {
+Room::Room(int d, Encounterable* t) {
     active = false;
     length = d;
-    thing = new Encounterable(t);
+    thing = t;
     type = unknown;
 }
 Room::Room(int seed) {

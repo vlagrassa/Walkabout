@@ -16,7 +16,7 @@ enum RoomType {
 class Room {
 public:
     /* Constructor, takes length and Encounterable */
-    Room(int d, Encounterable t);
+    Room(int d, Encounterable* t);
     
     /* Constructor, generates random room from passed integer */
     Room(int seed);

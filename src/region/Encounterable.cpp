@@ -25,3 +25,7 @@ EncounterScreen Encounterable::encounter() {
     std::cout << "Returning default encounter screen!" << "\n";
     return screen;
 }
+
+//std::vector<int> Encounterable::getReward() const {
+//    
+//}

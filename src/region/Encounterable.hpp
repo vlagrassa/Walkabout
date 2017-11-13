@@ -21,6 +21,8 @@ public:
     
     //virtual std::vector<int> getReward() const; //should return Item or something
     
+    virtual void encounter();
+    
 private:
     bool skippable;
     EncounterScreen* screen;

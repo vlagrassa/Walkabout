@@ -21,6 +21,8 @@ public:
     
     void initialize();
     
+    void encounter();
+    
 private:
     std::string name;
     int health;

@@ -42,3 +42,7 @@ void Monster::initialize() {
     battle_screen = new FightScreen();
     std::cout << "Just initialized battle_screen as " << battle_screen << " from initialize function... ";
 }
+
+void Monster::encounter() {
+    std::cout << "This is a monster!\n";
+}

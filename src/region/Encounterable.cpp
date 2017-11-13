@@ -33,3 +33,7 @@ EncounterScreen* Encounterable::getEncounterScreen() const {
 void Encounterable::initScreen() {
     screen = new EncounterScreen();
 }
+
+void Encounterable::encounter() {
+    std::cout << "This is default" << "\n";
+}

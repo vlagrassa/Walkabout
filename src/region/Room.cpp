@@ -5,11 +5,12 @@
 Room::Room(int d, Encounterable t) {
     active = false;
     length = d;
-    thing = Encounterable(t);
+    thing = new Encounterable(t);
 }
 Room::Room(int seed) {
     active = false;
     length = (seed%15)+2;
+    thing = new Encounterable();
 }
 /* Default constructor */
 Room::Room(const Room& orig) {
@@ -32,7 +33,7 @@ int Room::getDistance() const {
 }
 
 /* Getter method for Encounterable */
-Encounterable Room::getEncounter() const {
+Encounterable* Room::getEncounter() const {
     return thing;
 }
 
@@ -81,6 +82,6 @@ std::ostream& operator<<(std::ostream &strm, const Room &r) {
     } else {
         strm << " Inactive ";
     }
-    strm << "size " << std::to_string(r.getLength()) << " " << r.getEncounter().getTypeName();
+    strm << "size " << std::to_string(r.getLength()) << " " << r.getEncounter()->getTypeName();
     return strm;
 }

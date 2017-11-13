@@ -118,7 +118,7 @@ int Hall::stepRoom(int index) {
 
 // </editor-fold>
 
-// <editor-fold defaultstate="collapsed" desc=" Private Methods & Friend Methods ">
+// <editor-fold defaultstate="collapsed" desc=" Miscellaneous Methods ">
 /* Initialize values common to all constructors */
 void Hall::initialize() {
     playerIndex = 0;
@@ -135,7 +135,7 @@ void Hall::updateIndex(Player& p) {
             setActiveRoom(i);
             playerT = distances.at(i) - (l - p.getX());
             //std::cout << "\n" << std::to_string(l-p.getX());
-            std::cout << "\nSending to position " << std::to_string(playerT) << " in room " << std::to_string(playerIndex) << "\n";
+            //std::cout << "\nSending to position " << std::to_string(playerT) << " in room " << std::to_string(playerIndex) << "\n";
             return;
         }
     }

@@ -29,7 +29,7 @@ public:
     /* Getter methods */
     int getLength() const;
     int getDistance() const; //return distance between player and Encounterable
-    Encounterable getEncounter() const;
+    Encounterable* getEncounter() const;
     RoomType getType() const;
     
     /* Setter methods */
@@ -45,7 +45,7 @@ public:
     
 private:
     /* Encounterable held by the Room */
-    Encounterable thing;
+    Encounterable* thing;
     
     /* The type of Encounterable held in the Room */
     RoomType type;

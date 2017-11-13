@@ -54,19 +54,20 @@ int main() {
     
     std::cout << "\n\n";
     
-    /*
     for (Room* r : h.getListOfRooms()) {
         RoomType temp = r->getType();
         switch (temp) {
-            case (monster):
-                Monster* tempEncounter = dynamic_cast<Monster*>(&(r->getEncounter()));
-                std::cout << tempEncounter.encounter().testThing();
+            case (monster): {
+                Monster* tempEncounter = dynamic_cast<Monster*>((r->getEncounter()));
+                std::cout << tempEncounter->encounter().testThing() << "\n";
                 break;
-            default:
-                std::cout << r->getEncounter().encounter().testThing() << "\n";
+            }
+            default: {
+                std::cout << r->getEncounter()->encounter().testThing() << "\n";
+                break;
+            }
         }
     }
-    */
     
     return EXIT_SUCCESS;
 }

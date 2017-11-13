@@ -1,5 +1,7 @@
 #include "Encounterable.hpp"
 #include <SFML/Graphics.hpp>
+#include <cstdlib>
+#include <iostream>
 
 Encounterable::Encounterable() {
     
@@ -17,4 +19,9 @@ bool Encounterable::isSkippable() {
 
 std::string Encounterable::getTypeName() const {
     return "Encounterable";
+}
+
+EncounterScreen Encounterable::encounter() {
+    std::cout << "Returning default encounter screen!" << "\n";
+    return screen;
 }

@@ -15,7 +15,7 @@ public:
     
     virtual std::string getTypeName() const;
     
-    EncounterScreen encounter();
+    virtual EncounterScreen encounter();
     
 private:
     bool skippable;

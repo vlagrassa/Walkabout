@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include "Encounterable.hpp"
+#include "../screen/FightScreen.hpp"
 
 class Monster: public Encounterable {
 public:
@@ -16,11 +17,13 @@ public:
     
     std::string getTypeName() const;
     
+    FightScreen encounter() const;
+    
 private:
     std::string name;
     int health;
     std::vector<int> reward; //should hold Items
-    int battle_screen; //should be of type Screen& or something
+    FightScreen battle_screen; //should be of type Screen& or something
 };
 
 #endif /* MONSTER_H */

@@ -1,5 +1,8 @@
 #include "Monster.hpp"
 #include "Encounterable.hpp"
+#include "../screen/EncounterScreen.hpp"
+#include <cstdlib>
+#include <iostream>
 
 Monster::Monster() {
     name = "John";
@@ -24,4 +27,9 @@ std::vector<int> Monster::getReward() {
 
 std::string Monster::getTypeName() const {
     return "Monster";
+}
+
+FightScreen Monster::encounter() const {
+    std::cout << "Returning fight screen!" << "\n";
+    return battle_screen;
 }

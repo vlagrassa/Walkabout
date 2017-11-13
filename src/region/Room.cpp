@@ -36,6 +36,10 @@ Encounterable Room::getEncounter() const {
     return thing;
 }
 
+RoomType Room::getType() const {
+    return type;
+}
+
 /* Setter method for length */
 void Room::setLength(const int& n) {
     length = n;
@@ -45,6 +49,10 @@ void Room::setLength(const int& n) {
 //void Room::setEncounter(const Encounterable& e) {
 //    thing = Encounterable(e);
 //}
+
+void Room::setType(RoomType t) {
+    type = t;
+}
 
 /* Check if Room is active */
 bool Room::isActive() const {

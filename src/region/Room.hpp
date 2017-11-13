@@ -30,10 +30,12 @@ public:
     int getLength() const;
     int getDistance() const; //return distance between player and Encounterable
     Encounterable getEncounter() const;
+    RoomType getType() const;
     
     /* Setter methods */
     void setLength(const int& n);
     //void setEncounter(const Encounterable& e);
+    void setType(RoomType t);
     
     /* Check if the Room is active */
     bool isActive() const;

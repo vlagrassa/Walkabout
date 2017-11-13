@@ -7,7 +7,9 @@
 
 class FightScreen: public EncounterScreen {
 public:
-    
+    FightScreen();
+    FightScreen(const FightScreen&);
+    virtual ~FightScreen();
 private:
     
 };

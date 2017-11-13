@@ -7,7 +7,9 @@
 
 class Menu: public ScreenMode {
 public:
-    
+    Menu();
+    Menu(const Menu&);
+    virtual ~Menu();
 private:
     
 };

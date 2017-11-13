@@ -7,7 +7,9 @@
 
 class EncounterScreen: public ScreenMode {
 public:
-    
+    EncounterScreen();
+    EncounterScreen(const EncounterScreen&);
+    virtual ~EncounterScreen();
 private:
     
 };

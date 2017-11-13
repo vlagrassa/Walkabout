@@ -7,6 +7,8 @@
 #include "region/Hall.hpp"
 #include "region/Monster.hpp"
 #include "player/Player.hpp"
+#include "screen/Menu.hpp"
+#include "screen/FightScreen.hpp"
 
 int main() {
     std::cout << "\n\n";
@@ -17,6 +19,7 @@ int main() {
     h.addRoom();
     
     Player player;
+    //Menu pauseScreen;
     
     std::cout << player << "\n";
     
@@ -28,25 +31,13 @@ int main() {
     h.updateIndex(player);
     std::cout << player << "\n" << h << "\n";
     
-    player.stepRight();
-    h.updateIndex(player);
-    std::cout << player << "\n" << h << "\n";
+    Encounterable e;
+    e.encounter();
     
-    player.stepRight(3);
-    h.updateIndex(player);
-    std::cout << player << "\n" << h << "\n";
+    Monster mon;
+    mon.encounter();
     
-    player.goTo(h.goToRoom(1));
-    h.updateIndex(player);
-    std::cout << player << "\n" << h << "\n";
-    
-    player.goTo(h.stepRoom(1));
-    h.updateIndex(player);
-    std::cout << player << "\n" << h << "\n";
-    
-    player.goTo(h.stepRoom(-1,5));
-    h.updateIndex(player);
-    std::cout << player << "\n" << h << "\n";
+    EncounterScreen s = mon.encounter();
     
     return EXIT_SUCCESS;
 }

@@ -1,6 +1,8 @@
 #include "Room.hpp"
 #include <SFML/Graphics.hpp>
 
+// <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
+
 /* Constructor, takes length and Encounterable */
 Room::Room(int d, Encounterable t) {
     active = false;
@@ -20,6 +22,10 @@ Room::Room(const Room& orig) {
 Room::~Room() {
     
 }
+
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Getters ">
 
 /* Getter method for length */
 int Room::getLength() const {
@@ -41,6 +47,10 @@ RoomType Room::getType() const {
     return type;
 }
 
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Setters ">
+
 /* Setter method for length */
 void Room::setLength(const int& n) {
     length = n;
@@ -54,6 +64,10 @@ void Room::setLength(const int& n) {
 void Room::setType(RoomType t) {
     type = t;
 }
+
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Check and set active ">
 
 /* Check if Room is active */
 bool Room::isActive() const {
@@ -75,6 +89,10 @@ void Room::deactivate() {
     setActive(false);
 }
 
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Friend Methods ">
+
 /* Return Room for a stream */
 std::ostream& operator<<(std::ostream &strm, const Room &r) {
     if (r.isActive()) {
@@ -85,3 +103,5 @@ std::ostream& operator<<(std::ostream &strm, const Room &r) {
     strm << "size " << std::to_string(r.getLength()) << " " << r.getEncounter()->getTypeName();
     return strm;
 }
+
+// </editor-fold>

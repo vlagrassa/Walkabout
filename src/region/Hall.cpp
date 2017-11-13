@@ -5,6 +5,8 @@
 #include <ctime>
 #include "../player/Player.hpp"
 
+// <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
+
 /* Constructor generating a random seed */
 Hall::Hall() {
     initialize();
@@ -24,6 +26,9 @@ Hall::~Hall() {
     
 }
 
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Getter Methods ">
 /* Basic getter methods */
 int Hall::getPlayerIndex() const {
     return playerIndex;
@@ -48,6 +53,9 @@ Room* Hall::getActiveRoom() {
     return getRoom(playerIndex);
 }
 
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Setter Methods ">
 /* Set index of the active Room and update list */
 void Hall::setActiveRoom(int index) {
     if (playerIndex >= 0) {
@@ -64,6 +72,9 @@ void Hall::setActiveRoom() {
     }
 }
 
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Adder Methods ">
 /* Add a Room to the Hall */
 void Hall::addRoom(Room* r) {
     listOfRooms.push_back(r);
@@ -82,6 +93,9 @@ void Hall::addRoom() {
     addRoom(r);
 }
 
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" GoTo Methods ">
 /* Get x position for number of steps into given Room (absolute) */
 int Hall::goToRoom(int index, int steps) {
     unsigned l = 0;
@@ -102,6 +116,9 @@ int Hall::stepRoom(int index) {
     return stepRoom(index, 0);
 }
 
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Private Methods & Friend Methods ">
 /* Initialize values common to all constructors */
 void Hall::initialize() {
     playerIndex = 0;
@@ -142,8 +159,9 @@ std::ostream& operator<<(std::ostream &strm, const Hall &h) {
     return strm;
 }
 
+// </editor-fold>
 
-
+// <editor-fold defaultstate="collapsed" desc=" Distances ">
 void Hall::calcDistances() {
     distances.clear();
     totalLength = 0;
@@ -171,3 +189,4 @@ void Hall::printDistances() const {
     }
     std::cout << "\n";
 }
+// </editor-fold>

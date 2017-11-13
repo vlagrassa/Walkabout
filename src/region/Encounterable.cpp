@@ -4,7 +4,7 @@
 #include <iostream>
 
 Encounterable::Encounterable() {
-    
+    initScreen();
 }
 Encounterable::Encounterable(const Encounterable& orig) {
     
@@ -21,7 +21,7 @@ std::string Encounterable::getTypeName() const {
     return "Encounterable";
 }
 
-EncounterScreen Encounterable::encounter() {
+EncounterScreen* Encounterable::getEncounterScreen() const {
     std::cout << "Returning default encounter screen!" << "\n";
     return screen;
 }
@@ -29,3 +29,7 @@ EncounterScreen Encounterable::encounter() {
 //std::vector<int> Encounterable::getReward() const {
 //    
 //}
+
+void Encounterable::initScreen() {
+    screen = new EncounterScreen();
+}

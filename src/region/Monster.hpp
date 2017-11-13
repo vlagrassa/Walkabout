@@ -17,13 +17,15 @@ public:
     
     std::string getTypeName() const;
     
-    FightScreen encounter() const;
+    FightScreen* getEncounterScreen() const;
+    
+    void initialize();
     
 private:
     std::string name;
     int health;
     std::vector<int> reward; //should hold Items
-    FightScreen battle_screen; //should be of type Screen& or something
+    FightScreen* battle_screen; //should be of type Screen& or something
 };
 
 #endif /* MONSTER_H */

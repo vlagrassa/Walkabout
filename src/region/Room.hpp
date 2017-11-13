@@ -7,6 +7,7 @@
 
 
 enum RoomType {
+    unknown,
     monster,
     treasure,
     puzzle
@@ -31,6 +32,7 @@ public:
     int getDistance() const; //return distance between player and Encounterable
     Encounterable* getEncounter() const;
     RoomType getType() const;
+    EncounterScreen* getScreen() const;
     
     /* Setter methods */
     void setLength(const int& n);

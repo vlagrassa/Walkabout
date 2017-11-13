@@ -15,13 +15,15 @@ public:
     
     virtual std::string getTypeName() const;
     
-    virtual EncounterScreen encounter();
+    virtual EncounterScreen* getEncounterScreen() const;
+    
+    void initScreen();
     
     //virtual std::vector<int> getReward() const; //should return Item or something
     
 private:
     bool skippable;
-    EncounterScreen screen;
+    EncounterScreen* screen;
 };
 
 

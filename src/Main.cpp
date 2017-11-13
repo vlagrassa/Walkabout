@@ -36,37 +36,51 @@ int main() {
     std::cout << player << "\n" << h << "\n";
     
     Encounterable e;
-    e.encounter();
+    e.getEncounterScreen();
     
-    mon.encounter();
+    mon.getEncounterScreen();
     
-    EncounterScreen encounterscreen = mon.encounter();
-    std::cout << encounterscreen.testThing() << "\n";
+    EncounterScreen* encounterscreen = mon.getEncounterScreen();
+    std::cout << encounterscreen->testThing() << "\n";
     
-    FightScreen fightscreen = mon.encounter();
-    std::cout << fightscreen.testThing() << "\n";
+    FightScreen* fightscreen = mon.getEncounterScreen();
+    std::cout << fightscreen->testThing() << "\n";
     
-    std::vector<EncounterScreen> screenList;
-    screenList.push_back(mon.encounter());
-    screenList.push_back(e.encounter());
-    screenList.push_back(mon.encounter());
-    screenList.push_back(e.encounter());
+    std::vector<EncounterScreen*> screenList;
+    screenList.push_back(mon.getEncounterScreen());
+    screenList.push_back(e.getEncounterScreen());
+    screenList.push_back(mon.getEncounterScreen());
+    screenList.push_back(e.getEncounterScreen());
     
     std::cout << "\n\n";
-    
-    for (Room* r : h.getListOfRooms()) {
+    for (unsigned i = 0; i < h.getListOfRooms().size(); i++) {
+    //for (Room* r : h.getListOfRooms()) {
+        Room* r = h.getRoom(i);
         RoomType temp = r->getType();
+        std::cout << temp << " ";
         switch (temp) {
             case (monster): {
-                Monster* tempEncounter = dynamic_cast<Monster*>((r->getEncounter()));
-                std::cout << tempEncounter->encounter().testThing() << "\n";
+                std::cout << i << ":\n";
+                std::cout << "Getting Encounter:" << "\n";
+                Encounterable* e = r->getEncounter();
+                std::cout << "Default Encounter is " << e << "\n";
+                Monster* tempEncounter = static_cast<Monster*>(e);
+                //tempEncounter->initialize();
+                std::cout << "Monster* TempEncounter is " << tempEncounter << "\n";
+                std::cout << "Getting Screen:" << "\n";
+                FightScreen* tempScreen = tempEncounter->getEncounterScreen();
+                //FightScreen* tempScreen = dynamic_cast<FightScreen*>(r->getScreen());
+                //std::cout << tempEncounter->getEncounterScreen()->testThing() << "\n";
+                //tempEncounter->getEncounterScreen();
+                //std::cout << tempEncounter->getName() << "\n";
                 break;
             }
             default: {
-                std::cout << r->getEncounter()->encounter().testThing() << "\n";
+                std::cout << r->getEncounter()->getEncounterScreen()->testThing() << "\n";
                 break;
             }
         }
+        std::cout << "\n";
     }
     
     return EXIT_SUCCESS;

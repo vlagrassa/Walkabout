@@ -5,6 +5,13 @@
 #include <stdlib.h>
 #include "../screen/EncounterScreen.hpp"
 
+enum RoomType {
+    unknown,
+    monster,
+    treasure,
+    puzzle
+};
+
 class Encounterable {
 public:
     Encounterable();
@@ -22,6 +29,8 @@ public:
     //virtual std::vector<int> getReward() const; //should return Item or something
     
     virtual void encounter();
+    
+    virtual RoomType getType() const;
     
 private:
     bool skippable;

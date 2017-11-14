@@ -17,6 +17,8 @@ public:
     
     std::string getTypeName() const;
     
+    RoomType getType() const;
+    
     FightScreen* getEncounterScreen() const;
     
     void initialize();

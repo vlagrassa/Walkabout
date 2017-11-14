@@ -33,6 +33,10 @@ std::string Monster::getTypeName() const {
     return "Monster";
 }
 
+RoomType Monster::getType() const {
+    return monster;
+}
+
 FightScreen* Monster::getEncounterScreen() const {
     std::cout << "Returning fight screen!" << "\n";
     return battle_screen;

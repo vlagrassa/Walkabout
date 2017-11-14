@@ -12,6 +12,14 @@
 
 int main() {
     
+    Encounterable* e = new Encounterable();
+    Encounterable* p = new Monster();
+    Monster* m = new Monster();
+    
+    std::cout << "\nEncounterable type = " << e->getType() << "\n";
+    std::cout << "Polymorphed Monster type = " << p->getType() << "\n";
+    std::cout << "Monster type = " << m->getType() << "\n";
+    
     //Room* tempRoom = new Room(6, tempMon);
     //std::cout << "Testing overriding or whatever\n";
     //tempRoom->getEncounter()->encounter();

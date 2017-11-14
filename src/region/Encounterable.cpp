@@ -37,3 +37,7 @@ void Encounterable::initScreen() {
 void Encounterable::encounter() {
     std::cout << "This is default" << "\n";
 }
+
+RoomType Encounterable::getType() const {
+    return unknown;
+}

@@ -5,14 +5,6 @@
 #include <stdlib.h>
 #include "Encounterable.hpp"
 
-
-enum RoomType {
-    unknown,
-    monster,
-    treasure,
-    puzzle
-};
-
 class Room {
 public:
     /* Constructor, takes length and Encounterable */

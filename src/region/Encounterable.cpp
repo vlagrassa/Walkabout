@@ -17,23 +17,15 @@ bool Encounterable::isSkippable() {
     return skippable;
 }
 
-std::string Encounterable::getTypeName() const {
-    return "Encounterable";
-}
-
 EncounterScreen* Encounterable::getEncounterScreen() const {
     std::cout << "Returning default encounter screen!" << "\n";
     return screen;
 }
 
-//std::vector<int> Encounterable::getReward() const {
-//    
-//}
+std::vector<int> Encounterable::getReward() const {
+    return reward;
+}
 
 void Encounterable::initScreen() {
     screen = new EncounterScreen();
-}
-
-void Encounterable::encounter() {
-    std::cout << "This is a default encounter" << "\n";
 }

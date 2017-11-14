@@ -20,21 +20,22 @@ public:
     
     bool isSkippable();
     
-    virtual std::string getTypeName() const;
+    virtual std::string getTypeName() const = 0;
     
     virtual EncounterScreen* getEncounterScreen() const;
     
     void initScreen();
     
-    //virtual std::vector<int> getReward() const; //should return Item or something
+    virtual std::vector<int> getReward() const; //should return Item or something
     
-    virtual void encounter();
+    virtual void encounter() = 0;
     
     virtual RoomType getType() const = 0;
     
 private:
     bool skippable;
     EncounterScreen* screen;
+    std::vector<int> reward;
 };
 
 

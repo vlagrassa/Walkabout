@@ -20,7 +20,6 @@ int main() {
     h.addRoom();
     h.addRoom();
     h.addRoom(new Room(6, &mon));
-    h.getRoom(2)->setType(monster);
     
     Player player;
     //Menu pauseScreen;

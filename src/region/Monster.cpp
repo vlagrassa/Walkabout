@@ -9,11 +9,9 @@ Monster::Monster() {
     health = 20;
     initScreen();
     battle_screen = new FightScreen();
-    std::cout << "Just initialized battle_screen as " << battle_screen << " from constructor 1... ";
 }
 Monster::Monster(const Monster& orig) {
     battle_screen = new FightScreen();
-    std::cout << "Just initialized battle_screen as " << battle_screen << " from constructor 2... ";
 }
 Monster::~Monster() {
     
@@ -42,10 +40,10 @@ FightScreen* Monster::getEncounterScreen() const {
     return battle_screen;
 }
 
-void Monster::initialize() {
-    battle_screen = new FightScreen();
-    std::cout << "Just initialized battle_screen as " << battle_screen << " from initialize function... ";
-}
+//void Monster::initialize() {
+//    battle_screen = new FightScreen();
+//    std::cout << "Just initialized battle_screen as " << battle_screen << " from initialize function... ";
+//}
 
 void Monster::encounter() {
     std::cout << "This is a monster!\n";

@@ -21,7 +21,7 @@ public:
     
     FightScreen* getEncounterScreen() const;
     
-    void initialize();
+    //void initialize();
     
     void encounter();
     

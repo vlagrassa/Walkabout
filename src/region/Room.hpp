@@ -20,7 +20,7 @@ public:
     virtual ~Room();
     
     /* Getter methods */
-    int getLength() const;
+    const int getLength() const;
     int getDistance() const; //return distance between player and Encounterable
     Encounterable* getEncounter() const;
     RoomType getType() const;

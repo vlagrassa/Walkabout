@@ -26,7 +26,7 @@ Room::~Room() {
 // <editor-fold defaultstate="collapsed" desc=" Getters ">
 
 /* Getter method for length */
-int Room::getLength() const {
+const int Room::getLength() const {
     return length;
 }
 

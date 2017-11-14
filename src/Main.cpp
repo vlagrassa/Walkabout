@@ -20,6 +20,14 @@ int main() {
     std::cout << "Polymorphed Monster type = " << p->getType() << "\n";
     std::cout << "Monster type = " << m->getType() << "\n";
     
+    Room* re = new Room(5, e);
+    Room* rp = new Room(5, p);
+    Room* rm = new Room(5, m);
+    
+    std::cout << "\nEncounterable Room type = " << e->getType() << "\n";
+    std::cout << "Polymorphed Room type = " << p->getType() << "\n";
+    std::cout << "Monster Room type = " << m->getType() << "\n";
+    
     //Room* tempRoom = new Room(6, tempMon);
     //std::cout << "Testing overriding or whatever\n";
     //tempRoom->getEncounter()->encounter();

@@ -26,9 +26,6 @@ public:
     RoomType getType() const;
     EncounterScreen* getScreen() const;
     
-    /* Setter methods */
-    void setType(RoomType t);
-    
     /* Check if the Room is active */
     bool isActive() const;
     void setActive(const bool& b);
@@ -38,9 +35,6 @@ public:
 private:
     /* Encounterable held by the Room */
     Encounterable* thing;
-    
-    /* The type of Encounterable held in the Room */
-    RoomType type;
     
     /* Number of tics in the Room */
     int length;

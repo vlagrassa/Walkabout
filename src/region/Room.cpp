@@ -9,13 +9,11 @@ Room::Room(int d, Encounterable* t) {
     active = false;
     length = d;
     thing = t;
-    type = unknown;
 }
 Room::Room(int seed) {
     active = false;
     length = (seed%15)+2;
     thing = new Encounterable();
-    type = unknown;
 }
 /* Default constructor */
 Room::Room(const Room& orig) {
@@ -47,8 +45,7 @@ Encounterable* Room::getEncounter() const {
 }
 
 RoomType Room::getType() const {
-    std::cout << "Attempting to get type " << type << "... ";
-    return type;
+    return thing->getType();
 }
 
 EncounterScreen* Room::getScreen() const {
@@ -59,9 +56,9 @@ EncounterScreen* Room::getScreen() const {
 
 // <editor-fold defaultstate="collapsed" desc=" Setters ">
 
-void Room::setType(RoomType t) {
-    type = t;
-}
+//void Room::setType(RoomType t) {
+//    type = t;
+//}
 
 // </editor-fold>
 

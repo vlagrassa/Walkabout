@@ -30,13 +30,13 @@ int main() {
     
     std::cout << "\n";
     
-    std::vector<Room*> roomList;
+    Hall h;
     
-    roomList.push_back(re);
-    roomList.push_back(rp);
-    roomList.push_back(rm);
+    h.addRoom(re);
+    h.addRoom(rp);
+    h.addRoom(rm);
     
-    for (Room* r : roomList) {
+    for (Room* r : h.getListOfRooms()) {
         switch (r->getType()) {
             case (monster): {
                 std::cout << "This is a monster!\n";

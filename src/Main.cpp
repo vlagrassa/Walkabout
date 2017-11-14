@@ -57,10 +57,10 @@ int main() {
     }
     
     Hall h1;
-    Hall h2(9);
+    Hall h2(1234567890);
     
-    std::cout << "Hall 1 seed: expecting 5, got " << h1.getSeed() << "\n";
-    std::cout << "Hall 2 seed: expecting 9, got " << h2.getSeed() << "\n";
+    std::cout << "Hall 1 seed: Expecting pseudorandom number. Got " << h1.getSeed() << ".\n";
+    std::cout << "Hall 2 seed: Expecting 1234567890.          Got " << h2.getSeed() << ".\n";
     
     return EXIT_SUCCESS;
 }

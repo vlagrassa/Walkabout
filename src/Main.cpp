@@ -50,26 +50,6 @@ int main() {
         r->getEncounter()->encounter(player);
     }
     
-    /*
-    for (Room* r : h.getListOfRooms()) {
-        switch (r->getType()) {
-            case (monster): {
-                std::cout << "This is a monster!\n";
-                break;
-            }
-            //case (unknown): {
-            //    std::cout << "I don't know what you did, but you did it wrong.\n";
-            //    std::cout << "    [This message displays when an Encounterable has been instantiated.]\n    [In the final program, this should be an abstract class.]\n";
-            //    break;
-            //}
-            default: {
-                std::cout << "This is default.\n";
-                break;
-            }
-        }
-    }
-    */
-    
     Hall h1;
     Hall h2(1234567890);
     

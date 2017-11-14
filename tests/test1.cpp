@@ -16,6 +16,25 @@ int main() {
     
     Monster mon;
     
+    Hall h(5);
+    h.addRoom();
+    h.addRoom();
+    h.addRoom(new Room(6, &mon));
+    h.getRoom(2)->setType(monster);
+    
+    Player player;
+    //Menu pauseScreen;
+    
+    std::cout << player << "\n";
+    
+    player.goTo(4);
+    h.updateIndex(player);
+    std::cout << player << "\n" << h << "\n";;
+    
+    player.stepRight();
+    h.updateIndex(player);
+    std::cout << player << "\n" << h << "\n";
+    
     std::cout << "\nRunning Encounterable.getEncounterScreen():\n";
     Encounterable e;
     e.getEncounterScreen();

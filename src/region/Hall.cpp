@@ -8,14 +8,13 @@
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
 /* Constructor generating a random seed */
-Hall::Hall() {
-    initialize();
-    seed = genRandomSeed();
-}
+//Hall::Hall() {
+//    initialize();
+//    seed = genRandomSeed();
+//}
 /* Constructor using a provided seed */
-Hall::Hall(int s) {
+Hall::Hall(int s) : seed(s) {
     initialize();
-    seed = s;
 }
 /* Default constructor */
 Hall::Hall(const Hall& orig) {

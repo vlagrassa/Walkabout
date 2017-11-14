@@ -10,10 +10,10 @@
 class Hall {
 public:
     /* Constructor generating a random seed */
-    Hall();
+    //Hall();
     
     /* Constructor using a provided seed */
-    Hall(int s);
+    Hall(int s = 5);
     
     /* Default constructor */
     Hall(const Hall& orig);

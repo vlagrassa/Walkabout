@@ -13,7 +13,7 @@ public:
     //Hall();
     
     /* Constructor using a provided seed */
-    Hall(int s = 5);
+    Hall(int s = genRandomSeed());
     
     /* Default constructor */
     Hall(const Hall& orig);
@@ -62,7 +62,7 @@ private:
     int playerIndex;
     
     /* The seed to generate new Rooms */
-    int seed;
+    const int seed;
     
     /* The sum of all the room lengths */
     int totalLength;
@@ -71,7 +71,7 @@ private:
     void initialize();
     
     /* Generate seed based on the current time */
-    int genRandomSeed();
+    static int genRandomSeed();
     
     /* Return Hall for a stream */
     friend std::ostream& operator<<(std::ostream &strm, const Hall&);

@@ -17,7 +17,7 @@ Hall::Hall(int s) : seed(s) {
     initialize();
 }
 /* Default constructor */
-Hall::Hall(const Hall& orig) {
+Hall::Hall(const Hall& orig) : seed(genRandomSeed()) {
     
 }
 /* Default destructor */

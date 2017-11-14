@@ -7,15 +7,18 @@
 
 /* Constructor, takes length and Encounterable */
 Room::Room(int d, Encounterable* t) {
+    std::cout << "Test idk the second " << t->getTypeName() << " of " << t << " ...\n";
     active = false;
     length = d;
     thing = t;
+    std::cout << "Thing is now " << t << "\n";
 }
 Room::Room(int seed) {
-    active = false;
-    length = (seed%15)+2;
+    int d = (seed%15)+2;
     /* Temporary - should change to randomly select a type from RoomType */
-    thing = new Monster();
+    Encounterable* t = new Monster();
+    std::cout << "Test idk " << t->getTypeName() << " of " << t << " ...\n";
+    Room(d , t);
 }
 /* Default constructor */
 Room::Room(const Room& orig) {

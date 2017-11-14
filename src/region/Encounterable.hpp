@@ -30,7 +30,7 @@ public:
     
     virtual void encounter();
     
-    virtual RoomType getType() const;
+    virtual RoomType getType() const = 0;
     
 private:
     bool skippable;

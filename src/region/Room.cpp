@@ -1,4 +1,5 @@
 #include "Room.hpp"
+#include "Monster.hpp"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -13,7 +14,8 @@ Room::Room(int d, Encounterable* t) {
 Room::Room(int seed) {
     active = false;
     length = (seed%15)+2;
-    thing = new Encounterable();
+    /* Temporary - should change to randomly select a type from RoomType */
+    thing = new Monster();
 }
 /* Default constructor */
 Room::Room(const Room& orig) {

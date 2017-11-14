@@ -78,7 +78,6 @@ void Hall::setActiveRoom() {
 /* Add a Room to the Hall */
 void Hall::addRoom(Room* r) {
     listOfRooms.push_back(r);
-    //distances.push_back(r->getLength());
     totalLength += r->getLength();
     setActiveRoom();
 }
@@ -100,7 +99,6 @@ void Hall::addRoom() {
 int Hall::goToRoom(int index, int steps) {
     unsigned l = 0;
     for (int i = 0; i < index; i++) {
-        //l += distances.at(i);
         l += listOfRooms.at(i)->getLength();
     }
     return l + steps;
@@ -123,19 +121,16 @@ int Hall::stepRoom(int index) {
 /* Initialize values common to all constructors */
 void Hall::initialize() {
     playerIndex = 0;
-    //playerX = 0;
 }
 
 /* Calculate playerIndex based on playerX */
 void Hall::updateIndex(Player& p) {
     unsigned l = 0;
-    //std::cout << "Blah " << std::to_string(p.getX()) << "\n";
     for (int i = 0; i < listOfRooms.size(); i++) {
         l += listOfRooms.at(i)->getLength();
         if (l > p.getX()) {
             setActiveRoom(i);
             playerT = listOfRooms.at(i)->getLength() - (l - p.getX());
-            //std::cout << "\n" << std::to_string(l-p.getX());
             //std::cout << "\nSending to position " << std::to_string(playerT) << " in room " << std::to_string(playerIndex) << "\n";
             return;
         }
@@ -145,7 +140,6 @@ void Hall::updateIndex(Player& p) {
 
 /* Generate seed based on the current time */
 int Hall::genRandomSeed() {
-    //return 5; //Temporary return value
     return std::time(NULL);
     //std::srand(static_cast<unsigned int>(std::time(NULL)));
 }
@@ -163,11 +157,9 @@ std::ostream& operator<<(std::ostream &strm, const Hall &h) {
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc=" Distances ">
-void Hall::calcDistances() {
-    //distances.clear();
+void Hall::recalcLength() {
     totalLength = 0;
     for (Room* r : listOfRooms) {
-        //distances.push_back(r->getLength());
         totalLength += r->getLength();
     }
 }

@@ -45,7 +45,7 @@ public:
     int stepRoom(int index, int steps);
     int stepRoom(int index);
     
-    void calcDistances();
+    void recalcLength();
     void printDistances() const;
     
     /* Recalculate values based on other conditions */
@@ -63,9 +63,6 @@ private:
     
     /* The seed to generate new Rooms */
     int seed;
-    
-    /* List of lengths of given rooms, for use in positioning player */
-    //std::vector<int> distances;
     
     /* The sum of all the room lengths */
     int totalLength;

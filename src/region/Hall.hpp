@@ -65,7 +65,7 @@ private:
     int seed;
     
     /* List of lengths of given rooms, for use in positioning player */
-    std::vector<int> distances;
+    //std::vector<int> distances;
     
     /* The sum of all the room lengths */
     int totalLength;

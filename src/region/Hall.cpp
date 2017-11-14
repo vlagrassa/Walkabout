@@ -78,7 +78,7 @@ void Hall::setActiveRoom() {
 /* Add a Room to the Hall */
 void Hall::addRoom(Room* r) {
     listOfRooms.push_back(r);
-    distances.push_back(r->getLength());
+    //distances.push_back(r->getLength());
     totalLength += r->getLength();
     setActiveRoom();
 }
@@ -100,7 +100,8 @@ void Hall::addRoom() {
 int Hall::goToRoom(int index, int steps) {
     unsigned l = 0;
     for (int i = 0; i < index; i++) {
-        l += distances.at(i);
+        //l += distances.at(i);
+        l += listOfRooms.at(i)->getLength();
     }
     return l + steps;
 }
@@ -129,11 +130,11 @@ void Hall::initialize() {
 void Hall::updateIndex(Player& p) {
     unsigned l = 0;
     //std::cout << "Blah " << std::to_string(p.getX()) << "\n";
-    for (int i = 0; i < distances.size(); i++) {
-        l += distances.at(i);
+    for (int i = 0; i < listOfRooms.size(); i++) {
+        l += listOfRooms.at(i)->getLength();
         if (l > p.getX()) {
             setActiveRoom(i);
-            playerT = distances.at(i) - (l - p.getX());
+            playerT = listOfRooms.at(i)->getLength() - (l - p.getX());
             //std::cout << "\n" << std::to_string(l-p.getX());
             //std::cout << "\nSending to position " << std::to_string(playerT) << " in room " << std::to_string(playerIndex) << "\n";
             return;
@@ -163,25 +164,25 @@ std::ostream& operator<<(std::ostream &strm, const Hall &h) {
 
 // <editor-fold defaultstate="collapsed" desc=" Distances ">
 void Hall::calcDistances() {
-    distances.clear();
+    //distances.clear();
     totalLength = 0;
     for (Room* r : listOfRooms) {
-        distances.push_back(r->getLength());
+        //distances.push_back(r->getLength());
         totalLength += r->getLength();
     }
 }
 
 void Hall::printDistances() const {
     std::cout << "| ";
-    for (unsigned i = 0; i < distances.size(); i++) {
-        for (unsigned j = 0; j < (distances.at(i))-1; j++) {
+    for (unsigned i = 0; i < listOfRooms.size(); i++) {
+        for (unsigned j = 0; j < (listOfRooms.at(i)->getLength())-1; j++) {
             if (i == playerIndex && j == playerT) {
                 std::cout << "o ";
             } else {
                 std::cout << "_ ";
             }
         }
-        if (i == playerIndex && distances.at(i)-1 == playerT) {
+        if (i == playerIndex && listOfRooms.at(i)->getLength()-1 == playerT) {
             std::cout << "Ø | ";
         } else {
             std::cout << "X | ";

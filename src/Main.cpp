@@ -35,7 +35,7 @@ int main() {
     //std::cout << "\nEncounterable Room type = " << e->getType() << "\n";
     std::cout << "\nPolymorphed Room type = " << rp->getType() << "\n";
     std::cout << "Monster Room type = " << rm->getType() << "\n";
-    //std::cout << "Generated Room type = " << rs->getType() << "\n";
+    std::cout << "Generated Room type = " << rs->getType() << "\n";
     
     std::cout << "\n";
     
@@ -44,7 +44,7 @@ int main() {
     //h.addRoom(re);
     h.addRoom(rp);
     h.addRoom(rm);
-    //h.addRoom(rs);
+    h.addRoom(rs);
     
     for (Room* r : h.getListOfRooms()) {
         r->getEncounter()->encounter(player);

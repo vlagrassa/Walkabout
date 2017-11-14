@@ -6,22 +6,14 @@
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
 /* Constructor, takes length and Encounterable */
-Room::Room(int d, Encounterable* t) {
+Room::Room(int d, Encounterable* t) : length(d) {
     std::cout << "Test idk the second " << t->getTypeName() << " of " << t << " ...\n";
     active = false;
-    length = d;
     thing = t;
     std::cout << "Thing is now " << t << "\n";
 }
-Room::Room(int seed) {
-    int d = (seed%15)+2;
-    /* Temporary - should change to randomly select a type from RoomType */
-    Encounterable* t = new Monster();
-    std::cout << "Test idk " << t->getTypeName() << " of " << t << " ...\n";
-    Room(d , t);
-}
 /* Default constructor */
-Room::Room(const Room& orig) {
+Room::Room(const Room& orig) : length(orig.getLength()) {
     
 }
 /* Default destructor */
@@ -105,3 +97,7 @@ std::ostream& operator<<(std::ostream &strm, const Room &r) {
 }
 
 // </editor-fold>
+
+Encounterable* Room::genRandomEncounterable(int seed) {
+    return new Monster();
+}

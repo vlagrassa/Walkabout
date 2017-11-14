@@ -11,7 +11,7 @@ public:
     Room(int d, Encounterable* t);
     
     /* Constructor, generates random room from passed integer */
-    Room(int seed);
+    Room(int seed) : Room((seed%15)+2, genRandomEncounterable(seed)) {};
     
     /* Default constructor */
     Room(const Room& orig);
@@ -37,7 +37,7 @@ private:
     Encounterable* thing;
     
     /* Number of tics in the Room */
-    int length;
+    const int length;
     
     /* Whether the Room is the current active room of its Hall */
     bool active;
@@ -47,6 +47,8 @@ private:
     
     /* Return Room for a stream */
     friend std::ostream& operator<<(std::ostream &strm, const Room&);
+    
+    static Encounterable* genRandomEncounterable(int seed);
 };
 
 

@@ -9,7 +9,6 @@
 Monster::Monster() {
     name = "John";
     health = 20;
-    //initScreen();
     battle_screen = new FightScreen();
 }
 Monster::Monster(const Monster& orig) {
@@ -36,7 +35,6 @@ bool Monster::isSkippable() const {
     return false;
 }
 
-
 std::string Monster::getTypeName() const {
     return "Monster";
 }
@@ -61,8 +59,3 @@ int Monster::getHealth() {
 }
 
 // </editor-fold>
-
-//void Monster::initialize() {
-//    battle_screen = new FightScreen();
-//    std::cout << "Just initialized battle_screen as " << battle_screen << " from initialize function... ";
-//}

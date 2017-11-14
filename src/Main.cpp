@@ -28,9 +28,31 @@ int main() {
     std::cout << "Polymorphed Room type = " << p->getType() << "\n";
     std::cout << "Monster Room type = " << m->getType() << "\n";
     
-    //Room* tempRoom = new Room(6, tempMon);
-    //std::cout << "Testing overriding or whatever\n";
-    //tempRoom->getEncounter()->encounter();
+    std::cout << "\n";
+    
+    std::vector<Room*> roomList;
+    
+    roomList.push_back(re);
+    roomList.push_back(rp);
+    roomList.push_back(rm);
+    
+    for (Room* r : roomList) {
+        switch (r->getType()) {
+            case (monster): {
+                std::cout << "This is a monster!\n";
+                break;
+            }
+            case (unknown): {
+                std::cout << "I don't know what you did, but you did it wrong.\n";
+                std::cout << "    [This message displays when an Encounterable has been instantiated.]\n    [In the final program, this should be an abstract class.]\n";
+                break;
+            }
+            default: {
+                std::cout << "This is default.\n";
+                break;
+            }
+        }
+    }
     
     /*
     std::cout << "\n\n";

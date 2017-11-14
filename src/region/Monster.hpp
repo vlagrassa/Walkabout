@@ -11,26 +11,29 @@ public:
     Monster(const Monster& orig);
     virtual ~Monster();
     
-    std::string getName();
-    int getHealth();
-    std::vector<int> getReward();
+    /* Inherited Methods */
+    
+    FightScreen* getEncounterScreen() const;
+    
+    /* Implemented Abstract Methods */
+    
+    bool isSkippable() const;
     
     std::string getTypeName() const;
     
     RoomType getType() const;
     
-    FightScreen* getEncounterScreen() const;
-    
-    //void initialize();
-    
     void encounter();
     
-    bool isSkippable() const;
+    /* Original Methods */
+    
+    std::string getName();
+    int getHealth();
+    std::vector<int> getReward();
     
 private:
     std::string name;
     int health;
-    std::vector<int> reward; //should hold Items
     FightScreen* battle_screen; //should be of type Screen& or something
 };
 

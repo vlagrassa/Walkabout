@@ -7,7 +7,7 @@
 Monster::Monster() {
     name = "John";
     health = 20;
-    initScreen();
+    //initScreen();
     battle_screen = new FightScreen();
 }
 Monster::Monster(const Monster& orig) {
@@ -24,7 +24,7 @@ int Monster::getHealth() {
     return health;
 }
 std::vector<int> Monster::getReward() {
-    return reward;
+    return getReward();
 }
 
 std::string Monster::getTypeName() const {

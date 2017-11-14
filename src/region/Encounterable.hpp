@@ -28,7 +28,7 @@ public:
     /* Abstract Methods */
     
     /* Returns whether the Encounter can be passed without interacting with it - this value is the same for each subclass */
-    virtual bool isSkippable() = 0;
+    virtual bool isSkippable() const = 0;
     
     /* Returns a string associated with the given subclass, eg "Monster" */
     virtual std::string getTypeName() const = 0;

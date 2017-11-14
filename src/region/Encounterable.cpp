@@ -13,10 +13,6 @@ Encounterable::~Encounterable() {
     
 }
 
-bool Encounterable::isSkippable() {
-    return skippable;
-}
-
 EncounterScreen* Encounterable::getEncounterScreen() const {
     std::cout << "Returning default encounter screen!" << "\n";
     return screen;

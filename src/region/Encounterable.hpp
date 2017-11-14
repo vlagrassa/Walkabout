@@ -18,7 +18,7 @@ public:
     Encounterable(const Encounterable& orig);
     virtual ~Encounterable();
     
-    bool isSkippable();
+    virtual bool isSkippable() = 0;
     
     virtual std::string getTypeName() const = 0;
     
@@ -33,7 +33,7 @@ public:
     virtual RoomType getType() const = 0;
     
 private:
-    bool skippable;
+    //bool skippable;
     EncounterScreen* screen;
     std::vector<int> reward;
 };

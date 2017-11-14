@@ -25,6 +25,8 @@ public:
     
     void encounter();
     
+    bool isSkippable() const;
+    
 private:
     std::string name;
     int health;

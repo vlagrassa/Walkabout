@@ -48,3 +48,7 @@ FightScreen* Monster::getEncounterScreen() const {
 void Monster::encounter() {
     std::cout << "This is a monster!\n";
 }
+
+bool Monster::isSkippable() const {
+    return false;
+}

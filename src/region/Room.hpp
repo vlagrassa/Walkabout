@@ -35,8 +35,6 @@ public:
     EncounterScreen* getScreen() const;
     
     /* Setter methods */
-    void setLength(const int& n);
-    //void setEncounter(const Encounterable& e);
     void setType(RoomType t);
     
     /* Check if the Room is active */

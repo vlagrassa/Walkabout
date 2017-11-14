@@ -59,16 +59,6 @@ EncounterScreen* Room::getScreen() const {
 
 // <editor-fold defaultstate="collapsed" desc=" Setters ">
 
-/* Setter method for length */
-void Room::setLength(const int& n) {
-    length = n;
-}
-
-/* Setter method for Encounterable */
-//void Room::setEncounter(const Encounterable& e) {
-//    thing = Encounterable(e);
-//}
-
 void Room::setType(RoomType t) {
     type = t;
 }

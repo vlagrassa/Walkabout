@@ -29,7 +29,6 @@ public:
     
     std::string getName();
     int getHealth();
-    std::vector<int> getReward();
     
 private:
     std::string name;

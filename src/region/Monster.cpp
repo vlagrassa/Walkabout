@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <iostream>
 
+// <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
+
 Monster::Monster() {
     name = "John";
     health = 20;
@@ -17,15 +19,23 @@ Monster::~Monster() {
     
 }
 
-std::string Monster::getName() {
-    return name;
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Inherited Methods ">
+
+FightScreen* Monster::getEncounterScreen() const {
+    std::cout << "Returning fight screen!" << "\n";
+    return battle_screen;
 }
-int Monster::getHealth() {
-    return health;
+
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Implemented Abstract Methods ">
+
+bool Monster::isSkippable() const {
+    return false;
 }
-std::vector<int> Monster::getReward() {
-    return getReward();
-}
+
 
 std::string Monster::getTypeName() const {
     return "Monster";
@@ -35,20 +45,24 @@ RoomType Monster::getType() const {
     return monster;
 }
 
-FightScreen* Monster::getEncounterScreen() const {
-    std::cout << "Returning fight screen!" << "\n";
-    return battle_screen;
+void Monster::encounter() {
+    std::cout << "This is a monster!\n";
 }
+
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Original Methods ">
+
+std::string Monster::getName() {
+    return name;
+}
+int Monster::getHealth() {
+    return health;
+}
+
+// </editor-fold>
 
 //void Monster::initialize() {
 //    battle_screen = new FightScreen();
 //    std::cout << "Just initialized battle_screen as " << battle_screen << " from initialize function... ";
 //}
-
-void Monster::encounter() {
-    std::cout << "This is a monster!\n";
-}
-
-bool Monster::isSkippable() const {
-    return false;
-}

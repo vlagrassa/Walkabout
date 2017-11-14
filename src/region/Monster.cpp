@@ -43,7 +43,7 @@ RoomType Monster::getType() const {
     return monster;
 }
 
-void Monster::encounter() {
+void Monster::encounter(Player& player) {
     std::cout << "This is a monster!\n";
 }
 

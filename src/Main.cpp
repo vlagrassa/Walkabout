@@ -14,6 +14,8 @@ int main() {
     
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
     
+    Player player;
+    
     //Encounterable* e = new Encounterable();
     Encounterable* p = new Monster();
     Monster* m = new Monster();
@@ -39,6 +41,11 @@ int main() {
     h.addRoom(rm);
     
     for (Room* r : h.getListOfRooms()) {
+        r->getEncounter()->encounter(player);
+    }
+    
+    /*
+    for (Room* r : h.getListOfRooms()) {
         switch (r->getType()) {
             case (monster): {
                 std::cout << "This is a monster!\n";
@@ -55,6 +62,7 @@ int main() {
             }
         }
     }
+    */
     
     Hall h1;
     Hall h2(1234567890);

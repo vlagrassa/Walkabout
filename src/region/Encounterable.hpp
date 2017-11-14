@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 #include "../screen/EncounterScreen.hpp"
+#include "../player/Player.hpp"
 
 enum RoomType {
     monster,
@@ -37,7 +38,7 @@ public:
     virtual RoomType getType() const = 0;
     
     /* Interact with the Encounterable - will vary for each subclass */
-    virtual void encounter() = 0;
+    virtual void encounter(Player& player) = 0;
     
 private:
     /* A pointer to the associated EncounterScreen */

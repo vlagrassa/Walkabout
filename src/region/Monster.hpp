@@ -23,7 +23,7 @@ public:
     
     RoomType getType() const;
     
-    void encounter();
+    void encounter(Player& player);
     
     /* Original Methods */
     

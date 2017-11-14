@@ -7,14 +7,9 @@
 
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
-/* Constructor generating a random seed */
-//Hall::Hall() {
-//    initialize();
-//    seed = genRandomSeed();
-//}
-/* Constructor using a provided seed */
+/* Constructor - takes optional argument s */
 Hall::Hall(int s) : seed(s) {
-    initialize();
+    playerIndex = 0;
 }
 /* Default constructor */
 Hall::Hall(const Hall& orig) : seed(genRandomSeed()) {
@@ -117,10 +112,6 @@ int Hall::stepRoom(int index) {
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc=" Miscellaneous Methods ">
-/* Initialize values common to all constructors */
-void Hall::initialize() {
-    playerIndex = 0;
-}
 
 /* Calculate playerIndex based on playerX */
 void Hall::updateIndex(Player& p) {

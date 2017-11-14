@@ -9,10 +9,7 @@
 
 class Hall {
 public:
-    /* Constructor generating a random seed */
-    //Hall();
-    
-    /* Constructor using a provided seed */
+    /* Constructor */
     Hall(int s = genRandomSeed());
     
     /* Default constructor */
@@ -66,9 +63,6 @@ private:
     
     /* The sum of all the room lengths */
     int totalLength;
-    
-    /* Initialize values common to all constructors */
-    void initialize();
     
     /* Generate seed based on the current time */
     static int genRandomSeed();

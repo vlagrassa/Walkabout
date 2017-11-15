@@ -11,7 +11,7 @@ public:
     Room(int d, Encounterable* t);
     
     /* Constructor, generates random room from passed integer */
-    Room(int seed) : Room((seed%15)+2, genRandomEncounterable(seed)) {};
+    Room(int seed);
     
     /* Default constructor */
     Room(const Room& orig);

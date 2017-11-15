@@ -12,10 +12,14 @@ Room::Room(int d, Encounterable* t) : length(d) {
     thing = t;
     std::cout << "Thing is now " << t << "\n";
 }
+
+Room::Room(int seed) : Room((seed%15)+2, genRandomEncounterable(seed)) {};
+
 /* Default constructor */
 Room::Room(const Room& orig) : length(orig.getLength()) {
     
 }
+
 /* Default destructor */
 Room::~Room() {
     

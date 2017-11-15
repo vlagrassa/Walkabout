@@ -57,10 +57,6 @@ EncounterScreen* Room::getScreen() const {
 
 // <editor-fold defaultstate="collapsed" desc=" Setters ">
 
-//void Room::setType(RoomType t) {
-//    type = t;
-//}
-
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc=" Check and set active ">

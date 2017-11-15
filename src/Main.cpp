@@ -23,5 +23,9 @@ int main() {
     
     std::cout << h << "\n";
     
+    player.stepRight();
+    h.updateIndex(player);
+    std::cout << h << "\n";
+    
     return EXIT_SUCCESS;
 }

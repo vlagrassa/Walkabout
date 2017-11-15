@@ -27,9 +27,9 @@ Hall::~Hall() {
 int Hall::getPlayerIndex() const {
     return playerIndex;
 }
-int Hall::getPlayerT() const {
-    return playerT;
-}
+//int Hall::getPlayerT() const {
+//    return playerT;
+//}
 int Hall::getSeed() const {
     return seed;
 }
@@ -38,12 +38,12 @@ std::vector<Room*> Hall::getListOfRooms() const {
 }
 
 /* Return the Room at the given index */
-Room* Hall::getRoom(int index) {
+Room* Hall::getRoom(int index) const {
     return listOfRooms.at(index);
 }
 
 /* Return the current active Room */
-Room* Hall::getActiveRoom() {
+Room* Hall::getActiveRoom() const {
     return getRoom(playerIndex);
 }
 
@@ -67,7 +67,7 @@ void Hall::setActiveRoom() {
 }
 
 void Hall::setPlayerT(int n) {
-    playerT = n;
+    //playerT = n;
     getActiveRoom()->setPlayerX(n);
 }
 
@@ -141,7 +141,7 @@ int Hall::genRandomSeed() {
 
 /* Return Hall for a stream */
 std::ostream& operator<<(std::ostream &strm, const Hall &h) {
-    strm << "Hall: Room " << h.getPlayerIndex() << ", Tic " << h.getPlayerT() << "\n";
+    strm << "Hall: Room " << h.getPlayerIndex() << ", Tic " << h.getActiveRoom()->getPlayerX() << "\n";
     for (Room* r : h.getListOfRooms()) {
         strm << "  " << *r << "\n";
     }
@@ -163,13 +163,13 @@ void Hall::printDistances() const {
     std::cout << "| ";
     for (unsigned i = 0; i < listOfRooms.size(); i++) {
         for (unsigned j = 0; j < (listOfRooms.at(i)->getLength())-1; j++) {
-            if (i == playerIndex && j == playerT) {
+            if (i == playerIndex && j == getActiveRoom()->getPlayerX()) {
                 std::cout << "o ";
             } else {
                 std::cout << "_ ";
             }
         }
-        if (i == playerIndex && listOfRooms.at(i)->getLength()-1 == playerT) {
+        if (i == playerIndex && listOfRooms.at(i)->getLength()-1 == getActiveRoom()->getPlayerX()) {
             std::cout << "Ø | ";
         } else {
             std::cout << "X | ";

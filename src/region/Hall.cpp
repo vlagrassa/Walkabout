@@ -36,7 +36,7 @@ std::vector<Room*> Hall::getListOfRooms() const {
 
 /* Return the Room at the given index */
 Room* Hall::getRoom(int index) const {
-    return listOfRooms.at(index);
+    return at(index);
 }
 
 /* Return the current active Room */
@@ -50,16 +50,16 @@ Room* Hall::getActiveRoom() const {
 /* Set index of the active Room and update list */
 void Hall::setActiveRoom(int index) {
     if (playerIndex >= 0) {
-        listOfRooms.at(playerIndex)->deactivate();
+        at(playerIndex)->deactivate();
     }
     playerIndex = index;
     if (playerIndex >= 0) {
-        listOfRooms.at(playerIndex)->activate();
+        at(playerIndex)->activate();
     }
 }
 void Hall::setActiveRoom() {
     if (playerIndex >= 0) {
-        listOfRooms.at(playerIndex)->activate();
+        at(playerIndex)->activate();
     }
 }
 
@@ -73,7 +73,8 @@ void Hall::setPlayerT(int n) {
 // <editor-fold defaultstate="collapsed" desc=" Adder Methods ">
 /* Add a Room to the Hall */
 void Hall::addRoom(Room* r) {
-    listOfRooms.push_back(r);
+    //listOfRooms.push_back(r);
+    push_back(r);
     totalLength += r->getLength();
     setActiveRoom();
 }
@@ -81,7 +82,7 @@ void Hall::addRoom(Room* r) {
 /* Generate a random Room from the seed */
 void Hall::addRoom() {
     srand(seed); //reset srand
-    for (unsigned i = 0; i < listOfRooms.size(); i++) {
+    for (unsigned i = 0; i < size(); i++) {
         rand();
     }
     Room* r = new Room(rand());
@@ -95,7 +96,7 @@ void Hall::addRoom() {
 int Hall::goToRoom(int index, int steps) {
     unsigned l = 0;
     for (int i = 0; i < index; i++) {
-        l += listOfRooms.at(i)->getLength();
+        l += at(i)->getLength();
     }
     return l + steps;
 }
@@ -118,11 +119,11 @@ int Hall::stepRoom(int index) {
 /* Calculate playerIndex based on playerX */
 void Hall::updateIndex(Player& p) {
     unsigned l = 0;
-    for (int i = 0; i < listOfRooms.size(); i++) {
-        l += listOfRooms.at(i)->getLength();
+    for (int i = 0; i < size(); i++) {
+        l += at(i)->getLength();
         if (l > p.getX()) {
             setActiveRoom(i);
-            setPlayerT(listOfRooms.at(i)->getLength() - (l - p.getX()));
+            setPlayerT(at(i)->getLength() - (l - p.getX()));
             return;
         }
     }
@@ -137,7 +138,7 @@ int Hall::genRandomSeed() {
 /* Return Hall for a stream */
 std::ostream& operator<<(std::ostream &strm, const Hall &h) {
     strm << "Hall: Room " << h.getPlayerIndex() << ", Tic " << h.getActiveRoom()->getPlayerX() << "\n";
-    for (Room* r : h.getListOfRooms()) {
+    for (Room* r : h) {
         strm << "  " << *r << "\n";
     }
     h.printDistances();
@@ -156,15 +157,15 @@ void Hall::recalcLength() {
 
 void Hall::printDistances() const {
     std::cout << "| ";
-    for (unsigned i = 0; i < listOfRooms.size(); i++) {
-        for (unsigned j = 0; j < (listOfRooms.at(i)->getLength())-1; j++) {
+    for (unsigned i = 0; i < size(); i++) {
+        for (unsigned j = 0; j < (at(i)->getLength())-1; j++) {
             if (i == playerIndex && j == getActiveRoom()->getPlayerX()) {
                 std::cout << "o ";
             } else {
                 std::cout << "_ ";
             }
         }
-        if (i == playerIndex && listOfRooms.at(i)->getLength()-1 == getActiveRoom()->getPlayerX()) {
+        if (i == playerIndex && at(i)->getLength()-1 == getActiveRoom()->getPlayerX()) {
             std::cout << "Ø | ";
         } else {
             std::cout << "X | ";

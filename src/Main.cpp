@@ -27,5 +27,11 @@ int main() {
     h.updateIndex(player);
     std::cout << h << "\n";
     
+    std::cout << "Using Hall as vector subclass:\n";
+    
+    for (Room* r : h) {
+        std::cout << *r << "\n";
+    }
+    
     return EXIT_SUCCESS;
 }

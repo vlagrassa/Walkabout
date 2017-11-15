@@ -7,7 +7,7 @@
 #include "../player/Player.hpp"
 
 
-class Hall {
+class Hall : private std::vector<Room*> {
 public:
     /* Constructor */
     Hall(int s = genRandomSeed());
@@ -48,6 +48,9 @@ public:
     
     /* Recalculate values based on other conditions */
     void updateIndex(Player& p);
+    
+    using vector<Room*>::begin;
+    using vector<Room*>::end;
     
 private:
     /* List of Rooms in the Hall */

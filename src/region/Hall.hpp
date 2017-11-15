@@ -21,7 +21,6 @@ public:
     /* Getter methods */
     int getPlayerIndex() const;
     int getSeed() const;
-    std::vector<Room*> getListOfRooms() const;
     Room* getRoom(int index) const;
     Room* getActiveRoom() const;
     
@@ -53,9 +52,6 @@ public:
     using vector<Room*>::end;
     
 private:
-    /* List of Rooms in the Hall */
-    std::vector< Room* > listOfRooms;
-    
     /* Index of the current active Room */
     int playerIndex;
     

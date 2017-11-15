@@ -23,15 +23,13 @@ Hall::~Hall() {
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc=" Getter Methods ">
+
 /* Basic getter methods */
 int Hall::getPlayerIndex() const {
     return playerIndex;
 }
 int Hall::getSeed() const {
     return seed;
-}
-std::vector<Room*> Hall::getListOfRooms() const {
-    return listOfRooms;
 }
 
 /* Return the Room at the given index */
@@ -47,6 +45,7 @@ Room* Hall::getActiveRoom() const {
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc=" Setter Methods ">
+
 /* Set index of the active Room and update list */
 void Hall::setActiveRoom(int index) {
     if (playerIndex >= 0) {
@@ -64,16 +63,15 @@ void Hall::setActiveRoom() {
 }
 
 void Hall::setPlayerT(int n) {
-    //playerT = n;
     getActiveRoom()->setPlayerX(n);
 }
 
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc=" Adder Methods ">
+
 /* Add a Room to the Hall */
 void Hall::addRoom(Room* r) {
-    //listOfRooms.push_back(r);
     push_back(r);
     totalLength += r->getLength();
     setActiveRoom();
@@ -92,6 +90,7 @@ void Hall::addRoom() {
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc=" GoTo Methods ">
+
 /* Get x position for number of steps into given Room (absolute) */
 int Hall::goToRoom(int index, int steps) {
     unsigned l = 0;
@@ -148,10 +147,11 @@ std::ostream& operator<<(std::ostream &strm, const Hall &h) {
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc=" Distances ">
+
 void Hall::recalcLength() {
     totalLength = 0;
-    for (Room* r : listOfRooms) {
-        totalLength += r->getLength();
+    for(unsigned i = 0; i < size(); i++) {
+        totalLength += at(i)->getLength();
     }
 }
 

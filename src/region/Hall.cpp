@@ -27,9 +27,6 @@ Hall::~Hall() {
 int Hall::getPlayerIndex() const {
     return playerIndex;
 }
-//int Hall::getPlayerT() const {
-//    return playerT;
-//}
 int Hall::getSeed() const {
     return seed;
 }
@@ -126,7 +123,6 @@ void Hall::updateIndex(Player& p) {
         if (l > p.getX()) {
             setActiveRoom(i);
             setPlayerT(listOfRooms.at(i)->getLength() - (l - p.getX()));
-            //std::cout << "\nSending to position " << std::to_string(playerT) << " in room " << std::to_string(playerIndex) << "\n";
             return;
         }
     }
@@ -136,7 +132,6 @@ void Hall::updateIndex(Player& p) {
 /* Generate seed based on the current time */
 int Hall::genRandomSeed() {
     return std::time(NULL);
-    //std::srand(static_cast<unsigned int>(std::time(NULL)));
 }
 
 /* Return Hall for a stream */

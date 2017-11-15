@@ -25,10 +25,14 @@ public:
     Encounterable* getEncounter() const;
     RoomType getType() const;
     EncounterScreen* getScreen() const;
+    int getPlayerX() const;
+    
+    /* Setter methods */
+    void setPlayerX(int n);
     
     /* Check if the Room is active */
     bool isActive() const;
-    void setActive(const bool& b);
+    void setActive(const bool& b, int n = 0);
     void activate();
     void deactivate();
     
@@ -38,6 +42,9 @@ private:
     
     /* Number of tics in the Room */
     const int length;
+    
+    /* Position (in tics) of player within Room - only used if Active */
+    int playerX;
     
     /* Whether the Room is the current active room of its Hall */
     bool active;

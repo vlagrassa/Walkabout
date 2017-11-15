@@ -66,6 +66,11 @@ void Hall::setActiveRoom() {
     }
 }
 
+void Hall::setPlayerT(int n) {
+    playerT = n;
+    getActiveRoom()->setPlayerX(n);
+}
+
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc=" Adder Methods ">
@@ -120,7 +125,7 @@ void Hall::updateIndex(Player& p) {
         l += listOfRooms.at(i)->getLength();
         if (l > p.getX()) {
             setActiveRoom(i);
-            playerT = listOfRooms.at(i)->getLength() - (l - p.getX());
+            setPlayerT(listOfRooms.at(i)->getLength() - (l - p.getX()));
             //std::cout << "\nSending to position " << std::to_string(playerT) << " in room " << std::to_string(playerIndex) << "\n";
             return;
         }

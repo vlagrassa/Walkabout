@@ -7,12 +7,14 @@
 
 /* Constructor, takes length and Encounterable */
 Room::Room(int d, Encounterable* t) : length(d) {
-    std::cout << "Test idk the second " << t->getTypeName() << " of " << t << " ...\n";
+    //std::cout << "Test idk the second " << t->getTypeName() << " of " << t << " ...\n";
     active = false;
     thing = t;
-    std::cout << "Thing is now " << t << "\n";
+    //std::cout << "Thing is now " << t << "\n";
+    playerX = -1;
 }
 
+/* Constructor, takes seed for Room & generates length and Encounterable */
 Room::Room(int seed) : Room((seed%15)+2, genRandomEncounterable(seed)) {};
 
 /* Default constructor */
@@ -34,10 +36,9 @@ const int Room::getLength() const {
     return length;
 }
 
-/* Get distance from Player to Encounterable */
-int Room::getDistance() const {
-    //DEFAULT RETURN VALUE - UPDATE WITH ACTUAL CODE
-    return 5;
+/* Getter method for player's x coordinate within Room */
+int Room::getPlayerX() const {
+    return playerX;
 }
 
 /* Getter method for Encounterable */
@@ -57,6 +58,10 @@ EncounterScreen* Room::getScreen() const {
 
 // <editor-fold defaultstate="collapsed" desc=" Setters ">
 
+void Room::setPlayerX(int n) {
+    playerX = n;
+}
+
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc=" Check and set active ">
@@ -67,8 +72,15 @@ bool Room::isActive() const {
 }
 
 /* Setter method for active */
-void Room::setActive(const bool& b) {
+void Room::setActive(const bool& b, int n) {
     active = b;
+    if (b) {
+        if (playerX == -1) {
+            playerX = n;
+        }
+    } else {
+        playerX = -1;
+    }
 }
 
 /* Set active to true */
@@ -92,7 +104,7 @@ std::ostream& operator<<(std::ostream &strm, const Room &r) {
     } else {
         strm << " Inactive ";
     }
-    strm << "size " << std::to_string(r.getLength()) << " " << r.getEncounter()->getTypeName();
+    strm << "size " << std::to_string(r.getLength()) << " " << r.getEncounter()->getTypeName() << " at tic " << r.getPlayerX();
     return strm;
 }
 

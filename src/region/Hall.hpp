@@ -30,6 +30,8 @@ public:
     void setActiveRoom(int index);
     void setActiveRoom();
     
+    void setPlayerT(int n);
+    
     /* Add a room to the Hall */
     void addRoom(Room* r);
     void addRoom();

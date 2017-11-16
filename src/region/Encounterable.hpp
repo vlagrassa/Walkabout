@@ -12,7 +12,7 @@ enum RoomType {
     puzzle
 };
 
-class Encounterable {
+class Encounterable : public sf::Sprite {
 public:
     Encounterable();
     Encounterable(const Encounterable& orig);

@@ -8,11 +8,11 @@
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
 /* Constructor - takes optional argument s */
-Hall::Hall(int s) : seed(s) {
+Hall::Hall(Player* p, int s) : seed(s), player(p) {
     playerIndex = 0;
 }
 /* Default constructor */
-Hall::Hall(const Hall& orig) : seed(genRandomSeed()) {
+Hall::Hall(const Hall& orig) : seed(orig.getSeed()), player(orig.getPlayer()) {
     
 }
 /* Default destructor */
@@ -40,6 +40,10 @@ Room* Hall::getRoom(int index) const {
 /* Return the current active Room */
 Room* Hall::getActiveRoom() const {
     return getRoom(playerIndex);
+}
+
+const Player* Hall::getPlayer() const {
+    return player;
 }
 
 // </editor-fold>
@@ -106,7 +110,6 @@ int Hall::goToRoom(int index) {
 /* Get x position for number of steps into given Room (relative) */
 int Hall::stepRoom(int index, int steps) {
     return goToRoom(playerIndex+index, steps);
-
 }
 int Hall::stepRoom(int index) {
     return stepRoom(index, 0);

@@ -110,6 +110,7 @@ int Hall::goToRoom(int index) {
 /* Get x position for number of steps into given Room (relative) */
 int Hall::stepRoom(int index, int steps) {
     return goToRoom(playerIndex+index, steps);
+>>>>>>> 7ef63ba720189a752a1677948a3d7c4682b97661
 }
 int Hall::stepRoom(int index) {
     return stepRoom(index, 0);

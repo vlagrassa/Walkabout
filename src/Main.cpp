@@ -12,6 +12,11 @@
 
 int main() {
     
+    
+    
+    
+    
+    
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
     
     Player player;
@@ -25,7 +30,8 @@ int main() {
     
     player.stepRight();
     h.updateIndex(player);
-    std::cout << h << "\n";
+    
+        std::cout << h << "\n";
     
     std::cout << "Using Hall as vector subclass:\n";
     

@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include "Encounterable.hpp"
+#include "../screen/FightScreen.hpp"
 
 class Monster: public Encounterable {
 public:
@@ -10,17 +11,29 @@ public:
     Monster(const Monster& orig);
     virtual ~Monster();
     
-    std::string getName();
-    int getHealth();
-    std::vector<int> getReward();
+    /* Inherited Methods */
+    
+    FightScreen* getEncounterScreen() const;
+    
+    /* Implemented Abstract Methods */
+    
+    bool isSkippable() const;
     
     std::string getTypeName() const;
+    
+    RoomType getType() const;
+    
+    void encounter(Player& player);
+    
+    /* Original Methods */
+    
+    std::string getName();
+    int getHealth();
     
 private:
     std::string name;
     int health;
-    std::vector<int> reward; //should hold Items
-    int battle_screen; //should be of type Screen& or something
+    FightScreen* battle_screen; //should be of type Screen& or something
 };
 
 #endif /* MONSTER_H */

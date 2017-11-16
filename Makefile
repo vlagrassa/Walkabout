@@ -3,7 +3,7 @@ RM        += -r
 
 ROOT      := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
 
-CXXFLAGS  := $(shell pkg-config sfml-all --cflags)
+CXXFLAGS  := $(shell pkg-config sfml-all --cflags) -std=c++11
 LDLIBS    := $(shell pkg-config sfml-all --libs)
 
 SRCDIRSHORT= src
@@ -34,6 +34,8 @@ $(OBJDIRSHORT)/%.o: $(SRCDIRSHORT)/%.cpp | $(OBJDIR)
 $(OBJDIR):
 	mkdir $@
 	mkdir $@/region/
+	mkdir $@/player/
+	mkdir $@/screen/
 
 $(BUILDDIR):
 	mkdir $@

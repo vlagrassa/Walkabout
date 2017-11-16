@@ -1,50 +1,70 @@
 #include "Room.hpp"
+#include "Monster.hpp"
 #include <SFML/Graphics.hpp>
+#include <iostream>
+
+// <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
 /* Constructor, takes length and Encounterable */
-Room::Room(int d, Encounterable t) {
+Room::Room(int d, Encounterable* t) : length(d) {
+    //std::cout << "Test idk the second " << t->getTypeName() << " of " << t << " ...\n";
     active = false;
-    length = d;
-    thing = Encounterable(t);
+    thing = t;
+    //std::cout << "Thing is now " << t << "\n";
+    playerX = -1;
 }
-Room::Room(int seed) {
-    active = false;
-    length = (seed%15)+2;
-}
+
+/* Constructor, takes seed for Room & generates length and Encounterable */
+Room::Room(int seed) : Room((seed%15)+2, genRandomEncounterable(seed)) {};
+
 /* Default constructor */
-Room::Room(const Room& orig) {
+Room::Room(const Room& orig) : length(orig.getLength()) {
     
 }
+
 /* Default destructor */
 Room::~Room() {
     
 }
 
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Getters ">
+
 /* Getter method for length */
-int Room::getLength() const {
+const int Room::getLength() const {
     return length;
 }
 
-/* Get distance from Player to Encounterable */
-int Room::getDistance() const {
-    //DEFAULT RETURN VALUE - UPDATE WITH ACTUAL CODE
-    return 5;
+/* Getter method for player's x coordinate within Room */
+int Room::getPlayerX() const {
+    return playerX;
 }
 
 /* Getter method for Encounterable */
-Encounterable Room::getEncounter() const {
+Encounterable* Room::getEncounter() const {
     return thing;
 }
 
-/* Setter method for length */
-void Room::setLength(const int& n) {
-    length = n;
+RoomType Room::getType() const {
+    return thing->getType();
 }
 
-/* Setter method for Encounterable */
-//void Room::setEncounter(const Encounterable& e) {
-//    thing = Encounterable(e);
-//}
+EncounterScreen* Room::getScreen() const {
+    return getEncounter()->getEncounterScreen();
+}
+
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Setters ">
+
+void Room::setPlayerX(int n) {
+    playerX = n;
+}
+
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Check and set active ">
 
 /* Check if Room is active */
 bool Room::isActive() const {
@@ -52,8 +72,15 @@ bool Room::isActive() const {
 }
 
 /* Setter method for active */
-void Room::setActive(const bool& b) {
+void Room::setActive(const bool& b, int n) {
     active = b;
+    if (b) {
+        if (playerX == -1) {
+            playerX = n;
+        }
+    } else {
+        playerX = -1;
+    }
 }
 
 /* Set active to true */
@@ -66,6 +93,10 @@ void Room::deactivate() {
     setActive(false);
 }
 
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Friend Methods ">
+
 /* Return Room for a stream */
 std::ostream& operator<<(std::ostream &strm, const Room &r) {
     if (r.isActive()) {
@@ -73,6 +104,12 @@ std::ostream& operator<<(std::ostream &strm, const Room &r) {
     } else {
         strm << " Inactive ";
     }
-    strm << "size " << std::to_string(r.getLength()) << " " << r.getEncounter().getTypeName();
+    strm << "size " << std::to_string(r.getLength()) << " " << r.getEncounter()->getTypeName() << " at tic " << r.getPlayerX();
     return strm;
+}
+
+// </editor-fold>
+
+Encounterable* Room::genRandomEncounterable(int seed) {
+    return new Monster();
 }

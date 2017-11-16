@@ -112,3 +112,4 @@ $RECYCLE.BIN/
 # Vince's Stuff
 nbproject/
 build/
+tests/test

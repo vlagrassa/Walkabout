@@ -5,17 +5,10 @@
 #include <stdlib.h>
 #include "Encounterable.hpp"
 
-
-enum RoomType {
-    monster,
-    treasure,
-    puzzle
-};
-
 class Room {
 public:
     /* Constructor, takes length and Encounterable */
-    Room(int d, Encounterable t);
+    Room(int d, Encounterable* t);
     
     /* Constructor, generates random room from passed integer */
     Room(int seed);
@@ -27,29 +20,31 @@ public:
     virtual ~Room();
     
     /* Getter methods */
-    int getLength() const;
+    const int getLength() const;
     int getDistance() const; //return distance between player and Encounterable
-    Encounterable getEncounter() const;
+    Encounterable* getEncounter() const;
+    RoomType getType() const;
+    EncounterScreen* getScreen() const;
+    int getPlayerX() const;
     
     /* Setter methods */
-    void setLength(const int& n);
-    //void setEncounter(const Encounterable& e);
+    void setPlayerX(int n);
     
     /* Check if the Room is active */
     bool isActive() const;
-    void setActive(const bool& b);
+    void setActive(const bool& b, int n = 0);
     void activate();
     void deactivate();
     
 private:
     /* Encounterable held by the Room */
-    Encounterable thing;
-    
-    /* The type of Encounterable held in the Room */
-    RoomType type;
+    Encounterable* thing;
     
     /* Number of tics in the Room */
-    int length;
+    const int length;
+    
+    /* Position (in tics) of player within Room - only used if Active */
+    int playerX;
     
     /* Whether the Room is the current active room of its Hall */
     bool active;
@@ -59,6 +54,8 @@ private:
     
     /* Return Room for a stream */
     friend std::ostream& operator<<(std::ostream &strm, const Room&);
+    
+    static Encounterable* genRandomEncounterable(int seed);
 };
 
 

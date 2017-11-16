@@ -13,7 +13,7 @@
 
 int main() {
     
-    sf::Window window(sf::VideoMode(800, 600), "Walkabout");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Walkabout");
     
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
     
@@ -35,6 +35,16 @@ int main() {
     for (Room* r : h) {
         std::cout << *r << "\n";
     }
+    sf::Event event;
+
+    sf::Texture texture;
+    if (!texture.loadFromFile("resources/monster.png"))
+    {
+        return -1;
+    }
+
+    sf::Sprite sprite;
+    sprite.setTexture(texture);
     
     while (window.isOpen())
     {
@@ -46,7 +56,11 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
+        window.clear();
+        window.draw(sprite);
+        window.display();
     }
+    
 
     
     return EXIT_SUCCESS;

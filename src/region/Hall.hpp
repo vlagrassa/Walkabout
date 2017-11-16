@@ -10,7 +10,7 @@
 class Hall : private std::vector<Room*> {
 public:
     /* Constructor */
-    Hall(int s = genRandomSeed());
+    Hall(Player* p, int s = genRandomSeed());
     
     /* Default constructor */
     Hall(const Hall& orig);
@@ -23,6 +23,7 @@ public:
     int getSeed() const;
     Room* getRoom(int index) const;
     Room* getActiveRoom() const;
+    const Player* getPlayer() const;
     
     /* Update playerIndex and corresponding Rooms */
     void setActiveRoom(int index);
@@ -60,6 +61,9 @@ private:
     
     /* The sum of all the room lengths */
     int totalLength;
+    
+    /* Pointer to the Player object */
+    const Player* player;
     
     /* Generate seed based on the current time */
     static int genRandomSeed();

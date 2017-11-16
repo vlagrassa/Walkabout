@@ -42,6 +42,7 @@ int main() {
     {
         return -1;
     }
+    texture.setSmooth(true);
 
     sf::Sprite sprite;
     sprite.setTexture(texture);
@@ -56,7 +57,7 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-        window.clear();
+        window.clear(sf::Color::White);
         window.draw(sprite);
         window.display();
     }

@@ -19,7 +19,7 @@ int main() {
     
     Player player;
     Hall h(&player);
-    int numRooms = 3;
+    int numRooms = 4;
     for (unsigned i = 0; i < numRooms; i++) {
         h.addRoom();
     }

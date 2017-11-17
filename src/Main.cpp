@@ -36,6 +36,7 @@ int main() {
         std::cout << *r << "\n";
     }
     //sf::Event event;
+    
 
     sf::Texture texture;
     if (!texture.loadFromFile("resources/monster.png"))
@@ -44,8 +45,9 @@ int main() {
     }
     texture.setSmooth(true);
 
-    sf::Sprite sprite;
-    sprite.setTexture(texture);
+    //sf::Sprite sprite;
+    //sprite.setTexture(texture);
+    h.getActiveRoom()->getEncounter()->setTexture(texture);
     
     while (window.isOpen())
     {
@@ -58,7 +60,7 @@ int main() {
                 window.close();
         }
         window.clear(sf::Color::White);
-        window.draw(sprite);
+        window.draw(*h.getActiveRoom()->getEncounter());
         window.display();
     }
     

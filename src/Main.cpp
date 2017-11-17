@@ -26,8 +26,8 @@ int main() {
     
     std::cout << h << "\n";
     
-    player.stepRight();
-    h.updateIndex(player);
+    //player.stepRight();
+    //h.updateIndex(player);
     std::cout << h << "\n";
     
     std::cout << "Using Hall as vector subclass:\n";
@@ -38,16 +38,17 @@ int main() {
     //sf::Event event;
     
 
-    sf::Texture texture;
-    if (!texture.loadFromFile("resources/monster.png"))
+    sf::Texture monsterTexture;
+    if (!monsterTexture.loadFromFile("resources/monster.png"))
     {
         return -1;
     }
-    texture.setSmooth(true);
+    monsterTexture.setSmooth(true);
 
     //sf::Sprite sprite;
     //sprite.setTexture(texture);
-    h.getActiveRoom()->getEncounter()->setTexture(texture);
+    h.getActiveRoom()->getEncounter()->setTexture(monsterTexture);
+    h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/2);
     
     while (window.isOpen())
     {

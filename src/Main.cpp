@@ -19,8 +19,8 @@ int main() {
     
     Player player;
     Hall h(&player);
-    
-    for (unsigned i = 0; i < 3; i++) {
+    int numRooms = 3;
+    for (unsigned i = 0; i < numRooms; i++) {
         h.addRoom();
     }
     
@@ -35,7 +35,7 @@ int main() {
     for (Room* r : h) {
         std::cout << *r << "\n";
     }
-    sf::Event event;
+    //sf::Event event;
 
     sf::Texture texture;
     if (!texture.loadFromFile("resources/monster.png"))

@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 
-class Player {
+class Player : public sf::Sprite {
 public:
     Player();
     Player(const Player& p);

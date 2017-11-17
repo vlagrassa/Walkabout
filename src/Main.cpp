@@ -39,7 +39,12 @@ int main() {
     
 
     sf::Texture monsterTexture;
+    sf::Texture playerTexture;
     if (!monsterTexture.loadFromFile("resources/monster.png"))
+    {
+        return -1;
+    }
+    if (!playerTexture.loadFromFile("resources/player.png"))
     {
         return -1;
     }
@@ -48,6 +53,7 @@ int main() {
     //sf::Sprite sprite;
     //sprite.setTexture(texture);
     h.getActiveRoom()->getEncounter()->setTexture(monsterTexture);
+    player.setTexture(playerTexture);
     h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/2);
     
     while (window.isOpen())
@@ -62,6 +68,7 @@ int main() {
         }
         window.clear(sf::Color::White);
         window.draw(*h.getActiveRoom()->getEncounter());
+        //window.draw(player);
         window.display();
     }
     

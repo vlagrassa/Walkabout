@@ -55,9 +55,7 @@ int main() {
     h.getActiveRoom()->getEncounter()->setTexture(monsterTexture);
     player.setTexture(playerTexture);
     h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/2);
-    
-    
-    
+  
         
     
     while (window.isOpen())
@@ -69,7 +67,20 @@ int main() {
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
                 window.close();
+            
+            if (event.type == sf::Event::KeyPressed)
+            {
+                if (event.key.code == sf::Keyboard::Left)
+                {
+                    player.stepLeft();
+                } 
+                if (event.key.code == sf::Keyboard::Right)
+                {
+                    player.stepRight();
+                } 
+            }
         }
+        
         std::string hi;
         window.clear(sf::Color::White);
         

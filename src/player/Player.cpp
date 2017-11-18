@@ -7,6 +7,7 @@
 Player::Player() {
     std::cout << "hi";
     posX = 0;
+    stepSize = 10;
 }
 Player::Player(const Player& p) {
     std::cout << "hello";
@@ -25,23 +26,23 @@ void Player::goTo(int n) {
 }
 
 /* Set the player's x position within the Hall (relative) */
-void Player::step(int n) {
-    goTo(posX + n);
-}
+//void Player::step(int n) {
+//    goTo(posX + n);
+//}
 
 /* Special applications of step() */
 void Player::stepLeft() {
-    stepLeft(1);
+    move(-stepSize, 0);
 }
-void Player::stepLeft(int n) {
-    step(-n);
-}
+//void Player::stepLeft(int n) {
+//    step(-n);
+//}
 void Player::stepRight() {
-    stepRight(1);
+    move(stepSize,0);
 }
-void Player::stepRight(int n) {
-    step(n);
-}
+//void Player::stepRight(int n) {
+//    step(n);
+//}
 
 /* Return Player for a stream */
 std::ostream& operator<<(std::ostream &strm, const Player &p) {

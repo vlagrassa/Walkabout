@@ -16,14 +16,17 @@ public:
     void goTo(int n);
     
     /* Set player's x position (relative) */
-    void step(int n);
+    //void move()
+    //void step(int n);
     void stepLeft();
-    void stepLeft(int n);
+    //void stepLeft(int n);
     void stepRight();
-    void stepRight(int n);
+    //void stepRight(int n);
     
 private:
     int posX;
+    int stepSize;
+    
     
     /* Return Player for a stream */
     friend std::ostream& operator<<(std::ostream &strm, const Player&);

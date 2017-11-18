@@ -6,7 +6,7 @@
 #include "Encounterable.hpp"
 #include "../screen/FightScreen.hpp"
 
-class Monster: public sf::Sprite, public Encounterable{
+class Monster: public Encounterable{
 public:
     Monster();
     Monster(const Monster& orig);

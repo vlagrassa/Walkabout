@@ -33,12 +33,14 @@ void Player::goTo(int n) {
 /* Special applications of step() */
 void Player::stepLeft() {
     move(-stepSize, 0);
+    posX -= stepSize;
 }
 //void Player::stepLeft(int n) {
 //    step(-n);
 //}
 void Player::stepRight() {
     move(stepSize,0);
+    posX += stepSize;
 }
 //void Player::stepRight(int n) {
 //    step(n);

@@ -13,7 +13,7 @@
 
 int main() {
     
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Walkabout");
+    
     
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
     
@@ -36,7 +36,7 @@ int main() {
         std::cout << *r << "\n";
     }
     //sf::Event event;
-    
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Walkabout");
 
     sf::Texture monsterTexture;
     sf::Texture playerTexture;
@@ -49,12 +49,16 @@ int main() {
         return -1;
     }
     monsterTexture.setSmooth(true);
-
+    playerTexture.setSmooth(true);
     //sf::Sprite sprite;
     //sprite.setTexture(texture);
     h.getActiveRoom()->getEncounter()->setTexture(monsterTexture);
     player.setTexture(playerTexture);
     h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/2);
+    
+    
+    
+        
     
     while (window.isOpen())
     {
@@ -66,13 +70,16 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
+        std::string hi;
         window.clear(sf::Color::White);
+        
+        
+        
         window.draw(*h.getActiveRoom()->getEncounter());
-        //window.draw(player);
+        window.draw(player);
         window.display();
     }
     
 
-    
     return EXIT_SUCCESS;
 }

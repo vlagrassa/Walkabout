@@ -5,10 +5,11 @@
 
 
 Player::Player() {
+    std::cout << "hi";
     posX = 0;
 }
 Player::Player(const Player& p) {
-    
+    std::cout << "hello";
 }
 Player::~Player() {
     

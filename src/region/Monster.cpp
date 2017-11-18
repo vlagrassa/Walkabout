@@ -59,3 +59,10 @@ int Monster::getHealth() {
 }
 
 // </editor-fold>
+
+
+/* Return Player for a stream */
+std::ostream& operator<<(std::ostream &strm, const Monster &orig) {
+    strm << "Monster encountered ";
+    return strm;
+}

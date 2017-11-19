@@ -35,7 +35,6 @@ override WARNINGS += sign-conversion
 
 override CXXFLAGS   += -std=c++11
 override CXXFLAGS   += $(addprefix -W,$(WARNINGS))
-#CXXFLAGS += -I $(SRCDIR)
 
 CPPFLAGS   := $(shell pkg-config sfml-all --cflags)
 CPPFLAGS   := $(subst -I,-isystem, $(CPPFLAGS))
@@ -44,9 +43,7 @@ LDLIBS     := $(shell pkg-config sfml-all --libs)
 
 SRCSUBDIRS := $(shell find $(SRCDIR) -mindepth 1 -type d)
 SRCS       := $(shell find $(SRCDIR) -type f -name '*.cpp')
-#SRCS       := $(wildcard $(SRCDIR)/*.cpp) $(wildcard $(SRCDIR)/**/*.cpp)
 HDRS       := $(shell find $(SRCDIR) -type f -name '*.hpp')
-#HDRS       := $(wildcard $(SRCDIR)/**.hpp)
 
 OBJSUBDIRS := $(subst $(SRCDIR),$(OBJDIR),$(SRCSUBDIRS))
 OBJS       := $(subst $(SRCDIR),$(OBJDIR),$(SRCS:.cpp=.o))

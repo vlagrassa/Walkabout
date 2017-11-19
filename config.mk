@@ -47,7 +47,6 @@ SRCS       := $(shell find $(SRCDIR) -type f -name '*.cpp')
 #SRCS       := $(wildcard $(SRCDIR)/*.cpp) $(wildcard $(SRCDIR)/**/*.cpp)
 HDRS       := $(shell find $(SRCDIR) -type f -name '*.hpp')
 #HDRS       := $(wildcard $(SRCDIR)/**.hpp)
-GCHS       := $(HDRS:.hpp=.hpp.gch)
 
 OBJSUBDIRS := $(subst $(SRCDIR),$(OBJDIR),$(SRCSUBDIRS))
 OBJS       := $(subst $(SRCDIR),$(OBJDIR),$(SRCS:.cpp=.o))

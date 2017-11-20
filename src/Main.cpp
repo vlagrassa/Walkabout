@@ -11,11 +11,10 @@
 #include "screen/FightScreen.hpp"
 #include <SFML/Window.hpp>
 
+
 int main() {
-    
-    
-    
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
+    
     
     Player player;
     Hall h(&player);
@@ -23,6 +22,7 @@ int main() {
     for (unsigned i = 0; i < numRooms; i++) {
         h.addRoom();
     }
+    
     
     std::cout << h << "\n";
     
@@ -35,8 +35,89 @@ int main() {
     for (Room* r : h) {
         std::cout << *r << "\n";
     }
-    //sf::Event event;
+    
+    
     sf::RenderWindow window(sf::VideoMode(800, 600), "Walkabout");
+    
+    
+    /*Background thingys*/
+    
+    sf::Texture skyTexture;
+    sf::Texture horizonBgTexture;
+    sf::Texture imBgTexture;
+    sf::Texture groundTexture;
+    sf::Texture paperTexture;
+    
+    /*Load texture files*/
+//    skyTexture.loadFromFile("resources/sky.png");
+//    horizonBgTexture.loadFromFile("resources/horizon_background.png");
+//    imBgTexture.loadFromFile("resources/immidiate_background.png");
+//    groundTexture.loadFromFile("resources/ground_outside.png");
+    
+    if (!skyTexture.loadFromFile("resources/sky.png"))
+    {
+        return -1;
+    }
+    if (!horizonBgTexture.loadFromFile("resources/horizon_background.png"))
+    {
+        return -1;
+    }
+    if (!imBgTexture.loadFromFile("resources/immidiate_background.png"))
+    {
+        return -1;
+    }
+    if (!groundTexture.loadFromFile("resources/ground_outside.png"))
+    {
+        return -1;
+    }
+    if (!paperTexture.loadFromFile("resources/paper_texture_yellow.png"))
+    {
+        return -1;
+    }
+    
+    
+    /*set textures to repeat*/
+    skyTexture.setRepeated(true);
+    horizonBgTexture.setRepeated(true);
+    imBgTexture.setRepeated(true);
+    groundTexture.setRepeated(true);
+    
+    sf::Sprite sky;
+    sf::Sprite horizonBg;
+    sf::Sprite imBg;
+    sf::Sprite ground;
+    sf::Sprite paper;
+    
+    
+    
+//    /*set sizes for background objects*/
+    sky.scale(1, 1);
+    horizonBg.scale(1,1);
+    imBg.scale(1, .8);
+    ground.setScale(1, .35);
+//    
+    
+    skyTexture.setRepeated(true);
+    horizonBgTexture.setRepeated(true);
+    imBgTexture.setRepeated(true);
+    groundTexture.setRepeated(true);
+    
+    /*put textures into background rect objects*/
+    sky.setTexture(skyTexture);
+    horizonBg.setTexture(horizonBgTexture);
+    imBg.setTexture(imBgTexture);
+    ground.setTexture(groundTexture);
+    paper.setTexture(paperTexture);
+    
+    sky.setPosition(0,0);
+    horizonBg.setPosition(0,window.getSize().y*3/16);
+    imBg.setPosition(0,window.getSize().y*3/16+15);
+    ground.setPosition(0,window.getSize().y*10/16+15);
+    
+    
+    
+    //sf::Event event;
+    
 
     sf::Texture monsterTexture;
     sf::Texture playerTexture;
@@ -55,6 +136,9 @@ int main() {
     h.getActiveRoom()->getEncounter()->setTexture(monsterTexture);
     player.setTexture(playerTexture);
     h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/2);
+    
+    //h.getActiveRoom()->create(window);
+    
   
         
     
@@ -72,11 +156,15 @@ int main() {
             {
                 if (event.key.code == sf::Keyboard::Left)
                 {
-                    player.stepLeft();
+                    horizonBg.move(player.stepSize/2,0);
+                    imBg.move(player.stepSize,0);
+                    ground.move(player.stepSize,0);
                 } 
                 if (event.key.code == sf::Keyboard::Right)
                 {
-                    player.stepRight();
+                    horizonBg.move(-player.stepSize/2,0);
+                    imBg.move(-player.stepSize,0);
+                    ground.move(-player.stepSize,0);
                 } 
             }
         }
@@ -85,12 +173,25 @@ int main() {
         window.clear(sf::Color::White);
         
         
+        /*background*/
+        window.draw(sky);
+        window.draw(horizonBg);
+        window.draw(imBg);
+        window.draw(ground);
         
         window.draw(*h.getActiveRoom()->getEncounter());
+        
         window.draw(player);
+        window.draw(paper);
         window.display();
     }
     
 
     return EXIT_SUCCESS;
 }
+
+
+
+//void moving(float step, sf::RectangleShape& horizonBg, sf::RectangleShape& imBg, sf::RectangleShape& ground ){
+//    //sky.move(step,0);
+    

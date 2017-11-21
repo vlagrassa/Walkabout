@@ -23,9 +23,12 @@ public:
     void stepRight();
     //void stepRight(int n);
     
+    
+    int stepSize;
+    
 private:
     int posX;
-    int stepSize;
+    
     
     
     /* Return Player for a stream */

@@ -89,10 +89,9 @@ int main() {
     sf::Sprite paper;
     
     
-    
 //    /*set sizes for background objects*/
     sky.scale(1, 1);
-    horizonBg.scale(1,1);
+    horizonBg.scale(1,.9);
     imBg.scale(1, .8);
     ground.setScale(1, .35);
 //    
@@ -108,6 +107,11 @@ int main() {
     imBg.setTexture(imBgTexture);
     ground.setTexture(groundTexture);
     paper.setTexture(paperTexture);
+    
+    horizonBg.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x*10), static_cast<int>(horizonBgTexture.getSize().y) });
+    imBg.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x*2), static_cast<int>(window.getSize().y*3/5)});
+    horizonBg.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x), static_cast<int>(horizonBgTexture.getSize().y) });
+    
     
     sky.setPosition(0,0);
     horizonBg.setPosition(0,window.getSize().y*3/16);
@@ -136,6 +140,7 @@ int main() {
     h.getActiveRoom()->getEncounter()->setTexture(monsterTexture);
     player.setTexture(playerTexture);
     h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/2);
+    player.setPosition(0,window.getSize().x/4);
     
     //h.getActiveRoom()->create(window);
     

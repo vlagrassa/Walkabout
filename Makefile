@@ -20,7 +20,7 @@ OBJDIR     = $(ROOT)/$(OBJDIRSHORT)
 OBJS       = $(subst $(SRCDIRSHORT),$(OBJDIRSHORT),$(SRCS:.cpp=.o))
 
 BUILDDIR   = $(ROOT)/build/
-MAIN       = main
+MAIN       = main.exe
 
 run: $(MAIN)
 	/$(BUILDDIR)/$(MAIN)

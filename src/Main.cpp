@@ -15,10 +15,12 @@
 int main() {
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
     
+    std::string resourceDir = "resources/";
+    
     
     Player player;
     Hall h(&player);
-    int numRooms = 4;
+    unsigned int numRooms = 4;
     for (unsigned i = 0; i < numRooms; i++) {
         h.addRoom();
     }
@@ -39,6 +41,7 @@ int main() {
     
     sf::RenderWindow window(sf::VideoMode(800, 600), "Walkabout");
     
+    std::vector<sf::Texture> backgroundTextures;
     
     /*Background thingys*/
     
@@ -48,39 +51,43 @@ int main() {
     sf::Texture groundTexture;
     sf::Texture paperTexture;
     
-    /*Load texture files*/
-//    skyTexture.loadFromFile("resources/sky.png");
-//    horizonBgTexture.loadFromFile("resources/horizon_background.png");
-//    imBgTexture.loadFromFile("resources/immidiate_background.png");
-//    groundTexture.loadFromFile("resources/ground_outside.png");
+    backgroundTextures.push_back(skyTexture);
+    backgroundTextures.push_back(horizonBgTexture);
+    backgroundTextures.push_back(imBgTexture);
+    backgroundTextures.push_back(groundTexture);
+    backgroundTextures.push_back(paperTexture);
     
-    if (!skyTexture.loadFromFile("resources/sky.png"))
+    if (!skyTexture.loadFromFile(resourceDir + "sky.png"))
     {
         return -1;
     }
-    if (!horizonBgTexture.loadFromFile("resources/horizon_background.png"))
+    if (!horizonBgTexture.loadFromFile(resourceDir + "horizon_background.png"))
     {
         return -1;
     }
-    if (!imBgTexture.loadFromFile("resources/immidiate_background.png"))
+    if (!imBgTexture.loadFromFile(resourceDir + "immidiate_background.png"))
     {
         return -1;
     }
-    if (!groundTexture.loadFromFile("resources/ground_outside.png"))
+    if (!groundTexture.loadFromFile(resourceDir + "ground_outside.png"))
     {
         return -1;
     }
-    if (!paperTexture.loadFromFile("resources/paper_texture_yellow.png"))
+    if (!paperTexture.loadFromFile(resourceDir + "paper_texture_yellow.png"))
     {
         return -1;
     }
     
     
     /*set textures to repeat*/
-    skyTexture.setRepeated(true);
-    horizonBgTexture.setRepeated(true);
-    imBgTexture.setRepeated(true);
-    groundTexture.setRepeated(true);
+//    skyTexture.setRepeated(true);
+//    horizonBgTexture.setRepeated(true);
+//    imBgTexture.setRepeated(true);
+//    groundTexture.setRepeated(true);
+    
+    for (sf::Texture t : backgroundTextures) {
+        t.setRepeated(true);
+    }
     
     sf::Sprite sky;
     sf::Sprite horizonBg;
@@ -97,10 +104,10 @@ int main() {
     ground.setScale(1, .35);
 //    
     
-    skyTexture.setRepeated(true);
-    horizonBgTexture.setRepeated(true);
-    imBgTexture.setRepeated(true);
-    groundTexture.setRepeated(true);
+    //skyTexture.setRepeated(true);
+    //horizonBgTexture.setRepeated(true);
+    //imBgTexture.setRepeated(true);
+    //groundTexture.setRepeated(true);
     
     /*put textures into background rect objects*/
     sky.setTexture(skyTexture);
@@ -121,11 +128,11 @@ int main() {
 
     sf::Texture monsterTexture;
     sf::Texture playerTexture;
-    if (!monsterTexture.loadFromFile("resources/monster.png"))
+    if (!monsterTexture.loadFromFile(resourceDir + "monster.png"))
     {
         return -1;
     }
-    if (!playerTexture.loadFromFile("resources/player.png"))
+    if (!playerTexture.loadFromFile(resourceDir + "player.png"))
     {
         return -1;
     }

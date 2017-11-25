@@ -9,7 +9,7 @@
 enum RoomType {
     monster,
     treasure,
-    puzzle
+    trade
 };
 
 class Encounterable : public sf::Sprite {

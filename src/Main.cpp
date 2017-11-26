@@ -161,15 +161,15 @@ int main() {
             {
                 if (event.key.code == sf::Keyboard::Left)
                 {
-                    horizonBg.move(player.stepSize/2,0);
-                    imBg.move(player.stepSize,0);
-                    ground.move(player.stepSize,0);
+                    horizonBg.move(player.getStepSize()/2,0);
+                    imBg.move(player.getStepSize(),0);
+                    ground.move(player.getStepSize(),0);
                 } 
                 if (event.key.code == sf::Keyboard::Right)
                 {
-                    horizonBg.move(-player.stepSize/2,0);
-                    imBg.move(-player.stepSize,0);
-                    ground.move(-player.stepSize,0);
+                    horizonBg.move(-player.getStepSize()/2,0);
+                    imBg.move(-player.getStepSize(),0);
+                    ground.move(-player.getStepSize(),0);
                 } 
             }
         }

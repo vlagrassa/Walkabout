@@ -23,13 +23,16 @@ public:
     void stepRight();
     //void stepRight(int n);
     
+    int getStepSize() const;
     
-    int stepSize;
+    
+   
+  
     
 private:
     int posX;
     
-    
+    int stepSize;
     
     /* Return Player for a stream */
     friend std::ostream& operator<<(std::ostream &strm, const Player&);

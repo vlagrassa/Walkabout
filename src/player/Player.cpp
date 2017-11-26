@@ -20,6 +20,10 @@ int Player::getX() const {
     return posX;
 }
 
+int Player::getStepSize() const {
+    return stepSize;
+}
+
 /* Set the player's x position within the Hall (absolute) */
 void Player::goTo(int n) {
     posX = n;

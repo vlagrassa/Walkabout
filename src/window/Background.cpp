@@ -2,11 +2,13 @@
 #include <SFML/Graphics.hpp>
 
 Background::Background(sf::Texture& skyTexture, sf::Texture& horizonBgTexture, sf::Texture& imBgTexture, sf::Texture& groundTexture, sf::RenderWindow& window) {
+       /*put textures into background sprite objects*/
     sky.setTexture(skyTexture);
     horizonBg.setTexture(horizonBgTexture);
     imBg.setTexture(imBgTexture);
     ground.setTexture(groundTexture);
     
+    /*set sizes for texturess*/
     horizonBg.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x), static_cast<int>(horizonBgTexture.getSize().y) });
     imBg.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x), static_cast<int>(window.getSize().y*3/5)});
     horizonBg.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x), static_cast<int>(horizonBgTexture.getSize().y) });

@@ -7,8 +7,21 @@
 
 class Background {
 public:
+    Background(sf::Texture* skyTexture, 
+            sf::Texture* horizonBgTexture, 
+            sf::Texture* imBgTexture, 
+            sf::Texture* groundTexture, 
+            sf::RenderWindow& window
+            );
+    Background(const Background& orig);
+    virtual ~Background();
+    
     
 private:
+    sf::Sprite sky;
+    sf::Sprite horizonBg;
+    sf::Sprite imBg;
+    sf::Sprite ground;
 };
 
 

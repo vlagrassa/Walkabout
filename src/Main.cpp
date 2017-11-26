@@ -41,8 +41,8 @@ int main() {
     
     sf::RenderWindow window(sf::VideoMode(800, 600), "Walkabout");
     
-    std::vector<sf::Texture> backgroundTextures;
-    
+//    std::vector<sf::Texture> backgroundTextures;
+//    
     /*Background thingys*/
     
     sf::Texture skyTexture;
@@ -51,11 +51,11 @@ int main() {
     sf::Texture groundTexture;
     sf::Texture paperTexture;
     
-    backgroundTextures.push_back(skyTexture);
-    backgroundTextures.push_back(horizonBgTexture);
-    backgroundTextures.push_back(imBgTexture);
-    backgroundTextures.push_back(groundTexture);
-    backgroundTextures.push_back(paperTexture);
+//    backgroundTextures.push_back(skyTexture);
+//    backgroundTextures.push_back(horizonBgTexture);
+//    backgroundTextures.push_back(imBgTexture);
+//    backgroundTextures.push_back(groundTexture);
+//    backgroundTextures.push_back(paperTexture);
     
     if (!skyTexture.loadFromFile(resourceDir + "sky.png"))
     {
@@ -85,45 +85,31 @@ int main() {
 //    imBgTexture.setRepeated(true);
 //    groundTexture.setRepeated(true);
     
-    for (sf::Texture t : backgroundTextures) {
-        t.setRepeated(true);
-    }
+//    for (sf::Texture t : backgroundTextures) {
+//        t.setRepeated(true);
+//    }
     
-    sf::Sprite sky;
-    sf::Sprite horizonBg;
-    sf::Sprite imBg;
-    sf::Sprite ground;
+    
     sf::Sprite paper;
     
     
 //    /*set sizes for background objects*/
-    sky.scale(1, 1);
-    horizonBg.scale(1,.9);
-    imBg.scale(1, .8);
-    ground.setScale(1, .35);
+    
 //    
     
-    //skyTexture.setRepeated(true);
-    //horizonBgTexture.setRepeated(true);
-    //imBgTexture.setRepeated(true);
-    //groundTexture.setRepeated(true);
+    skyTexture.setRepeated(true);
+    horizonBgTexture.setRepeated(true);
+    imBgTexture.setRepeated(true);
+    groundTexture.setRepeated(true);
     
     /*put textures into background rect objects*/
-    sky.setTexture(skyTexture);
-    horizonBg.setTexture(horizonBgTexture);
-    imBg.setTexture(imBgTexture);
-    ground.setTexture(groundTexture);
+
     paper.setTexture(paperTexture);
     
-    horizonBg.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x*10), static_cast<int>(horizonBgTexture.getSize().y) });
-    imBg.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x*2), static_cast<int>(window.getSize().y*3/5)});
-    horizonBg.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x), static_cast<int>(horizonBgTexture.getSize().y) });
     
     
-    sky.setPosition(0,0);
-    horizonBg.setPosition(0,window.getSize().y*3/16);
-    imBg.setPosition(0,window.getSize().y*3/16+15);
-    ground.setPosition(0,window.getSize().y*10/16+15);
+    
+    
     
     
     

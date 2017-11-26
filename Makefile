@@ -1,49 +1,19 @@
-#CXX = c++
-RM        += -r
-
-ROOT      := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
-
-CXXFLAGS  := $(shell pkg-config sfml-all --cflags) -std=c++11
-LDLIBS    := $(shell pkg-config sfml-all --libs)
-
-SRCDIRSHORT= src
-SRCDIR     = $(ROOT)/$(SRCDIRSHORT)
-#SRCFOLDERS = $(shell find src -type f -name '*.cpp')
-
-CXXFLAGS  += -I $(SRCDIR)
-
-SRCS      := $(shell find src -type f -name '*.cpp')
-HDRS      := $(wildcard $(SRCDIR)/*.h)
-
-OBJDIRSHORT= obj
-OBJDIR     = $(ROOT)/$(OBJDIRSHORT)
-OBJS       = $(subst $(SRCDIRSHORT),$(OBJDIRSHORT),$(SRCS:.cpp=.o))
-
-BUILDDIR   = $(ROOT)/build/
-MAIN       = main
-
-run: $(MAIN)
-	/$(BUILDDIR)/$(MAIN)
+include config.mk
 
 $(MAIN): $(OBJS) | $(BUILDDIR)
-	$(CXX) -o $(BUILDDIR)/$(MAIN) $(OBJS) $(LDLIBS)
+	$(LINK.cpp) $(OUTPUT_OPTION) $^ $(LOADLIBES) $(LDLIBS)
 
-$(OBJDIRSHORT)/%.o: $(SRCDIRSHORT)/%.cpp | $(OBJDIR)
-	$(CXX) -c $< $(CXXFLAGS) -o $@
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(HDRS) | $(OBJDIR) $(OBJSUBDIRS)
+	$(COMPILE.cpp) $(OUTPUT_OPTION) $< 
 
-$(OBJDIR):
-	mkdir $@
-	mkdir $@/region/
-	mkdir $@/player/
-	mkdir $@/screen/
+$(BUILDDIR) $(OBJDIR) $(OBJSUBDIRS):
+	mkdir -p $@
 
-$(BUILDDIR):
-	mkdir $@
-
-test:
-	echo $(SRCS)
-	echo $(OBJS)
+.DEFAULT: run
+.PHONY:   run
+run: $(MAIN)
+	./$<
 
 .PHONY: clean
 clean:
-	$(RM) $(MAIN) $(OBJDIR) $(BUILDDIR)
+	$(RM) $(OBJDIR) $(BUILDDIR) $(GCHS)

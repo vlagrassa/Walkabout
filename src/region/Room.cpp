@@ -6,7 +6,7 @@
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
 /* Constructor, takes length and Encounterable */
-Room::Room(int d, Encounterable* t) : length(d) {
+Room::Room(unsigned int d, Encounterable* t) : length(d) {
     //std::cout << "Test idk the second " << t->getTypeName() << " of " << t << " ...\n";
     active = false;
     thing = t;
@@ -15,7 +15,7 @@ Room::Room(int d, Encounterable* t) : length(d) {
 }
 
 /* Constructor, takes seed for Room & generates length and Encounterable */
-Room::Room(int seed) : Room((seed%15)+2, genRandomEncounterable(seed)) {};
+Room::Room(unsigned int seed) : Room((seed%15)+2, genRandomEncounterable(seed)) {};
 
 /* Default constructor */
 Room::Room(const Room& orig) : length(orig.getLength()) {
@@ -32,7 +32,7 @@ Room::~Room() {
 // <editor-fold defaultstate="collapsed" desc=" Getters ">
 
 /* Getter method for length */
-const int Room::getLength() const {
+unsigned int Room::getLength() const {
     return length;
 }
 

@@ -10,7 +10,7 @@
 class Hall : private std::vector<Room*> {
 public:
     /* Constructor */
-    Hall(Player* p, int s = genRandomSeed());
+    Hall(Player* p, unsigned int s = genRandomSeed());
     
     /* Default constructor */
     Hall(const Hall& orig);
@@ -20,7 +20,7 @@ public:
     
     /* Getter methods */
     int getPlayerIndex() const;
-    int getSeed() const;
+    unsigned int getSeed() const;
     Room* getRoom(int index) const;
     Room* getActiveRoom() const;
     const Player* getPlayer() const;
@@ -57,7 +57,7 @@ private:
     int playerIndex;
     
     /* The seed to generate new Rooms */
-    const int seed;
+    const unsigned int seed;
     
     /* The sum of all the room lengths */
     int totalLength;
@@ -66,7 +66,7 @@ private:
     const Player* player;
     
     /* Generate seed based on the current time */
-    static int genRandomSeed();
+    static unsigned int genRandomSeed();
     
     /* Return Hall for a stream */
     friend std::ostream& operator<<(std::ostream &strm, const Hall&);

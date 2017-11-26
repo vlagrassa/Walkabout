@@ -8,7 +8,7 @@
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
 /* Constructor - takes optional argument s */
-Hall::Hall(Player* p, int s) : seed(s), player(p) {
+Hall::Hall(Player* p, unsigned int s) : seed(s), player(p) {
     playerIndex = 0;
 }
 /* Default constructor */
@@ -28,7 +28,7 @@ Hall::~Hall() {
 int Hall::getPlayerIndex() const {
     return playerIndex;
 }
-int Hall::getSeed() const {
+unsigned int Hall::getSeed() const {
     return seed;
 }
 
@@ -134,7 +134,7 @@ void Hall::updateIndex(Player& p) {
 }
 
 /* Generate seed based on the current time */
-int Hall::genRandomSeed() {
+unsigned int Hall::genRandomSeed() {
     return std::time(NULL);
 }
 

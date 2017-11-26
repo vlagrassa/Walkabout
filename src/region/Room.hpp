@@ -8,10 +8,10 @@
 class Room {
 public:
     /* Constructor, takes length and Encounterable */
-    Room(int d, Encounterable* t);
+    Room(unsigned int d, Encounterable* t);
     
     /* Constructor, generates random room from passed integer */
-    Room(int seed);
+    Room(unsigned int seed);
     
     /* Default constructor */
     Room(const Room& orig);
@@ -20,7 +20,7 @@ public:
     virtual ~Room();
     
     /* Getter methods */
-    const int getLength() const;
+    unsigned int getLength() const;
     int getDistance() const; //return distance between player and Encounterable
     Encounterable* getEncounter() const;
     RoomType getType() const;
@@ -41,7 +41,7 @@ private:
     Encounterable* thing;
     
     /* Number of tics in the Room */
-    const int length;
+    const unsigned int length;
     
     /* Position (in tics) of player within Room - only used if Active */
     int playerX;

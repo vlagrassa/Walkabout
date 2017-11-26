@@ -3,14 +3,23 @@
 
 #include <SFML/Graphics.hpp>
 #include <stdlib.h> 
+#include <iostream>
 
 class Ambience {
 public:
-    Ambience();
+    Ambience(std::string& resources);
     Ambience(const Ambience& orig);
     virtual ~Ambience();
-private:
+    sf::Texture* getSky();
+    sf::Texture* getHorizonBg();
+    sf::Texture* getImBg();
+    sf::Texture* getGround();
     
+private:
+    sf::Texture* skyTexture;
+    sf::Texture* horizonBgTexture;
+    sf::Texture* imBgTexture;
+    sf::Texture* groundTexture;
 };
 
 #endif /* AMBIENCE_H */

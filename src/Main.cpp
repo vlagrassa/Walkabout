@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <iostream>
 #include "region/Hall.hpp"
+#include "window/Ambience.hpp"
 #include "region/Monster.hpp"
 #include "player/Player.hpp"
 #include "screen/Menu.hpp"
@@ -16,7 +17,7 @@
 int main() {
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
     
-    std::string resourceDir = "resources/";
+    std::string resources = "resources/";
     
     
     Player player;
@@ -32,30 +33,13 @@ int main() {
 
     /*texture thingys*/
     
-    sf::Texture skyTexture;
-    sf::Texture horizonBgTexture;
-    sf::Texture imBgTexture;
-    sf::Texture groundTexture;
+    
     sf::Texture paperTexture;
     
 
-    if (!skyTexture.loadFromFile(resourceDir + "sky.png"))
-    {
-        return -1;
-    }
-    if (!horizonBgTexture.loadFromFile(resourceDir + "horizon_background.png"))
-    {
-        return -1;
-    }
-    if (!imBgTexture.loadFromFile(resourceDir + "immidiate_background.png"))
-    {
-        return -1;
-    }
-    if (!groundTexture.loadFromFile(resourceDir + "ground_outside.png"))
-    {
-        return -1;
-    }
-    if (!paperTexture.loadFromFile(resourceDir + "paper_texture_yellow.png"))
+   
+    
+    if (!paperTexture.loadFromFile(resources + "paper_texture_yellow.png"))
     {
         return -1;
     }
@@ -63,15 +47,13 @@ int main() {
     sf::Sprite paper;
     
     
-    skyTexture.setRepeated(true);
-    horizonBgTexture.setRepeated(true);
-    imBgTexture.setRepeated(true);
-    groundTexture.setRepeated(true);
+   
     
- 
-    paper.setTexture(paperTexture);
+    Ambience standard(resources);
+    paper.setTexture(*standard.getHorizonBg());
     
-    Background background(skyTexture, horizonBgTexture, imBgTexture, groundTexture, window);
+    
+    Background background( standard, window);
     
     
     //sf::Event event;
@@ -79,11 +61,11 @@ int main() {
 
     sf::Texture monsterTexture;
     sf::Texture playerTexture;
-    if (!monsterTexture.loadFromFile(resourceDir + "monster.png"))
+    if (!monsterTexture.loadFromFile(resources + "monster.png"))
     {
         return -1;
     }
-    if (!playerTexture.loadFromFile(resourceDir + "player.png"))
+    if (!playerTexture.loadFromFile(resources + "player.png"))
     {
         return -1;
     }

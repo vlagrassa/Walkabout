@@ -3,14 +3,13 @@
 
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
+#include "Ambience.hpp"
 
 
 class Background: public sf::Drawable {
 public:
-    Background(sf::Texture& skyTexture, 
-            sf::Texture& horizonBgTexture, 
-            sf::Texture& imBgTexture, 
-            sf::Texture& groundTexture, 
+    Background(
+            Ambience setting,
             sf::RenderWindow& window
             );
     Background(const Background& orig);

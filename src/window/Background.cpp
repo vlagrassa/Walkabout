@@ -1,17 +1,18 @@
 #include "Background.hpp"
+#include "Ambience.hpp"
 #include <SFML/Graphics.hpp>
 
-Background::Background(sf::Texture& skyTexture, sf::Texture& horizonBgTexture, sf::Texture& imBgTexture, sf::Texture& groundTexture, sf::RenderWindow& window) {
+Background::Background(Ambience setting, sf::RenderWindow& window) {
        /*put textures into background sprite objects*/
-    sky.setTexture(skyTexture);
-    horizonBg.setTexture(horizonBgTexture);
-    imBg.setTexture(imBgTexture);
-    ground.setTexture(groundTexture);
+    sky.setTexture(*setting.getSky());
+    horizonBg.setTexture(*setting.getHorizonBg());
+    imBg.setTexture(*setting.getImBg());
+    ground.setTexture(*setting.getGround());
     
     /*set sizes for texturess*/
-    horizonBg.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x), static_cast<int>(horizonBgTexture.getSize().y) });
+    horizonBg.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x), static_cast<int>(setting.getHorizonBg()->getSize().y) });
     imBg.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x), static_cast<int>(window.getSize().y*3/5)});
-    horizonBg.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x), static_cast<int>(horizonBgTexture.getSize().y) });
+    ground.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x), static_cast<int>(setting.getGround()->getSize().y) });
     
     sky.setPosition(0,0);
     horizonBg.setPosition(0,window.getSize().y*3/16);

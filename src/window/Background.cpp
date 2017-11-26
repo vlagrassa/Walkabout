@@ -35,5 +35,8 @@ void Background::move(int stepSize) {
 }
 
 void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    
+    target.draw(sky);
+    target.draw(horizonBg);
+    target.draw(imBg);
+    target.draw(ground);
 }

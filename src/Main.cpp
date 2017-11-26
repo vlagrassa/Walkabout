@@ -8,6 +8,7 @@
 #include "region/Monster.hpp"
 #include "player/Player.hpp"
 #include "screen/Menu.hpp"
+#include "window/Background.hpp"
 #include "screen/FightScreen.hpp"
 #include <SFML/Window.hpp>
 
@@ -106,7 +107,7 @@ int main() {
 
     paper.setTexture(paperTexture);
     
-    
+    Background background(skyTexture, horizonBgTexture, imBgTexture, groundTexture, window);
     
     
     
@@ -154,15 +155,11 @@ int main() {
             {
                 if (event.key.code == sf::Keyboard::Left)
                 {
-                    horizonBg.move(player.getStepSize()/2,0);
-                    imBg.move(player.getStepSize(),0);
-                    ground.move(player.getStepSize(),0);
+                    background.move(player.getStepSize());
                 } 
                 if (event.key.code == sf::Keyboard::Right)
                 {
-                    horizonBg.move(-player.getStepSize()/2,0);
-                    imBg.move(-player.getStepSize(),0);
-                    ground.move(-player.getStepSize(),0);
+                    background.move(-player.getStepSize());
                 } 
             }
         }
@@ -172,10 +169,7 @@ int main() {
         
         
         /*background*/
-        window.draw(sky);
-        window.draw(horizonBg);
-        window.draw(imBg);
-        window.draw(ground);
+        window.draw(background);
         
         window.draw(*h.getActiveRoom()->getEncounter());
         

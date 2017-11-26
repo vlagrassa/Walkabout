@@ -1,7 +1,7 @@
 #include "Background.hpp"
 #include <SFML/Graphics.hpp>
 
-Background::Background(sf::Texture* skyTexture, sf::Texture* horizonBgTexture, sf::Texture* imBgTexture, sf::Texture* groundTexture, sf::RenderWindow& window) {
+Background::Background(sf::Texture& skyTexture, sf::Texture& horizonBgTexture, sf::Texture& imBgTexture, sf::Texture& groundTexture, sf::RenderWindow& window) {
     sky.setTexture(skyTexture);
     horizonBg.setTexture(horizonBgTexture);
     imBg.setTexture(imBgTexture);
@@ -25,5 +25,15 @@ Background::Background(const Background& orig) {
     
 }
 Background::~Background() {
+    
+}
+
+void Background::move(int stepSize) {
+    horizonBg.move(stepSize/2,0);
+    imBg.move(stepSize,0);
+    ground.move(stepSize,0);
+}
+
+void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     
 }

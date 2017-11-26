@@ -27,24 +27,10 @@ int main() {
     }
     
     
-    std::cout << h << "\n";
-    
-    //player.stepRight();
-    //h.updateIndex(player);
-    std::cout << h << "\n";
-    
-    std::cout << "Using Hall as vector subclass:\n";
-    
-    for (Room* r : h) {
-        std::cout << *r << "\n";
-    }
-    
-    
     sf::RenderWindow window(sf::VideoMode(800, 600), "Walkabout");
     
-//    std::vector<sf::Texture> backgroundTextures;
-//    
-    /*Background thingys*/
+
+    /*texture thingys*/
     
     sf::Texture skyTexture;
     sf::Texture horizonBgTexture;
@@ -52,12 +38,7 @@ int main() {
     sf::Texture groundTexture;
     sf::Texture paperTexture;
     
-//    backgroundTextures.push_back(skyTexture);
-//    backgroundTextures.push_back(horizonBgTexture);
-//    backgroundTextures.push_back(imBgTexture);
-//    backgroundTextures.push_back(groundTexture);
-//    backgroundTextures.push_back(paperTexture);
-    
+
     if (!skyTexture.loadFromFile(resourceDir + "sky.png"))
     {
         return -1;
@@ -78,40 +59,19 @@ int main() {
     {
         return -1;
     }
-    
-    
-    /*set textures to repeat*/
-//    skyTexture.setRepeated(true);
-//    horizonBgTexture.setRepeated(true);
-//    imBgTexture.setRepeated(true);
-//    groundTexture.setRepeated(true);
-    
-//    for (sf::Texture t : backgroundTextures) {
-//        t.setRepeated(true);
-//    }
-    
-    
+   
     sf::Sprite paper;
     
-    
-//    /*set sizes for background objects*/
-    
-//    
     
     skyTexture.setRepeated(true);
     horizonBgTexture.setRepeated(true);
     imBgTexture.setRepeated(true);
     groundTexture.setRepeated(true);
     
-    /*put textures into background rect objects*/
-
+ 
     paper.setTexture(paperTexture);
     
     Background background(skyTexture, horizonBgTexture, imBgTexture, groundTexture, window);
-    
-    
-    
-    
     
     
     //sf::Event event;
@@ -138,8 +98,6 @@ int main() {
     
     //h.getActiveRoom()->create(window);
     
-  
-        
     
     while (window.isOpen())
     {
@@ -181,9 +139,3 @@ int main() {
 
     return EXIT_SUCCESS;
 }
-
-
-
-//void moving(float step, sf::RectangleShape& horizonBg, sf::RectangleShape& imBg, sf::RectangleShape& ground ){
-//    //sky.move(step,0);
-    

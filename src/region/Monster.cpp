@@ -61,22 +61,22 @@ void Monster::encounter(Player& player) {
 // <editor-fold defaultstate="collapsed" desc=" Original Methods ">
 
 /* Returns the Monster's name (necessary?) */
-std::string Monster::getName() {
+std::string Monster::getName() const {
     return name;
 }
 
 /* Returns the maximum health possible for the Monster */
-int Monster::getMaxHealth() {
+int Monster::getMaxHealth() const {
     return maxHealth;
 }
 
 /* Returns the Monster's current health */
-int Monster::getHealth() {
+int Monster::getHealth() const {
     return health;
 }
 
 /* Returns an enum MonsterSpecies value representing the monster's species */
-MonsterSpecies Monster::getSpecies() {
+MonsterSpecies Monster::getSpecies() const {
     return species;
 }
 

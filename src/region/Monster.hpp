@@ -38,16 +38,16 @@ public:
     /* Original Methods */
     
     /* Returns the Monster's name (necessary?) */
-    std::string getName();
+    std::string getName() const;
     
     /* Returns the maximum health possible for the Monster */
-    int getMaxHealth();
+    int getMaxHealth() const;
     
     /* Returns the Monster's current health */
-    int getHealth();
+    int getHealth() const;
     
     /* Returns an enum MonsterSpecies value representing the monster's species */
-    MonsterSpecies getSpecies();
+    MonsterSpecies getSpecies() const;
     
 private:
     /* The monster's name */

@@ -6,6 +6,10 @@
 #include "Encounterable.hpp"
 #include "../screen/FightScreen.hpp"
 
+enum MonsterSpecies {
+    dinosaur
+};
+
 class Monster: public Encounterable {
 public:
     Monster();
@@ -38,6 +42,9 @@ private:
     
     /* Pointer to the monster texture */
     sf::Texture* monster_texture;
+    
+    /* Enum to hold what type of monster */
+    MonsterSpecies species;
     
     /* Return Monster for a stream */
     friend std::ostream& operator<<(std::ostream &strm, const Monster&);

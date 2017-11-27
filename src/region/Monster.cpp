@@ -10,12 +10,16 @@ Monster::Monster() {
     name = "John";
     health = 20;
     battle_screen = new FightScreen();
+    
+    monster_texture = new sf::Texture();
+    monster_texture->loadFromFile("resources/monster.png");
+    setTexture(*monster_texture);
 }
 Monster::Monster(const Monster& orig) {
     battle_screen = new FightScreen();
 }
 Monster::~Monster() {
-    
+    delete monster_texture;
 }
 
 // </editor-fold>

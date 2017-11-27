@@ -65,7 +65,6 @@ int main() {
     playerTexture.setSmooth(true);
     //sf::Sprite sprite;
     //sprite.setTexture(texture);
-    h.getActiveRoom()->getEncounter()->setTexture(monsterTexture);
     player.setTexture(playerTexture);
     h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/2);
     player.setPosition(0,window.getSize().x/4);

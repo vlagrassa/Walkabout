@@ -36,6 +36,9 @@ private:
     int health;
     FightScreen* battle_screen; //should be of type Screen& or something
     
+    /* Pointer to the monster texture */
+    sf::Texture* monster_texture;
+    
     /* Return Monster for a stream */
     friend std::ostream& operator<<(std::ostream &strm, const Monster&);
 };

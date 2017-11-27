@@ -26,6 +26,7 @@ Monster::~Monster() {
 
 // <editor-fold defaultstate="collapsed" desc=" Inherited Methods ">
 
+/* Returns the FightScreen associated with the Monster */
 FightScreen* Monster::getEncounterScreen() const {
     std::cout << "Returning fight screen!" << "\n";
     return battle_screen;
@@ -35,18 +36,22 @@ FightScreen* Monster::getEncounterScreen() const {
 
 // <editor-fold defaultstate="collapsed" desc=" Implemented Abstract Methods ">
 
+/* Returns whether Monster is a skippable Encounterable (false) */
 bool Monster::isSkippable() const {
     return false;
 }
 
+/* Returns the name of the Encounterable subclass ("Monster") */
 std::string Monster::getTypeName() const {
     return "Monster";
 }
 
+/* Returns an enum RoomType value corresponding to the subclass (monster) */
 RoomType Monster::getType() const {
     return monster;
 }
 
+/* Interact with the Encounterable */
 void Monster::encounter(Player& player) {
     std::cout << "This is a monster!\n";
 }
@@ -55,9 +60,17 @@ void Monster::encounter(Player& player) {
 
 // <editor-fold defaultstate="collapsed" desc=" Original Methods ">
 
+/* Returns the Monster's name (necessary?) */
 std::string Monster::getName() {
     return name;
 }
+
+/* Returns the maximum health possible for the Monster */
+int Monster::getMaxHealth() {
+    return maxHealth;
+}
+
+/* Returns the Monster's current health */
 int Monster::getHealth() {
     return health;
 }
@@ -65,7 +78,7 @@ int Monster::getHealth() {
 // </editor-fold>
 
 
-/* Return Player for a stream */
+/* Return Monster for a stream */
 std::ostream& operator<<(std::ostream &strm, const Monster &orig) {
     strm << "Monster encountered ";
     return strm;

@@ -18,27 +18,46 @@ public:
     
     /* Inherited Methods */
     
+    /* Returns the FightScreen associated with the Monster */
     FightScreen* getEncounterScreen() const;
     
     /* Implemented Abstract Methods */
     
+    /* Returns whether Monster is a skippable Encounterable (false) */
     bool isSkippable() const;
     
+    /* Returns the name of the Encounterable subclass ("Monster") */
     std::string getTypeName() const;
     
+    /* Returns an enum RoomType value corresponding to the subclass (monster) */
     RoomType getType() const;
     
+    /* Interact with the Encounterable */
     void encounter(Player& player);
     
     /* Original Methods */
     
+    /* Returns the Monster's name (necessary?) */
     std::string getName();
+    
+    /* Returns the maximum health possible for the Monster */
+    int getMaxHealth();
+    
+    /* Returns the Monster's current health */
     int getHealth();
     
 private:
+    /* The monster's name */
     std::string name;
+    
+    /* The maximum health possible */
+    int maxHealth;
+    
+    /* The current health*/
     int health;
-    FightScreen* battle_screen; //should be of type Screen& or something
+    
+    /* The associated FightScreen */
+    FightScreen* battle_screen;
     
     /* Pointer to the monster texture */
     sf::Texture* monster_texture;

@@ -8,10 +8,7 @@
 
 class Background: public sf::Drawable {
 public:
-    Background(
-            Ambience setting,
-            sf::RenderWindow& window
-            );
+    Background(Ambience& setting, sf::RenderWindow& window);
     Background(const Background& orig);
     virtual ~Background();
     

@@ -27,6 +27,23 @@ Ambience::Ambience(std::string& resources){
     groundTexture->setRepeated(true);
 }
 
+Ambience::Ambience(sf::Texture& sky, sf::Texture& horizon, sf::Texture& immediate, sf::Texture& ground) {
+    skyTexture = &sky;
+    horizonBgTexture = &horizon;
+    imBgTexture = &immediate;
+    groundTexture = &ground;
+    
+    std::cout << "Sky @ " << skyTexture << "\n";
+    std::cout << "Horizon @ " << horizonBgTexture << "\n";
+    std::cout << "Immediate @ " << imBgTexture << "\n";
+    std::cout << "Ground @ " << groundTexture << "\n";
+    
+    skyTexture->setRepeated(true);
+    horizonBgTexture->setRepeated(true);
+    imBgTexture->setRepeated(true);
+    groundTexture->setRepeated(true);
+}
+
 Ambience::Ambience( const Ambience& orig){
     
 }

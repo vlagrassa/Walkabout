@@ -2,7 +2,7 @@
 #include "Ambience.hpp"
 #include <SFML/Graphics.hpp>
 
-Background::Background(Ambience setting, sf::RenderWindow& window) {
+Background::Background(Ambience& setting, sf::RenderWindow& window) {
        /*put textures into background sprite objects*/
     sky.setTexture(*setting.getSky());
     horizonBg.setTexture(*setting.getHorizonBg());

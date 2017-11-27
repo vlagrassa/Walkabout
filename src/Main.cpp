@@ -17,9 +17,10 @@
 int main() {
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
     
-    std::string resources = "resources/";
+    std::string resourceDir = "resources/";
     
     
+    /* Instantiate Player and Hall */
     Player player;
     Hall h(&player);
     unsigned int numRooms = 4;
@@ -28,57 +29,51 @@ int main() {
     }
     
     
+    /* Create Window */
     sf::RenderWindow window(sf::VideoMode(800, 600), "Walkabout");
     
-
-    /*texture thingys*/
     
-    
+    /* Instantiate the paper texture */
     sf::Texture paperTexture;
-    
-    if (!paperTexture.loadFromFile(resources + "paper_texture_yellow.png"))
+    if (!paperTexture.loadFromFile(resourceDir + "paper_texture_yellow.png"))
     {
         return -1;
     }
-   
     sf::Sprite paper;
+    paper.setTexture(paperTexture);
     
     
-   
+    /* Create Ambience (like a texture pack) and Background */
     
     //Ambience standard(resources);
     
     sf::Texture st;
-    st.loadFromFile(resources + "sky.png");
+    st.loadFromFile(resourceDir + "sky.png");
     
     sf::Texture ht;
-    ht.loadFromFile(resources + "horizon_background.png");
+    ht.loadFromFile(resourceDir + "horizon_background.png");
     
     sf::Texture it;
-    it.loadFromFile(resources + "immidiate_background.png");
+    it.loadFromFile(resourceDir + "immidiate_background.png");
     
     sf::Texture gt;
-    gt.loadFromFile(resources + "ground_outside.png");
+    gt.loadFromFile(resourceDir + "ground_outside.png");
     
     Ambience standard(st, ht, it, gt);
     
-    
-    //paper.setTexture(*standard.getHorizonBg());
-    paper.setTexture(paperTexture);
-    
-    Background background( standard, window);
-    
+    Background background(standard, window);
     
     //sf::Event event;
     
-
+    
+    /* Create other textures */
     sf::Texture monsterTexture;
     sf::Texture playerTexture;
-    if (!monsterTexture.loadFromFile(resources + "monster.png"))
+    if (!monsterTexture.loadFromFile(resourceDir + "monster.png"))
     {
         return -1;
     }
-    if (!playerTexture.loadFromFile(resources + "player.png"))
+    if (!playerTexture.loadFromFile(resourceDir + "player.png"))
     {
         return -1;
     }
@@ -94,6 +89,7 @@ int main() {
     //h.getActiveRoom()->create(window);
     
     
+    /* All the window stuff */
     while (window.isOpen())
     {
         // check all the window's events that were triggered since the last iteration of the loop
@@ -131,6 +127,5 @@ int main() {
         window.display();
     }
     
-
     return EXIT_SUCCESS;
 }

@@ -17,10 +17,10 @@ public:
     sf::Texture* getGround();
     
 private:
-    sf::Texture* skyTexture;
-    sf::Texture* horizonBgTexture;
-    sf::Texture* imBgTexture;
-    sf::Texture* groundTexture;
+    sf::Texture skyTexture;
+    sf::Texture horizonBgTexture;
+    sf::Texture imBgTexture;
+    sf::Texture groundTexture;
 };
 
 #endif /* AMBIENCE_H */

@@ -75,6 +75,11 @@ int Monster::getHealth() {
     return health;
 }
 
+/* Returns an enum MonsterSpecies value representing the monster's species */
+MonsterSpecies Monster::getSpecies() {
+    return species;
+}
+
 // </editor-fold>
 
 

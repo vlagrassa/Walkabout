@@ -46,6 +46,9 @@ public:
     /* Returns the Monster's current health */
     int getHealth();
     
+    /* Returns an enum MonsterSpecies value representing the monster's species */
+    MonsterSpecies getSpecies();
+    
 private:
     /* The monster's name */
     std::string name;

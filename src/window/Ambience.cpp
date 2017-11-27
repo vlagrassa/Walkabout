@@ -2,29 +2,25 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-Ambience::Ambience(std::string& resources){
-    std::cout << resources;
+Ambience::Ambience(std::string& resources) {
      if (!skyTexture.loadFromFile(resources + "sky.png"))
     {
-         std::cout << "failed to load image sky\n";
+         std::cout << "Failed to load image sky.png from directory " << resources << "\n";
     }
     if (!horizonBgTexture.loadFromFile(resources + "horizon_background.png"))
     {
-        std::cout << "failed to load image horizon_background\n";
+        std::cout << "Failed to load image horizon_background.png from directory " << resources << "\n";
     }
     if (!imBgTexture.loadFromFile(resources + "immidiate_background.png"))
     {
-        std::cout << "failed to load image immidiate\n";
+        std::cout << "Failed to load image immidiate_background.png from directory " << resources << "\n";
     }
     if (!groundTexture.loadFromFile(resources + "ground_outside.png"))
     {
-        std::cout << "failed to load image ground\n";
+        std::cout << "Failed to load image ground_outside.png from directory " << resources << "\n";
     }
      
-    skyTexture.setRepeated(true);
-    horizonBgTexture.setRepeated(true);
-    imBgTexture.setRepeated(true);
-    groundTexture.setRepeated(true);
+     initTextures();
 }
 
 Ambience::Ambience(sf::Texture& sky, sf::Texture& horizon, sf::Texture& immediate, sf::Texture& ground) {
@@ -33,10 +29,7 @@ Ambience::Ambience(sf::Texture& sky, sf::Texture& horizon, sf::Texture& immediat
     imBgTexture = immediate;
     groundTexture = ground;
     
-    skyTexture.setRepeated(true);
-    horizonBgTexture.setRepeated(true);
-    imBgTexture.setRepeated(true);
-    groundTexture.setRepeated(true);
+    initTextures();
 }
 
 Ambience::Ambience( const Ambience& orig){
@@ -61,4 +54,11 @@ sf::Texture* Ambience::getImBg(){
 
 sf::Texture* Ambience::getGround(){
     return &groundTexture;
+}
+
+void Ambience::initTextures() {
+    skyTexture.setRepeated(true);
+    horizonBgTexture.setRepeated(true);
+    imBgTexture.setRepeated(true);
+    groundTexture.setRepeated(true);
 }

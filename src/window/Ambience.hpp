@@ -21,6 +21,8 @@ private:
     sf::Texture horizonBgTexture;
     sf::Texture imBgTexture;
     sf::Texture groundTexture;
+    
+    void initTextures();
 };
 
 #endif /* AMBIENCE_H */

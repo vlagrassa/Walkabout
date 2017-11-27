@@ -36,9 +36,6 @@ int main() {
     
     sf::Texture paperTexture;
     
-
-   
-    
     if (!paperTexture.loadFromFile(resources + "paper_texture_yellow.png"))
     {
         return -1;
@@ -49,9 +46,25 @@ int main() {
     
    
     
-    Ambience standard(resources);
-    paper.setTexture(*standard.getHorizonBg());
+    //Ambience standard(resources);
     
+    sf::Texture st;
+    st.loadFromFile(resources + "sky.png");
+    
+    sf::Texture ht;
+    ht.loadFromFile(resources + "horizon_background.png");
+    
+    sf::Texture it;
+    it.loadFromFile(resources + "immidiate_background.png");
+    
+    sf::Texture gt;
+    gt.loadFromFile(resources + "ground_outside.png");
+    
+    Ambience standard(st, ht, it, gt);
+    
+    
+    //paper.setTexture(*standard.getHorizonBg());
+    paper.setTexture(paperTexture);
     
     Background background( standard, window);
     

@@ -50,7 +50,7 @@ public:
     MonsterSpecies getSpecies() const;
     
 private:
-    /* The monster's name */
+    /* The Monster's name */
     std::string name;
     
     /* The maximum health possible */
@@ -62,10 +62,10 @@ private:
     /* The associated FightScreen */
     FightScreen* battle_screen;
     
-    /* Pointer to the monster texture */
+    /* Pointer to the Monster texture */
     sf::Texture* monster_texture;
     
-    /* Enum to hold what type of monster */
+    /* Enum to hold what type of Monster */
     MonsterSpecies species;
     
     /* Return Monster for a stream */

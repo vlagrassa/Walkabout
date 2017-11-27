@@ -44,22 +44,7 @@ int main() {
     
     
     /* Create Ambience (like a texture pack) and Background */
-    
-    sf::Texture st;
-    st.loadFromFile(resourceDir + "sky.png");
-    
-    sf::Texture ht;
-    ht.loadFromFile(resourceDir + "horizon_background.png");
-    
-    sf::Texture it;
-    it.loadFromFile(resourceDir + "immidiate_background.png");
-    
-    sf::Texture gt;
-    gt.loadFromFile(resourceDir + "ground_outside.png");
-    
-    //Ambience standard(st, ht, it, gt);
     Ambience standard(resourceDir);
-    
     Background background(standard, window);
     
     //sf::Event event;

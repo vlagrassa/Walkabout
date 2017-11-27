@@ -55,7 +55,7 @@ private:
     /* Return Room for a stream */
     friend std::ostream& operator<<(std::ostream &strm, const Room&);
     
-    static Encounterable* genRandomEncounterable(int seed);
+    static Encounterable* genRandomEncounterable(unsigned int seed);
 };
 
 

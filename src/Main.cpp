@@ -47,8 +47,6 @@ int main() {
     Ambience standard(resourceDir);
     Background background(standard, window);
     
-    //sf::Event event;
-    
     
     /* Create other textures */
     sf::Texture monsterTexture;
@@ -63,13 +61,10 @@ int main() {
     }
     monsterTexture.setSmooth(true);
     playerTexture.setSmooth(true);
-    //sf::Sprite sprite;
-    //sprite.setTexture(texture);
+    
     player.setTexture(playerTexture);
     h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/2);
     player.setPosition(0,window.getSize().x/4);
-    
-    //h.getActiveRoom()->create(window);
     
     
     /* All the window stuff */

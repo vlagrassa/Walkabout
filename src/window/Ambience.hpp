@@ -11,10 +11,10 @@ public:
     Ambience(sf::Texture& sky, sf::Texture& horizon, sf::Texture& immediate, sf::Texture& ground);
     Ambience(const Ambience& orig);
     virtual ~Ambience();
-    sf::Texture* getSky();
-    sf::Texture* getHorizonBg();
-    sf::Texture* getImBg();
-    sf::Texture* getGround();
+    sf::Texture* getSky() const;
+    sf::Texture* getHorizonBg() const;
+    sf::Texture* getImBg() const;
+    sf::Texture* getGround() const;
     
 private:
     sf::Texture skyTexture;

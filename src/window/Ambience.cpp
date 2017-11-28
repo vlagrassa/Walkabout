@@ -32,27 +32,27 @@ Ambience::Ambience(sf::Texture& sky, sf::Texture& horizon, sf::Texture& immediat
     initTextures();
 }
 
-Ambience::Ambience( const Ambience& orig){
+Ambience::Ambience( const Ambience& orig) {
     
 }
 
-Ambience::~Ambience(){
+Ambience::~Ambience() {
     
 }
 
-sf::Texture* Ambience::getSky(){
+sf::Texture* Ambience::getSky() const {
     return &skyTexture;
 }
 
-sf::Texture* Ambience::getHorizonBg(){
+sf::Texture* Ambience::getHorizonBg() const {
     return &horizonBgTexture;
 }
 
-sf::Texture* Ambience::getImBg(){
+sf::Texture* Ambience::getImBg() const {
     return &imBgTexture;
 }
 
-sf::Texture* Ambience::getGround(){
+sf::Texture* Ambience::getGround() const {
     return &groundTexture;
 }
 

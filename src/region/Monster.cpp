@@ -15,7 +15,9 @@ Monster::Monster(MonsterSpecies s) {
     battle_screen = new FightScreen();
     
     monster_texture = new sf::Texture();
-    monster_texture->loadFromFile("resources/" + initTexture());
+    if (!monster_texture->loadFromFile("resources/" + getSpeciesTexture())) {
+        std::cout << "Failed to load Monster texture " << getSpeciesTexture() << " from directory " << "resources/" << "\n";
+    };
     setTexture(*monster_texture);
 }
 
@@ -87,7 +89,7 @@ MonsterSpecies Monster::getSpecies() const {
 
 // </editor-fold>
 
-std::string Monster::initTexture() {
+std::string Monster::getSpeciesTexture() {
     switch(species) {
         case (dinosaur):
             return "monster.png";

@@ -69,7 +69,7 @@ private:
     MonsterSpecies species;
     
     /*  */
-    std::string initTexture();
+    std::string getSpeciesTexture();
     
     /* Return Monster for a stream */
     friend std::ostream& operator<<(std::ostream &strm, const Monster&);

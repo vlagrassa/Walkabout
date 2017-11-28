@@ -63,7 +63,7 @@ int main() {
     playerTexture.setSmooth(true);
     
     player.setTexture(playerTexture);
-    h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/2);
+    h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/4);
     player.setPosition(0,window.getSize().x/4);
     
     

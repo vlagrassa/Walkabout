@@ -18,6 +18,7 @@ Monster::Monster(MonsterSpecies s) {
     if (!monster_texture->loadFromFile("resources/" + getSpeciesTexture())) {
         std::cout << "Failed to load Monster texture " << getSpeciesTexture() << " from directory " << "resources/" << "\n";
     };
+    monster_texture->setSmooth(true);
     setTexture(*monster_texture);
 }
 

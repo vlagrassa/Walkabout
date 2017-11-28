@@ -41,7 +41,7 @@ int main() {
     h.addRoom(rm);
     h.addRoom(rs);
     
-    for (Room* r : h.getListOfRooms()) {
+    for (Room* r : h) {
         r->getEncounter()->encounter(player);
     }
     

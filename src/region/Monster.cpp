@@ -6,18 +6,23 @@
 
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
-Monster::Monster() {
+Monster::Monster(MonsterSpecies s) {
     name = "John";
-    health = 20;
+    maxHealth = 20;
+    health = maxHealth;
+    species = s;
+    
     battle_screen = new FightScreen();
     
     monster_texture = new sf::Texture();
-    monster_texture->loadFromFile("resources/monster.png");
+    monster_texture->loadFromFile("resources/" + initTexture());
     setTexture(*monster_texture);
 }
+
 Monster::Monster(const Monster& orig) {
     battle_screen = new FightScreen();
 }
+
 Monster::~Monster() {
     delete monster_texture;
 }
@@ -82,6 +87,13 @@ MonsterSpecies Monster::getSpecies() const {
 
 // </editor-fold>
 
+std::string Monster::initTexture() {
+    switch(species) {
+        case (dinosaur):
+            return "monster.png";
+    }
+    return "";
+}
 
 /* Return Monster for a stream */
 std::ostream& operator<<(std::ostream &strm, const Monster &orig) {

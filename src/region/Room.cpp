@@ -111,5 +111,5 @@ std::ostream& operator<<(std::ostream &strm, const Room &r) {
 // </editor-fold>
 
 Encounterable* Room::genRandomEncounterable(unsigned int seed) {
-    return new Monster();
+    return new Monster(dinosaur);
 }

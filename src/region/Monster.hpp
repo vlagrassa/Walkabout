@@ -12,7 +12,7 @@ enum MonsterSpecies {
 
 class Monster: public Encounterable {
 public:
-    Monster();
+    Monster(MonsterSpecies s);
     Monster(const Monster& orig);
     virtual ~Monster();
     
@@ -67,6 +67,9 @@ private:
     
     /* Enum to hold what type of Monster */
     MonsterSpecies species;
+    
+    /*  */
+    std::string initTexture();
     
     /* Return Monster for a stream */
     friend std::ostream& operator<<(std::ostream &strm, const Monster&);

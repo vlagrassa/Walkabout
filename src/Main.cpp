@@ -7,6 +7,7 @@
 #include "region/Hall.hpp"
 #include "window/Ambience.hpp"
 #include "region/Monster.hpp"
+#include "region/Treasure.hpp"
 #include "player/Player.hpp"
 #include "screen/Menu.hpp"
 #include "window/Background.hpp"

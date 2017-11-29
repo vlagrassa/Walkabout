@@ -1,18 +1,17 @@
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-#include <cmath>
-#include <ctime>
 #include <cstdlib>
 #include <iostream>
-#include "region/Hall.hpp"
-#include "window/Ambience.hpp"
-#include "region/Monster.hpp"
-#include "region/Treasure.hpp"
+#include <cmath>
+#include <ctime>
+
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Window.hpp>
+
 #include "player/Player.hpp"
+#include "region/Hall.hpp"
 #include "screen/Menu.hpp"
 #include "window/Background.hpp"
-#include "screen/FightScreen.hpp"
-#include <SFML/Window.hpp>
+#include "window/Ambience.hpp"
 
 
 int main() {

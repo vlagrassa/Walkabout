@@ -11,7 +11,6 @@
 #include "region/Hall.hpp"
 #include "screen/Menu.hpp"
 #include "window/Background.hpp"
-#include "window/Ambience.hpp"
 
 
 int main() {

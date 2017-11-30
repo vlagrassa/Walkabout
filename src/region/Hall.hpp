@@ -49,6 +49,12 @@ public:
     /* Recalculate values based on other conditions */
     void updateIndex(Player& p);
     
+    /* Get vector of the Rooms with space within the window's borders */
+    vector<Room*> getOnscreenRooms(Player& p, sf::RenderWindow& w);
+    
+    /* Get vector of Rooms within a certain range of indeces */
+    std::vector<Room*> getRange(int start, int end);
+    
     using vector<Room*>::begin;
     using vector<Room*>::end;
     

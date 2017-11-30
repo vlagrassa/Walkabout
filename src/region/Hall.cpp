@@ -78,6 +78,7 @@ void Hall::setPlayerT(int n) {
 void Hall::addRoom(Room* r) {
     push_back(r);
     totalLength += r->getLength();
+    r->getEncounter()->setPosition(totalLength*50, 100);
     setActiveRoom();
 }
 

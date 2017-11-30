@@ -25,9 +25,12 @@ int main() {
     for (unsigned i = 0; i < numRooms; i++) {
         h.addRoom();
     }
+    
+    
     /* Instantiate Menu */
     Menu menu;
     std::cout << menu.get1();
+    
     
     /* Create Window */
     sf::RenderWindow window(sf::VideoMode(800, 600), "Walkabout");
@@ -95,13 +98,11 @@ int main() {
         window.clear(sf::Color::White);
         
         
-        /*background*/
+        /* Draw the Background */
         window.draw(background);
         
-        //window.draw(*h.getActiveRoom()->getEncounter());
-        for (Room* r : h.getOnscreenRooms(player, window)) {
-            window.draw(*r->getEncounter());
-        }
+        /* Draw all the Rooms on screen */
+        window.draw(h);
         
         window.draw(player);
         window.draw(paper);

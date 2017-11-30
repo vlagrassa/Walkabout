@@ -10,6 +10,7 @@ public:
     Player(const Player& p);
     virtual ~Player();
     
+    /* Return Player's x position */
     int getX() const;
     
     /* Set player's x position (absolute) */
@@ -17,21 +18,24 @@ public:
     
     /* Set player's x position (relative) */
     //void move()
-    //void step(int n);
+    void step(int n);
+    
+    /* Move the player to the left (negative) */
     void stepLeft();
     //void stepLeft(int n);
+    
+    /* Move the player to the right (positive) */
     void stepRight();
     //void stepRight(int n);
     
+    /* Return Player's step size */
     int getStepSize() const;
     
-    
-   
-  
-    
 private:
+    /* Position of the Player (absolute) */
     int posX;
     
+    /* How far to move the Player */
     int stepSize;
     
     /* Return Player for a stream */

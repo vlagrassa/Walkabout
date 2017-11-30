@@ -1,5 +1,6 @@
 #include "Room.hpp"
 #include "Monster.hpp"
+#include "Treasure.hpp"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 

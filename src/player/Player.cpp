@@ -30,22 +30,25 @@ void Player::goTo(int n) {
 }
 
 /* Set the player's x position within the Hall (relative) */
-//void Player::step(int n) {
-//    goTo(posX + n);
-//}
+void Player::step(int n) {
+    goTo(posX + n);
+}
 
 /* Special applications of step() */
 void Player::stepLeft() {
-    move(-stepSize, 0);
-    posX -= stepSize;
+    //move(-stepSize, 0);
+    step(-stepSize);
 }
+
 //void Player::stepLeft(int n) {
 //    step(-n);
 //}
+
 void Player::stepRight() {
-    move(stepSize,0);
-    posX += stepSize;
+    //move(stepSize,0);
+    step(stepSize);
 }
+
 //void Player::stepRight(int n) {
 //    step(n);
 //}

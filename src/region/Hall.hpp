@@ -7,7 +7,7 @@
 #include "../player/Player.hpp"
 
 
-class Hall : private std::vector<Room*> {
+class Hall : private std::vector<Room*>, public sf::Drawable {
 public:
     /* Constructor */
     Hall(Player* p, unsigned int s = genRandomSeed());
@@ -50,13 +50,15 @@ public:
     void updateIndex(Player& p);
     
     /* Get vector of the Rooms with space within the window's borders */
-    vector<Room*> getOnscreenRooms(Player& p, sf::RenderWindow& w);
+    vector<Room*> getOnscreenRooms(sf::RenderTarget& w) const;
     
     /* Get vector of Rooms within a certain range of indeces */
-    std::vector<Room*> getRange(int start, int end);
+    std::vector<Room*> getRange(int start, int end) const;
     
     using vector<Room*>::begin;
     using vector<Room*>::end;
+    
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
 private:
     /* Index of the current active Room */

@@ -149,13 +149,13 @@ std::ostream& operator<<(std::ostream &strm, const Hall &h) {
 }
 
 /* Get vector of the Rooms with space within the window's borders */
-std::vector<Room*> Hall::getOnscreenRooms(Player& p, sf::RenderWindow& w) {
+std::vector<Room*> Hall::getOnscreenRooms(sf::RenderTarget& w) const {
     //std::vector<Room*> temp;
     //temp.push_back(getActiveRoom());
     return getRange(0,size()); //default return value
 }
 
-std::vector<Room*> Hall::getRange(int start, int end) {
+std::vector<Room*> Hall::getRange(int start, int end) const {
     if (start < 0 || start > size() || start > end) {
         std::cout << "Start index invalid";
     }
@@ -168,6 +168,12 @@ std::vector<Room*> Hall::getRange(int start, int end) {
         temp.push_back(at(i));
     }
     return temp;
+}
+
+void Hall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    for (Room* r : getOnscreenRooms(target)) {
+        target.draw(*r->getEncounter());
+    }
 }
 
 // </editor-fold>

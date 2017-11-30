@@ -66,7 +66,7 @@ int main() {
     playerTexture.setSmooth(true);
     
     player.setTexture(playerTexture);
-    h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/4);
+    //h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/4);
     player.setPosition(0,window.getSize().x/4);
     
     
@@ -86,10 +86,16 @@ int main() {
                 if (event.key.code == sf::Keyboard::Left)
                 {
                     background.move(player.getStepSize());
+                    for (Room* r : h) {
+                        r->getEncounter()->move(player.getStepSize(), 0);
+                    }
                 } 
                 if (event.key.code == sf::Keyboard::Right)
                 {
                     background.move(-player.getStepSize());
+                    for (Room* r : h) {
+                        r->getEncounter()->move(-player.getStepSize(), 0);
+                    }
                 } 
             }
         }

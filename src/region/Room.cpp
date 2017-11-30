@@ -8,11 +8,10 @@
 
 /* Constructor, takes length and Encounterable */
 Room::Room(unsigned int d, Encounterable* t) : length(d) {
-    //std::cout << "Test idk the second " << t->getTypeName() << " of " << t << " ...\n";
     active = false;
-    thing = t;
-    //std::cout << "Thing is now " << t << "\n";
     playerX = -1;
+    
+    thing = t;
 }
 
 /* Constructor, takes seed for Room & generates length and Encounterable */

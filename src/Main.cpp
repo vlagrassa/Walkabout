@@ -95,17 +95,17 @@ int main() {
         }
         
         std::string hi;
+        
+        /* Clear the screen */
         window.clear(sf::Color::White);
         
-        
-        /* Draw the Background */
+        /* Draw all the things */
         window.draw(background);
-        
-        /* Draw all the Rooms on screen */
         window.draw(h);
-        
         window.draw(player);
         window.draw(paper);
+        
+        /* Display the screen */
         window.display();
     }
     

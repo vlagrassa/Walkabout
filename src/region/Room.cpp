@@ -112,5 +112,13 @@ std::ostream& operator<<(std::ostream &strm, const Room &r) {
 // </editor-fold>
 
 Encounterable* Room::genRandomEncounterable(unsigned int seed) {
-    return new Monster(dinosaur);
+    RoomType temp = static_cast<RoomType>(seed % 2);
+    if (temp == monster) {
+        return new Monster(dinosaur);
+    }
+    if (temp == treasure) {
+        return new Treasure();
+    }
+    std::cout << "Something went wrong in Room::genRandomEncounterable\n";
+    return NULL;
 }

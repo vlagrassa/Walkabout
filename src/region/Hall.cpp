@@ -148,6 +148,28 @@ std::ostream& operator<<(std::ostream &strm, const Hall &h) {
     return strm;
 }
 
+/* Get vector of the Rooms with space within the window's borders */
+std::vector<Room*> Hall::getOnscreenRooms(Player& p, sf::RenderWindow& w) {
+    //std::vector<Room*> temp;
+    //temp.push_back(getActiveRoom());
+    return getRange(0,size()); //default return value
+}
+
+std::vector<Room*> Hall::getRange(int start, int end) {
+    if (start < 0 || start > size() || start > end) {
+        std::cout << "Start index invalid";
+    }
+    if (end < 0 || end > size() || end < start) {
+        std::cout << "End index invalid";
+    }
+    
+    std::vector<Room*> temp;
+    for (unsigned int i = start; i < end; i++) {
+        temp.push_back(at(i));
+    }
+    return temp;
+}
+
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc=" Distances ">

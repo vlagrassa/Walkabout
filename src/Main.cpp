@@ -98,7 +98,10 @@ int main() {
         /*background*/
         window.draw(background);
         
-        window.draw(*h.getActiveRoom()->getEncounter());
+        //window.draw(*h.getActiveRoom()->getEncounter());
+        for (Room* r : h.getOnscreenRooms(player, window)) {
+            window.draw(*r->getEncounter());
+        }
         
         window.draw(player);
         window.draw(paper);

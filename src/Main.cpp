@@ -15,7 +15,6 @@
 
 int main() {
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
-    std::cout << std::to_string(Menu::get1());
     std::string resourceDir = "resources/";
     
     
@@ -26,7 +25,9 @@ int main() {
     for (unsigned i = 0; i < numRooms; i++) {
         h.addRoom();
     }
-    
+    /* Instantiate Menu */
+    Menu menu;
+    std::cout << menu.get1();
     
     /* Create Window */
     sf::RenderWindow window(sf::VideoMode(800, 600), "Walkabout");

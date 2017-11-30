@@ -15,7 +15,7 @@
 
 int main() {
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
-    
+    std::cout << std::to_string(Menu::get1());
     std::string resourceDir = "resources/";
     
     

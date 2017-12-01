@@ -20,7 +20,7 @@ int main() {
     
     /* Instantiate Player and Hall */
     Player player;
-    Hall h(&player);
+    Hall h(player);
     unsigned int numRooms = 4;
     for (unsigned i = 0; i < numRooms; i++) {
         h.addRoom();

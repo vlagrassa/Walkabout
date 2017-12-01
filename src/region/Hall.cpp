@@ -8,8 +8,8 @@
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
 /* Constructor - takes optional argument s */
-Hall::Hall(Player* p, unsigned int s) : seed(s), player(p) {
-    activeIndex = 0;
+Hall::Hall(Player& p, unsigned int s) : seed(s), player(p), playerIndex(0), totalLength(0) {
+    
 }
 /* Default constructor */
 Hall::Hall(const Hall& orig) : seed(orig.getSeed()), player(orig.getPlayer()) {
@@ -42,7 +42,7 @@ Room* Hall::getActiveRoom() const {
     return getRoom(activeIndex);
 }
 
-const Player* Hall::getPlayer() const {
+const Player& Hall::getPlayer() const {
     return player;
 }
 
@@ -78,7 +78,7 @@ void Hall::setPlayerT(int n) {
 void Hall::addRoom(Room* r) {
     push_back(r);
     totalLength += r->getLength();
-    r->getEncounter()->setPosition(totalLength*50, 100);
+    r->getEncounter()->setPosition(totalLength * 50, 100);
     setActiveRoom();
 }
 

@@ -13,7 +13,7 @@ Encounterable::Encounterable(const Encounterable& orig) {
     
 }
 Encounterable::~Encounterable() {
-    
+    delete screen;
 }
 
 // </editor-fold>

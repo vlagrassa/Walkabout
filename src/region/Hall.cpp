@@ -8,7 +8,7 @@
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
 /* Constructor - takes optional argument s */
-Hall::Hall(Player& p, unsigned int s) : seed(s), player(p), playerIndex(0), totalLength(0) {
+Hall::Hall(Player& p, unsigned int s) : playerIndex(0), seed(s), totalLength(0), player(p)  {
     
 }
 /* Default constructor */
@@ -123,7 +123,7 @@ int Hall::stepRoom(int index) {
 /* Calculate playerIndex based on playerX */
 void Hall::updateIndex(Player& p) {
     unsigned l = 0;
-    for (int i = 0; i < size(); i++) {
+    for (unsigned int i = 0; i < size(); i++) {
         l += at(i)->getLength();
         if (l > p.getX()) {
             setActiveRoom(i);
@@ -156,11 +156,11 @@ std::vector<Room*> Hall::getOnscreenRooms(sf::RenderTarget& w) const {
     return getRange(0,size()); //default return value
 }
 
-std::vector<Room*> Hall::getRange(int start, int end) const {
-    if (start < 0 || start > size() || start > end) {
+std::vector<Room*> Hall::getRange(unsigned int start, unsigned int end) const {
+    if (start > size() || start > end) {
         std::cout << "Start index invalid";
     }
-    if (end < 0 || end > size() || end < start) {
+    if (end > size() || end < start) {
         std::cout << "End index invalid";
     }
     

@@ -52,18 +52,13 @@ const Player& Hall::getPlayer() const {
 
 /* Set index of the active Room and update list */
 void Hall::setActiveRoom(int index) {
-    if (activeIndex >= 0) {
-        at(activeIndex)->deactivate();
-    }
+    at(activeIndex)->deactivate();
     activeIndex = index;
-    if (activeIndex >= 0) {
-        at(activeIndex)->activate();
-    }
+    at(activeIndex)->activate();
 }
+
 void Hall::setActiveRoom() {
-    if (activeIndex >= 0) {
-        at(activeIndex)->activate();
-    }
+    at(activeIndex)->activate();
 }
 
 void Hall::setPlayerT(int n) {

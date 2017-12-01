@@ -16,7 +16,7 @@ Player::~Player() {
     
 }
 
-int Player::getX() const {
+unsigned int Player::getX() const {
     return posX;
 }
 

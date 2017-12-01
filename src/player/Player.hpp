@@ -11,7 +11,7 @@ public:
     virtual ~Player();
     
     /* Return Player's x position */
-    int getX() const;
+    unsigned int getX() const;
     
     /* Set player's x position (absolute) */
     void goTo(int n);
@@ -33,7 +33,7 @@ public:
     
 private:
     /* Position of the Player (absolute) */
-    int posX;
+    unsigned int posX;
     
     /* How far to move the Player */
     int stepSize;

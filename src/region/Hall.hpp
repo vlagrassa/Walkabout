@@ -10,7 +10,7 @@
 class Hall : private std::vector<Room*>, public sf::Drawable {
 public:
     /* Constructor */
-    Hall(Player* p, unsigned int s = genRandomSeed());
+    Hall(Player& p, unsigned int s = genRandomSeed());
     
     /* Default constructor */
     Hall(const Hall& orig);
@@ -23,7 +23,7 @@ public:
     unsigned int getSeed() const;
     Room* getRoom(int index) const;
     Room* getActiveRoom() const;
-    const Player* getPlayer() const;
+    const Player& getPlayer() const;
     
     /* Update playerIndex and corresponding Rooms */
     void setActiveRoom(int index);
@@ -71,7 +71,7 @@ private:
     int totalLength;
     
     /* Pointer to the Player object */
-    const Player* player;
+    const Player& player;
     
     /* Generate seed based on the current time */
     static unsigned int genRandomSeed();

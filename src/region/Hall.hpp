@@ -53,7 +53,7 @@ public:
     vector<Room*> getOnscreenRooms(sf::RenderTarget& w) const;
     
     /* Get vector of Rooms within a certain range of indeces */
-    std::vector<Room*> getRange(int start, int end) const;
+    std::vector<Room*> getRange(unsigned int start, unsigned int end) const;
     
     using vector<Room*>::begin;
     using vector<Room*>::end;

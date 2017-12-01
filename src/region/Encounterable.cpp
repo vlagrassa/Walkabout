@@ -7,6 +7,7 @@
 
 Encounterable::Encounterable() {
     screen = new EncounterScreen();
+    
 }
 Encounterable::Encounterable(const Encounterable& orig) {
     

@@ -9,7 +9,7 @@
 
 /* Constructor - takes optional argument s */
 Hall::Hall(Player* p, unsigned int s) : seed(s), player(p) {
-    playerIndex = 0;
+    activeIndex = 0;
 }
 /* Default constructor */
 Hall::Hall(const Hall& orig) : seed(orig.getSeed()), player(orig.getPlayer()) {
@@ -25,8 +25,8 @@ Hall::~Hall() {
 // <editor-fold defaultstate="collapsed" desc=" Getter Methods ">
 
 /* Basic getter methods */
-int Hall::getPlayerIndex() const {
-    return playerIndex;
+int Hall::getActiveIndex() const {
+    return activeIndex;
 }
 unsigned int Hall::getSeed() const {
     return seed;
@@ -39,7 +39,7 @@ Room* Hall::getRoom(int index) const {
 
 /* Return the current active Room */
 Room* Hall::getActiveRoom() const {
-    return getRoom(playerIndex);
+    return getRoom(activeIndex);
 }
 
 const Player* Hall::getPlayer() const {
@@ -52,17 +52,17 @@ const Player* Hall::getPlayer() const {
 
 /* Set index of the active Room and update list */
 void Hall::setActiveRoom(int index) {
-    if (playerIndex >= 0) {
-        at(playerIndex)->deactivate();
+    if (activeIndex >= 0) {
+        at(activeIndex)->deactivate();
     }
-    playerIndex = index;
-    if (playerIndex >= 0) {
-        at(playerIndex)->activate();
+    activeIndex = index;
+    if (activeIndex >= 0) {
+        at(activeIndex)->activate();
     }
 }
 void Hall::setActiveRoom() {
-    if (playerIndex >= 0) {
-        at(playerIndex)->activate();
+    if (activeIndex >= 0) {
+        at(activeIndex)->activate();
     }
 }
 
@@ -110,7 +110,7 @@ int Hall::goToRoom(int index) {
 
 /* Get x position for number of steps into given Room (relative) */
 int Hall::stepRoom(int index, int steps) {
-    return goToRoom(playerIndex+index, steps);
+    return goToRoom(activeIndex+index, steps);
 }
 int Hall::stepRoom(int index) {
     return stepRoom(index, 0);
@@ -141,7 +141,7 @@ unsigned int Hall::genRandomSeed() {
 
 /* Return Hall for a stream */
 std::ostream& operator<<(std::ostream &strm, const Hall &h) {
-    strm << "Hall: Room " << h.getPlayerIndex() << ", Tic " << h.getActiveRoom()->getPlayerX() << "\n";
+    strm << "Hall: Room " << h.getActiveIndex() << ", Tic " << h.getActiveRoom()->getPlayerX() << "\n";
     for (Room* r : h) {
         strm << "  " << *r << "\n";
     }
@@ -192,13 +192,13 @@ void Hall::printDistances() const {
     std::cout << "| ";
     for (unsigned i = 0; i < size(); i++) {
         for (unsigned j = 0; j < (at(i)->getLength())-1; j++) {
-            if (i == playerIndex && j == getActiveRoom()->getPlayerX()) {
+            if (i == activeIndex && j == getActiveRoom()->getPlayerX()) {
                 std::cout << "o ";
             } else {
                 std::cout << "_ ";
             }
         }
-        if (i == playerIndex && at(i)->getLength()-1 == getActiveRoom()->getPlayerX()) {
+        if (i == activeIndex && at(i)->getLength()-1 == getActiveRoom()->getPlayerX()) {
             std::cout << "Ø | ";
         } else {
             std::cout << "X | ";

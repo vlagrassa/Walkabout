@@ -2,7 +2,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-Ambience::Ambience(std::string& resources) {
+Ambience::Ambience(std::string resources) {
      if (!skyTexture.loadFromFile(resources + "sky.png"))
     {
          std::cout << "Failed to load image sky.png from directory " << resources << "\n";

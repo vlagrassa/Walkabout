@@ -7,7 +7,7 @@
 
 class Ambience {
 public:
-    Ambience(std::string& resources);
+    Ambience(std::string resources);
     Ambience(sf::Texture& sky, sf::Texture& horizon, sf::Texture& immediate, sf::Texture& ground);
     Ambience(const Ambience& orig);
     virtual ~Ambience();

@@ -19,7 +19,7 @@ public:
     virtual ~Hall();
     
     /* Getter methods */
-    int getPlayerIndex() const;
+    int getActiveIndex() const;
     unsigned int getSeed() const;
     Room* getRoom(int index) const;
     Room* getActiveRoom() const;
@@ -62,7 +62,7 @@ public:
     
 private:
     /* Index of the current active Room */
-    int playerIndex;
+    int activeIndex;
     
     /* The seed to generate new Rooms */
     const unsigned int seed;

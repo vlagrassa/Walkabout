@@ -10,8 +10,8 @@ Treasure::Treasure() {
     treasure_screen = new TreasureScreen();
     
     treasure_texture = new sf::Texture();
-    if (!treasure_texture->loadFromFile("resources/treasure.png")) {
-        std::cout << "Failed to load Treasure texture " << "treasure.png" << " from directory " << "resources/" << "\n";
+    if (!treasure_texture->loadFromFile("resources/treasure_chest.png")) {
+        std::cout << "Failed to load Treasure texture " << "treasure_chest.png" << " from directory " << "resources/" << "\n";
     };
     treasure_texture->setSmooth(true);
     setTexture(*treasure_texture);

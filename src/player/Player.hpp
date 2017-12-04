@@ -14,7 +14,7 @@ public:
     unsigned int getX() const;
     
     /* Set player's x position (absolute) */
-    void goTo(int n);
+    void goTo(unsigned int n);
     
     /* Set player's x position (relative) */
     //void move()

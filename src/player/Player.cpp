@@ -25,13 +25,18 @@ int Player::getStepSize() const {
 }
 
 /* Set the player's x position within the Hall (absolute) */
-void Player::goTo(int n) {
+void Player::goTo(unsigned int n) {
     posX = n;
 }
 
 /* Set the player's x position within the Hall (relative) */
 void Player::step(int n) {
-    goTo(posX + n);
+    if (n < posX) {
+        // Temporary error handling - means the program is trying to send to a negative position
+        goTo(0);
+    } else {
+        goTo(posX + n);
+    }
 }
 
 /* Special applications of step() */

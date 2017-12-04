@@ -187,13 +187,13 @@ void Hall::printDistances() const {
     std::cout << "| ";
     for (unsigned i = 0; i < size(); i++) {
         for (unsigned j = 0; j < (at(i)->getLength())-1; j++) {
-            if (i == activeIndex && j == getActiveRoom()->getPlayerX()) {
+            if (i == activeIndex && j == player.getX()) {
                 std::cout << "o ";
             } else {
                 std::cout << "_ ";
             }
         }
-        if (i == activeIndex && at(i)->getLength()-1 == getActiveRoom()->getPlayerX()) {
+        if (i == activeIndex && at(i)->getLength()-1 == player.getX()) {
             std::cout << "Ø | ";
         } else {
             std::cout << "X | ";

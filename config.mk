@@ -30,7 +30,7 @@ override WARNINGS += sign-promo
 override WARNINGS += strict-overflow=5 
 override WARNINGS += switch-default 
 override WARNINGS += undef 
-#override WARNINGS += sign-conversion 
+override WARNINGS += sign-conversion 
 #override WARNINGS += error 
 
 override CXXFLAGS   += -std=c++11

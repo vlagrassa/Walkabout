@@ -25,7 +25,7 @@ Hall::~Hall() {
 // <editor-fold defaultstate="collapsed" desc=" Getter Methods ">
 
 /* Basic getter methods */
-int Hall::getActiveIndex() const {
+unsigned int Hall::getActiveIndex() const {
     return activeIndex;
 }
 unsigned int Hall::getSeed() const {
@@ -33,7 +33,7 @@ unsigned int Hall::getSeed() const {
 }
 
 /* Return the Room at the given index */
-Room* Hall::getRoom(int index) const {
+Room* Hall::getRoom(unsigned int index) const {
     return at(index);
 }
 
@@ -51,7 +51,7 @@ const Player& Hall::getPlayer() const {
 // <editor-fold defaultstate="collapsed" desc=" Setter Methods ">
 
 /* Set index of the active Room and update list */
-void Hall::setActiveRoom(int index) {
+void Hall::setActiveRoom(unsigned int index) {
     at(activeIndex)->deactivate();
     activeIndex = index;
     at(activeIndex)->activate();
@@ -92,22 +92,22 @@ void Hall::addRoom() {
 // <editor-fold defaultstate="collapsed" desc=" GoTo Methods ">
 
 /* Get x position for number of steps into given Room (absolute) */
-int Hall::goToRoom(int index, int steps) {
+unsigned int Hall::goToRoom(unsigned int index, unsigned int steps) {
     unsigned l = 0;
-    for (int i = 0; i < index; i++) {
+    for (unsigned int i = 0; i < index; i++) {
         l += at(i)->getLength();
     }
     return l + steps;
 }
-int Hall::goToRoom(int index) {
+unsigned int Hall::goToRoom(unsigned int index) {
     return goToRoom(index, 0);
 }
 
 /* Get x position for number of steps into given Room (relative) */
-int Hall::stepRoom(int index, int steps) {
+unsigned int Hall::stepRoom(unsigned int index, unsigned int steps) {
     return goToRoom(activeIndex+index, steps);
 }
-int Hall::stepRoom(int index) {
+unsigned int Hall::stepRoom(unsigned int index) {
     return stepRoom(index, 0);
 }
 

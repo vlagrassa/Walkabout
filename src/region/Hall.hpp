@@ -19,14 +19,14 @@ public:
     virtual ~Hall();
     
     /* Getter methods */
-    int getActiveIndex() const;
+    unsigned int getActiveIndex() const;
     unsigned int getSeed() const;
-    Room* getRoom(int index) const;
+    Room* getRoom(unsigned int index) const;
     Room* getActiveRoom() const;
     const Player& getPlayer() const;
     
     /* Update playerIndex and corresponding Rooms */
-    void setActiveRoom(int index);
+    void setActiveRoom(unsigned int index);
     void setActiveRoom();
     
     void setPlayerT(int n);
@@ -36,12 +36,12 @@ public:
     void addRoom();
     
     /* Get x position for number of steps into given Room (absolute) */
-    int goToRoom(int index, int steps);
-    int goToRoom(int index);
+    unsigned int goToRoom(unsigned int index, unsigned int steps);
+    unsigned int goToRoom(unsigned int index);
 
     /* Get x position for number of steps into given Room (relative) */
-    int stepRoom(int index, int steps);
-    int stepRoom(int index);
+    unsigned int stepRoom(unsigned int index, unsigned int steps);
+    unsigned int stepRoom(unsigned int index);
     
     void recalcLength();
     void printDistances() const;

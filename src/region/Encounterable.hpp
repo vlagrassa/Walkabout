@@ -25,7 +25,8 @@ public:
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * Default constructor method.
+     * Default constructor method. Deletes:
+     *   -EncounterScreen screen
      */
     Encounterable(const Encounterable& orig);
     

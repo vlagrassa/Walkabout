@@ -9,7 +9,11 @@ class Room {
 public:
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * Constructor method.
+     * Constructor method. Initializes:
+     *   -encounter
+     *   -length
+     *   -playerX
+     *   -active
      * 
      * @param size The size of the Room
      * @param enc The Encounterable held in the Room
@@ -27,7 +31,8 @@ public:
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * Default constructor method.
+     * Default constructor method. Currently preserves length of
+     * the original Room only.
      * 
      * @param Original Room
      */
@@ -45,7 +50,7 @@ public:
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * Get the length / size of the Room.
+     * Get the length of the Room.
      * 
      * @return Size of Room
      */

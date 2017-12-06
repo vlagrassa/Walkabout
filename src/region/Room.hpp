@@ -156,7 +156,7 @@ public:
     
 private:
     /* Encounterable held by the Room */
-    Encounterable* thing;
+    Encounterable* encounter;
     
     /* Number of tics in the Room */
     const unsigned int length;

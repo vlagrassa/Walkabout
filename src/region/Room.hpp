@@ -92,9 +92,11 @@ public:
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * Get the x position of the Player within the Room. Note
-     * that this is distinct from the Player's x value, which is
-     * within the Hall as a whole - this is relative to the Room.
+     * Get the x position of the Player within the Room.
+     * 
+     * Note that this is distinct from the Player's own x value,
+     * which is within the Hall as a whole - this is relative to
+     * the Room.
      * 
      * @return Player's x coordinate within Room
      */
@@ -105,9 +107,11 @@ public:
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * Sets the x position of the Player within the Room. Note
-     * that this is distinct from the Player's x value, which is
-     * within the Hall as a whole - this is relative to the Room.
+     * Sets the x position of the Player within the Room.
+     * 
+     * Note that this is distinct from the Player's own x value,
+     * which is within the Hall as a whole - this is relative to
+     * the Room.
      * 
      * @param New Player x coordinate within Room
      */
@@ -128,15 +132,16 @@ public:
      * 
      * Sets the Room's active value.
      * 
-     * The second parameter is optional, and defaults to 0. If
-     * a value is given, the Player's x coordinate within the
-     * Room will be set to that value IF it is currently set to
+     * The second parameter is optional, and defaults to 0. If a
+     * value is given, the Player's x coordinate within the Room
+     * will be set to this value IF the coordinate is currently
      * -1, the default value for a non-active Room. This ensures
-     * calling active on an already active room will not affect
-     * the Player's position. When deactivated, the x coordinate
-     * will be set to -1 by default.
+     * calling active on an already-active room won't affect the
+     * Player's position. When deactivated, the x coordinate is
+     * set to -1 by default.
      * 
      * @param b The boolean value to set active to
+     * 
      * @param n The x coordinate to send Player to
      */
     void setActive(const bool& b, int n = 0);

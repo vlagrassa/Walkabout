@@ -8,17 +8,13 @@
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
 /* Constructor - takes optional argument s */
-Hall::Hall(const Player& p, unsigned int s) : activeIndex(0), seed(s), totalLength(0), player(p)  {
-    
-}
+Hall::Hall(const Player& p, unsigned int s) : activeIndex(0), seed(s), totalLength(0), player(p)  {}
+
 /* Default constructor */
-Hall::Hall(const Hall& orig) : Hall(orig.getPlayer(), orig.getSeed()) {
-    
-}
+Hall::Hall(const Hall& orig) : Hall(orig.getPlayer(), orig.getSeed()) {}
+
 /* Default destructor */
-Hall::~Hall() {
-    
-}
+Hall::~Hall() {}
 
 // </editor-fold>
 

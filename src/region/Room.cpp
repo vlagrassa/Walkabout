@@ -7,12 +7,7 @@
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
 /* Constructor, takes length and Encounterable */
-Room::Room(unsigned int d, Encounterable* t) : length(d) {
-    active = false;
-    playerX = -1;
-    
-    thing = t;
-}
+Room::Room(unsigned int size, Encounterable* enc) : thing(enc), length(size), playerX(-1), active(false) {}
 
 /* Constructor, takes seed for Room & generates length and Encounterable */
 Room::Room(unsigned int seed) : Room((seed%15)+2, genRandomEncounterable(seed)) {};

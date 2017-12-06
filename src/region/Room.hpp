@@ -7,8 +7,13 @@
 
 class Room {
 public:
-    /* Constructor, takes length and Encounterable */
-    Room(unsigned int d, Encounterable* t);
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Constructor method.
+     * @param size The size of the Room
+     * @param enc The Encounterable held in the Room
+     */
+    Room(unsigned int size, Encounterable* enc);
     
     /* Constructor, generates random room from passed integer */
     Room(unsigned int seed);

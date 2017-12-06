@@ -17,17 +17,20 @@ public:
     /* Con/Destructors */
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
      * Default constructor method - can't be used anyways, this
      * is an abstract class.
      */
     Encounterable();
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
      * Default constructor method.
      */
     Encounterable(const Encounterable& orig);
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
      * Default destructor method.
      */
     virtual ~Encounterable();
@@ -36,6 +39,7 @@ public:
     /* Inherited */
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
      * Get the list of Items held by the Encounterable - as far
      * as I can tell, all Encounterable subclasses will have one
      * @return vector of Items held by the Encounterable
@@ -43,6 +47,7 @@ public:
     virtual std::vector<int> getReward() const;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
      * Get the EncounterScreen associated with the Encounterable.
      * Will be overwritten by each subclass.
      * @return EncounterScreen representing the encounter
@@ -53,6 +58,7 @@ public:
     /* Abstract Methods */
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
      * Tells whether the Encounterable can be passed. This value
      * will be the same for all instances of a given subclass - 
      * eg, Monster.isSkippable will always be false
@@ -61,6 +67,7 @@ public:
     virtual bool isSkippable() const = 0;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
      * Gets name string associated with a subclass. This value 
      * will be the same for all instances of a given subclass - 
      * eg, Monster.getTypeName will always return "Monster"
@@ -69,6 +76,7 @@ public:
     virtual std::string getTypeName() const = 0;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
      * Gets RoomType enumerator value associated with a subclass.
      * This value will be the same for all instances of a given
      * subclass - eg, Monster.getType will always return monster

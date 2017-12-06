@@ -14,30 +14,73 @@ enum RoomType {
 
 class Encounterable : public sf::Sprite {
 public:
+    /* Con/Destructors */
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * Default constructor method - can't be used anyways, this
+     * is an abstract class.
+     */
     Encounterable();
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * Default constructor method.
+     */
     Encounterable(const Encounterable& orig);
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * Default destructor method.
+     */
     virtual ~Encounterable();
+    
     
     /* Inherited */
     
-    /* Returns a list of Items held by the Encounterable - as far as I can tell, all Encounterable subclasses will have one */
-    virtual std::vector<int> getReward() const; //should return Item or something
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * Get the list of Items held by the Encounterable - as far
+     * as I can tell, all Encounterable subclasses will have one
+     * @return vector of Items held by the Encounterable
+     */
+    virtual std::vector<int> getReward() const;
     
-    /* Returns the EncounterScreen associated with the Encounterable */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * Get the EncounterScreen associated with the Encounterable.
+     * Will be overwritten by each subclass.
+     * @return EncounterScreen representing the encounter
+     */
     virtual EncounterScreen* getEncounterScreen() const;
+    
     
     /* Abstract Methods */
     
-    /* Returns whether the Encounter can be passed without interacting with it - this value is the same for each subclass */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * Tells whether the Encounterable can be passed. This value
+     * will be the same for all instances of a given subclass - 
+     * eg, Monster.isSkippable will always be false
+     * @return Whether Player must interact to pass
+     */
     virtual bool isSkippable() const = 0;
     
-    /* Returns a string associated with the given subclass, eg "Monster" */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * Gets name string associated with a subclass. This value 
+     * will be the same for all instances of a given subclass - 
+     * eg, Monster.getTypeName will always return "Monster"
+     * @return String name for given subclass
+     */
     virtual std::string getTypeName() const = 0;
     
-    /* Returns the RoomType enum value associated with the given subclass */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * Gets RoomType enumerator value associated with a subclass.
+     * This value will be the same for all instances of a given
+     * subclass - eg, Monster.getType will always return monster
+     * @return RoomType value for given subclass
+     */
     virtual RoomType getType() const = 0;
     
-    /* Interact with the Encounterable - will vary for each subclass */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Interact with the Encounterable object - will be specific
+     * to each subclass.
+     */
     virtual void encounter(Player& player) = 0;
     
 private:

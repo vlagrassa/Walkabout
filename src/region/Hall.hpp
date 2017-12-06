@@ -29,7 +29,7 @@ public:
     void setActiveRoom(unsigned int index);
     void setActiveRoom();
     
-    void setPlayerT(int n);
+    void setActiveRoomPlayerX(int n);
     
     /* Add a room to the Hall */
     void addRoom(Room* r);

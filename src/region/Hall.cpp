@@ -24,6 +24,7 @@ Hall::~Hall() {}
 unsigned int Hall::getActiveIndex() const {
     return activeIndex;
 }
+
 unsigned int Hall::getSeed() const {
     return seed;
 }
@@ -57,7 +58,7 @@ void Hall::setActiveRoom() {
     at(activeIndex)->activate();
 }
 
-void Hall::setPlayerT(int n) {
+void Hall::setActiveRoomPlayerX(int n) { //Give more intuitive name
     getActiveRoom()->setPlayerX(n);
 }
 
@@ -118,7 +119,7 @@ void Hall::updateIndex(Player& p) {
         l += at(i)->getLength();
         if (l > p.getX()) {
             setActiveRoom(i);
-            setPlayerT(at(i)->getLength() - (l - p.getX()));
+            setActiveRoomPlayerX(at(i)->getLength() - (l - p.getX()));
             return;
         }
     }

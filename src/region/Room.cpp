@@ -6,21 +6,43 @@
 
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
-/* Constructor, takes length and Encounterable */
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Constructor method. Initializes:
+     *   -encounter
+     *   -length
+     *   -playerX
+     *   -active
+     * 
+     * @param size The size of the Room
+     * @param enc The Encounterable held in the Room
+     */
 Room::Room(unsigned int size, Encounterable* enc) : encounter(enc), length(size), playerX(-1), active(false) {}
 
-/* Constructor, takes seed for Room & generates length and Encounterable */
-Room::Room(unsigned int seed) : Room((seed%15)+2, genRandomEncounterable(seed)) {};
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Constructor method. Generates a random Room from a passed
+     * integer (as a seed).
+     * 
+     * @param seed The seed for the Room
+     */
+Room::Room(unsigned int seed) : Room((seed%15)+2, genRandomEncounterable(seed)) {}
 
-/* Default constructor */
-Room::Room(const Room& orig) : length(orig.getLength()) {
-    
-}
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default constructor method. Currently preserves length of
+     * the original Room only.
+     * 
+     * @param Original Room
+     */
+Room::Room(const Room& orig) : length(orig.getLength()) {}
 
-/* Default destructor */
-Room::~Room() {
-    
-}
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default destructor method. Deletes:
+     *   -(nothing)
+     */
+Room::~Room() {}
 
 // </editor-fold>
 

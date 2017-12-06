@@ -83,7 +83,7 @@ void Hall::addRoom() {
     for (unsigned i = 0; i < size(); i++) {
         rand();
     }
-    Room* r = new Room(rand());
+    Room* r = new Room(static_cast<unsigned int>(rand()));
     addRoom(r);
 }
 

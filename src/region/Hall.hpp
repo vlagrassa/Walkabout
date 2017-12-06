@@ -80,4 +80,34 @@ private:
     friend std::ostream& operator<<(std::ostream &strm, const Hall&);
 };
 
+template<class T> class activeVector : public std::vector<T> {
+public:
+    activeVector() {
+        activeIndex = 0;
+    }
+    activeVector(const activeVector& orig) {
+        activeIndex = 0;
+    }
+    virtual ~activeVector() {
+        
+    }
+    
+    T getActive() const {
+        try {
+            return this->at(activeIndex);
+        } catch (std::out_of_range e) {
+            return T();
+        }
+    }
+    int getActiveIndex() const {
+        return activeIndex;
+    }
+    void setActiveIndex(unsigned int n) {
+        activeIndex = n;
+    }
+    
+private:
+    unsigned int activeIndex;
+};
+
 #endif /* HALL_H */

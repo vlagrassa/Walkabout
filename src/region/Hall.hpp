@@ -10,7 +10,7 @@
 class Hall : private std::vector<Room*>, public sf::Drawable {
 public:
     /* Constructor */
-    Hall(Player& p, unsigned int s = genRandomSeed());
+    Hall(const Player& p, unsigned int s = genRandomSeed());
     
     /* Default constructor */
     Hall(const Hall& orig);

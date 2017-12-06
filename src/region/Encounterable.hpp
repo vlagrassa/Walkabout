@@ -25,14 +25,14 @@ public:
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * Default constructor method. Deletes:
-     *   -EncounterScreen screen
+     * Default constructor method.
      */
     Encounterable(const Encounterable& orig);
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * Default destructor method.
+     * Default destructor method. Deletes:
+     *   -EncounterScreen screen
      */
     virtual ~Encounterable();
     

@@ -31,8 +31,8 @@ void Player::goTo(unsigned int n) {
 
 /* Set the player's x position within the Hall (relative) */
 void Player::step(int n) {
-    if (n < posX) {
-        // Temporary error handling - means the program is trying to send to a negative position
+    if (posX + n < 0) {
+        // Program is trying to send to a negative position - send to start instead
         goTo(0);
     } else {
         goTo(posX + n);

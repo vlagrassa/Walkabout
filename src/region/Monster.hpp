@@ -12,41 +12,107 @@ enum MonsterSpecies {
 
 class Monster: public Encounterable {
 public:
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Constructor method.
+     * @param MonsterSpecies type
+     */
     Monster(MonsterSpecies s);
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default constructor method.
+     * @param Original Monster
+     */
     Monster(const Monster& orig);
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default destructor method. Deletes:
+     *   -FightScreen
+     *   -Texture (temporary)
+     */
     virtual ~Monster();
+    
     
     /* Inherited Methods */
     
-    /* Returns the FightScreen associated with the Monster */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get the EncounterScreen associated with the Encounterable.
+     * Overwritten to return a FightScreen.
+     * @return FightScreen representing fight with Monster
+     */
     FightScreen* getEncounterScreen() const;
+    
     
     /* Implemented Abstract Methods */
     
-    /* Returns whether Monster is a skippable Encounterable (false) */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Tells whether the Encounterable can be passed without
+     * interacting. For Monster, this will always be false.
+     * @return Whether Player must interact to pass (false)
+     */
     bool isSkippable() const;
     
-    /* Returns the name of the Encounterable subclass ("Monster") */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Gets name string associated with a subclass. This value 
+     * will be the same for all instances of a given subclass.
+     * For Monster, this will always be "Monster"
+     * @return String name for given subclass ("Monster")
+     */
     std::string getTypeName() const;
     
-    /* Returns an enum RoomType value corresponding to the subclass (monster) */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Gets RoomType enumerator value associated with a subclass.
+     * This value will be the same for all instances of a given
+     * subclass. For Monster, this will always be monster
+     * @return RoomType value for given subclass (monster)
+     */
     RoomType getType() const;
     
-    /* Interact with the Encounterable */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Interact with the Monster - WIP
+     */
     void encounter(Player& player);
+    
     
     /* Original Methods */
     
-    /* Returns the Monster's name (necessary?) */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Gets the Monster's name, so you can introduce yourself
+     * properly. Mostly an aesthetic feature, but they're people
+     * too.
+     * @return Name of the Monster
+     */
     std::string getName() const;
     
-    /* Returns the maximum health possible for the Monster */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get maximum possible health for the Monster.
+     * @return Maximum health
+     */
     int getMaxHealth() const;
     
-    /* Returns the Monster's current health */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get the Monster's current health. This is the variable
+     * that the fight will change.
+     * @return Monster's current HP
+     */
     int getHealth() const;
     
-    /* Returns an enum MonsterSpecies value representing the monster's species */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get a MonsterSpecies enumerator value representing the
+     * species (type) of Monster.
+     * @return The Monster's type as an enum
+     */
     MonsterSpecies getSpecies() const;
     
 private:

@@ -27,6 +27,7 @@ Monster::Monster(const Monster& orig) {
 }
 
 Monster::~Monster() {
+    delete battle_screen;
     delete monster_texture;
 }
 

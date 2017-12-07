@@ -13,6 +13,10 @@ public:
     /* Return Player's x position */
     unsigned int getX() const;
     
+    unsigned int getPosInRoom() const;
+    
+    void setPosInRoom(unsigned int n);
+    
     /* Set player's x position (absolute) */
     void goTo(unsigned int n);
     
@@ -37,6 +41,9 @@ private:
     
     /* How far to move the Player */
     int stepSize;
+    
+    /* Player's x coordinate in the room (relative) */
+    unsigned int posInRoom;
     
     /* Return Player for a stream */
     friend std::ostream& operator<<(std::ostream &strm, const Player&);

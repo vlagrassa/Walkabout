@@ -20,8 +20,16 @@ unsigned int Player::getX() const {
     return posX;
 }
 
+unsigned int Player::getPosInRoom() const {
+    return posInRoom;
+}
+
 int Player::getStepSize() const {
     return stepSize;
+}
+
+void Player::setPosInRoom(unsigned int n) {
+    posInRoom = n;
 }
 
 /* Set the player's x position within the Hall (absolute) */

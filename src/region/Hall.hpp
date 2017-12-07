@@ -7,7 +7,7 @@
 #include "../player/Player.hpp"
 
 
-class Hall : private std::vector<Room*>, public sf::Drawable {
+class Hall : private activeVector<Room*>, public sf::Drawable {
 public:
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -43,24 +43,101 @@ public:
     virtual ~Hall();
     
     /* Getter methods */
-    unsigned int getActiveIndex() const;
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get the seed of the Hall.
+     * 
+     * @return The seed of the Hall
+     */
     unsigned int getSeed() const;
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get the Room at a given index.
+     * 
+     * @param index The index 
+     * 
+     * @return The Room at that index
+     */
     Room* getRoom(unsigned int index) const;
-    Room* getActiveRoom() const;
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get the Player of the Hall.
+     * 
+     * @return The player
+     */
     const Player& getPlayer() const;
-    /* Get vector of Rooms within a certain range of indeces */
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get a vector of Rooms within a certain range.
+     * 
+     * @param start The start index
+     * 
+     * @param end The end index
+     * 
+     * @return Vector of Rooms
+     */
     std::vector<Room*> getRange(unsigned int start, unsigned int end) const;
-    /* Get vector of the Rooms with space within the window's borders */
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get a vector of the Rooms within the given window borders.
+     * Use this to draw only the relevant Rooms when rendering
+     * the Hall.
+     * 
+     * @param w The RenderTarget the Rooms are on.
+     * 
+     * @return Vector of Rooms
+     */
     vector<Room*> getOnscreenRooms(sf::RenderTarget& w) const;
     
-    /* Update playerIndex and corresponding Rooms */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Changes the active Room to the specified index. Involves
+     * deactivating the previous Room and activating the new one.
+     * 
+     * @param index The index of the new Room to make active
+     */
     void setActiveRoom(unsigned int index);
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Activate the Room currently referenced by activeIndex.
+     * Equivalent to:
+     * 
+     *     at(activeIndex)->activate();
+     */
     void setActiveRoom();
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Set the value of playerX for the active Room. Note that
+     * this is relative to the Room, and thus is distinct from
+     * the player's x coordinate. Equivalent to:
+     * 
+     *     getActiveRoom()->setPlayerX(n);
+     * 
+     * @param n The value to set playerX to
+     */
     void setActiveRoomPlayerX(int n);
     
-    /* Add a room to the Hall */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Add a specific Room to the Hall. Note that this should be
+     * used in place of vector::push_back().
+     * 
+     * @param r The Room to add
+     */
     void addRoom(Room* r);
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Add a random Room to the Hall, generated from the Hall's
+     * seed variable.
+     */
     void addRoom();
     
     /* Get x position for number of steps into given Room (absolute) */
@@ -71,17 +148,47 @@ public:
     unsigned int stepRoom(unsigned int index, unsigned int steps);
     unsigned int stepRoom(unsigned int index);
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Print a visual representation of the Hall, like such:
+     * 
+     *                  _ _ o _ X | _ _ _ X
+     * 
+     * ...where:
+     * 
+     *   _ is a blank space
+     *   o is the Player
+     *   X is an Encounterable
+     *   | divides Rooms
+     * 
+     * Note that Rooms will not actually be separated, the way |
+     * might suggest.
+     */
     void printDistances() const;
     
-    /* Recalculate values based on other conditions */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Recalculate values based on other conditions
+     */
     void updateIndex(Player& p);
     
     /* Recalculate the totalLength variable - shouldn't have to use at any point */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Recalculate the totalLength variable in case of a change 
+     * in the Rooms. Not necessary after calling AddRoom(). Note
+     * that in normal operation, this shouldn't have to be used.
+     * It currently a backup mechanism.
+     */
     void recalcLength();
     
-    /* Inherited methods made public */
+    
     using vector<Room*>::begin;
     using vector<Room*>::end;
+    
+    using activeVector<>::getActive;
+    using activeVector<>::getActiveIndex;
+    using activeVector<>::setActiveIndex;
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     

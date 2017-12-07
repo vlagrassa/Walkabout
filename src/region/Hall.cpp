@@ -21,9 +21,6 @@ Hall::~Hall() {}
 // <editor-fold defaultstate="collapsed" desc=" Getter Methods ">
 
 /* Basic getter methods */
-unsigned int Hall::getActiveIndex() const {
-    return activeIndex;
-}
 
 unsigned int Hall::getSeed() const {
     return seed;
@@ -32,11 +29,6 @@ unsigned int Hall::getSeed() const {
 /* Return the Room at the given index */
 Room* Hall::getRoom(unsigned int index) const {
     return at(index);
-}
-
-/* Return the current active Room */
-Room* Hall::getActiveRoom() const {
-    return getRoom(activeIndex);
 }
 
 const Player& Hall::getPlayer() const {

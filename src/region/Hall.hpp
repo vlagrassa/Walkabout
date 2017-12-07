@@ -6,6 +6,11 @@
 #include "Room.hpp"
 #include "../player/Player.hpp"
 
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ * 
+ * A specialized subclass of std::vector<T> which stores an
+ * active index.
+ */
 template<class T> class activeVector : public std::vector<T> {
 public:
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -17,13 +22,13 @@ public:
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * 
+     * Default constructor. Currently copies nothing.
      */
     activeVector(const activeVector& orig) : activeIndex(0) { }
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * 
+     * Default destructor.
      */
     virtual ~activeVector() { }
     
@@ -233,7 +238,6 @@ public:
      */
     void updateIndex(Player& p);
     
-    /* Recalculate the totalLength variable - shouldn't have to use at any point */
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
      * Recalculate the totalLength variable in case of a change 
@@ -243,14 +247,33 @@ public:
      */
     void recalcLength();
     
-    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Inherited method from vector<Room*> for iterating through
+     * the Hall. Probably won't be explicitly called anywhere.
+     */
     using vector<Room*>::begin;
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Inherited method from vector<Room*> for iterating through
+     * the Hall. Probably won't be explicitly called anywhere.
+     */
     using vector<Room*>::end;
     
     using activeVector<Room*>::getActive;
     using activeVector<Room*>::getActiveIndex;
     using activeVector<Room*>::setActiveIndex;
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Inherited method from sf::Drawable to draw the Hall to a
+     * RenderTarget.
+     * 
+     * @param target The target to draw the Hall to
+     * 
+     * @param states Not used, but necessary for SFML
+     */
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
 private:
@@ -266,10 +289,24 @@ private:
     /* Pointer to the Player object */
     const Player& player;
     
-    /* Generate seed based on the current time */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Private method to generate a random seed based on current
+     * system time. Utilized in the constructor. Equivalent to:
+     * 
+     *   return std::time(NULL);
+     * 
+     * @return Random seed
+     */
     static unsigned int genRandomSeed();
     
-    /* Return Hall for a stream */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Friend method to return Hall for an output stream. Mostly
+     * for printing the Hall.
+     * 
+     * @return Hall for a stream
+     */
     friend std::ostream& operator<<(std::ostream &strm, const Hall&);
 };
 

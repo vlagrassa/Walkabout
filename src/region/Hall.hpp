@@ -24,6 +24,10 @@ public:
     Room* getRoom(unsigned int index) const;
     Room* getActiveRoom() const;
     const Player& getPlayer() const;
+    /* Get vector of Rooms within a certain range of indeces */
+    std::vector<Room*> getRange(unsigned int start, unsigned int end) const;
+    /* Get vector of the Rooms with space within the window's borders */
+    vector<Room*> getOnscreenRooms(sf::RenderTarget& w) const;
     
     /* Update playerIndex and corresponding Rooms */
     void setActiveRoom(unsigned int index);
@@ -43,18 +47,15 @@ public:
     unsigned int stepRoom(unsigned int index, unsigned int steps);
     unsigned int stepRoom(unsigned int index);
     
-    void recalcLength();
     void printDistances() const;
     
     /* Recalculate values based on other conditions */
     void updateIndex(Player& p);
     
-    /* Get vector of the Rooms with space within the window's borders */
-    vector<Room*> getOnscreenRooms(sf::RenderTarget& w) const;
+    /* Recalculate the totalLength variable - shouldn't have to use at any point */
+    void recalcLength();
     
-    /* Get vector of Rooms within a certain range of indeces */
-    std::vector<Room*> getRange(unsigned int start, unsigned int end) const;
-    
+    /* Inherited methods made public */
     using vector<Room*>::begin;
     using vector<Room*>::end;
     

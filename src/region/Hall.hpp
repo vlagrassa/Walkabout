@@ -160,6 +160,9 @@ public:
      */
     vector<Room*> getOnscreenRooms(sf::RenderTarget& w) const;
     
+    
+    /* Setter methods */
+    
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
      * Changes the active Room to the specified index. Involves
@@ -190,6 +193,9 @@ public:
      */
     void setActiveRoomPlayerX(int n);
     
+    
+    /* Adder methods */
+    
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
      * Add a specific Room to the Hall. Note that this should be
@@ -206,6 +212,9 @@ public:
      */
     void addRoom();
     
+    
+    /* Methods for getting coordinates - need help */
+    
     /* Get x position for number of steps into given Room (absolute) */
     unsigned int goToRoom(unsigned int index, unsigned int steps);
     unsigned int goToRoom(unsigned int index);
@@ -213,6 +222,9 @@ public:
     /* Get x position for number of steps into given Room (relative) */
     unsigned int stepRoom(unsigned int index, unsigned int steps);
     unsigned int stepRoom(unsigned int index);
+    
+    
+    /* Miscellaneous methods */
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -246,6 +258,9 @@ public:
      * It currently a backup mechanism.
      */
     void recalcLength();
+    
+    
+    /* Inherited methods */
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

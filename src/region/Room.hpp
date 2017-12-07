@@ -62,9 +62,10 @@ public:
      * 
      * Get the distance between the Player and the Encounterable.
      * 
+     * @TODO Actually implement this method
+     * 
      * @return Distance
      */
-    //@TODO Implement this method
     unsigned int getDistance() const;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

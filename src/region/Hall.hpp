@@ -9,13 +9,37 @@
 
 class Hall : private std::vector<Room*>, public sf::Drawable {
 public:
-    /* Constructor */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Base constructor method. Initializes:
+     *   -activeIndex
+     *   -seed
+     *   -totalLength
+     *   -player
+     * 
+     * If seed is not specified, it defaults to a random value.
+     * 
+     * @param p The Player object - saved to player
+     * @param s The seed for the Hall - saved to seed
+     */
     Hall(const Player& p, unsigned int s = genRandomSeed());
     
-    /* Default constructor */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default constructor method. Copies player and seed fields
+     * from original Hall.
+     * 
+     * @TODO How should this preserve player?
+     * 
+     * @param Original Hall
+     */
     Hall(const Hall& orig);
     
-    /* Default destructor */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default destructor method. Deletes:
+     *   -(nothing)
+     */
     virtual ~Hall();
     
     /* Getter methods */

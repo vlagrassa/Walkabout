@@ -7,6 +7,8 @@
 
 class Room {
 public:
+    /* Con/Destructors */
+    
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
      * Constructor method. Initializes:
@@ -62,15 +64,8 @@ public:
      * 
      * @return Distance
      */
-    int getDistance() const; //return distance between player and Encounterable
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
-     * Get the Encounterable of the Room.
-     * 
-     * @return The Room's Encounterable
-     */
-    Encounterable* getEncounter() const;
+    //@TODO Implement this method
+    unsigned int getDistance() const;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -83,15 +78,6 @@ public:
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * Get EncounterScreen subclass from the Encounterable held
-     * in the Room.
-     * 
-     * @return EncounterScreen of Encounterable
-     */
-    EncounterScreen* getScreen() const;
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
      * Get the x position of the Player within the Room.
      * 
      * Note that this is distinct from the Player's own x value,
@@ -101,6 +87,23 @@ public:
      * @return Player's x coordinate within Room
      */
     int getPlayerX() const;
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get the Encounterable of the Room.
+     * 
+     * @return The Room's Encounterable
+     */
+    Encounterable* getEncounter() const;
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get EncounterScreen subclass from the Encounterable held
+     * in the Room.
+     * 
+     * @return EncounterScreen of Encounterable
+     */
+    EncounterScreen* getScreen() const;
     
     
     /* Setter methods */
@@ -117,10 +120,14 @@ public:
      */
     void setPlayerX(int n);
     
+    
+    /* Methods for variable `active` */
+    
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
      * Tells whether the Player is in the current Room, based on
      * its x coordinate. This is set by Hall:
+     * 
      *   -True: Player is within this Room
      *   -False: Player is in another Room
      * 
@@ -148,10 +155,12 @@ public:
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * Set active boolean value to false. This means the Player
+     * Set active boolean value to true. This means the Player
      * is not within this Room.  Equivalent to:
      * 
      *   setActive(true);
+     * 
+     * See setActive() for more details.
      */
     void activate();
     
@@ -161,6 +170,8 @@ public:
      * is not within this Room.  Equivalent to:
      * 
      *   setActive(false);
+     * 
+     * See setActive() for more details.
      */
     void deactivate();
     
@@ -180,11 +191,24 @@ private:
     /* Whether the Room has been "defeated" or not */
     bool passed;
     
-    /* Return Room for a stream */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Private method to generate a random Encounterable object.
+     * Utilized in the constructor.
+     * 
+     * @return Random Encounterable
+     */
+    static Encounterable* genRandomEncounterable(unsigned int seed);
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Friend method to return Room for an output stream. Mostly
+     * for printing the Room.
+     * 
+     * @return Room for a stream
+     */
     friend std::ostream& operator<<(std::ostream &strm, const Room&);
     
-    static Encounterable* genRandomEncounterable(unsigned int seed);
 };
-
 
 #endif /* ROOM_H */

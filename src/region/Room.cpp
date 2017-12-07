@@ -48,25 +48,68 @@ Room::~Room() {}
 
 // <editor-fold defaultstate="collapsed" desc=" Getters ">
 
-/* Getter method for length */
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ * 
+ * Get the length of the Room.
+ * 
+ * @return Size of Room
+ */
 unsigned int Room::getLength() const {
     return length;
 }
 
-/* Getter method for player's x coordinate within Room */
-int Room::getPlayerX() const {
-    return playerX;
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ * 
+ * Get the distance between the Player and the Encounterable.
+ * 
+ * @return Distance
+ */
+unsigned int getDistance() {
+    return 0; //Temporary default value
 }
 
-/* Getter method for Encounterable */
-Encounterable* Room::getEncounter() const {
-    return encounter;
-}
-
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ * 
+ * Get RoomType enumerator value representing the subclass
+ * of Encounterable held in the Room.
+ * 
+ * @return Type of Encounterable in Room
+ */
 RoomType Room::getType() const {
     return encounter->getType();
 }
 
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ * 
+ * Get the x position of the Player within the Room.
+ * 
+ * Note that this is distinct from the Player's own x value,
+ * which is within the Hall as a whole - this is relative to
+ * the Room.
+ * 
+ * @return Player's x coordinate within Room
+ */
+int Room::getPlayerX() const {
+    return playerX;
+}
+
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ * 
+ * Get the Encounterable of the Room.
+ * 
+ * @return The Room's Encounterable
+ */
+Encounterable* Room::getEncounter() const {
+    return encounter;
+}
+
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ * 
+ * Get EncounterScreen subclass from the Encounterable held
+ * in the Room.
+ * 
+ * @return EncounterScreen of Encounterable
+ */
 EncounterScreen* Room::getScreen() const {
     return getEncounter()->getEncounterScreen();
 }
@@ -75,20 +118,54 @@ EncounterScreen* Room::getScreen() const {
 
 // <editor-fold defaultstate="collapsed" desc=" Setters ">
 
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ * 
+ * Sets the x position of the Player within the Room.
+ * 
+ * Note that this is distinct from the Player's own x value,
+ * which is within the Hall as a whole - this is relative to
+ * the Room.
+ * 
+ * @param New Player x coordinate within Room
+ */
 void Room::setPlayerX(int n) {
     playerX = n;
 }
 
 // </editor-fold>
 
-// <editor-fold defaultstate="collapsed" desc=" Check and set active ">
+// <editor-fold defaultstate="collapsed" desc=" Methods for variable `active` ">
 
-/* Check if Room is active */
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ * 
+ * Tells whether the Player is in the current Room, based on
+ * its x coordinate. This is set by Hall:
+ * 
+ *   -True: Player is within this Room
+ *   -False: Player is in another Room
+ * 
+ * @return Whether Player is in this Room
+ */
 bool Room::isActive() const {
     return active;
 }
 
-/* Setter method for active */
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ * 
+ * Sets the Room's active value.
+ * 
+ * The second parameter is optional, and defaults to 0. If a
+ * value is given, the Player's x coordinate within the Room
+ * will be set to this value IF the coordinate is currently
+ * -1, the default value for a non-active Room. This ensures
+ * calling active on an already-active room won't affect the
+ * Player's position. When deactivated, the x coordinate is
+ * set to -1 by default.
+ * 
+ * @param b The boolean value to set active to
+ * 
+ * @param n The x coordinate to send Player to
+ */
 void Room::setActive(const bool& b, int n) {
     active = b;
     if (b) {
@@ -100,21 +177,66 @@ void Room::setActive(const bool& b, int n) {
     }
 }
 
-/* Set active to true */
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ * 
+ * Set active boolean value to false. This means the Player
+ * is not within this Room.  Equivalent to:
+ * 
+ *   setActive(true);
+ * 
+ * See setActive() for more details.
+ */
 void Room::activate() {
     setActive(true);
 }
 
-/* Set active to false */
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ * 
+ * Set active boolean value to false. This means the Player
+ * is not within this Room.  Equivalent to:
+ * 
+ *   setActive(false);
+ * 
+ * See setActive() for more details.
+ */
 void Room::deactivate() {
     setActive(false);
 }
 
 // </editor-fold>
 
+// <editor-fold defaultstate="collapsed" desc=" Private Methods ">
+
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ * 
+ * Private method to generate a random Encounterable object.
+ * Utilized in the constructor.
+ * 
+ * @return Random Encounterable
+ */
+Encounterable* Room::genRandomEncounterable(unsigned int seed) {
+    RoomType temp = static_cast<RoomType>(seed % 2);
+    if (temp == monster) {
+        return new Monster(dinosaur);
+    }
+    if (temp == treasure) {
+        return new Treasure();
+    }
+    std::cout << "Something went wrong in Room::genRandomEncounterable\n";
+    return NULL;
+}
+
+// </editor-fold>
+
 // <editor-fold defaultstate="collapsed" desc=" Friend Methods ">
 
-/* Return Room for a stream */
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ * 
+ * Friend method to return Room for an output stream. Mostly
+ * for printing the Room.
+ * 
+ * @return Room for a stream
+ */
 std::ostream& operator<<(std::ostream &strm, const Room &r) {
     if (r.isActive()) {
         strm << "*  ACTIVE ";
@@ -127,14 +249,4 @@ std::ostream& operator<<(std::ostream &strm, const Room &r) {
 
 // </editor-fold>
 
-Encounterable* Room::genRandomEncounterable(unsigned int seed) {
-    RoomType temp = static_cast<RoomType>(seed % 2);
-    if (temp == monster) {
-        return new Monster(dinosaur);
-    }
-    if (temp == treasure) {
-        return new Treasure();
-    }
-    std::cout << "Something went wrong in Room::genRandomEncounterable\n";
-    return NULL;
-}
+

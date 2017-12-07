@@ -105,7 +105,8 @@ unsigned int Hall::stepRoom(unsigned int index) {
 // <editor-fold defaultstate="collapsed" desc=" Miscellaneous Methods ">
 
 /* Calculate playerIndex based on playerX */
-void Hall::updateIndex(Player& p) {
+void Hall::updateIndex(const Player& p) {
+    at(activeIndex)->deactivate();
     unsigned l = 0;
     for (unsigned int i = 0; i < size(); i++) {
         l += at(i)->getLength();
@@ -116,6 +117,10 @@ void Hall::updateIndex(Player& p) {
         }
     }
     
+}
+
+void Hall::updateIndex() {
+    updateIndex(getPlayer());
 }
 
 /* Generate seed based on the current time */

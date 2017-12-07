@@ -246,9 +246,37 @@ public:
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * Recalculate values based on other conditions
+     * Sets a new active Room and Player x coordinate within it
+     * based on the given Player's x coordinate. Probably won't
+     * be used for the main program, more a way to sync the Hall
+     * to the Player in fringe cases. As in, this is just backup
+     * that you shouldn't use unless you have to. Note that this
+     * will deactivate the current Room, which erases the Player
+     * position in it by default (see Room::setActive()).
+     * 
+     * Accepts a Player parameter, since it is meant for fringe
+     * cases. Use the version with no parameter for the Hall's
+     * Player reference.
+     * 
+     * @param p The player to sync the Hall to
      */
-    void updateIndex(Player& p);
+    void updateIndex(const Player& p);
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Sets a new active Room and Player x coordinate within it
+     * based on the given Player's x coordinate. Probably won't
+     * be used for the main program, more a way to sync the Hall
+     * to the Player in fringe cases. As in, this is just backup
+     * that you shouldn't use unless you have to. Note that this
+     * will deactivate the current Room, which erases the Player
+     * position in it by default (see Room::setActive()).
+     * 
+     * Syncs to the Hall's Player reference. Equivalent to:
+     * 
+     *   updateIndex(getPlayer());
+     */
+    void updateIndex();
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

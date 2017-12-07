@@ -51,7 +51,7 @@ void Hall::setActiveRoom() {
 }
 
 void Hall::setActiveRoomPlayerX(int n) { //Give more intuitive name
-    getActiveRoom()->setPlayerX(n);
+    getActive()->setPlayerX(n);
 }
 
 // </editor-fold>
@@ -125,7 +125,7 @@ unsigned int Hall::genRandomSeed() {
 
 /* Return Hall for a stream */
 std::ostream& operator<<(std::ostream &strm, const Hall &h) {
-    strm << "Hall: Room " << h.getActiveIndex() << ", Tic " << h.getActiveRoom()->getPlayerX() << "\n";
+    strm << "Hall: Room " << h.getActiveIndex() << ", Tic " << h.getActive()->getPlayerX() << "\n";
     for (Room* r : h) {
         strm << "  " << *r << "\n";
     }

@@ -6,6 +6,36 @@
 #include "Room.hpp"
 #include "../player/Player.hpp"
 
+template<class T> class activeVector : public std::vector<T> {
+public:
+    activeVector() {
+        activeIndex = 0;
+    }
+    activeVector(const activeVector& orig) {
+        activeIndex = 0;
+    }
+    virtual ~activeVector() {
+        
+    }
+    
+    T getActive() const {
+        try {
+            return this->at(activeIndex);
+        } catch (std::out_of_range e) {
+            return T();
+        }
+    }
+    unsigned int getActiveIndex() const {
+        return activeIndex;
+    }
+    void setActiveIndex(unsigned int n) {
+        activeIndex = n;
+    }
+    
+private:
+    unsigned int activeIndex;
+};
+
 
 class Hall : private activeVector<Room*>, public sf::Drawable {
 public:
@@ -186,9 +216,9 @@ public:
     using vector<Room*>::begin;
     using vector<Room*>::end;
     
-    using activeVector<>::getActive;
-    using activeVector<>::getActiveIndex;
-    using activeVector<>::setActiveIndex;
+    using activeVector<Room*>::getActive;
+    using activeVector<Room*>::getActiveIndex;
+    using activeVector<Room*>::setActiveIndex;
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
@@ -210,36 +240,6 @@ private:
     
     /* Return Hall for a stream */
     friend std::ostream& operator<<(std::ostream &strm, const Hall&);
-};
-
-template<class T> class activeVector : public std::vector<T> {
-public:
-    activeVector() {
-        activeIndex = 0;
-    }
-    activeVector(const activeVector& orig) {
-        activeIndex = 0;
-    }
-    virtual ~activeVector() {
-        
-    }
-    
-    T getActive() const {
-        try {
-            return this->at(activeIndex);
-        } catch (std::out_of_range e) {
-            return T();
-        }
-    }
-    int getActiveIndex() const {
-        return activeIndex;
-    }
-    void setActiveIndex(unsigned int n) {
-        activeIndex = n;
-    }
-    
-private:
-    unsigned int activeIndex;
 };
 
 #endif /* HALL_H */

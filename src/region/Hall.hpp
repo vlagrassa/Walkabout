@@ -8,16 +8,33 @@
 
 template<class T> class activeVector : public std::vector<T> {
 public:
-    activeVector() {
-        activeIndex = 0;
-    }
-    activeVector(const activeVector& orig) {
-        activeIndex = 0;
-    }
-    virtual ~activeVector() {
-        
-    }
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default constructor. Initializes:
+     *   -activeIndex
+     */
+    activeVector() : activeIndex(0) { }
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * 
+     */
+    activeVector(const activeVector& orig) : activeIndex(0) { }
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * 
+     */
+    virtual ~activeVector() { }
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get the item at the active index.
+     * 
+     * @TODO Fix the temporary error handling
+     * 
+     * @return The active item
+     */
     T getActive() const {
         try {
             return this->at(activeIndex);
@@ -25,9 +42,23 @@ public:
             return T();
         }
     }
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get the active index.
+     * 
+     * @return The active index
+     */
     unsigned int getActiveIndex() const {
         return activeIndex;
     }
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Set the active index.
+     * 
+     * @param The new active index
+     */
     void setActiveIndex(unsigned int n) {
         activeIndex = n;
     }

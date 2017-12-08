@@ -13,8 +13,26 @@ public:
     /* Return Player's x position */
     unsigned int getX() const;
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get the x position of the Player within the current Room.
+     * Note that this is distinct from the Player's x coordinate,
+     * which is within the Hall as a whole - this is relative to
+     * a specific Room.
+     * 
+     * @return Player's x coordinate within Room
+     */
     unsigned int getPosInRoom() const;
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Sets the x position of the Player within the current Room.
+     * Note that this is distinct from the Player's x coordinate,
+     * which is within the Hall as a whole - this is relative to
+     * a specific Room.
+     * 
+     * @param New Player x coordinate within Room
+     */
     void setPosInRoom(unsigned int n);
     
     /* Set player's x position (absolute) */

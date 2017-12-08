@@ -79,18 +79,6 @@ public:
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * Get the x position of the Player within the Room.
-     * 
-     * Note that this is distinct from the Player's own x value,
-     * which is within the Hall as a whole - this is relative to
-     * the Room.
-     * 
-     * @return Player's x coordinate within Room
-     */
-    //int getPlayerX() const;
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
      * Get the Encounterable of the Room.
      * 
      * @return The Room's Encounterable
@@ -105,21 +93,6 @@ public:
      * @return EncounterScreen of Encounterable
      */
     EncounterScreen* getScreen() const;
-    
-    
-    /* Setter methods */
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
-     * Sets the x position of the Player within the Room.
-     * 
-     * Note that this is distinct from the Player's own x value,
-     * which is within the Hall as a whole - this is relative to
-     * the Room.
-     * 
-     * @param New Player x coordinate within Room
-     */
-    //void setPlayerX(unsigned int n);
     
     
     /* Methods for variable `active` */

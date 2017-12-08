@@ -139,14 +139,14 @@ public:
     int getStepSize() const;
     
 private:
-    /* Position of the Player (absolute) */
+    /* Absolute position of the Player - in context of Hall */
     unsigned int posX;
+    
+    /* Relative position of the Player - in context of Room */
+    unsigned int posInRoom;
     
     /* How far to move the Player */
     int stepSize;
-    
-    /* Player's x coordinate in the room (relative) */
-    unsigned int posInRoom;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

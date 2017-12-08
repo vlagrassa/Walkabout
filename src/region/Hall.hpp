@@ -216,12 +216,10 @@ public:
     /* Methods for getting coordinates - need help */
     
     /* Get x position for number of steps into given Room (absolute) */
-    unsigned int goToRoom(unsigned int index, unsigned int steps);
-    unsigned int goToRoom(unsigned int index);
+    unsigned int goToRoom(unsigned int index, unsigned int steps = 0);
 
     /* Get x position for number of steps into given Room (relative) */
-    unsigned int stepRoom(unsigned int index, unsigned int steps);
-    unsigned int stepRoom(unsigned int index);
+    unsigned int stepRoom(unsigned int index, unsigned int steps = 0);
     
     
     /* Miscellaneous methods */

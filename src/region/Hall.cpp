@@ -89,16 +89,10 @@ unsigned int Hall::goToRoom(unsigned int index, unsigned int steps) {
     }
     return l + steps;
 }
-unsigned int Hall::goToRoom(unsigned int index) {
-    return goToRoom(index, 0);
-}
 
 /* Get x position for number of steps into given Room (relative) */
 unsigned int Hall::stepRoom(unsigned int index, unsigned int steps) {
     return goToRoom(activeIndex+index, steps);
-}
-unsigned int Hall::stepRoom(unsigned int index) {
-    return stepRoom(index, 0);
 }
 
 // </editor-fold>

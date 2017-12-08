@@ -108,7 +108,8 @@ private:
      * @return Encounterable for a stream
      */
     friend std::ostream& operator<<(std::ostream &strm, const Encounterable&);
+    
+    friend bool operator==(const Encounterable& left, const Encounterable& right);
 };
-
 
 #endif /* ENCOUNTERABLE_H */

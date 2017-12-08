@@ -70,3 +70,8 @@ std::ostream& operator<<(std::ostream &strm, const Encounterable &orig) {
     strm << orig.getTypeName() << " encountered.";
     return strm;
 }
+
+bool operator==(const Encounterable& left, const Encounterable& right) {
+    std::cout << "Comparing encounterables!" << "\n";
+    return true;
+}

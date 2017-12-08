@@ -32,6 +32,11 @@ void Player::setPosInRoom(unsigned int n) {
     posInRoom = n;
 }
 
+void Player::setPosition(unsigned int total, unsigned int inRoom) {
+    posX = total;
+    posInRoom = inRoom;
+}
+
 /* Set the player's x position within the Hall (absolute) */
 void Player::goTo(unsigned int n) {
     posX = n;
@@ -49,22 +54,20 @@ void Player::step(int n) {
 
 /* Special applications of step() */
 void Player::stepLeft() {
-    //move(-stepSize, 0);
     step(-stepSize);
 }
 
-//void Player::stepLeft(int n) {
-//    step(-n);
-//}
+void Player::stepLeft(int n) {
+    step(-n);
+}
 
 void Player::stepRight() {
-    //move(stepSize,0);
     step(stepSize);
 }
 
-//void Player::stepRight(int n) {
-//    step(n);
-//}
+void Player::stepRight(int n) {
+    step(n);
+}
 
 /* Return Player for a stream */
 std::ostream& operator<<(std::ostream &strm, const Player &p) {

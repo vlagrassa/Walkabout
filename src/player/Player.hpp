@@ -10,7 +10,15 @@ public:
     Player(const Player& p);
     virtual ~Player();
     
-    /* Return Player's x position */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get the absolute x position of the Player - the distance
+     * from the start of the Hall to the current position. Note
+     * that this is distinct from the Player's position within a
+     * given Room.
+     * 
+     * @return Player's absolute x coordinate
+     */
     unsigned int getX() const;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -20,7 +28,7 @@ public:
      * which is within the Hall as a whole - this is relative to
      * a specific Room.
      * 
-     * @return Player's x coordinate within Room
+     * @return Player's relative x coordinate within Room
      */
     unsigned int getPosInRoom() const;
     
@@ -35,22 +43,99 @@ public:
      */
     void setPosInRoom(unsigned int n);
     
-    /* Set player's x position (absolute) */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Explicitly set the Player's absolute position (posX) and
+     * relative position within a Room (posInRoom).
+     * 
+     * @param total The new absolute position
+     * 
+     * @param inRoom The new relative position
+     */
+    void setPosition(unsigned int total, unsigned int inRoom);
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Set Player's x position. Absolute version of step().
+     * Equivalent to:
+     * 
+     *   posX = n;
+     * 
+     * @param n New x position
+     */
     void goTo(unsigned int n);
     
-    /* Set player's x position (relative) */
-    //void move()
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Set Player's x position relative to the current position.
+     * Equivalent to:
+     * 
+     *   goTo(posX + n);
+     * 
+     * Note that if n is negative and larger than the current x
+     * position -- that is, if posX + n is negative -- posX will
+     * be set to 0.
+     * 
+     * @param n The number of steps to move
+     */
     void step(int n);
     
     /* Move the player to the left (negative) */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Move the Player to the left. Note that this means moving
+     * the coordinate in the negative direction. Equivalent to:
+     * 
+     *   stepLeft(1);
+     * 
+     * See also stepLeft(int n)
+     */
     void stepLeft();
-    //void stepLeft(int n);
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Move the Player to the left. Note that this means moving
+     * the coordinate in the negative direction. Equivalent to:
+     * 
+     *   step(-n);
+     * 
+     * See also stepLeft()
+     * 
+     * @param n The number of steps to move
+     */
+    void stepLeft(int n);
     
     /* Move the player to the right (positive) */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Move the Player to the right. Note that this means moving
+     * the coordinate in the positive direction. Equivalent to:
+     * 
+     *   stepRight(1);
+     * 
+     * See also stepRight(int n)
+     */
     void stepRight();
-    //void stepRight(int n);
     
-    /* Return Player's step size */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Move the Player to the right. Note that this means moving
+     * the coordinate in the positive direction. Equivalent to:
+     * 
+     *   step(n);
+     * 
+     * See also stepRight()
+     * 
+     * @param n The number of steps to move
+     */
+    void stepRight(int n);
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get the Player's step size.
+     * 
+     * @return Player step size
+     */
     int getStepSize() const;
     
 private:
@@ -63,7 +148,12 @@ private:
     /* Player's x coordinate in the room (relative) */
     unsigned int posInRoom;
     
-    /* Return Player for a stream */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Friend method to return Player for an output stream.
+     * 
+     * @return Player for a stream
+     */
     friend std::ostream& operator<<(std::ostream &strm, const Player&);
 };
 

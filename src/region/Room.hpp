@@ -170,6 +170,8 @@ private:
      * Private method to generate a random Encounterable object.
      * Utilized in the constructor.
      * 
+     * @Note This must be altered as Encounterable subclasses are added
+     * 
      * @return Random Encounterable
      */
     static Encounterable* genRandomEncounterable(unsigned int seed);

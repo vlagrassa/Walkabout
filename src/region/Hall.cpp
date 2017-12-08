@@ -31,6 +31,36 @@ Room* Hall::getRoom(unsigned int index) const {
     return at(index);
 }
 
+unsigned int Hall::getRoomPos(unsigned int index, unsigned int steps) {
+    unsigned l = 0;
+    for (unsigned int i = 0; i < index; i++) {
+        l += at(i)->getLength();
+    }
+    return l + steps;
+}
+
+std::vector<Room*> Hall::getRange(unsigned int start, unsigned int end) const {
+    if (start > size() || start > end) {
+        std::cout << "Start index invalid";
+    }
+    if (end > size() || end < start) {
+        std::cout << "End index invalid";
+    }
+    
+    std::vector<Room*> temp;
+    for (unsigned int i = start; i < end; i++) {
+        temp.push_back(at(i));
+    }
+    return temp;
+}
+
+/* Get vector of the Rooms with space within the window's borders */
+std::vector<Room*> Hall::getOnscreenRooms(sf::RenderTarget& w) const {
+    //std::vector<Room*> temp;
+    //temp.push_back(getActiveRoom());
+    return getRange(0,size()); //default return value
+}
+
 Player& Hall::getPlayer() const {
     return player;
 }
@@ -79,19 +109,6 @@ void Hall::addRoom() {
 
 // </editor-fold>
 
-// <editor-fold defaultstate="collapsed" desc=" GoTo Methods ">
-
-/* Get x position for number of steps into given Room (absolute) */
-unsigned int Hall::getRoomPos(unsigned int index, unsigned int steps) {
-    unsigned l = 0;
-    for (unsigned int i = 0; i < index; i++) {
-        l += at(i)->getLength();
-    }
-    return l + steps;
-}
-
-// </editor-fold>
-
 // <editor-fold defaultstate="collapsed" desc=" Miscellaneous Methods ">
 
 /* Calculate playerIndex based on playerX */
@@ -126,28 +143,6 @@ std::ostream& operator<<(std::ostream &strm, const Hall &h) {
     }
     h.printDistances();
     return strm;
-}
-
-/* Get vector of the Rooms with space within the window's borders */
-std::vector<Room*> Hall::getOnscreenRooms(sf::RenderTarget& w) const {
-    //std::vector<Room*> temp;
-    //temp.push_back(getActiveRoom());
-    return getRange(0,size()); //default return value
-}
-
-std::vector<Room*> Hall::getRange(unsigned int start, unsigned int end) const {
-    if (start > size() || start > end) {
-        std::cout << "Start index invalid";
-    }
-    if (end > size() || end < start) {
-        std::cout << "End index invalid";
-    }
-    
-    std::vector<Room*> temp;
-    for (unsigned int i = start; i < end; i++) {
-        temp.push_back(at(i));
-    }
-    return temp;
 }
 
 void Hall::draw(sf::RenderTarget& target, sf::RenderStates states) const {

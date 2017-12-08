@@ -102,10 +102,6 @@ EncounterScreen* Room::getScreen() const {
 
 // </editor-fold>
 
-// <editor-fold defaultstate="collapsed" desc=" Setters ">
-
-// </editor-fold>
-
 // <editor-fold defaultstate="collapsed" desc=" Methods for variable `active` ">
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

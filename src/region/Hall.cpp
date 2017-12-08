@@ -109,7 +109,47 @@ void Hall::addRoom() {
 
 // </editor-fold>
 
-// <editor-fold defaultstate="collapsed" desc=" Miscellaneous Methods ">
+// <editor-fold defaultstate="collapsed" desc=" Graphical Methods ">
+
+void Hall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    for (Room* r : getOnscreenRooms(target)) {
+        target.draw(*r->getEncounter());
+    }
+}
+
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Print Methods ">
+
+void Hall::printDistances() const {
+    std::cout << "| ";
+    for (unsigned i = 0; i < size(); i++) {
+        for (unsigned j = 0; j < (at(i)->getLength())-1; j++) {
+            if (i == activeIndex && j == player.getX()) {
+                std::cout << "o ";
+            } else {
+                std::cout << "_ ";
+            }
+        }
+        if (i == activeIndex && at(i)->getLength()-1 == player.getX()) {
+            std::cout << "Ø | ";
+        } else {
+            std::cout << "X | ";
+        }
+    }
+    std::cout << "\n";
+}
+
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Recalc and Update Methods ">
+
+void Hall::recalcLength() {
+    totalLength = 0;
+    for(unsigned i = 0; i < size(); i++) {
+        totalLength += at(i)->getLength();
+    }
+}
 
 /* Calculate playerIndex based on playerX */
 void Hall::updateIndex(const Player& p) {
@@ -130,10 +170,18 @@ void Hall::updateIndex() {
     updateIndex(getPlayer());
 }
 
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Gen Methods ">
+
 /* Generate seed based on the current time */
 unsigned int Hall::genRandomSeed() {
     return std::time(NULL);
 }
+
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc=" Friend Methods ">
 
 /* Return Hall for a stream */
 std::ostream& operator<<(std::ostream &strm, const Hall &h) {
@@ -145,39 +193,4 @@ std::ostream& operator<<(std::ostream &strm, const Hall &h) {
     return strm;
 }
 
-void Hall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    for (Room* r : getOnscreenRooms(target)) {
-        target.draw(*r->getEncounter());
-    }
-}
-
-// </editor-fold>
-
-// <editor-fold defaultstate="collapsed" desc=" Distances ">
-
-void Hall::recalcLength() {
-    totalLength = 0;
-    for(unsigned i = 0; i < size(); i++) {
-        totalLength += at(i)->getLength();
-    }
-}
-
-void Hall::printDistances() const {
-    std::cout << "| ";
-    for (unsigned i = 0; i < size(); i++) {
-        for (unsigned j = 0; j < (at(i)->getLength())-1; j++) {
-            if (i == activeIndex && j == player.getX()) {
-                std::cout << "o ";
-            } else {
-                std::cout << "_ ";
-            }
-        }
-        if (i == activeIndex && at(i)->getLength()-1 == player.getX()) {
-            std::cout << "Ø | ";
-        } else {
-            std::cout << "X | ";
-        }
-    }
-    std::cout << "\n";
-}
 // </editor-fold>

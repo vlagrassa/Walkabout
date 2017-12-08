@@ -75,6 +75,7 @@ private:
 
 class Hall : private activeVector<Room*>, public sf::Drawable {
 public:
+    /* Con/Destructors */
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
      * Base constructor method. Initializes:
@@ -235,7 +236,21 @@ public:
     void addRoom();
     
     
-    /* Miscellaneous methods */
+    /* Graphics methods */
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Inherited method from sf::Drawable to draw the Hall to a
+     * RenderTarget.
+     * 
+     * @param target The target to draw the Hall to
+     * 
+     * @param states Not used, but necessary for SFML
+     */
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+    
+    
+    /* Print methods */
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -254,6 +269,18 @@ public:
      * might suggest.
      */
     void printDistances() const;
+    
+    
+    /* Recalc and Update methods */
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Recalculate the totalLength variable in case of a change 
+     * in the Rooms. Not necessary after calling AddRoom(). Note
+     * that in normal operation, this shouldn't have to be used.
+     * It currently a backup mechanism.
+     */
+    void recalcLength();
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -289,17 +316,8 @@ public:
      */
     void updateIndex();
     
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
-     * Recalculate the totalLength variable in case of a change 
-     * in the Rooms. Not necessary after calling AddRoom(). Note
-     * that in normal operation, this shouldn't have to be used.
-     * It currently a backup mechanism.
-     */
-    void recalcLength();
     
-    
-    /* Inherited methods */
+    /* Inherited methods (using) */
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -318,17 +336,6 @@ public:
     using activeVector<Room*>::getActive;
     using activeVector<Room*>::getActiveIndex;
     using activeVector<Room*>::setActiveIndex;
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
-     * Inherited method from sf::Drawable to draw the Hall to a
-     * RenderTarget.
-     * 
-     * @param target The target to draw the Hall to
-     * 
-     * @param states Not used, but necessary for SFML
-     */
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
 private:
     /* Index of the current active Room */

@@ -52,7 +52,7 @@ public:
      * 
      * @param inRoom The new relative position
      */
-    void setPosition(unsigned int total, unsigned int inRoom);
+    void setPos(unsigned int total, unsigned int inRoom);
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

@@ -32,7 +32,7 @@ void Player::setPosInRoom(unsigned int n) {
     posInRoom = n;
 }
 
-void Player::setPosition(unsigned int total, unsigned int inRoom) {
+void Player::setPos(unsigned int total, unsigned int inRoom) {
     posX = total;
     posInRoom = inRoom;
 }

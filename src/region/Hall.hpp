@@ -213,13 +213,29 @@ public:
     void addRoom();
     
     
-    /* Methods for getting coordinates - need help */
+    /* Method for getting positions */
     
-    /* Get x position for number of steps into given Room (absolute) */
-    unsigned int goToRoom(unsigned int index, unsigned int steps = 0);
-
-    /* Get x position for number of steps into given Room (relative) */
-    unsigned int stepRoom(unsigned int index, unsigned int steps = 0);
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get x position for the number of steps into the Room at a
+     * given index. For example...
+     * 
+     *   getRoomPos(1, 1);
+     * 
+     * ...returns the absolute x coordinate for 1 step into the
+     * the Room at index 1. Note that indexing starts from 0. If
+     * the steps parameter is not given, it defaults to 0.
+     * 
+     * Note that if `steps` exceeds the length of the given Room,
+     * an error is not currently thrown. The method will instead
+     * perform the math as though the Room were that long. This
+     * may need to be changed.
+     * 
+     * @param index The index of the Room
+     * 
+     * @param steps The number of steps into the Room (default 0)
+     */
+    unsigned int getRoomPos(unsigned int index, unsigned int steps = 0);
     
     
     /* Miscellaneous methods */

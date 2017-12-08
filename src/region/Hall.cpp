@@ -82,17 +82,12 @@ void Hall::addRoom() {
 // <editor-fold defaultstate="collapsed" desc=" GoTo Methods ">
 
 /* Get x position for number of steps into given Room (absolute) */
-unsigned int Hall::goToRoom(unsigned int index, unsigned int steps) {
+unsigned int Hall::getRoomPos(unsigned int index, unsigned int steps) {
     unsigned l = 0;
     for (unsigned int i = 0; i < index; i++) {
         l += at(i)->getLength();
     }
     return l + steps;
-}
-
-/* Get x position for number of steps into given Room (relative) */
-unsigned int Hall::stepRoom(unsigned int index, unsigned int steps) {
-    return goToRoom(activeIndex+index, steps);
 }
 
 // </editor-fold>

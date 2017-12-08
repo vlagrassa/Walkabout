@@ -8,34 +8,84 @@
 
 class Treasure : public Encounterable {
 public:
+    /* Con/Destructors */
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default constructor method.
+     */
     Treasure();
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default constructor method.
+     * @param Original Treasure
+     */
     Treasure(const Treasure& orig);
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default destructor method. Deletes:
+     *   -treasure_screen
+     *   -treasure_texture (temporary)
+     */
     virtual ~Treasure();
+    
     
     /* Inherited Methods */
     
-    /* Returns the TreasureScreen associated with the Treasure */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get the EncounterScreen associated with the Encounterable.
+     * Overwritten to return a TreasureScreen.
+     * 
+     * @return FightScreen representing fight with Monster
+     */
     TreasureScreen* getEncounterScreen() const;
+    
     
     /* Implemented Abstract Methods */
     
-    /* Returns whether Treasure is a skippable Encounterable (true) */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Tells whether the Encounterable can be passed without
+     * interacting. For Treasure, this will always be true.
+     * 
+     * @return Whether Player must interact to pass (true)
+     */
     bool isSkippable() const;
     
-    /* Returns the name of the Encounterable subclass ("Treasure") */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Gets name string associated with a subclass. This value 
+     * will be the same for all instances of a given subclass.
+     * For Treasure, this will always be "Treasure"
+     * 
+     * @return String name for given subclass ("Treasure")
+     */
     std::string getTypeName() const;
     
-    /* Returns an enum RoomType value corresponding to the subclass (treasure) */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Gets RoomType enumerator value associated with a subclass.
+     * This value will be the same for all instances of a given
+     * subclass. For Treasure, this will always be treasure
+     * 
+     * @return RoomType value for given subclass (treasure)
+     */
     RoomType getType() const;
     
-    /* Interact with the Encounterable */
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Interact with the Treasure - WIP
+     */
     void encounter(Player& player);
     
     /* Original Methods */
     
     
 private:
-    /* The associated FightScreen */
+    /* The associated TreasureScreen */
     TreasureScreen* treasure_screen;
     
     /* Pointer to the Treasure texture */

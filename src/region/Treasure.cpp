@@ -22,6 +22,7 @@ Treasure::Treasure(const Treasure& orig) {
 }
 
 Treasure::~Treasure() {
+    delete treasure_screen;
     delete treasure_texture;
 }
 

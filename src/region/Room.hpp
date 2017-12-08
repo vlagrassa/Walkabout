@@ -156,9 +156,6 @@ private:
     /* Number of tics in the Room */
     const unsigned int length;
     
-    /* Position (in tics) of player within Room - only used if Active */
-    //int playerX;
-    
     /* Whether the Room is the current active room of its Hall */
     bool active;
     

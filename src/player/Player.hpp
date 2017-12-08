@@ -6,8 +6,30 @@
 
 class Player : public sf::Sprite {
 public:
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default constructor method. Initializes:
+     *   -posX
+     *   -posInRoom
+     *   -stepSize
+     */
     Player();
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default constructor method. Copies:
+     *   -posX
+     *   -posInRoom
+     *   -stepSize
+     * 
+     * @param Original Room
+     */
     Player(const Player& p);
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default destructor method.
+     */
     virtual ~Player();
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

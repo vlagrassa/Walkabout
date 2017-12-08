@@ -17,7 +17,7 @@
  * @param size The size of the Room
  * @param enc The Encounterable held in the Room
  */
-Room::Room(unsigned int size, Encounterable* enc) : encounter(enc), length(size), playerX(-1), active(false) {}
+Room::Room(unsigned int size, Encounterable* enc) : encounter(enc), length(size), active(false) {}
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * 
@@ -81,20 +81,6 @@ RoomType Room::getType() const {
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * 
- * Get the x position of the Player within the Room.
- * 
- * Note that this is distinct from the Player's own x value,
- * which is within the Hall as a whole - this is relative to
- * the Room.
- * 
- * @return Player's x coordinate within Room
- */
-int Room::getPlayerX() const {
-    return playerX;
-}
-
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
- * 
  * Get the Encounterable of the Room.
  * 
  * @return The Room's Encounterable
@@ -117,20 +103,6 @@ EncounterScreen* Room::getScreen() const {
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc=" Setters ">
-
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
- * 
- * Sets the x position of the Player within the Room.
- * 
- * Note that this is distinct from the Player's own x value,
- * which is within the Hall as a whole - this is relative to
- * the Room.
- * 
- * @param New Player x coordinate within Room
- */
-void Room::setPlayerX(int n) {
-    playerX = n;
-}
 
 // </editor-fold>
 
@@ -168,13 +140,6 @@ bool Room::isActive() const {
  */
 void Room::setActive(const bool& b, int n) {
     active = b;
-    if (b) {
-        if (playerX == -1) {
-            playerX = n;
-        }
-    } else {
-        playerX = -1;
-    }
 }
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -243,7 +208,7 @@ std::ostream& operator<<(std::ostream &strm, const Room &r) {
     } else {
         strm << " Inactive ";
     }
-    strm << "size " << std::to_string(r.getLength()) << " " << r.getEncounter()->getTypeName() << " at tic " << r.getPlayerX();
+    strm << "size " << std::to_string(r.getLength()) << " " << r.getEncounter()->getTypeName();
     return strm;
 }
 

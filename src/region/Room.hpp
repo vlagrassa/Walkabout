@@ -87,7 +87,7 @@ public:
      * 
      * @return Player's x coordinate within Room
      */
-    int getPlayerX() const;
+    //int getPlayerX() const;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -119,7 +119,7 @@ public:
      * 
      * @param New Player x coordinate within Room
      */
-    void setPlayerX(int n);
+    //void setPlayerX(unsigned int n);
     
     
     /* Methods for variable `active` */
@@ -184,7 +184,7 @@ private:
     const unsigned int length;
     
     /* Position (in tics) of player within Room - only used if Active */
-    int playerX;
+    //int playerX;
     
     /* Whether the Room is the current active room of its Hall */
     bool active;

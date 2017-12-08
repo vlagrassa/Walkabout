@@ -8,7 +8,7 @@
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
 /* Constructor - takes optional argument s */
-Hall::Hall(const Player& p, unsigned int s) : activeIndex(0), seed(s), totalLength(0), player(p)  {}
+Hall::Hall(Player& p, unsigned int s) : activeIndex(0), seed(s), totalLength(0), player(p)  {}
 
 /* Default constructor */
 Hall::Hall(const Hall& orig) : Hall(orig.getPlayer(), orig.getSeed()) {}
@@ -31,7 +31,7 @@ Room* Hall::getRoom(unsigned int index) const {
     return at(index);
 }
 
-const Player& Hall::getPlayer() const {
+Player& Hall::getPlayer() const {
     return player;
 }
 
@@ -50,8 +50,9 @@ void Hall::setActiveRoom() {
     at(activeIndex)->activate();
 }
 
-void Hall::setActiveRoomPlayerX(int n) { //Give more intuitive name
-    getActive()->setPlayerX(n);
+void Hall::setActiveRoomPlayerX(unsigned int n) { //Give more intuitive name
+    //getActive()->setPlayerX(n);
+    player.setPosInRoom(n);
 }
 
 // </editor-fold>
@@ -130,7 +131,7 @@ unsigned int Hall::genRandomSeed() {
 
 /* Return Hall for a stream */
 std::ostream& operator<<(std::ostream &strm, const Hall &h) {
-    strm << "Hall: Room " << h.getActiveIndex() << ", Tic " << h.getActive()->getPlayerX() << "\n";
+    strm << "Hall: Room " << h.getActiveIndex() << "\n";
     for (Room* r : h) {
         strm << "  " << *r << "\n";
     }

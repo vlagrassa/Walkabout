@@ -88,7 +88,7 @@ public:
      * @param p The Player object - saved to player
      * @param s The seed for the Hall - saved to seed
      */
-    Hall(const Player& p, unsigned int s = genRandomSeed());
+    Hall(Player& p, unsigned int s = genRandomSeed());
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -134,7 +134,7 @@ public:
      * 
      * @return The player
      */
-    const Player& getPlayer() const;
+    Player& getPlayer() const;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -191,7 +191,7 @@ public:
      * 
      * @param n The value to set playerX to
      */
-    void setActiveRoomPlayerX(int n);
+    void setActiveRoomPlayerX(unsigned int n);
     
     
     /* Adder methods */
@@ -330,7 +330,7 @@ private:
     int totalLength;
     
     /* Pointer to the Player object */
-    const Player& player;
+    Player& player;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

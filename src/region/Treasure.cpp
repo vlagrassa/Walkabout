@@ -66,9 +66,3 @@ void Treasure::encounter(Player& player) {
 
 
 // </editor-fold>
-
-/* Return Treasure for a stream */
-std::ostream& operator<<(std::ostream &strm, const Treasure &orig) {
-    strm << "Treasure encountered ";
-    return strm;
-}

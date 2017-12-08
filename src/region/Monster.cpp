@@ -98,9 +98,3 @@ std::string Monster::getSpeciesTexture() {
     }
     return "";
 }
-
-/* Return Monster for a stream */
-std::ostream& operator<<(std::ostream &strm, const Monster &orig) {
-    strm << "Monster encountered ";
-    return strm;
-}

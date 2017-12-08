@@ -90,9 +90,6 @@ private:
     
     /* Pointer to the Treasure texture */
     sf::Texture* treasure_texture;
-    
-    /* Return Treasure for a stream */
-    friend std::ostream& operator<<(std::ostream &strm, const Treasure&);
 };
 
 #endif /* TREASURE_H */

@@ -98,6 +98,16 @@ private:
     
     /* The list of Items associated with the given Encounterable */
     std::vector<int> reward;
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Friend method to return Encounterable for a stream. This
+     * has been generalized such that subclasses don't currently
+     * overwrite it. Mostly used for printing.
+     * 
+     * @return Encounterable for a stream
+     */
+    friend std::ostream& operator<<(std::ostream &strm, const Encounterable&);
 };
 
 

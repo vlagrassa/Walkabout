@@ -57,3 +57,16 @@ EncounterScreen* Encounterable::getEncounterScreen() const {
 }
 
 // </editor-fold>
+
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Friend method to return Encounterable for a stream. This
+     * has been generalized such that subclasses don't currently
+     * overwrite it. Mostly used for printing.
+     * 
+     * @return Encounterable for a stream
+     */
+std::ostream& operator<<(std::ostream &strm, const Encounterable &orig) {
+    strm << orig.getTypeName() << " encountered.";
+    return strm;
+}

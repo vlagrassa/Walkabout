@@ -4,14 +4,14 @@
 #include <iostream>
 
 
-Player::Player() {
+Player::Player() : posX(0), posInRoom(0), stepSize(10) {
     std::cout << "hi";
-    posX = 0;
-    stepSize = 10;
 }
-Player::Player(const Player& p) {
+
+Player::Player(const Player& p) : posX(p.getX()), posInRoom(p.getPosInRoom()), stepSize(p.getStepSize()) {
     std::cout << "hello";
 }
+
 Player::~Player() {
     
 }

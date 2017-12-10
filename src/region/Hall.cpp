@@ -69,7 +69,6 @@ Player& Hall::getPlayer() const {
 
 // <editor-fold defaultstate="collapsed" desc=" Setter Methods ">
 
-/* Set index of the active Room and update list */
 void Hall::setActiveRoom(unsigned int index) {
     at(activeIndex)->deactivate();
     activeIndex = index;
@@ -80,8 +79,7 @@ void Hall::setActiveRoom() {
     at(activeIndex)->activate();
 }
 
-void Hall::setActiveRoomPlayerX(unsigned int n) { //Give more intuitive name
-    //getActive()->setPlayerX(n);
+void Hall::setActiveRoomPlayerX(unsigned int n) {
     player.setPosInRoom(n);
 }
 
@@ -93,7 +91,7 @@ void Hall::setActiveRoomPlayerX(unsigned int n) { //Give more intuitive name
 void Hall::addRoom(Room* r) {
     push_back(r);
     totalLength += r->getLength();
-    r->getEncounter()->setPosition(totalLength * 50, 100);
+    r->getEncounter()->setPosition(totalLength * 50, 100); //Ideally the Room itself should handle this
     setActiveRoom();
 }
 

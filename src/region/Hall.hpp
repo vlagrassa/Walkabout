@@ -268,7 +268,7 @@ public:
      * Note that Rooms will not actually be separated, the way |
      * might suggest.
      */
-    void printDistances() const;
+    std::string printDistances() const;
     
     
     /* Recalc and Update methods */

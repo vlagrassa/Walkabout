@@ -119,23 +119,25 @@ void Hall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 // <editor-fold defaultstate="collapsed" desc=" Print Methods ">
 
-void Hall::printDistances() const {
-    std::cout << "| ";
+std::string Hall::printDistances() const {
+    std::string output = "";
+    output += "| ";
     for (unsigned i = 0; i < size(); i++) {
         for (unsigned j = 0; j < (at(i)->getLength())-1; j++) {
             if (i == activeIndex && j == player.getX()) {
-                std::cout << "o ";
+                output += "o ";
             } else {
-                std::cout << "_ ";
+                output += "_ ";
             }
         }
         if (i == activeIndex && at(i)->getLength()-1 == player.getX()) {
-            std::cout << "Ø | ";
+            output += "Ø | ";
         } else {
-            std::cout << "X | ";
+            output += "X | ";
         }
     }
-    std::cout << "\n";
+    output += "\n";
+    return output;
 }
 
 // </editor-fold>
@@ -187,7 +189,7 @@ std::ostream& operator<<(std::ostream &strm, const Hall &h) {
     for (Room* r : h) {
         strm << "  " << *r << "\n";
     }
-    h.printDistances();
+    strm << h.printDistances();
     return strm;
 }
 

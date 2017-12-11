@@ -91,7 +91,7 @@ void Hall::setActiveRoomPlayerX(unsigned int n) {
 void Hall::addRoom(Room* r) {
     push_back(r);
     totalLength += r->getLength();
-    r->getEncounter()->setPosition(totalLength * 50, 100); //Ideally the Room itself should handle this
+    r->getEncounter()->setPosition(totalLength * player.getStepSize(), 100); //Ideally the Room itself should handle this
     setActiveRoom();
 }
 

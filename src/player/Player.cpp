@@ -54,7 +54,8 @@ void Player::step(int n) {
 
 /* Special applications of step() */
 void Player::stepLeft() {
-    step(-stepSize);
+    //step(-stepSize);
+    step(-1);
 }
 
 void Player::stepLeft(int n) {
@@ -62,7 +63,8 @@ void Player::stepLeft(int n) {
 }
 
 void Player::stepRight() {
-    step(stepSize);
+    //step(stepSize);
+    step(1);
 }
 
 void Player::stepRight(int n) {

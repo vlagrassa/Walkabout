@@ -25,6 +25,7 @@ int main() {
     for (unsigned i = 0; i < numRooms; i++) {
         h.addRoom();
     }
+    std::cout << h << "\n";
     
     
     /* Instantiate Menu */
@@ -69,6 +70,15 @@ int main() {
     //h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/4);
     player.setPosition(0,window.getSize().x/4);
     
+    sf::Font font;
+    if (!font.loadFromFile("resources/sansation.ttf")) {
+        return -1;
+    }
+    sf::Text hallText;
+    hallText.setFont(font);
+    hallText.setCharacterSize(24);
+    hallText.setFillColor(sf::Color::Black);
+    hallText.setPosition(0, 400);
     
     /* All the window stuff */
     while (window.isOpen())
@@ -85,6 +95,7 @@ int main() {
             {
                 if (event.key.code == sf::Keyboard::Left)
                 {
+                    player.stepLeft();
                     background.move(player.getStepSize());
                     for (Room* r : h) {
                         r->getEncounter()->move(player.getStepSize(), 0);
@@ -92,6 +103,7 @@ int main() {
                 } 
                 if (event.key.code == sf::Keyboard::Right)
                 {
+                    player.stepRight();
                     background.move(-player.getStepSize());
                     for (Room* r : h) {
                         r->getEncounter()->move(-player.getStepSize(), 0);
@@ -99,6 +111,8 @@ int main() {
                 } 
             }
         }
+        
+        hallText.setString(h.printDistances());
         
         std::string hi;
         
@@ -110,6 +124,7 @@ int main() {
         window.draw(h);
         window.draw(player);
         window.draw(paper);
+        window.draw(hallText);
         
         /* Display the screen */
         window.display();

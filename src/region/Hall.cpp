@@ -131,7 +131,7 @@ std::string Hall::printDistances() const {
             }
         }
         if (i == activeIndex && at(i)->getLength()-1 == player.getX()) {
-            output += "Ø | ";
+            output += "A | ";
         } else {
             output += "X | ";
         }

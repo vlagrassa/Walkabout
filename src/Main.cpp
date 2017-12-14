@@ -21,7 +21,7 @@ int main() {
     /* Instantiate Player and Hall */
     Player player;
     Hall h(player);
-    unsigned int numRooms = 4;
+    unsigned int numRooms = 3;
     for (unsigned i = 0; i < numRooms; i++) {
         h.addRoom();
     }
@@ -71,7 +71,7 @@ int main() {
     player.setPosition(0,window.getSize().x/4);
     
     sf::Font font;
-    if (!font.loadFromFile("resources/sansation.ttf")) {
+    if (!font.loadFromFile("resources/Courier.dfont")) {
         return -1;
     }
     sf::Text hallText;
@@ -111,9 +111,11 @@ int main() {
                 } 
             }
         }
-        std::string temp = h.printDistances();
+        std::string temp;
         temp += "\nPlayer Position: ";
         temp += std::to_string(player.getX());
+        temp += "\n";
+        temp += h.operator std::string();
         hallText.setString(temp);
         
         std::string hi;

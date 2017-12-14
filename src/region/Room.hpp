@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include "Encounterable.hpp"
 
-class Room {
+class Room : public sf::Drawable {
 public:
     /* Con/Destructors */
     
@@ -93,6 +93,21 @@ public:
      * @return EncounterScreen of Encounterable
      */
     EncounterScreen* getScreen() const;
+    
+    
+    /* Graphical Methods */
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Inherited method from sf::Drawable to draw the Room to a
+     * RenderTarget. Note that this method should be used rather
+     * than drawing the Encounterable directly
+     * 
+     * @param target The target to draw the Hall to
+     * 
+     * @param states Not used, but necessary for SFML
+     */
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
     
     /* Methods for variable `active` */

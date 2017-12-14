@@ -102,6 +102,24 @@ EncounterScreen* Room::getScreen() const {
 
 // </editor-fold>
 
+// <editor-fold defaultstate="collapsed" desc=" Graphical Methods ">
+
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ * 
+ * Inherited method from sf::Drawable to draw the Room to a
+ * RenderTarget. Note that this method should be used rather
+ * than drawing the Encounterable directly
+ * 
+ * @param target The target to draw the Hall to
+ * 
+ * @param states Not used, but necessary for SFML
+ */
+void Room::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    target.draw(*encounter);
+}
+
+// </editor-fold>
+
 // <editor-fold defaultstate="collapsed" desc=" Methods for variable `active` ">
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

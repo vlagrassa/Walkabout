@@ -350,6 +350,8 @@ private:
     /* Pointer to the Player object */
     Player& player;
     
+    const static unsigned int STEP_TO_TIC;
+    
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
      * Private method to generate a random seed based on current

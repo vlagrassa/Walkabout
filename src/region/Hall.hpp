@@ -337,6 +337,20 @@ public:
     using activeVector<Room*>::getActiveIndex;
     using activeVector<Room*>::setActiveIndex;
     
+    operator std::string() const {
+        std::string temp;
+        temp += "Hall: Room ";
+        temp += std::to_string(this->getActiveIndex());
+        temp += "\n";
+        for (Room* r : *this) {
+            temp += "  ";
+            temp += *r;
+            temp += "\n";
+        }
+        temp += this->printDistances();
+        return temp;
+    };
+    
 private:
     /* Index of the current active Room */
     unsigned int activeIndex;

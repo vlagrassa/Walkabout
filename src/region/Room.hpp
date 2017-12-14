@@ -164,6 +164,20 @@ public:
      */
     void deactivate();
     
+    operator std::string() const {
+        std::string temp;
+        if (this->isActive()) {
+            temp += "*  ACTIVE ";
+        } else {
+            temp += " Inactive ";
+        }
+        temp += "size ";
+        temp += std::to_string(this->getLength());
+        temp += " ";
+        temp += this->getEncounter()->getTypeName();
+        return temp;
+    };
+    
 private:
     /* Encounterable held by the Room */
     Encounterable* encounter;

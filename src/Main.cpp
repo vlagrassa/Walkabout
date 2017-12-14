@@ -111,8 +111,10 @@ int main() {
                 } 
             }
         }
-        
-        hallText.setString(h.printDistances());
+        std::string temp = h.printDistances();
+        temp += "\nPlayer Position: ";
+        temp += std::to_string(player.getX());
+        hallText.setString(temp);
         
         std::string hi;
         

@@ -95,7 +95,7 @@ int main() {
             {
                 if (event.key.code == sf::Keyboard::Left)
                 {
-                    player.stepLeft();
+                    player.stepLeft(); //Everything else needs to set an absolute position based on this - will prevent going negative, too
                     background.move(player.getStepSize());
                     for (Room* r : h) {
                         r->getEncounter()->move(player.getStepSize(), 0);
@@ -119,6 +119,9 @@ int main() {
         hallText.setString(temp);
         
         std::string hi;
+        
+        //Hall needs to be updated
+        h.updateIndex();
         
         /* Clear the screen */
         window.clear(sf::Color::White);

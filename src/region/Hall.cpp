@@ -126,13 +126,13 @@ std::string Hall::printDistances() const {
     output += "| ";
     for (unsigned i = 0; i < size(); i++) {
         for (unsigned j = 0; j < (at(i)->getLength())-1; j++) {
-            if (i == activeIndex && j == player.getX()) {
+            if (i == activeIndex && j == player.getPosInRoom()) {
                 output += "o ";
             } else {
                 output += "_ ";
             }
         }
-        if (i == activeIndex && at(i)->getLength()-1 == player.getX()) {
+        if (i == activeIndex && at(i)->getLength()-1 == player.getPosInRoom()) {
             output += "A | ";
         } else {
             output += "X | ";

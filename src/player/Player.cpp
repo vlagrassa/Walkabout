@@ -44,6 +44,7 @@ void Player::goTo(unsigned int n) {
 
 /* Set the player's x position within the Hall (relative) */
 void Player::step(int n) {
+    movingRight = (n > 0) ? true : false;
     if (static_cast<int>(posX) + n < 0) {
         // Program is trying to send to a negative position - send to start instead
         goTo(0);
@@ -69,6 +70,14 @@ void Player::stepRight() {
 
 void Player::stepRight(int n) {
     step(n);
+}
+
+bool Player::isMovingRight() {
+    return movingRight;
+}
+
+bool Player::isMovingLeft() {
+    return !isMovingRight();
 }
 
 /* Return Player for a stream */

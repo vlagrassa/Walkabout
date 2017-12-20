@@ -160,6 +160,10 @@ public:
      */
     int getStepSize() const;
     
+    bool isMovingRight();
+    
+    bool isMovingLeft();
+    
 private:
     /* Absolute position of the Player - in context of Hall */
     unsigned int posX;
@@ -169,6 +173,8 @@ private:
     
     /* How far to move the Player */
     int stepSize;
+    
+    bool movingRight;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

@@ -121,19 +121,19 @@ void Hall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 std::string Hall::printDistances() const {
     std::string output = "";
-    output += "| ";
+    output += "|";
     for (unsigned i = 0; i < size(); i++) {
         for (unsigned j = 0; j < (at(i)->getLength())-1; j++) {
             if (i == activeIndex && j == player.getPosInRoom()) {
-                output += "o ";
+                output += "o";
             } else {
-                output += "_ ";
+                output += "_";
             }
         }
         if (i == activeIndex && at(i)->getLength()-1 == player.getPosInRoom()) {
-            output += "A | ";
+            output += "A|";
         } else {
-            output += "X | ";
+            output += "X|";
         }
     }
     output += "\n";

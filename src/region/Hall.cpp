@@ -7,8 +7,6 @@
 
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
-const unsigned int Hall::STEP_TO_TIC = 5;
-
 /* Constructor - takes optional argument s */
 Hall::Hall(Player& p, unsigned int s) : activeIndex(0), seed(s), totalLength(0), player(p)  {}
 

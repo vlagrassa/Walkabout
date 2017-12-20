@@ -172,6 +172,16 @@ void Hall::updateIndex() {
     updateIndex(getPlayer());
 }
 
+void Hall::updateRoomPositions() {
+    for (Room* r : *this) {
+        if (player.isMovingRight()) {
+            r->getEncounter()->move(-player.getStepSize(), 0);
+        } else {
+            r->getEncounter()->move(player.getStepSize(), 0);
+        }
+    }
+}
+
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc=" Gen Methods ">

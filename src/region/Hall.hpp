@@ -316,6 +316,8 @@ public:
      */
     void updateIndex();
     
+    void updateRoomPositions();
+    
     
     /* Inherited methods (using) */
     

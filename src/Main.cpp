@@ -97,17 +97,13 @@ int main() {
                 {
                     player.stepLeft(); //Everything else needs to set an absolute position based on this - will prevent going negative, too
                     background.move(player.getStepSize());
-                    for (Room* r : h) {
-                        r->getEncounter()->move(player.getStepSize(), 0);
-                    }
+                    h.updateRoomPositions();
                 } 
                 if (event.key.code == sf::Keyboard::Right)
                 {
                     player.stepRight();
                     background.move(-player.getStepSize());
-                    for (Room* r : h) {
-                        r->getEncounter()->move(-player.getStepSize(), 0);
-                    }
+                    h.updateRoomPositions();
                 } 
             }
         }

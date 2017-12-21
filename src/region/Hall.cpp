@@ -164,6 +164,9 @@ void Hall::updateIndex(const Player& p) {
         }
     }
     
+    if (totalLength - player.getX() < 10) {
+        addRoom();
+    }
 }
 
 void Hall::updateIndex() {

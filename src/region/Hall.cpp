@@ -40,11 +40,12 @@ unsigned int Hall::getRoomPos(unsigned int index, unsigned int steps) {
 }
 
 std::vector<Room*> Hall::getRange(unsigned int start, unsigned int end) const {
+    //std::cout << "Getting range from " << std::to_string(start) << " to " << std::to_string(end) << "\n";
     if (start > size() || start > end) {
-        std::cout << "Start index invalid";
+        //std::cout << "Start index invalid";
     }
     if (end > size() || end < start) {
-        std::cout << "End index invalid";
+        //std::cout << "End index invalid";
     }
     
     std::vector<Room*> temp;
@@ -55,10 +56,8 @@ std::vector<Room*> Hall::getRange(unsigned int start, unsigned int end) const {
 }
 
 /* Get vector of the Rooms with space within the window's borders */
-std::vector<Room*> Hall::getOnscreenRooms(sf::RenderTarget& w) const {
-    //std::vector<Room*> temp;
-    //temp.push_back(getActiveRoom());
-    return getRange(0,size()); //default return value
+std::vector<Room*> Hall::getOnscreenRooms() const {
+    return getRange((static_cast<int>(getActiveIndex()-1) < 0) ? 0 : getActiveIndex()-1, std::min(static_cast<unsigned int>(size()), getActiveIndex()+2));
 }
 
 Player& Hall::getPlayer() const {
@@ -110,7 +109,7 @@ void Hall::addRoom() {
 // <editor-fold defaultstate="collapsed" desc=" Graphical Methods ">
 
 void Hall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    for (Room* r : getOnscreenRooms(target)) {
+    for (Room* r : getOnscreenRooms()) {
         target.draw(*r);
     }
 }
@@ -163,10 +162,6 @@ void Hall::updateIndex(const Player& p) {
             return;
         }
     }
-    
-    if (totalLength - player.getX() < 10) {
-        addRoom();
-    }
 }
 
 void Hall::updateIndex() {
@@ -180,6 +175,9 @@ void Hall::updateRoomPositions() {
         } else {
             r->getEncounter()->move(player.getStepSize(), 0);
         }
+    }
+    if (size() - getActiveIndex() < 3) {
+        addRoom();
     }
 }
 
@@ -198,12 +196,7 @@ unsigned int Hall::genRandomSeed() {
 
 /* Return Hall for a stream */
 std::ostream& operator<<(std::ostream &strm, const Hall &h) {
-    strm << "Hall: Room " << h.getActiveIndex() << "\n";
-    for (Room* r : h) {
-        strm << "  " << *r << "\n";
-    }
-    strm << h.printDistances();
-    return strm;
+    return strm << h.operator std::string();
 }
 
 // </editor-fold>

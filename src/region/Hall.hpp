@@ -172,7 +172,7 @@ public:
      * 
      * @return Vector of Rooms
      */
-    vector<Room*> getOnscreenRooms(sf::RenderTarget& w) const;
+    vector<Room*> getOnscreenRooms() const;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -343,12 +343,18 @@ public:
         temp += "Hall: Room ";
         temp += std::to_string(this->getActiveIndex());
         temp += "\n";
-        for (Room* r : *this) {
+        for (Room* r : this->getOnscreenRooms()) {
             temp += "  ";
             temp += *r;
             temp += "\n";
         }
         temp += this->printDistances();
+        temp += "\nDisplaying Rooms ";
+        temp += std::to_string((static_cast<int>(getActiveIndex()-1) < 0) ? 0 : getActiveIndex()-1);
+        temp += " through ";
+        temp += std::to_string(std::min(static_cast<unsigned int>(size()), getActiveIndex()+2));
+        temp += ".\n";
+        getRange(std::min(static_cast<unsigned>(0), getActiveIndex()-1), std::min(static_cast<unsigned int>(size()), getActiveIndex()+2));
         return temp;
     };
     

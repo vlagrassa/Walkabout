@@ -76,7 +76,7 @@ int main() {
     }
     sf::Text hallText;
     hallText.setFont(font);
-    hallText.setCharacterSize(24);
+    hallText.setCharacterSize(20);
     hallText.setFillColor(sf::Color::Black);
     hallText.setPosition(0, 400);
     

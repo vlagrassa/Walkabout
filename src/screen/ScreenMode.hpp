@@ -19,6 +19,7 @@ public:
 private:
     std::vector<sf::Text> displayText;
     bool active;
+    virtual void runStuff();
 };
 
 #endif /* SCREENMODE_H */

@@ -81,6 +81,7 @@ int main() {
     hallText.setPosition(0, 400);
     
     /* All the window stuff */
+    int screen = 2;
     while (window.isOpen())
     {
         // check all the window's events that were triggered since the last iteration of the loop
@@ -90,45 +91,50 @@ int main() {
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
                 window.close();
-            
-            if (event.type == sf::Event::KeyPressed)
-            {
-                if (event.key.code == sf::Keyboard::Left && player.getX() > 0)
+            if(screen == 2){
+                if (event.type == sf::Event::KeyPressed)
                 {
-                    player.stepLeft(); //Everything else needs to set an absolute position based on this - will prevent going negative, too
-                    background.move(player.getStepSize());
-                    h.updateRoomPositions();
-                } 
-                if (event.key.code == sf::Keyboard::Right)
-                {
-                    player.stepRight();
-                    background.move(-player.getStepSize());
-                    h.updateRoomPositions();
-                } 
+                    if (event.key.code == sf::Keyboard::Left && player.getX() > 0)
+                    {
+                        if (event.key.code == sf::Keyboard::Left)
+                        {
+                            player.stepLeft(); //Everything else needs to set an absolute position based on this - will prevent going negative, too
+                            background.move(player.getStepSize());
+                            h.updateRoomPositions();
+                        } 
+                        if (event.key.code == sf::Keyboard::Right)
+                        {
+                            player.stepRight();
+                            background.move(-player.getStepSize());
+                            h.updateRoomPositions();
+                        } 
+                    }
+                }
             }
         }
-        std::string temp;
-        temp += "\nPlayer Position: ";
-        temp += std::to_string(player.getX());
-        temp += "\n";
-        temp += h.operator std::string();
-        hallText.setString(temp);
-        
-        std::string hi;
-        
-        //Hall needs to be updated
-        h.updateIndex();
-        
-        /* Clear the screen */
-        window.clear(sf::Color::White);
-        
-        /* Draw all the things */
-        window.draw(background);
-        window.draw(h);
-        window.draw(player);
-        window.draw(paper);
-        window.draw(hallText);
-        
+        if (screen == 2){
+            std::string temp;
+            temp += "\nPlayer Position: ";
+            temp += std::to_string(player.getX());
+            temp += "\n";
+            temp += h.operator std::string();
+            hallText.setString(temp);
+
+            std::string hi;
+
+            //Hall needs to be updated
+            h.updateIndex();
+
+            /* Clear the screen */
+            window.clear(sf::Color::White);
+
+            /* Draw all the things */
+            window.draw(background);
+            window.draw(h);
+            window.draw(player);
+            window.draw(paper);
+            window.draw(hallText);
+        }
         /* Display the screen */
         window.display();
     }

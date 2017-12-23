@@ -79,7 +79,6 @@ public:
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
      * Base constructor method. Initializes:
-     *   -activeIndex
      *   -seed
      *   -totalLength
      *   -player
@@ -354,9 +353,6 @@ public:
     };
     
 private:
-    /* Index of the current active Room */
-    unsigned int activeIndex;
-    
     /* The seed to generate new Rooms */
     const unsigned int seed;
     

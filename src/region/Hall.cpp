@@ -8,7 +8,7 @@
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
 /* Constructor - takes optional argument s */
-Hall::Hall(Player& p, unsigned int s) : activeIndex(0), seed(s), totalLength(0), player(p)  {}
+Hall::Hall(Player& p, unsigned int s) : seed(s), totalLength(0), player(p)  {}
 
 /* Default constructor */
 Hall::Hall(const Hall& orig) : Hall(orig.getPlayer(), orig.getSeed()) {}
@@ -70,13 +70,13 @@ Player& Hall::getPlayer() const {
 // <editor-fold defaultstate="collapsed" desc=" Setter Methods ">
 
 void Hall::setActiveRoom(unsigned int index) {
-    at(activeIndex)->deactivate();
-    activeIndex = index;
-    at(activeIndex)->activate();
+    at(getActiveIndex())->deactivate();
+    setActiveIndex(index);
+    at(getActiveIndex())->activate();
 }
 
 void Hall::setActiveRoom() {
-    at(activeIndex)->activate();
+    at(getActiveIndex())->activate();
 }
 
 void Hall::setActiveRoomPlayerX(unsigned int n) {
@@ -124,13 +124,13 @@ std::string Hall::printDistances() const {
     output += "|";
     for (unsigned i = 0; i < size(); i++) {
         for (unsigned j = 0; j < (at(i)->getLength())-1; j++) {
-            if (i == activeIndex && j == player.getPosInRoom()) {
+            if (i == getActiveIndex() && j == player.getPosInRoom()) {
                 output += "o";
             } else {
                 output += "_";
             }
         }
-        if (i == activeIndex && at(i)->getLength()-1 == player.getPosInRoom()) {
+        if (i == getActiveIndex() && at(i)->getLength()-1 == player.getPosInRoom()) {
             output += "A|";
         } else {
             output += "X|";
@@ -153,7 +153,7 @@ void Hall::recalcLength() {
 
 /* Calculate playerIndex based on playerX */
 void Hall::updateIndex(const Player& p) {
-    at(activeIndex)->deactivate();
+    at(getActiveIndex())->deactivate();
     unsigned l = 0;
     for (unsigned int i = 0; i < size(); i++) {
         l += at(i)->getLength();
@@ -164,6 +164,9 @@ void Hall::updateIndex(const Player& p) {
         }
     }
     
+    if (totalLength - player.getX() < 10) {
+        addRoom();
+    }
 }
 
 void Hall::updateIndex() {

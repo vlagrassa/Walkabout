@@ -96,18 +96,15 @@ int main() {
                 {
                     if (event.key.code == sf::Keyboard::Left && player.getX() > 0)
                     {
-                        if (event.key.code == sf::Keyboard::Left)
-                        {
-                            player.stepLeft(); //Everything else needs to set an absolute position based on this - will prevent going negative, too
-                            background.move(player.getStepSize());
-                            h.updateRoomPositions();
-                        } 
-                        if (event.key.code == sf::Keyboard::Right)
-                        {
-                            player.stepRight();
-                            background.move(-player.getStepSize());
-                            h.updateRoomPositions();
-                        } 
+                        player.stepLeft(); //Everything else needs to set an absolute position based on this - will prevent going negative, too
+                        background.move(player.getStepSize());
+                        h.updateRoomPositions();
+                    } 
+                    if (event.key.code == sf::Keyboard::Right)
+                    {
+                        player.stepRight();
+                        background.move(-player.getStepSize());
+                        h.updateRoomPositions();
                     }
                 }
             }

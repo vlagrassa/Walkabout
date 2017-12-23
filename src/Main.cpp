@@ -35,6 +35,8 @@ int main() {
     
     /* Create Window */
     sf::RenderWindow window(sf::VideoMode(800, 600), "Walkabout");
+    window.setFramerateLimit(0); // Fixes stuff, see https://en.sfml-dev.org/forums/index.php?topic=20033.msg144271#msg144271
+    window.setVerticalSyncEnabled(true); // This line too
     
     
     /* Instantiate the paper texture */

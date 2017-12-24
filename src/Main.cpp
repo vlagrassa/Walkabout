@@ -11,6 +11,7 @@
 #include "region/Hall.hpp"
 #include "screen/Menu.hpp"
 #include "window/Background.hpp"
+#include "TextFiling.hpp"
 
 
 int main() {
@@ -31,6 +32,10 @@ int main() {
     /* Instantiate Menu */
     Menu menu;
     std::cout << menu.get1();
+    
+    /* Instantiate TextFiling*/
+    TextFiling textfile;
+    textfile.killCount();
     
     
     /* Create Window */

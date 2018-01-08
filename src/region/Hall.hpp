@@ -5,75 +5,9 @@
 #include <stdlib.h>
 #include "Room.hpp"
 #include "../player/Player.hpp"
+#include "../utils/Utils.hpp"
 
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
- * 
- * A specialized subclass of std::vector<T> which stores an
- * active index.
- */
-template<class T> class activeVector : public std::vector<T> {
-public:
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
-     * Default constructor. Initializes:
-     *   -activeIndex
-     */
-    activeVector() : activeIndex(0) { }
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
-     * Default constructor. Currently copies nothing.
-     */
-    activeVector(const activeVector& orig) : activeIndex(0) { }
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
-     * Default destructor.
-     */
-    virtual ~activeVector() { }
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
-     * Get the item at the active index.
-     * 
-     * @TODO Fix the temporary error handling
-     * 
-     * @return The active item
-     */
-    T getActive() const {
-        try {
-            return this->at(activeIndex);
-        } catch (std::out_of_range e) {
-            return T();
-        }
-    }
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
-     * Get the active index.
-     * 
-     * @return The active index
-     */
-    unsigned int getActiveIndex() const {
-        return activeIndex;
-    }
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
-     * Set the active index.
-     * 
-     * @param The new active index
-     */
-    void setActiveIndex(unsigned int n) {
-        activeIndex = n;
-    }
-    
-private:
-    unsigned int activeIndex;
-};
-
-
-class Hall : private activeVector<Room*>, public sf::Drawable {
+class Hall : private ActiveVector<Room*>, public sf::Drawable {
 public:
     /* Con/Destructors */
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -334,9 +268,9 @@ public:
      */
     using vector<Room*>::end;
     
-    using activeVector<Room*>::getActive;
-    using activeVector<Room*>::getActiveIndex;
-    using activeVector<Room*>::setActiveIndex;
+    using ActiveVector<Room*>::getActive;
+    using ActiveVector<Room*>::getActiveIndex;
+    using ActiveVector<Room*>::setActiveIndex;
     
     operator std::string() const {
         std::string temp;

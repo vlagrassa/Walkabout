@@ -1,10 +1,10 @@
 #include "EncounterScreen.hpp"
 #include <SFML/Graphics.hpp>
 
-EncounterScreen::EncounterScreen() {
+EncounterScreen::EncounterScreen(sf::Window& window) : ScreenMode(window) {
     
 }
-EncounterScreen::EncounterScreen(const EncounterScreen& orig) {
+EncounterScreen::EncounterScreen(const EncounterScreen& orig) : ScreenMode(orig.window) {
     
 }
 EncounterScreen::~EncounterScreen() {

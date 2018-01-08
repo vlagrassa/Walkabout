@@ -7,7 +7,7 @@
 
 class TreasureScreen: public EncounterScreen {
 public:
-    TreasureScreen();
+    TreasureScreen(sf::Window& window);
     TreasureScreen(const TreasureScreen&);
     virtual ~TreasureScreen();
     

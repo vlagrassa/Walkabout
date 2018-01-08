@@ -1,10 +1,10 @@
 #include "FightScreen.hpp"
 #include <SFML/Graphics.hpp>
 
-FightScreen::FightScreen() {
+FightScreen::FightScreen(sf::Window& window) : EncounterScreen(window) {
     
 }
-FightScreen::FightScreen(const FightScreen& orig) {
+FightScreen::FightScreen(const FightScreen& orig) : EncounterScreen(orig.window) {
     
 }
 FightScreen::~FightScreen() {

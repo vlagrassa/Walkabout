@@ -11,7 +11,7 @@
  * is an abstract class.
  */
 Encounterable::Encounterable() {
-    screen = new EncounterScreen();
+    screen = new EncounterScreen(*new sf::Window()); //@TODO THIS IS BAD FIX THIS
 }
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

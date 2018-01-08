@@ -7,7 +7,7 @@
 
 class EncounterScreen: public ScreenMode {
 public:
-    EncounterScreen();
+    EncounterScreen(sf::Window& window);
     EncounterScreen(const EncounterScreen&);
     virtual ~EncounterScreen();
     

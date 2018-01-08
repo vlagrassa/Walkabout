@@ -12,7 +12,7 @@ Monster::Monster(MonsterSpecies s) {
     health = maxHealth;
     species = s;
     
-    battle_screen = new FightScreen();
+    battle_screen = new FightScreen(*new sf::Window()); //@TODO THIS IS BAD FIX THIS
     
     monster_texture = new sf::Texture();
     if (!monster_texture->loadFromFile("resources/" + getSpeciesTexture())) {
@@ -23,7 +23,7 @@ Monster::Monster(MonsterSpecies s) {
 }
 
 Monster::Monster(const Monster& orig) {
-    battle_screen = new FightScreen();
+    battle_screen = new FightScreen(*new sf::Window()); //@TODO THIS IS BAD FIX THIS
 }
 
 Monster::~Monster() {

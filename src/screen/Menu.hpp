@@ -7,7 +7,7 @@
 
 class Menu: public ScreenMode {
 public:
-    Menu();
+    Menu(sf::Window& window);
     Menu(const Menu&);
     virtual ~Menu();
     

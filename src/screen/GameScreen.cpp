@@ -1,10 +1,10 @@
 #include "GameScreen.hpp"
 #include <SFML/Graphics.hpp>
 
-GameScreen::GameScreen() {
+GameScreen::GameScreen(sf::Window& window) : ScreenMode(window) {
     
 }
-GameScreen::GameScreen(const GameScreen& orig) {
+GameScreen::GameScreen(const GameScreen& orig) : ScreenMode(window) {
     
 }
 GameScreen::~GameScreen() {

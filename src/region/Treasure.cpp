@@ -7,7 +7,7 @@
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
 Treasure::Treasure() {
-    treasure_screen = new TreasureScreen();
+    treasure_screen = new TreasureScreen(*new sf::Window); //@TODO THIS IS BAD FIX THIS
     
     treasure_texture = new sf::Texture();
     if (!treasure_texture->loadFromFile("resources/treasure_chest.png")) {
@@ -18,7 +18,7 @@ Treasure::Treasure() {
 }
 
 Treasure::Treasure(const Treasure& orig) {
-    treasure_screen = new TreasureScreen();
+    treasure_screen = new TreasureScreen(*new sf::Window); //@TODO THIS IS BAD FIX THIS
 }
 
 Treasure::~Treasure() {

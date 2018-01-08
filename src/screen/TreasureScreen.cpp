@@ -1,10 +1,10 @@
 #include "TreasureScreen.hpp"
 #include <SFML/Graphics.hpp>
 
-TreasureScreen::TreasureScreen() {
+TreasureScreen::TreasureScreen(sf::Window& window) : EncounterScreen(window) {
     
 }
-TreasureScreen::TreasureScreen(const TreasureScreen& orig) {
+TreasureScreen::TreasureScreen(const TreasureScreen& orig) : EncounterScreen(orig.window) {
     
 }
 TreasureScreen::~TreasureScreen() {

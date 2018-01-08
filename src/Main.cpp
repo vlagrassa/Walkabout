@@ -30,10 +30,6 @@ int main() {
     std::cout << h << "\n";
     
     
-    /* Instantiate Menu */
-    Menu menu;
-    std::cout << menu.get1();
-    
     /* Instantiate TextFiling*/
     TextFiling textfile;
     textfile.killCount();
@@ -43,6 +39,10 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Walkabout");
     window.setFramerateLimit(0); // Fixes stuff, see https://en.sfml-dev.org/forums/index.php?topic=20033.msg144271#msg144271
     window.setVerticalSyncEnabled(true); // This line too
+    
+    /* Instantiate Menu */
+    Menu menu(window);
+    std::cout << menu.get1();
     
     
     /* Instantiate the paper texture */

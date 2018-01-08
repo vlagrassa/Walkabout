@@ -7,7 +7,7 @@
 
 class FightScreen: public EncounterScreen {
 public:
-    FightScreen();
+    FightScreen(sf::Window &window);
     FightScreen(const FightScreen&);
     virtual ~FightScreen();
     

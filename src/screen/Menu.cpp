@@ -3,11 +3,11 @@
 #include "Menu.hpp"
 #include <SFML/Graphics.hpp>
 
-Menu::Menu() {
+Menu::Menu(sf::Window& window) : ScreenMode(window) {
     
 }
 
-Menu::Menu(const Menu& orig) {
+Menu::Menu(const Menu& orig) : ScreenMode(orig.window) {
    
 }
 

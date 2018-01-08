@@ -13,16 +13,22 @@
 #include "screen/Menu.hpp"
 #include "window/Background.hpp"
 #include "TextFiling.hpp"
+#include "screen/GameScreen.hpp"
 
 
 int main() {
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
     std::string resourceDir = "resources/";
     
+    /* Create Window */
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Walkabout");
+    window.setFramerateLimit(0); // Fixes stuff, see https://en.sfml-dev.org/forums/index.php?topic=20033.msg144271#msg144271
+    window.setVerticalSyncEnabled(true); // This line too
+    
     
     /* Instantiate Player and Hall */
     Player player;
-    Hall h(player);
+    Hall h(player, window);
     unsigned int numRooms = 3;
     for (unsigned i = 0; i < numRooms; i++) {
         h.addRoom();
@@ -34,11 +40,6 @@ int main() {
     TextFiling textfile;
     textfile.killCount();
     
-    
-    /* Create Window */
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Walkabout");
-    window.setFramerateLimit(0); // Fixes stuff, see https://en.sfml-dev.org/forums/index.php?topic=20033.msg144271#msg144271
-    window.setVerticalSyncEnabled(true); // This line too
     
     /* Instantiate Menu */
     Menu menu(window);

@@ -6,13 +6,13 @@
 
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
-Monster::Monster(MonsterSpecies s) {
+Monster::Monster(MonsterSpecies s, sf::Window& window) {
     name = "John";
     maxHealth = 20;
     health = maxHealth;
     species = s;
     
-    battle_screen = new FightScreen(*new sf::Window()); //@TODO THIS IS BAD FIX THIS
+    battle_screen = new FightScreen(window);
     
     monster_texture = new sf::Texture();
     if (!monster_texture->loadFromFile("resources/" + getSpeciesTexture())) {
@@ -23,7 +23,7 @@ Monster::Monster(MonsterSpecies s) {
 }
 
 Monster::Monster(const Monster& orig) {
-    battle_screen = new FightScreen(*new sf::Window()); //@TODO THIS IS BAD FIX THIS
+    battle_screen = new FightScreen(orig.getEncounterScreen()->window); //@TODO THIS IS BAD FIX THIS
 }
 
 Monster::~Monster() {

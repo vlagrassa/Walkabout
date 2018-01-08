@@ -14,7 +14,7 @@ public:
      * 
      * Default constructor method.
      */
-    Treasure();
+    Treasure(sf::Window& window);
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

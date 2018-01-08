@@ -17,7 +17,7 @@ public:
      * Constructor method.
      * @param MonsterSpecies type
      */
-    Monster(MonsterSpecies s);
+    Monster(MonsterSpecies s, sf::Window& window);
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

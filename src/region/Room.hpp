@@ -29,7 +29,7 @@ public:
      * 
      * @param seed The seed for the Room
      */
-    Room(unsigned int seed);
+    Room(unsigned int seed, sf::Window& window);
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -200,7 +200,7 @@ private:
      * 
      * @return Random Encounterable
      */
-    static Encounterable* genRandomEncounterable(unsigned int seed);
+    static Encounterable* genRandomEncounterable(unsigned int seed, sf::Window& window);
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

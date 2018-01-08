@@ -8,10 +8,10 @@
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
 /* Constructor - takes optional argument s */
-Hall::Hall(Player& p, unsigned int s) : seed(s), totalLength(0), player(p)  {}
+Hall::Hall(Player& p, sf::Window& window, unsigned int s) : window(window), seed(s), totalLength(0), player(p) {}
 
 /* Default constructor */
-Hall::Hall(const Hall& orig) : Hall(orig.getPlayer(), orig.getSeed()) {}
+Hall::Hall(const Hall& orig) : Hall(orig.getPlayer(), orig.window, orig.getSeed()) {} // orig.gamescreen.window
 
 /* Default destructor */
 Hall::~Hall() {}
@@ -100,7 +100,7 @@ void Hall::addRoom() {
     for (unsigned i = 0; i < size(); i++) {
         rand();
     }
-    Room* r = new Room(static_cast<unsigned int>(rand()));
+    Room* r = new Room(static_cast<unsigned int>(rand()), window);
     addRoom(r);
 }
 

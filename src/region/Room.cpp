@@ -26,7 +26,7 @@ Room::Room(unsigned int size, Encounterable* enc) : encounter(enc), length(size)
  * 
  * @param seed The seed for the Room
  */
-Room::Room(unsigned int seed) : Room((seed%15)+2, genRandomEncounterable(seed)) {}
+Room::Room(unsigned int seed, sf::Window& window) : Room((seed%15)+2, genRandomEncounterable(seed, window)) {}
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * 
@@ -193,13 +193,13 @@ void Room::deactivate() {
  * 
  * @return Random Encounterable
  */
-Encounterable* Room::genRandomEncounterable(unsigned int seed) {
+Encounterable* Room::genRandomEncounterable(unsigned int seed, sf::Window& window) {
     RoomType temp = static_cast<RoomType>(seed % 2);
     if (temp == monster) {
-        return new Monster(dinosaur);
+        return new Monster(dinosaur, window);
     }
     if (temp == treasure) {
-        return new Treasure();
+        return new Treasure(window);
     }
     std::cout << "Something went wrong in Room::genRandomEncounterable\n";
     return NULL;

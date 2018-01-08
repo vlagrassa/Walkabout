@@ -7,6 +7,8 @@
 #include "../player/Player.hpp"
 #include "../utils/Utils.hpp"
 
+class GameScreen;
+
 class Hall : private ActiveVector<Room*>, public sf::Drawable {
 public:
     /* Con/Destructors */
@@ -22,7 +24,7 @@ public:
      * @param p The Player object - saved to player
      * @param s The seed for the Hall - saved to seed
      */
-    Hall(Player& p, unsigned int s = genRandomSeed());
+    Hall(Player& p, sf::Window& window, unsigned int s = genRandomSeed());
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -291,6 +293,9 @@ public:
         getRange(std::min(static_cast<unsigned>(0), getActiveIndex()-1), std::min(static_cast<unsigned int>(size()), getActiveIndex()+2));
         return temp;
     };
+    
+    //GameScreen& gamescreen;
+    sf::Window& window;
     
 private:
     /* The seed to generate new Rooms */

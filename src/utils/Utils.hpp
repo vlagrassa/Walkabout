@@ -6,6 +6,7 @@
 template <class T> class Node;
 template <class T> class Stack;
 template <class T> class Queue;
+template <class T> class Loop;
 template <class T> class ActiveVector;
 
 template <class T> class Node {
@@ -394,6 +395,120 @@ private:
         for (Node<T>* n = q.head; n != 0; n = n->next) {
             strm << "  " << *n;
         }
+        return strm;
+    };
+};
+
+template <class T> class Loop {
+public:
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * The last Node to be added to the Loop.
+     */
+    Node<T>* end;
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * The current active Node in the Loop.
+     */
+    Node<T>* active;
+    
+    Loop<T>() : end(0), active(0) {};
+    
+    Loop<T>(const Stack<T>& orig) {
+        if (orig.isEmpty()) {
+            end = 0;
+            active = 0;
+        } else {
+            for (Node<T>* n = orig.top; n != 0; n = n->next) {
+                append(new Node<T>(n));
+            }
+        }
+    }
+    
+    Loop<T>(const Queue<T>& orig) {
+        if (orig.isEmpty()) {
+            end = 0;
+            active = 0;
+        } else {
+            for (Node<T>* n = orig.head; n != 0; n = n->next) {
+                append(new Node<T>(n));
+            }
+        }
+    }
+    
+    Loop<T>(const Loop<T>& orig) {
+        if (orig.isEmpty()) {
+            end = 0;
+            active = 0;
+        } else {
+            for (Node<T>* n = orig.getStartNode(); n != 0; n = n->next) {
+                append(new Node<T>(n));
+                if (n == orig.end) break;
+            }
+        }
+    };
+    
+    virtual ~Loop() {};
+    
+    void append(Node<T>& next) {
+        if (isEmpty()) {
+            end = &next;
+            next.next = &next;
+            active = &next;
+        } else {
+            next.next = end->next;
+            end->next = &next;
+            end = &next;
+        }
+    }
+    
+    void append(T const& data) {
+        append(*new Node<T>(data));
+    }
+    
+    Node<T> shiftNode() {
+        Node<T> temp = *active;
+        active = active->next;
+        return temp;
+    }
+    
+    T shift() {
+        return shiftNode().data;
+    }
+    
+    Node<T>& getStartNode() const {
+        return *end->next;
+    }
+    
+    T getStart() {
+        return getStartNode().data;
+    }
+    
+    T getEnd() {
+        return end->data;
+    }
+    
+    T getActive() {
+        return active->data;
+    }
+    
+    void reset() {
+        active = end->next;
+    }
+    
+    bool isEmpty() {
+        return end == 0;
+    }
+    
+private:
+    friend std::ostream& operator<<(std::ostream &strm, const Loop<T> &l) {
+        strm << "Loop " << &l << ":\n";
+        for (Node<T>* n = &l.getStartNode(); n != 0; n = n->next) {
+            strm << ((n == l.active) ? " *" : "  ") << *n;
+            if (n == l.end) break;
+        }
+        strm << "[End of Loop " << &l << "]\n";
         return strm;
     };
 };

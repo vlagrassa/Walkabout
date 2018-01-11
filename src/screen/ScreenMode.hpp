@@ -55,12 +55,16 @@ public:
     ScreenMode(const ScreenMode& orig) : window(orig.window) {};
     virtual ~ScreenMode() {};
     
-    virtual ScreenMode* run() {
-        if (!buttons.isEmpty()) {
-            for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
-                if (n->data.clicked()) {
-                    return &n->data.link;
-                }
+    virtual ScreenMode* run(sf::Event event) {
+        return checkButtons();
+    };
+    
+    virtual void update(sf::Event) {};
+    
+    ScreenMode* checkButtons() {
+        for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
+            if (n->data.clicked()) {
+                return &n->data.link;
             }
         }
         return this;
@@ -85,8 +89,6 @@ public:
     
 private:
     std::vector<sf::Text> displayText;
-    bool active;
-    virtual void runStuff();
 };
 
 #endif /* SCREENMODE_H */

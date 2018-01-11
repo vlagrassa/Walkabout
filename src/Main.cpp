@@ -102,7 +102,7 @@ int main() {
                     window.close();
                     break;
                 case (sf::Event::KeyPressed):
-                   if (event.key.code == sf::Keyboard::Left && player.getX() > 0)
+                    if (event.key.code == sf::Keyboard::Left && player.getX() > 0)
                     {
                         player.stepLeft(); //Everything else needs to set an absolute position based on this - will prevent going negative, too
                         background.move(player.getStepSize());
@@ -121,7 +121,9 @@ int main() {
                 default:
                     break;
             }
-            listOfScreens.top->data.update(event);
+            if (!listOfScreens.isEmpty()) {
+                listOfScreens.top->data.update(event);
+            }
         }
         
         std::string temp;

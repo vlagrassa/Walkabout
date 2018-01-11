@@ -26,14 +26,8 @@ int main() {
     window.setVerticalSyncEnabled(true); // This line too
     
     
-    /* Instantiate Player and Hall */
+    /* Instantiate Player */
     Player player;
-    Hall h(player, window);
-    unsigned int numRooms = 3;
-    for (unsigned i = 0; i < numRooms; i++) {
-        h.addRoom();
-    }
-    std::cout << h << "\n";
     
     
     /* Create Ambience (like a texture pack) and Background */

@@ -21,15 +21,17 @@ enum ItemsType{
         
 class Items {
 public:
-    Items() : ItemsType(), mind(0), body(0), mana(0) {};
+    Items() : type(Sword), mind(0), body(0), mana(0) {};
     Items(const Items&);
     virtual ~Items();
     
     bool isEquipable();
     
+    ItemsType type;
     std::string name = "";
     /*Stats*/
     int mind;
     int body;
     int mana;
 };
+#endif

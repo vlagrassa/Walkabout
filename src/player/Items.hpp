@@ -5,12 +5,31 @@
 #include <stdlib.h>
 #include <iostream>
 
-Items::Items() {
+enum ItemsType{
+    Head,
+    Chest,
+    Legs,
+    Sword,
+    Bow,
+    Staff,
+    Potion,
+    Book,
+       
+};
+
+
+        
+class Items {
+public:
+    Items() : ItemsType(), mind(0), body(0), mana(0) {};
+    Items(const Items&);
+    virtual ~Items();
     
-}
-Items::Items(const Items& orig) {
+    bool isEquipable();
     
-}
-Items::~Items() {
-    
-}
+    std::string name = "";
+    /*Stats*/
+    int mind;
+    int body;
+    int mana;
+};

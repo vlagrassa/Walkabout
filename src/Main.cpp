@@ -38,7 +38,7 @@ int main() {
     
     /* Initialize ScreenMode Stack */
     Stack<ScreenMode&> listOfScreens;
-    GameScreen testGameScreen(window, player);
+    GameScreen testGameScreen(window, player, h);
     listOfScreens.push(testGameScreen);
     
     

@@ -46,7 +46,7 @@ public:
     }
 };
 
-class ScreenMode {
+class ScreenMode : public sf::Drawable {
 public:
     Queue<LinkedButton&> buttons;
     sf::Window& window;
@@ -81,7 +81,7 @@ public:
     void activate();
     void deactivate();
     
-    void draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
         for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
             target.draw(n->data);
         }

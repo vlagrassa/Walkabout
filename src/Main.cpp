@@ -98,6 +98,7 @@ int main() {
                 case (sf::Event::Closed):
                     window.close();
                     break;
+                case (sf::Event::KeyPressed):
                     if (event.key.code == sf::Keyboard::Q) {
                         if (listOfScreens.top->hasNext()) listOfScreens.pop();
                     }

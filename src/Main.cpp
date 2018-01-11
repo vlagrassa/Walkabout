@@ -27,6 +27,8 @@ int main() {
     
     
     Stack<ScreenMode&> listOfScreens;
+    GameScreen testGameScreen(window);
+    listOfScreens.push(testGameScreen);
     
     
     /* Instantiate Player and Hall */
@@ -101,28 +103,19 @@ int main() {
                 case (sf::Event::Closed):
                     window.close();
                     break;
-                case (sf::Event::KeyPressed):
-                    if (event.key.code == sf::Keyboard::Left && player.getX() > 0)
-                    {
-                        player.stepLeft(); //Everything else needs to set an absolute position based on this - will prevent going negative, too
-                        background.move(player.getStepSize());
-                        h.updateRoomPositions();
-                    } 
-                    if (event.key.code == sf::Keyboard::Right)
-                    {
-                        player.stepRight();
-                        background.move(-player.getStepSize());
-                        h.updateRoomPositions();
-                    }
                     if (event.key.code == sf::Keyboard::Q) {
+                        std::cout << "Quitting Screen...\n";
                         if (listOfScreens.top->hasNext()) listOfScreens.pop();
+                        std::cout << "Finished quitting Screen.\n";
                     }
                     break;
                 default:
                     break;
             }
             if (!listOfScreens.isEmpty()) {
+                std::cout << "Updating Screen...\n";
                 listOfScreens.top->data.update(event);
+                std::cout << "Finished updating Screen.\n";
             }
         }
         
@@ -135,15 +128,14 @@ int main() {
 
         std::string hi;
 
-        //Hall needs to be updated
-        h.updateIndex();
-
         /* Clear the screen */
         window.clear(sf::Color::White);
         
         /* Figure out the active screen */
         if (!listOfScreens.isEmpty()) {
+            std::cout << "Getting Screen...\n";
             ScreenMode* nextScreen = listOfScreens.top->data.run(event);
+            std::cout << "Finished getting Screen.\n";
             if (nextScreen == 0) {
                 listOfScreens.pop();
                 std::cout << "Removed screen:\n" << listOfScreens << "\n";
@@ -151,13 +143,12 @@ int main() {
                 listOfScreens.push(*nextScreen);
                 std::cout << "Added screen:\n" << listOfScreens << "\n";
             }
+            std::cout << "Drawing Screen...\n";
             window.draw(*nextScreen);
+            std::cout << "Finished drawing Screen.\n";
         }
 
-        /* Draw all the things */
-        window.draw(background);
-        window.draw(h);
-        window.draw(player);
+        /* Draw all the other things */
         window.draw(paper);
         window.draw(hallText);
         

@@ -11,6 +11,7 @@
 class GameScreen: public ScreenMode {
 public:
     GameScreen(sf::Window& window, Player& player, Background& background);
+    GameScreen(sf::Window& window, Player& player, Background& background, Hall& hall);
     GameScreen(const GameScreen&);
     virtual ~GameScreen();
     

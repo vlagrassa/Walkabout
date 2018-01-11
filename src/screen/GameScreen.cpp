@@ -1,7 +1,9 @@
 #include "GameScreen.hpp"
 #include <SFML/Graphics.hpp>
 
-GameScreen::GameScreen(sf::Window& window, Player& player, Background& background) : ScreenMode(window), player(player), hall(*new Hall(player, window)), background(background) {
+GameScreen::GameScreen(sf::Window& window, Player& player, Background& background) : GameScreen(window, player, background, *new Hall(player, window)) {};
+
+GameScreen::GameScreen(sf::Window& window, Player& player, Background& background, Hall& hall) : ScreenMode(window), player(player), hall(hall), background(background) {
     std::cout << "Hall is " << &hall << ", Player is " << &player << "\n";
     unsigned int numRooms = 3;
     for (unsigned i = 0; i < numRooms; i++) {

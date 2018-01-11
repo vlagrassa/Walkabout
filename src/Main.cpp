@@ -26,6 +26,9 @@ int main() {
     window.setVerticalSyncEnabled(true); // This line too
     
     
+    Stack<ScreenMode&> listOfScreens;
+    
+    
     /* Instantiate Player and Hall */
     Player player;
     Hall h(player, window);
@@ -111,10 +114,14 @@ int main() {
                         background.move(-player.getStepSize());
                         h.updateRoomPositions();
                     }
-                   break;
+                    if (event.key.code == sf::Keyboard::Q) {
+                        if (listOfScreens.top->hasNext()) listOfScreens.pop();
+                    }
+                    break;
                 default:
                     break;
             }
+            listOfScreens.top->data.update(event);
         }
         
         std::string temp;
@@ -131,6 +138,19 @@ int main() {
 
         /* Clear the screen */
         window.clear(sf::Color::White);
+        
+        /* Figure out the active screen */
+        if (!listOfScreens.isEmpty()) {
+            ScreenMode* nextScreen = listOfScreens.top->data.run(event);
+            if (nextScreen == 0) {
+                listOfScreens.pop();
+                std::cout << "Removed screen:\n" << listOfScreens << "\n";
+            } else if (nextScreen != &listOfScreens.top->data) {
+                listOfScreens.push(*nextScreen);
+                std::cout << "Added screen:\n" << listOfScreens << "\n";
+            }
+            window.draw(*nextScreen);
+        }
 
         /* Draw all the things */
         window.draw(background);

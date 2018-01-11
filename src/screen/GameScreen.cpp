@@ -20,7 +20,6 @@ ScreenMode* GameScreen::run(sf::Event event) {
 };
 
 void GameScreen::update(sf::Event event) {
-    std::cout << "Starting update\n";
     if (event.type == sf::Event::KeyPressed) {
         if (event.key.code == sf::Keyboard::Left && player.getX() > 0) {
             player.stepLeft();
@@ -33,7 +32,6 @@ void GameScreen::update(sf::Event event) {
             hall.updateRoomPositions();
         }
     }
-    std::cout << "Finished update\n";
 };
 
 void GameScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const {

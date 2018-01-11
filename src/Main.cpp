@@ -105,18 +105,14 @@ int main() {
                     window.close();
                     break;
                     if (event.key.code == sf::Keyboard::Q) {
-                        std::cout << "Quitting Screen...\n";
                         if (listOfScreens.top->hasNext()) listOfScreens.pop();
-                        std::cout << "Finished quitting Screen.\n";
                     }
                     break;
                 default:
                     break;
             }
             if (!listOfScreens.isEmpty()) {
-                std::cout << "Updating Screen...\n";
                 listOfScreens.top->data.update(event);
-                std::cout << "Finished updating Screen.\n";
             }
         }
         
@@ -134,9 +130,7 @@ int main() {
         
         /* Figure out the active screen */
         if (!listOfScreens.isEmpty()) {
-            std::cout << "Getting Screen...\n";
             ScreenMode* nextScreen = listOfScreens.top->data.run(event);
-            std::cout << "Finished getting Screen.\n";
             if (nextScreen == 0) {
                 listOfScreens.pop();
                 std::cout << "Removed screen:\n" << listOfScreens << "\n";
@@ -144,9 +138,7 @@ int main() {
                 listOfScreens.push(*nextScreen);
                 std::cout << "Added screen:\n" << listOfScreens << "\n";
             }
-            std::cout << "Drawing Screen...\n";
             window.draw(*nextScreen);
-            std::cout << "Finished drawing Screen.\n";
         }
 
         /* Draw all the other things */

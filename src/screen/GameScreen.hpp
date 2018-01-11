@@ -10,7 +10,7 @@
 
 class GameScreen: public ScreenMode {
 public:
-    GameScreen(sf::Window& window, Player& player);
+    GameScreen(sf::Window& window, Player& player, Background& background);
     GameScreen(const GameScreen&);
     virtual ~GameScreen();
     
@@ -22,10 +22,7 @@ public:
     
     Player& player;
     Hall& hall;
-    
-private:
-    
-    Background* background;
+    Background& background;
 };
 
 #endif /* GAMESCREEN_H */

@@ -36,9 +36,14 @@ int main() {
     std::cout << h << "\n";
     
     
+    /* Create Ambience (like a texture pack) and Background */
+    Ambience standard(resourceDir);
+    Background background(standard, window);
+    
+    
     /* Initialize ScreenMode Stack */
     Stack<ScreenMode&> listOfScreens;
-    GameScreen testGameScreen(window, player);
+    GameScreen testGameScreen(window, player, background);
     listOfScreens.push(testGameScreen);
     
     
@@ -60,11 +65,6 @@ int main() {
     }
     sf::Sprite paper;
     paper.setTexture(paperTexture);
-    
-    
-    /* Create Ambience (like a texture pack) and Background */
-    Ambience standard(resourceDir);
-    Background background(standard, window);
     
     
     /* Create other textures */

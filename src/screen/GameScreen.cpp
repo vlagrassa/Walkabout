@@ -1,7 +1,7 @@
 #include "GameScreen.hpp"
 #include <SFML/Graphics.hpp>
 
-GameScreen::GameScreen(sf::Window& window, Player& player) : ScreenMode(window), player(player), hall(*new Hall(player, window)) {
+GameScreen::GameScreen(sf::Window& window, Player& player, Background& background) : ScreenMode(window), player(player), hall(*new Hall(player, window)), background(background) {
     std::cout << "Hall is " << &hall << ", Player is " << &player << "\n";
     unsigned int numRooms = 3;
     for (unsigned i = 0; i < numRooms; i++) {
@@ -10,7 +10,7 @@ GameScreen::GameScreen(sf::Window& window, Player& player) : ScreenMode(window),
     std::cout << hall << "\n";
 };
 
-GameScreen::GameScreen(const GameScreen& orig) : ScreenMode(window), player(orig.player), hall(orig.hall) {};
+GameScreen::GameScreen(const GameScreen& orig) : ScreenMode(window), player(orig.player), hall(orig.hall), background(orig.background) {};
 
 GameScreen::~GameScreen() {};
 
@@ -24,12 +24,12 @@ void GameScreen::update(sf::Event event) {
     if (event.type == sf::Event::KeyPressed) {
         if (event.key.code == sf::Keyboard::Left && player.getX() > 0) {
             player.stepLeft();
-            background->move(player.getStepSize());
+            background.move(player.getStepSize());
             hall.updateRoomPositions();
         } 
         if (event.key.code == sf::Keyboard::Right) {
             player.stepRight();
-            background->move(-player.getStepSize());
+            background.move(-player.getStepSize());
             hall.updateRoomPositions();
         }
     }
@@ -37,7 +37,7 @@ void GameScreen::update(sf::Event event) {
 };
 
 void GameScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    //target.draw(*background);
+    target.draw(background);
     target.draw(hall);
     target.draw(player);
     ScreenMode::draw(target, states);

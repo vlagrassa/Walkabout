@@ -89,21 +89,17 @@ int main() {
     hallText.setFillColor(sf::Color::Black);
     hallText.setPosition(0, 400);
     
-    /* All the window stuff */
-    int screen = 2;
     while (window.isOpen())
     {
-        // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
         while (window.pollEvent(event))
         {
-            // "close requested" event: we close the window
-            if (event.type == sf::Event::Closed)
-                window.close();
-            if(screen == 2){
-                if (event.type == sf::Event::KeyPressed)
-                {
-                    if (event.key.code == sf::Keyboard::Left && player.getX() > 0)
+            switch(event.type) {
+                case (sf::Event::Closed):
+                    window.close();
+                    break;
+                case (sf::Event::KeyPressed):
+                   if (event.key.code == sf::Keyboard::Left && player.getX() > 0)
                     {
                         player.stepLeft(); //Everything else needs to set an absolute position based on this - will prevent going negative, too
                         background.move(player.getStepSize());
@@ -115,32 +111,34 @@ int main() {
                         background.move(-player.getStepSize());
                         h.updateRoomPositions();
                     }
-                }
+                   break;
+                default:
+                    break;
             }
         }
-        if (screen == 2){
-            std::string temp;
-            temp += "\nPlayer Position: ";
-            temp += std::to_string(player.getX());
-            temp += "\n";
-            temp += h.operator std::string();
-            hallText.setString(temp);
+        
+        std::string temp;
+        temp += "\nPlayer Position: ";
+        temp += std::to_string(player.getX());
+        temp += "\n";
+        temp += h.operator std::string();
+        hallText.setString(temp);
 
-            std::string hi;
+        std::string hi;
 
-            //Hall needs to be updated
-            h.updateIndex();
+        //Hall needs to be updated
+        h.updateIndex();
 
-            /* Clear the screen */
-            window.clear(sf::Color::White);
+        /* Clear the screen */
+        window.clear(sf::Color::White);
 
-            /* Draw all the things */
-            window.draw(background);
-            window.draw(h);
-            window.draw(player);
-            window.draw(paper);
-            window.draw(hallText);
-        }
+        /* Draw all the things */
+        window.draw(background);
+        window.draw(h);
+        window.draw(player);
+        window.draw(paper);
+        window.draw(hallText);
+        
         /* Display the screen */
         window.display();
     }

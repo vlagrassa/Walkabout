@@ -14,8 +14,11 @@ public:
     GameScreen(const GameScreen&);
     virtual ~GameScreen();
     
+    virtual ScreenMode* run(sf::Event event);
+    virtual void update(sf::Event);
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+    
     virtual std::string testThing();
-    void drawStuff();
 private:
     Player* player;
     Hall* hall;

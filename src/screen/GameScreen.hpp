@@ -10,7 +10,7 @@
 
 class GameScreen: public ScreenMode {
 public:
-    GameScreen(sf::Window& window);
+    GameScreen(sf::Window& window, Player& player);
     GameScreen(const GameScreen&);
     virtual ~GameScreen();
     
@@ -19,8 +19,10 @@ public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
     virtual std::string testThing();
+    
+    Player& player;
+    
 private:
-    Player* player;
     Hall* hall;
     Background* background;
 };

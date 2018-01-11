@@ -26,11 +26,6 @@ int main() {
     window.setVerticalSyncEnabled(true); // This line too
     
     
-    Stack<ScreenMode&> listOfScreens;
-    GameScreen testGameScreen(window);
-    listOfScreens.push(testGameScreen);
-    
-    
     /* Instantiate Player and Hall */
     Player player;
     Hall h(player, window);
@@ -39,6 +34,12 @@ int main() {
         h.addRoom();
     }
     std::cout << h << "\n";
+    
+    
+    /* Initialize ScreenMode Stack */
+    Stack<ScreenMode&> listOfScreens;
+    GameScreen testGameScreen(window, player);
+    listOfScreens.push(testGameScreen);
     
     
     /* Instantiate TextFiling*/

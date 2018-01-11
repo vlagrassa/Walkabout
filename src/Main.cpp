@@ -124,7 +124,7 @@ int main() {
         temp += "\nPlayer Position: ";
         temp += std::to_string(player.getX());
         temp += "\n";
-        temp += h.operator std::string();
+        temp += testGameScreen.hall.operator std::string();
         hallText.setString(temp);
 
         std::string hi;

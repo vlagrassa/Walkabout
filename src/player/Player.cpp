@@ -1,10 +1,11 @@
 #include "Player.hpp"
+#include "Item.hpp"
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
 #include <iostream>
 
 
-Player::Player() : posX(0), posInRoom(0), stepSize(10) {
+Player::Player() : posX(0), posInRoom(0), stepSize(10), stats({0, 0, 0}) {
     std::cout << "hi";
 }
 
@@ -78,6 +79,42 @@ bool Player::isMovingRight() {
 
 bool Player::isMovingLeft() {
     return !isMovingRight();
+}
+
+/*Stats*/
+void Player::modify(Stats stat){
+    stats.body += stat.body;
+    stats.mind += stat.mind;
+    stats.mana += stat.mana;
+}
+/*INVENTORY and EQUIPING*/
+    
+void Player::addItem(Item& item){
+    itemVector.push_back(item);
+}
+
+void Player::equip(Item& item){
+    switch(item.type){
+        case(head):
+            equipped.head = item;
+            break;
+        case(Chest):
+            equipped.chest = item;
+            break;
+        case(hand):
+            equipped.hand = item;
+            break;
+        case(pocket1):
+            equipped.pocket1 = item;
+            break;
+        case(pocket2):
+            equipped.pocket2 = item;
+            break;
+        default:
+            /*throw error*/
+            break;
+    }
+    
 }
 
 /* Return Player for a stream */

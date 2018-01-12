@@ -16,17 +16,17 @@
 #include <fstream>
 
 
-TextFiling::TextFiling() {
+SaveData::SaveData() {
     
 }
-TextFiling::TextFiling(const TextFiling& orig) {
+SaveData::SaveData(const SaveData& orig) {
     
 }
-TextFiling::~TextFiling() {
+SaveData::~SaveData() {
     
 }
 
-void TextFiling::killCount(){
+void SaveData::killCount(){
     std::ofstream data;
     data.open("saveData");
     data << "Writing this to a file.\n";

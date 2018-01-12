@@ -3,6 +3,14 @@
 
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
+#include "Item.hpp"
+
+typedef int stat;
+struct Stats{
+        stat body;
+        stat mind;
+        stat mana;     
+    };
 
 class Player : public sf::Sprite {
 public:
@@ -158,11 +166,35 @@ public:
      * 
      * @return Player step size
      */
+    
+    
     int getStepSize() const;
     
     bool isMovingRight();
     
     bool isMovingLeft();
+    
+    /*INVENTORY and EQUIPING*/
+    std::vector<Item> itemVector;
+    
+    /*stats*/
+    
+    Stats stats;
+    
+    void modify(Stats stat);
+    
+    void addItem(Item& item);
+    
+    struct equipped{
+        Item& head;
+        Item& chest;
+        Item& hand;
+        Item& pocke1;
+        Item& pocket2;
+    };
+    equipped items;
+    
+    void equip(Item& item);
     
 private:
     /* Absolute position of the Player - in context of Hall */

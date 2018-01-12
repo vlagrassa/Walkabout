@@ -12,11 +12,12 @@ public:
     Animation(sf::Texture& texture, int rowNum, int colNum);
     Animation(const Animation& orig);
     virtual ~Animation();
-    void setSpriteSheet();
+    void setSpriteSheet(int rowNum, int colNum);
     
 private:
     float rectWidth;
     float heightWidth;
+    
     Loop<sf::IntRect> frames;
     sf::Texture& texture;
     

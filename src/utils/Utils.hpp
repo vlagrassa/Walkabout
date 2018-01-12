@@ -501,6 +501,10 @@ public:
         return end == 0;
     }
     
+    bool isFinished() {
+        return active == &getStartNode(); 
+    }
+    
 private:
     friend std::ostream& operator<<(std::ostream &strm, const Loop<T> &l) {
         strm << "Loop " << &l << ":\n";

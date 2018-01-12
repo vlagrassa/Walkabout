@@ -5,6 +5,8 @@
 #include <stdlib.h> 
 #include <iostream>
 
+//void setSpriteSheet(const sf::Texture& spriteSheet, int rowNum, int colNum);
+
 class Ambience {
 public:
     Ambience(std::string resources);
@@ -16,6 +18,10 @@ public:
     sf::Texture* getImBg();
     sf::Texture* getGround();
     
+    
+    //sf::Animation monster1; //create array of frames for monster
+    
+        
 private:
     sf::Texture skyTexture;
     sf::Texture horizonBgTexture;

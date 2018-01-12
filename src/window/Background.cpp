@@ -10,9 +10,9 @@ Background::Background(Ambience& setting, sf::RenderWindow& window) {
     ground.setTexture(*setting.getGround());
     
     /*set sizes for texturess*/
-    horizonBg.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x), static_cast<int>(setting.getHorizonBg()->getSize().y) });
-    imBg.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x), static_cast<int>(window.getSize().y*3/5)});
-    ground.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x), static_cast<int>(setting.getGround()->getSize().y) });
+    horizonBg.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x)*3, static_cast<int>(setting.getHorizonBg()->getSize().y) });
+    imBg.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x)*5, static_cast<int>(window.getSize().y*3/5)});
+    ground.setTextureRect({ 0, 0, static_cast<int>(window.getSize().x)*5, static_cast<int>(setting.getGround()->getSize().y) });
     
     sky.setPosition(0,0);
     horizonBg.setPosition(0,window.getSize().y*3/16);

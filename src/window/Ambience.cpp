@@ -2,6 +2,9 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+
+
+
 Ambience::Ambience(std::string resources) {
      if (!skyTexture.loadFromFile(resources + "sky.png"))
     {
@@ -62,3 +65,5 @@ void Ambience::initTextures() {
     imBgTexture.setRepeated(true);
     groundTexture.setRepeated(true);
 }
+
+

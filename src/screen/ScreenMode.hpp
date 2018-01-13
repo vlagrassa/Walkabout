@@ -81,9 +81,8 @@ public:
         return this;
     };
     
-    LinkedButton& addButton(LinkedButton& b) {
+    void addButton(LinkedButton& b) {
         buttons.enqueue(b);
-        return b;
     }
     
     void addText(sf::Text);

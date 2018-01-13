@@ -11,7 +11,7 @@ public:
     Menu(const Menu&);
     virtual ~Menu();
     
-    LinkedButton& addMenuOption(std::string text, sf::Font& font, ScreenMode& link);
+    void addMenuOption(std::string text, sf::Font& font, ScreenMode& link);
     
     int get1() const;
 private:

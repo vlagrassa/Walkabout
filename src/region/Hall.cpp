@@ -64,6 +64,14 @@ Player& Hall::getPlayer() const {
     return player;
 }
 
+bool Hall::canEncounter() {
+    return player.getPosInRoom() == at(activeIndex)->getLength()-1;
+}
+
+EncounterScreen* Hall::getEncounterScreen() {
+    return at(activeIndex)->getScreen();
+}
+
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc=" Setter Methods ">

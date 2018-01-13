@@ -64,6 +64,8 @@ public:
      */
     Room* getRoom(unsigned int index) const;
     
+    Room* getActiveRoom() const;
+    
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
      * Get x position for the number of steps into the Room at a

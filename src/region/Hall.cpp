@@ -31,6 +31,10 @@ Room* Hall::getRoom(unsigned int index) const {
     return at(index);
 }
 
+Room* Hall::getActiveRoom() const {
+    return getRoom(activeIndex);
+}
+
 unsigned int Hall::getRoomPos(unsigned int index, unsigned int steps) {
     unsigned l = 0;
     for (unsigned int i = 0; i < index; i++) {

@@ -18,18 +18,25 @@
 
 int main() {
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
+    
+    
+    /* Identify the resource directory */
     std::string resourceDir = "resources/";
+    
     
     /* Create Window */
     sf::RenderWindow window(sf::VideoMode(800, 600), "Walkabout");
-    window.setFramerateLimit(0); // Fixes stuff, see https://en.sfml-dev.org/forums/index.php?topic=20033.msg144271#msg144271
-    window.setVerticalSyncEnabled(true); // This line too
+    // See https://en.sfml-dev.org/forums/index.php?topic=20033.msg144271#msg144271 for explanation of following lines
+    window.setFramerateLimit(0);
+    window.setVerticalSyncEnabled(true);
     
     
+    /* Instantiate the default font (Courier) */
     sf::Font font;
     if (!font.loadFromFile("resources/Courier.dfont")) {
         return -1;
     }
+    
     
     /* Instantiate Player */
     Player player;
@@ -40,21 +47,17 @@ int main() {
     Background background(standard, window);
     
     
-    /* Initialize ScreenMode Stack */
+    /* Initialize ScreenMode Stack, Menu, and GameScreen */
     Stack<ScreenMode&> listOfScreens;
+    Menu mainMenu(window);
     GameScreen testGameScreen(window, player, background);
+    mainMenu.addMenuOption("T", font, testGameScreen);
+    listOfScreens.push(mainMenu);
     
     
-    /* Instantiate TextFiling*/
+    /* Instantiate TextFiling */
     TextFiling textfile;
     textfile.killCount();
-    
-    
-    /* Instantiate Menu */
-    Menu menu(window);
-    menu.addMenuOption("T", font, testGameScreen);
-    std::cout << menu.get1();
-    listOfScreens.push(menu);
     
     
     /* Instantiate the paper texture */
@@ -85,25 +88,28 @@ int main() {
     //h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/4);
     player.setPosition(0,window.getSize().x/4);
     
+    
+    /* Create the debugging text tracking the current hall */
     sf::Text hallText;
     hallText.setFont(font);
     hallText.setCharacterSize(20);
     hallText.setFillColor(sf::Color::Black);
     hallText.setPosition(0, 400);
     
-    std::cout << "ListOfScreens starting as:\n" << listOfScreens << "\n";
     
-    while (window.isOpen())
-    {
+    /* Main loop */
+    while (window.isOpen()) {
         sf::Event event;
-        while (window.pollEvent(event))
-        {
+        
+        /* Event loop */
+        while (window.pollEvent(event)) {
             switch(event.type) {
                 case (sf::Event::Closed):
                     window.close();
                     break;
                 case (sf::Event::KeyPressed):
                     if (event.key.code == sf::Keyboard::Q) {
+                        //If the q key is pressed, go back to the previous screen (if possible)
                         if (listOfScreens.top->hasNext()) listOfScreens.pop();
                     }
                     break;
@@ -112,32 +118,40 @@ int main() {
             }
         }
         
+        /* Update the debugging text */
         std::string temp;
         temp += "\nPlayer Position: ";
         temp += std::to_string(player.getX());
         temp += "\n";
         temp += testGameScreen.hall.operator std::string();
         hallText.setString(temp);
-
-        std::string hi;
-
+        
         /* Clear the screen */
         window.clear(sf::Color::White);
         
         /* Figure out the active screen */
         if (!listOfScreens.isEmpty()) {
+            
+            /* Get the next screen */
             ScreenMode* nextScreen = listOfScreens.top->data.run(event);
+            
             if (nextScreen == 0) {
+                /* If next screen is 0x0 (NULL), pop the current screen (go back) */
                 listOfScreens.pop();
                 std::cout << "Removed screen:\n" << listOfScreens << "\n";
-            } else if (nextScreen != &listOfScreens.top->data) {
+            }
+            else if (nextScreen != &listOfScreens.top->data) {
+                /* If the next screen is different from the current screen, push it onto the stack */
                 listOfScreens.push(*nextScreen);
                 std::cout << "Added screen:\n" << listOfScreens << "\n";
             }
+            /* If neither of the above happened then the next screen is the same as the current screen - don't do anything */
+            
+            /* Draw the next screen - should this be changed to draw the top of the stack? does it matter? */
             window.draw(*nextScreen);
         }
         
-        /* Draw all the other things */
+        /* Draw the paper texture (for aesthetics) and the debugging text (for help) */
         window.draw(paper);
         window.draw(hallText);
         

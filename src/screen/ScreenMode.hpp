@@ -83,7 +83,6 @@ public:
     
     LinkedButton& addButton(LinkedButton& b) {
         buttons.enqueue(b);
-        std::cout << "Added from addButton:\n\"" << std::string(buttons.tail->data.title.getString()) << "\" linked to " << &buttons.tail->data.link << " in window " << &buttons.tail->data.window << "\n";
         return b;
     }
     

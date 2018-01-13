@@ -118,6 +118,10 @@ public:
      */
     Player& getPlayer() const;
     
+    bool canEncounter();
+    
+    EncounterScreen* getEncounterScreen();
+    
     
     /* Setter methods */
     

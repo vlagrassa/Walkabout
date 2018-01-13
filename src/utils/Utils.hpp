@@ -389,6 +389,20 @@ public:
         return ((head == 0) && (tail == 0));
     }
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get the number of items in the Queue as an unsigned int.
+     * 
+     * @return Length of Queue
+     */
+    unsigned int getLength() {
+        unsigned int i = 0;
+        for (Node<T>* n = head; n != 0; n = n->next) {
+            i++;
+        }
+        return i;
+    }
+    
 private:
     friend std::ostream& operator<<(std::ostream &strm, const Queue<T> &q) {
         strm << "Queue " << &q << ":\n";

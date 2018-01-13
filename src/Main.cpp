@@ -106,9 +106,6 @@ int main() {
                 default:
                     break;
             }
-            if (!listOfScreens.isEmpty()) {
-                listOfScreens.top->data.update(event);
-            }
         }
         
         std::string temp;

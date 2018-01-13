@@ -26,6 +26,11 @@ int main() {
     window.setVerticalSyncEnabled(true); // This line too
     
     
+    sf::Font font;
+    if (!font.loadFromFile("resources/Courier.dfont")) {
+        return -1;
+    }
+    
     /* Instantiate Player */
     Player player;
     
@@ -48,7 +53,16 @@ int main() {
     
     /* Instantiate Menu */
     Menu menu(window);
+    //menu.addMenuOption("T", font, testGameScreen);
+    
+    LinkedButton tempButton(testGameScreen, window);
+    tempButton.setTitle(*new sf::Text("T", font));
+    menu.addButton(tempButton);
+    
+    std::cout << "Added test\n";
     std::cout << menu.get1();
+    listOfScreens.push(menu);
+    std::cout << "Pushed\n";
     
     
     /* Instantiate the paper texture */
@@ -79,10 +93,6 @@ int main() {
     //h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/4);
     player.setPosition(0,window.getSize().x/4);
     
-    sf::Font font;
-    if (!font.loadFromFile("resources/Courier.dfont")) {
-        return -1;
-    }
     sf::Text hallText;
     hallText.setFont(font);
     hallText.setCharacterSize(20);
@@ -122,7 +132,9 @@ int main() {
         
         /* Figure out the active screen */
         if (!listOfScreens.isEmpty()) {
+            std::cout << "About to run\n";
             ScreenMode* nextScreen = listOfScreens.top->data.run(event);
+            std::cout << "Ran\n";
             if (nextScreen == 0) {
                 listOfScreens.pop();
                 std::cout << "Removed screen:\n" << listOfScreens << "\n";
@@ -132,7 +144,7 @@ int main() {
             }
             window.draw(*nextScreen);
         }
-
+        
         /* Draw all the other things */
         window.draw(paper);
         window.draw(hallText);

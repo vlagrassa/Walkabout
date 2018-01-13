@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
+#include <iostream>
 
 #include "../utils/Utils.hpp"
 
@@ -13,6 +14,7 @@ class LinkedButton : public sf::RectangleShape {
 public:
     ScreenMode& link;
     sf::Window& window;
+    sf::Text title;
     
     LinkedButton(ScreenMode& link, sf::Window& window) : link(link), window(window) {
         setSize(sf::Vector2f(100, 50));
@@ -37,7 +39,14 @@ public:
     
     virtual ~LinkedButton() {};
     
+    void setTitle(sf::Text& text) {
+        title = text;
+        title.setPosition(getPosition());
+        title.setFillColor(sf::Color::Black);
+    }
+    
     bool touchingMouse() {
+        std::cout << "In touchingMouse - window is " << &window << "\n";
         return getGlobalBounds().contains(sf::Mouse().getPosition(window).x, sf::Mouse().getPosition(window).y);
     }
     
@@ -61,6 +70,7 @@ public:
     
     ScreenMode* checkButtons() {
         for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
+            std::cout << "In checkButtons - current window " << &n->data.window << "\n";
             if (n->data.clicked()) {
                 return &n->data.link;
             }
@@ -70,6 +80,7 @@ public:
     
     void addButton(LinkedButton& b) {
         buttons.enqueue(b);
+        std::cout << &buttons.tail->data.window << "\n";
     }
     
     void addText(sf::Text);
@@ -82,6 +93,7 @@ public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
         for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
             target.draw(n->data);
+            target.draw(n->data.title);
         }
     }
     

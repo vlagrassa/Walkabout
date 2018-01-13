@@ -15,6 +15,13 @@ Menu::~Menu() {
     
 }
 
+void Menu::addMenuOption(std::string text, sf::Font& font, ScreenMode& link) {
+    std::cout << "Adding \"" << text << "\" linked to ScreenMode " << &link << ", window " << window << "\n";
+    LinkedButton temp(link, window);
+    temp.setTitle(*new sf::Text(text, font));
+    addButton(temp);
+}
+
 int Menu::get1() const {
     return 1;	
 }

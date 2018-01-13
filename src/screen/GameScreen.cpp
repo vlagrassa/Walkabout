@@ -29,6 +29,12 @@ ScreenMode* GameScreen::run(sf::Event event) {
             background.move(-player.getStepSize());
             hall.updateRoomPositions();
         }
+        if (event.key.code == sf::Keyboard::Up && hall.canEncounter()) {
+            return hall.getEncounterScreen();
+        }
+    }
+    if (hall.canEncounter() && !hall.getActiveRoom()->getEncounter()->isSkippable()) {
+        return hall.getEncounterScreen();
     }
     return ScreenMode::checkButtons();
 };

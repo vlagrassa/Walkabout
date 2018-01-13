@@ -12,7 +12,7 @@ GameScreen::GameScreen(sf::Window& window, Player& player, Background& backgroun
     std::cout << hall << "\n";
 };
 
-GameScreen::GameScreen(const GameScreen& orig) : ScreenMode(window), player(orig.player), hall(orig.hall), background(orig.background) {};
+GameScreen::GameScreen(const GameScreen& orig) : ScreenMode(orig.window), player(orig.player), hall(orig.hall), background(orig.background) {};
 
 GameScreen::~GameScreen() {};
 

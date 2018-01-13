@@ -46,7 +46,6 @@ public:
     }
     
     bool touchingMouse() {
-        std::cout << "In touchingMouse - window is " << &window << "\n";
         return getGlobalBounds().contains(sf::Mouse().getPosition(window).x, sf::Mouse().getPosition(window).y);
     }
     
@@ -75,7 +74,6 @@ public:
     
     ScreenMode* checkButtons() {
         for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
-            std::cout << "In checkButtons - current window " << &n->data.window << "\n";
             if (n->data.clicked()) {
                 return &n->data.link;
             }

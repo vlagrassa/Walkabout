@@ -107,6 +107,8 @@ int main() {
     hallText.setFillColor(sf::Color::Black);
     hallText.setPosition(0, 400);
     
+    std::cout << "ListOfScreens starting as:\n" << listOfScreens << "\n";
+    
     while (window.isOpen())
     {
         sf::Event event;
@@ -140,9 +142,7 @@ int main() {
         
         /* Figure out the active screen */
         if (!listOfScreens.isEmpty()) {
-            std::cout << "About to run\n";
             ScreenMode* nextScreen = listOfScreens.top->data.run(event);
-            std::cout << "Ran\n";
             if (nextScreen == 0) {
                 listOfScreens.pop();
                 std::cout << "Removed screen:\n" << listOfScreens << "\n";

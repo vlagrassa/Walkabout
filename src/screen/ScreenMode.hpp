@@ -30,7 +30,7 @@ public:
         setPosition(350, 20);
     }
     
-    LinkedButton(const LinkedButton& orig) : link(orig.link), window(orig.window) {
+    LinkedButton(const LinkedButton& orig) : link(orig.link), window(orig.window), title(orig.title) {
         setSize(sf::Vector2f(100, 50));
         setOutlineColor(sf::Color::Green);
         setOutlineThickness(5);
@@ -52,6 +52,11 @@ public:
     
     bool clicked() {
         return touchingMouse() && sf::Mouse().isButtonPressed(sf::Mouse().Left);
+    }
+    
+private:
+    friend std::ostream& operator<<(std::ostream &strm, const LinkedButton& l) {
+        return strm << "\"" << std::string(l.title.getString()) << "\" linked to " << &l.link << " in window " << &l.window << "\n";
     }
 };
 
@@ -78,9 +83,10 @@ public:
         return this;
     };
     
-    void addButton(LinkedButton& b) {
+    LinkedButton& addButton(LinkedButton& b) {
         buttons.enqueue(b);
-        std::cout << &buttons.tail->data.window << "\n";
+        std::cout << "Added from addButton:\n\"" << std::string(buttons.tail->data.title.getString()) << "\" linked to " << &buttons.tail->data.link << " in window " << &buttons.tail->data.window << "\n";
+        return b;
     }
     
     void addText(sf::Text);

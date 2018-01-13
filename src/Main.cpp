@@ -53,11 +53,19 @@ int main() {
     
     /* Instantiate Menu */
     Menu menu(window);
-    //menu.addMenuOption("T", font, testGameScreen);
+    LinkedButton& result = menu.addMenuOption("T", font, testGameScreen);
+    std::cout << "Returned to main from addMenuOption:\n\"" << result;
+    std::cout << "Taken from menu queue:\n" << menu.buttons.tail->data;
+    std::cout << "Manually printed:\n\"" << std::string(menu.buttons.tail->data.title.getString()) << "\" linked to " << &menu.buttons.tail->data.link << " in window " << &menu.buttons.tail->data.window << "\n";
+    
+    std::cout << "\n\n";
     
     LinkedButton tempButton(testGameScreen, window);
     tempButton.setTitle(*new sf::Text("T", font));
     menu.addButton(tempButton);
+    
+    std::cout << "Tempbutton created externally:\n" << tempButton;
+    std::cout << "External, from menu queue:\n" << menu.buttons.tail->data;
     
     std::cout << "Added test\n";
     std::cout << menu.get1();

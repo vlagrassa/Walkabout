@@ -18,10 +18,6 @@ GameScreen::~GameScreen() {};
 
 ScreenMode* GameScreen::run(sf::Event event) {
     hall.updateIndex();
-    return ScreenMode::checkButtons();
-};
-
-void GameScreen::update(sf::Event event) {
     if (event.type == sf::Event::KeyPressed) {
         if (event.key.code == sf::Keyboard::Left && player.getX() > 0) {
             player.stepLeft();
@@ -34,6 +30,7 @@ void GameScreen::update(sf::Event event) {
             hall.updateRoomPositions();
         }
     }
+    return ScreenMode::checkButtons();
 };
 
 void GameScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const {

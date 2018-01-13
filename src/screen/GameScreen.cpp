@@ -19,18 +19,29 @@ GameScreen::~GameScreen() {};
 ScreenMode* GameScreen::run(sf::Event event) {
     hall.updateIndex();
     if (event.type == sf::Event::KeyPressed) {
-        if (event.key.code == sf::Keyboard::Left && player.getX() > 0) {
-            player.stepLeft();
-            background.move(player.getStepSize());
-            hall.updateRoomPositions();
-        } 
-        if (event.key.code == sf::Keyboard::Right) {
-            player.stepRight();
-            background.move(-player.getStepSize());
-            hall.updateRoomPositions();
-        }
-        if (event.key.code == sf::Keyboard::Up && hall.canEncounter()) {
-            return hall.getEncounterScreen();
+        switch (event.key.code) {
+            case (sf::Keyboard::Left):
+                if (player.getX() > 0) {
+                    player.stepLeft();
+                    background.move(player.getStepSize());
+                    hall.updateRoomPositions();
+                }
+                break;
+                
+            case (sf::Keyboard::Right):
+                player.stepRight();
+                background.move(-player.getStepSize());
+                hall.updateRoomPositions();
+                break;
+                
+            case (sf::Keyboard::Up):
+                if (hall.canEncounter()) {
+                    return hall.getEncounterScreen();
+                }
+                break;
+                
+            default:
+                break;
         }
     }
     if (hall.canEncounter() && !hall.getActiveRoom()->getEncounter()->isSkippable()) {

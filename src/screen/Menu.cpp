@@ -18,6 +18,3 @@ Menu::~Menu() {
 int Menu::get1() const {
     return 1;	
 }
-void Menu::runStuff(){
-    std::cout << "This is a Menu";
-}

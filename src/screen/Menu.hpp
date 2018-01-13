@@ -13,7 +13,6 @@ public:
     
     int get1() const;
 private:
-    void runStuff();
 };
 
 #endif /* MENU_H */

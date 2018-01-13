@@ -6,6 +6,7 @@
 template <class T> class Node;
 template <class T> class Stack;
 template <class T> class Queue;
+template <class T> class LinkedList;
 template <class T> class Loop;
 template <class T> class ActiveVector;
 
@@ -409,6 +410,188 @@ private:
         for (Node<T>* n = q.head; n != 0; n = n->next) {
             strm << "  " << *n;
         }
+        return strm;
+    };
+};
+
+template <class T> class LinkedList {
+public:
+    Node<T>* first;
+    Node<T>* last;
+    unsigned int size;
+    
+    LinkedList() {};
+    LinkedList(const LinkedList& orig) {};
+    virtual ~LinkedList() {};
+    
+    Node<T> getNode(unsigned int index) {
+        Node<T>* temp = first;
+        for (unsigned int i = 0; i < index; i++) {
+            temp = temp->next;
+        }
+        return *temp;
+    }
+    
+    T get(unsigned int index) {
+        return getNode(index).data;
+    }
+    
+    void add(unsigned int index, Node<T>& next) {
+        if (index > size) {
+            throw std::out_of_range("Adding to LinkedList.");
+        }
+        else if (isEmpty()) {
+            addEmpty(next);
+        }
+        else if (index == 0) {
+            addFirst(next);
+        }
+        else if (index == size) {
+            addLast(next);
+        }
+        else {
+            Node<T>* temp = first;
+            for (unsigned int i = 0; i < index-1; i++) {
+                temp = temp->next;
+            }
+            next.next = temp->next;
+            temp->next = &next;
+            size++;
+        }
+    }
+    
+    void add(unsigned int index, T const& data) {
+        add(index, *(new Node<T>(data)));
+    }
+    
+    void addFirst(Node<T>& next) {
+        if (isEmpty()) {
+            addEmpty(next);
+        } else {
+            next.next = first;
+            first = &next;
+            size++;
+        }
+    }
+    
+    void addFirst(T const& data) {
+        addFirst(*(new Node<T>(data)));
+    }
+    
+    void addLast(Node<T>& next) {
+        if (isEmpty()) {
+            addEmpty(next);
+        } else {
+            last->next = &next;
+            last = &next;
+            size++;
+        }
+    }
+    
+    void addLast(T const& data) {
+        addLast(*(new Node<T>(data)));
+    }
+    
+    void add(Node<T>& next) {
+        addLast(next);
+    }
+    
+    void add(T const& data) {
+        addLast(data);
+    }
+    
+    Node<T> removeNode(unsigned int index) {
+        if (index >= size) {
+            throw std::out_of_range("Removing from LinkedList.");
+        }
+        else if (first == last) {
+            Node<T> temp = *first;
+            first = 0;
+            last = 0;
+            size--;
+            return temp;
+        }
+        else if (index == 0) {
+            return removeFirstNode();
+        }
+        else if (index == size-1) {
+            return removeLastNode();
+        }
+        else {
+            Node<T>* temp = first;
+            for (unsigned int i = 0; i < index-1; i++) {
+                temp = temp->next;
+            }
+            Node<T> result = *temp->next;
+            temp->next = temp->next->next;
+            size--;
+            return result;
+        }
+    }
+    
+    T remove(unsigned int index) {
+        return removeNode(index).data;
+    }
+    
+    Node<T> removeFirstNode() {
+        if (isEmpty()) {
+            throw std::out_of_range("Trying to remove first from empty LinkedList.");
+        }
+        Node<T> temp = *first;
+        
+        if (first == last) {
+            first = 0;
+            last = 0;
+        } else {
+            first = first->next;
+        }
+        size--;
+        
+        return temp;
+    }
+    
+    T removeFirst() {
+        return removeFirstNode().data;
+    }
+    
+    Node<T> removeLastNode() {
+        if (isEmpty()) {
+            throw std::out_of_range("Trying to remove last from empty LinkedList.");
+        }
+        
+        Node<T> temp = *last;
+        for (Node<T>* current = first; current != 0; current = current->next) {
+            if (current->next == last) {
+                last = current;
+                last->next = 0;
+                size--;
+                return temp;
+            }
+        }
+    }
+    
+    T removeLast() {
+        return removeLastNode().data;
+    }
+    
+    bool isEmpty() {
+        return first == 0 && last == 0;
+    }
+    
+private:
+    void addEmpty(Node<T>& next) {
+        first = &next;
+        last = &next;
+        next.next = 0;
+        size++;
+    }
+    
+    friend std::ostream& operator<<(std::ostream &strm, const LinkedList<T> &l) {
+        strm << "LinkedList " << &l << ":\n";
+        for (Node<T>* n = l.first; n != 0; n = n->next) {
+            strm << "  " << *n;
+        }
+        strm << "[End of LinkedList " <<&l << "]\n";
         return strm;
     };
 };

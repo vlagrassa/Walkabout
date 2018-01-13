@@ -43,7 +43,6 @@ int main() {
     /* Initialize ScreenMode Stack */
     Stack<ScreenMode&> listOfScreens;
     GameScreen testGameScreen(window, player, background);
-    listOfScreens.push(testGameScreen);
     
     
     /* Instantiate TextFiling*/

@@ -57,16 +57,6 @@ int main() {
     std::cout << "Taken from menu queue:\n" << menu.buttons.tail->data;
     std::cout << "Manually printed:\n\"" << std::string(menu.buttons.tail->data.title.getString()) << "\" linked to " << &menu.buttons.tail->data.link << " in window " << &menu.buttons.tail->data.window << "\n";
     
-    std::cout << "\n\n";
-    
-    LinkedButton tempButton(testGameScreen, window);
-    tempButton.setTitle(*new sf::Text("T", font));
-    menu.addButton(tempButton);
-    
-    std::cout << "Tempbutton created externally:\n" << tempButton;
-    std::cout << "External, from menu queue:\n" << menu.buttons.tail->data;
-    
-    std::cout << "Added test\n";
     std::cout << menu.get1();
     listOfScreens.push(menu);
     std::cout << "Pushed\n";

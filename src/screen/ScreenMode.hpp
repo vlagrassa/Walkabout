@@ -61,7 +61,7 @@ private:
 
 class ScreenMode : public sf::Drawable {
 public:
-    Queue<LinkedButton&> buttons;
+    LinkedList<LinkedButton&> buttons;
     sf::Window& window;
     
     ScreenMode(sf::Window& window) : window(window) {};
@@ -73,7 +73,7 @@ public:
     };
     
     ScreenMode* checkButtons() {
-        for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
+        for (Node<LinkedButton&>* n = buttons.first; n != 0; n = n->next) {
             if (n->data.clicked()) {
                 return &n->data.link;
             }
@@ -82,7 +82,7 @@ public:
     };
     
     void addButton(LinkedButton& b) {
-        buttons.enqueue(b);
+        buttons.add(b);
     }
     
     void addText(sf::Text);
@@ -93,7 +93,7 @@ public:
     void deactivate();
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
-        for (Node<LinkedButton&>* n = buttons.head; n != 0; n = n->next) {
+        for (Node<LinkedButton&>* n = buttons.first; n != 0; n = n->next) {
             target.draw(n->data);
             target.draw(n->data.title);
         }

@@ -15,6 +15,7 @@ public:
     
     void addMenuOption(std::string text, sf::Font& font, ScreenMode& link);
     void fitButtonsToRect(unsigned int gap);
+    void resizeButtonSpace(unsigned int topOffset, unsigned int leftOffset, unsigned int height);
     
     int get1() const;
 private:

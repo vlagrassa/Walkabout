@@ -156,6 +156,8 @@ int main() {
             window.draw(*nextScreen);
         }
         
+        mainMenu.resizeButtonSpace(0, 0, sf::Mouse::getPosition(window).y);
+        
         /* Draw the paper texture (for aesthetics) and the debugging text (for help) */
         window.draw(paper);
         //window.draw(hallText);

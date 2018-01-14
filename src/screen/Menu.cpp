@@ -32,7 +32,10 @@ void Menu::fitButtonsToRect() {
     for (unsigned int i = 0; i < len; i++) {
         buttons.get(i).setPosition(buttonSpace.left, buttonSpace.top + i * (height + gap));
         buttons.get(i).setSize(sf::Vector2f(buttonSpace.width, height));
-        buttons.get(i).title.setPosition(buttons.get(i).getPosition());
+        
+        float scaleX = buttons.get(i).title.getGlobalBounds().width / buttons.get(i).getSize().x / 2;
+        
+        buttons.get(i).title.setPosition(buttons.get(i).getPosition().x + (buttons.get(i).getSize().x/2) - (scaleX*buttons.get(i).getSize().x), buttons.get(i).getPosition().y);
     }
 }
 

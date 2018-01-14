@@ -630,7 +630,7 @@ public:
      * @return Active Node
      */
     Node<T> getActiveNode() {
-        return get(activeIndex);
+        return this->get(activeIndex);
     };
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -659,6 +659,18 @@ public:
      */
     void addAtActive(T data) {
         add(activeIndex, data);
+    }
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Remove the item at the current active index. Note that if
+     * this makes the active index greater than the size -- that
+     * is, if the active index used to be the final index of the
+     * List -- it will be set to the new size.
+     */
+    void removeAtActive() {
+        remove(activeIndex);
+        if (activeIndex > this->size-1) activeIndex = this->size-1;
     }
 };
 

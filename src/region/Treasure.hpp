@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <SFML/Graphics.hpp>
 #include "Encounterable.hpp"
-#include "../screen/TreasureScreen.hpp"
+#include "../screen/EncounterScreen.hpp"
 
 class Treasure : public Encounterable {
 public:

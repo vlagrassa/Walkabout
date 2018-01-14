@@ -1,4 +1,4 @@
-#include "FightScreen.hpp"
+#include "EncounterScreen.hpp"
 #include <SFML/Graphics.hpp>
 
 FightScreen::FightScreen(sf::Window& window) : EncounterScreen(window) {

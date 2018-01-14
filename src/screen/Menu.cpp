@@ -28,7 +28,6 @@ void Menu::addMenuOption(std::string text, sf::Font& font, ScreenMode& link) {
 void Menu::fitButtonsToRect(unsigned int gap) {
     unsigned int len = buttons.size;
     unsigned int height = (buttonSpace.height - (gap * (len-1))) / len;
-    //std::cout << "Height is now " << height << "\n";
     for (unsigned int i = 0; i < len; i++) {
         buttons.get(i).setPosition(buttonSpace.left, buttonSpace.top + i * (height + gap));
         buttons.get(i).setSize(sf::Vector2f(buttonSpace.width, height));

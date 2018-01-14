@@ -601,12 +601,6 @@ template <class T> class ActiveList : public LinkedList<T> {
 public:
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
-     * The active index of the List.
-     */
-    unsigned int activeIndex;
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
      * Default constructor. Initializes active index to 0.
      */
     ActiveList() : activeIndex(0) {};
@@ -672,6 +666,26 @@ public:
         remove(activeIndex);
         if (activeIndex > this->size-1) activeIndex = this->size-1;
     }
+    
+    unsigned int getActiveIndex() {
+        return activeIndex;
+    }
+    
+    void setActiveIndex(unsigned int n) {
+        if (n >= this->size) {
+            throw std::out_of_range(std::string("New activeIndex ") + std::to_string(n) + std::string(" out of range for size ") + std::to_string(this->size) + std::string(" ActiveList."));
+        } else {
+            activeIndex = n;
+        }
+    }
+    
+private:
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * The active index of the List.
+     */
+    unsigned int activeIndex;
 };
 
 template <class T> class Loop {

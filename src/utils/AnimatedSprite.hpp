@@ -5,18 +5,24 @@
 #include <stdlib.h> 
 #include <iostream>
 #include "Utils.hpp"
+#include "Animation.hpp"
 
-AnimatedSprite: public sf::Sprite {
+class AnimatedSprite: public sf::Sprite {
 public:
-    AnimatedSprite(sf::Vector spriteSheets);
     AnimatedSprite();
-    virtual ~AnimatedSprite;
+    AnimatedSprite(const AnimatedSprite& orig);
+    virtual ~AnimatedSprite();
+    void addAnimation(sf::Texture spriteSheet, int rowNum, int colNum );
+    void setAnimation();
+    Animation& getAnimation();
+    
+    
     
     
 private:
         
         
     
-}
+};
 
 #endif /* ANIMATEDSPRITE_H */

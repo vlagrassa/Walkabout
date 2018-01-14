@@ -49,9 +49,14 @@ int main() {
     
     /* Initialize ScreenMode Stack, Menu, and GameScreen */
     Stack<ScreenMode&> listOfScreens;
-    Menu mainMenu(window);
+    Menu mainMenu(window, 100, 20, 300);
     GameScreen testGameScreen(window, player, background);
-    mainMenu.addMenuOption("T", font, testGameScreen);
+    mainMenu.addMenuOption("Play", font, testGameScreen);
+    mainMenu.addMenuOption("Settings", font, testGameScreen);
+    mainMenu.addMenuOption("MORE", font, testGameScreen);
+    mainMenu.addMenuOption("AND", font, testGameScreen);
+    mainMenu.addMenuOption("MORE", font, testGameScreen);
+    mainMenu.addMenuOption("BUTTONS", font, testGameScreen);
     listOfScreens.push(mainMenu);
     
     
@@ -153,7 +158,7 @@ int main() {
         
         /* Draw the paper texture (for aesthetics) and the debugging text (for help) */
         window.draw(paper);
-        window.draw(hallText);
+        //window.draw(hallText);
         
         /* Display the screen */
         window.display();

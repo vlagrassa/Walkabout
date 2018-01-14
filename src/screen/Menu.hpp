@@ -7,11 +7,14 @@
 
 class Menu: public ScreenMode {
 public:
-    Menu(sf::Window& window);
+    sf::IntRect buttonSpace;
+    
+    Menu(sf::Window& window, unsigned int topOffset, unsigned int leftOffset, unsigned int height); //sf::Vector2i topLeft?
     Menu(const Menu&);
     virtual ~Menu();
     
     void addMenuOption(std::string text, sf::Font& font, ScreenMode& link);
+    void fitButtonsToRect(unsigned int gap);
     
     int get1() const;
 private:

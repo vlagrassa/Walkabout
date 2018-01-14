@@ -599,18 +599,46 @@ private:
 
 template <class T> class ActiveList : public LinkedList<T> {
 public:
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * The active index of the List.
+     */
     unsigned int activeIndex;
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default constructor. Initializes active index to 0.
+     */
     ActiveList() : activeIndex(0) {};
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Copy constructor.
+     */
     ActiveList(const ActiveList& orig) {};
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default destructor.
+     */
     virtual ~ActiveList() {};
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Gets the Node at the active index.
+     * 
+     * @return Active Node
+     */
     Node<T> getActiveNode() {
         return get(activeIndex);
     };
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Gets the item at the active index.
+     * 
+     * @return Active item
+     */
     T getActive() {
         return getActiveNode().data;
     }

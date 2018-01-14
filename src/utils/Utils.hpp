@@ -642,6 +642,24 @@ public:
     T getActive() {
         return getActiveNode().data;
     }
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Add a node at the active index. Note that this shifts the
+     * current node at the active index down by one.
+     */
+    void addAtActive(Node<T> next) {
+        add(activeIndex, next);
+    }
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Add item at the active index. Note that this shifts the
+     * current item at the active index down by one.
+     */
+    void addAtActive(T data) {
+        add(activeIndex, data);
+    }
 };
 
 template <class T> class Loop {

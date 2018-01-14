@@ -8,13 +8,14 @@
 class Menu: public ScreenMode {
 public:
     sf::IntRect buttonSpace;
+    unsigned int gap;
     
-    Menu(sf::Window& window, unsigned int topOffset, unsigned int leftOffset, unsigned int height); //sf::Vector2i topLeft?
+    Menu(sf::Window& window, unsigned int topOffset, unsigned int leftOffset, unsigned int height, unsigned int gap = 0); //sf::Vector2i topLeft?
     Menu(const Menu&);
     virtual ~Menu();
     
     void addMenuOption(std::string text, sf::Font& font, ScreenMode& link);
-    void fitButtonsToRect(unsigned int gap);
+    void fitButtonsToRect();
     void resizeButtonSpace(unsigned int topOffset, unsigned int leftOffset, unsigned int height);
     
     int get1() const;

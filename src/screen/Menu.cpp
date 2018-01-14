@@ -3,8 +3,8 @@
 #include "Menu.hpp"
 #include <SFML/Graphics.hpp>
 
-Menu::Menu(sf::Window& window, unsigned int topOffset, unsigned int leftOffset, unsigned int height)
-: ScreenMode(window), buttonSpace(sf::IntRect(leftOffset, topOffset, window.getSize().x - leftOffset*2, height)) {
+Menu::Menu(sf::Window& window, unsigned int topOffset, unsigned int leftOffset, unsigned int height, unsigned int gap)
+: ScreenMode(window), buttonSpace(sf::IntRect(leftOffset, topOffset, window.getSize().x - leftOffset*2, height)), gap(gap) {
     
 }
 
@@ -22,10 +22,10 @@ void Menu::addMenuOption(std::string text, sf::Font& font, ScreenMode& link) {
     temp->setSize(sf::Vector2f(buttonSpace.width, buttonSpace.height));
     temp->setTitle(*new sf::Text(text, font));
     addButton(*temp);
-    fitButtonsToRect(20);
+    fitButtonsToRect();
 }
 
-void Menu::fitButtonsToRect(unsigned int gap) {
+void Menu::fitButtonsToRect() {
     unsigned int len = buttons.size;
     unsigned int height = (buttonSpace.height - (gap * (len-1))) / len;
     for (unsigned int i = 0; i < len; i++) {
@@ -37,7 +37,7 @@ void Menu::fitButtonsToRect(unsigned int gap) {
 
 void Menu::resizeButtonSpace(unsigned int topOffset, unsigned int leftOffset, unsigned int height) {
     buttonSpace = sf::IntRect(leftOffset, topOffset, window.getSize().x - leftOffset*2, height);
-    fitButtonsToRect(20);
+    fitButtonsToRect();
 }
 
 int Menu::get1() const {

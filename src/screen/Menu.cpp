@@ -35,8 +35,9 @@ void Menu::fitButtonsToRect() {
         current.setSize(sf::Vector2f(buttonSpace.width, height));
         
         float scaleX = current.title.getGlobalBounds().width / current.getSize().x / 2;
+        float scaleY = current.title.getGlobalBounds().height / current.getSize().y;
         
-        current.title.setPosition(current.getCenter().x - (scaleX*current.getSize().x), buttons.get(i).getPosition().y);
+        current.title.setPosition(current.getCenter().x - (scaleX*current.getSize().x), current.getCenter().y - (scaleY*current.getSize().y));
     }
 }
 

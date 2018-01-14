@@ -597,6 +597,7 @@ private:
 };
 
 template <class T> class ActiveList : public LinkedList<T> {
+public:
     unsigned int activeIndex;
     
     ActiveList() : activeIndex(0) {};

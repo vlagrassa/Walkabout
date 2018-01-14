@@ -45,6 +45,10 @@ public:
         title.setFillColor(sf::Color::Black);
     }
     
+    sf::Vector2f getCenter() {
+        return sf::Vector2f(getPosition().x + getSize().x/2, getPosition().y + getSize().y/2);
+    }
+    
     bool touchingMouse() {
         return getGlobalBounds().contains(sf::Mouse().getPosition(window).x, sf::Mouse().getPosition(window).y);
     }

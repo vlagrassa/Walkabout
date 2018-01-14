@@ -596,6 +596,24 @@ private:
     };
 };
 
+template <class T> class ActiveList : public LinkedList<T> {
+    unsigned int activeIndex;
+    
+    ActiveList() : activeIndex(0) {};
+    
+    ActiveList(const ActiveList& orig) {};
+    
+    virtual ~ActiveList() {};
+    
+    Node<T> getActiveNode() {
+        return get(activeIndex);
+    };
+    
+    T getActive() {
+        return getActiveNode().data;
+    }
+};
+
 template <class T> class Loop {
 public:
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

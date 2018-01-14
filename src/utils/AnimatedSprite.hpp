@@ -7,6 +7,7 @@
 #include "Utils.hpp"
 #include "Animation.hpp"
 
+
 class AnimatedSprite: public sf::Sprite {
 public:
     AnimatedSprite();
@@ -20,7 +21,7 @@ public:
     
     
 private:
-        
+    ActiveList<Animation&> Animations;
         
     
 };

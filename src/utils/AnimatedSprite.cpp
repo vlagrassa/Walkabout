@@ -16,7 +16,8 @@ AnimatedSprite::~AnimatedSprite(){
 }
 
 void AnimatedSprite::addAnimation(sf::Texture spriteSheet, int rowNum, int colNum ){
-    
+    Animation* newAnimation = new Animation(spriteSheet, rowNum, colNum);
+    Animations.add(*newAnimation);
 }
 void AnimatedSprite::setAnimation(){
     

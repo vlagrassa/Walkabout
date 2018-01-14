@@ -420,8 +420,8 @@ public:
     Node<T>* last;
     unsigned int size;
     
-    LinkedList() {};
-    LinkedList(const LinkedList& orig) {};
+    LinkedList() : first(NULL), last(NULL), size(0) {};
+    LinkedList(const LinkedList& orig) : first(NULL), last(NULL), size(0) {};
     virtual ~LinkedList() {};
     
     Node<T> getNode(unsigned int index) {

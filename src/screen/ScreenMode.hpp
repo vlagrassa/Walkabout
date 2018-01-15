@@ -89,7 +89,7 @@ public:
         buttons.add(b);
     }
     
-    void addButton(ScreenMode& link, std::string title, sf::Font font) {
+    void addButton(std::string title, sf::Font font, ScreenMode& link) {
         LinkedButton* temp = new LinkedButton(link, window);
         temp->setTitle(*new sf::Text(title, font));
         addButton(*temp);

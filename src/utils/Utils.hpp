@@ -222,6 +222,7 @@ private:
         for (Node<T>* n = s.top; n != 0; n = n->next) {
             strm << "  " << *n;
         }
+        strm << "[End of Stack " << &s << "]\n";
         return strm;
     };
 };
@@ -411,6 +412,7 @@ private:
         for (Node<T>* n = q.head; n != 0; n = n->next) {
             strm << "  " << *n;
         }
+        strm << "[End of Queue " << &q << "]\n";
         return strm;
     };
 };

@@ -18,8 +18,6 @@ Menu::~Menu() {
 
 void Menu::addMenuOption(std::string text, sf::Font& font, ScreenMode& link) {
     LinkedButton* temp = new LinkedButton(link, window);
-    temp->setPosition(buttonSpace.left, buttonSpace.top);
-    temp->setSize(sf::Vector2f(buttonSpace.width, buttonSpace.height));
     temp->setTitle(*new sf::Text(text, font));
     temp->setOutlineColor(sf::Color::Black);
     addButton(*temp);

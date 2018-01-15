@@ -15,7 +15,7 @@
 #include "TextFiling.hpp"
 #include "screen/GameScreen.hpp"
 
-
+ 
 int main() {
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
     
@@ -49,14 +49,18 @@ int main() {
     
     /* Initialize ScreenMode Stack, Menu, and GameScreen */
     Stack<ScreenMode&> listOfScreens;
-    Menu mainMenu(window, 100, 20, 300);
+    Menu mainMenu(window, 300, 250, 180, 20);
     GameScreen testGameScreen(window, player, background);
+    
     mainMenu.addMenuOption("Play", font, testGameScreen);
     mainMenu.addMenuOption("Settings", font, testGameScreen);
     mainMenu.addMenuOption("MORE", font, testGameScreen);
     mainMenu.addMenuOption("AND", font, testGameScreen);
     mainMenu.addMenuOption("MORE", font, testGameScreen);
     mainMenu.addMenuOption("BUTTONS", font, testGameScreen);
+    
+    testGameScreen.addNullButton("Quit", font);
+    
     listOfScreens.push(mainMenu);
     
     
@@ -153,7 +157,9 @@ int main() {
             /* If neither of the above happened then the next screen is the same as the current screen - don't do anything */
             
             /* Draw the next screen - should this be changed to draw the top of the stack? does it matter? */
-            window.draw(*nextScreen);
+            if (nextScreen != NULL) {
+                window.draw(*nextScreen);
+            }
         }
         
         /* Draw the paper texture (for aesthetics) and the debugging text (for help) */

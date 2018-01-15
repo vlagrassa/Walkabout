@@ -15,6 +15,11 @@
 #include "TextFiling.hpp"
 #include "screen/GameScreen.hpp"
 
+
+void quitGame(sf::Window& window) {
+    window.close();
+}
+
  
 int main() {
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
@@ -111,7 +116,7 @@ int main() {
         while (window.pollEvent(event)) {
             switch(event.type) {
                 case (sf::Event::Closed):
-                    window.close();
+                    quitGame(window);
                     break;
                 case (sf::Event::KeyPressed):
                     if (event.key.code == sf::Keyboard::Q) {
@@ -157,6 +162,8 @@ int main() {
             if (nextScreen != NULL) {
                 window.draw(*nextScreen);
             }
+        } else {
+            quitGame(window);
         }
         
         /* Draw the paper texture (for aesthetics) and the debugging text (for help) */

@@ -16,15 +16,15 @@ Menu::~Menu() {
     
 }
 
-void Menu::addMenuOption(std::string text, sf::Font& font, ScreenMode& link) {
-    addMenuOption(text, font, &link);
+void Menu::addButton(std::string text, sf::Font& font, ScreenMode& link) {
+    addButton(text, font, &link);
 }
 
-void Menu::addMenuOption(std::string text, sf::Font& font, ScreenMode* link) {
+void Menu::addButton(std::string text, sf::Font& font, ScreenMode* link) {
     LinkedButton* temp = new LinkedButton(link, window);
     temp->setTitle(*new sf::Text(text, font));
     temp->setOutlineColor(sf::Color::Black);
-    addButton(*temp);
+    ScreenMode::addButton(*temp);
     fitButtonsToRect();
 }
 

@@ -52,9 +52,9 @@ int main() {
     Menu mainMenu(window, 300, 250, 180, 20);
     GameScreen testGameScreen(window, player, background);
     
-    mainMenu.addMenuOption("Play", font, testGameScreen);
-    mainMenu.addMenuOption("Settings", font, &testGameScreen);
-    mainMenu.addMenuOption("Quit", font, 0);
+    mainMenu.addButton("Play", font, testGameScreen);
+    mainMenu.addButton("Settings", font, &testGameScreen);
+    mainMenu.addButton("Quit", font, 0);
     
     testGameScreen.addButton("Quit", font, 0);
     

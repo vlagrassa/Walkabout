@@ -26,6 +26,14 @@ void Menu::addMenuOption(std::string text, sf::Font& font, ScreenMode& link) {
     fitButtonsToRect();
 }
 
+void Menu::addNullOption(std::string text, sf::Font& font) {
+    LinkedButton* temp = new LinkedButton(0, window);
+    temp->setTitle(*new sf::Text(text, font));
+    temp->setOutlineColor(sf::Color::Black);
+    addButton(*temp);
+    fitButtonsToRect();
+}
+
 void Menu::fitButtonsToRect() {
     unsigned int len = buttons.size;
     unsigned int height = (buttonSpace.height - (gap * (len-1))) / len;

@@ -15,6 +15,7 @@ public:
     virtual ~Menu();
     
     void addMenuOption(std::string text, sf::Font& font, ScreenMode& link);
+    void addNullOption(std::string text, sf::Font& font);
     void fitButtonsToRect();
     void resizeButtonSpace(unsigned int topOffset, unsigned int leftOffset, unsigned int height);
     

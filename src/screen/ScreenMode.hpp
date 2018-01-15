@@ -90,13 +90,11 @@ public:
     }
     
     void addButton(std::string title, sf::Font font, ScreenMode& link) {
-        LinkedButton* temp = new LinkedButton(link, window);
-        temp->setTitle(*new sf::Text(title, font));
-        addButton(*temp);
+        addButton(title, font, &link);
     }
     
-    void addNullButton(std::string title, sf::Font font) {
-        LinkedButton* temp = new LinkedButton(0, window);
+    void addButton(std::string title, sf::Font font, ScreenMode* link) {
+        LinkedButton* temp = new LinkedButton(link, window);
         temp->setTitle(*new sf::Text(title, font));
         addButton(*temp);
     }

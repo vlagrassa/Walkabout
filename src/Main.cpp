@@ -56,6 +56,8 @@ int main() {
     mainMenu.addMenuOption("Settings", font, &testGameScreen);
     mainMenu.addMenuOption("Quit", font, 0);
     
+    testGameScreen.addButton("Quit", font, 0);
+    
     listOfScreens.push(mainMenu);
     
     

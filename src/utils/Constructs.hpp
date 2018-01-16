@@ -6,7 +6,7 @@
 
 class ButtonLine : sf::IntRect {
 public:
-    bool vertical;
+    bool horizontal;
     unsigned int gap;
     
     ButtonLine(int left, int top, int width, int height, unsigned int gap = 0):
@@ -22,7 +22,7 @@ public:
         for (unsigned int i = 0; i < buttons.size; i++) {
             LinkedButton& current = buttons.get(i);
             
-            if (vertical) {
+            if (horizontal) {
                 current.setPosition(left + i * (length + gap), top);
                 current.setSize(sf::Vector2f(length, height));
             } else {

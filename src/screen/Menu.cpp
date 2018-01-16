@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 Menu::Menu(sf::Window& window, unsigned int topOffset, unsigned int leftOffset, unsigned int height, unsigned int gap)
-: ScreenMode(window), buttonSpace(sf::IntRect(leftOffset, topOffset, window.getSize().x - leftOffset*2, height)), gap(gap) {
+: ScreenMode(window), buttonSpace(sf::IntRect(leftOffset, topOffset, window.getSize().x - leftOffset*2, height), gap) {
     
 }
 
@@ -25,27 +25,7 @@ void Menu::addButton(std::string text, ScreenMode* link, sf::Font& font) {
     temp->setTitle(*new sf::Text(text, font));
     temp->setOutlineColor(sf::Color::Black);
     ScreenMode::addButton(*temp);
-    fitButtonsToRect();
-}
-
-void Menu::fitButtonsToRect() {
-    unsigned int len = buttons.size;
-    unsigned int height = (buttonSpace.height - (gap * (len-1))) / len;
-    for (unsigned int i = 0; i < len; i++) {
-        LinkedButton& current = buttons.get(i);
-        current.setPosition(buttonSpace.left, buttonSpace.top + i * (height + gap));
-        current.setSize(sf::Vector2f(buttonSpace.width, height));
-        
-        float scaleX = current.title.getGlobalBounds().width / current.getSize().x / 2;
-        float scaleY = current.title.getGlobalBounds().height / current.getSize().y;
-        
-        current.title.setPosition(current.getCenter().x - (scaleX*current.getSize().x), current.getCenter().y - (scaleY*current.getSize().y));
-    }
-}
-
-void Menu::resizeButtonSpace(unsigned int topOffset, unsigned int leftOffset, unsigned int height) {
-    buttonSpace = sf::IntRect(leftOffset, topOffset, window.getSize().x - leftOffset*2, height);
-    fitButtonsToRect();
+    buttonSpace.fitButtonsToRect(buttons);
 }
 
 int Menu::get1() const {

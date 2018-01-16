@@ -57,7 +57,3 @@ void GameScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(player);
     ScreenMode::draw(target, states);
 };
-
-std::string GameScreen::testThing() {
-    return "This is a default game!";
-}

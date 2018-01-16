@@ -1,20 +1,18 @@
 #include <cstdlib>
 #include <iostream>
-#include <cmath>
-#include <ctime>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Window.hpp>
 
 #include "utils/Utils.hpp"
+#include "utils/Defaults.hpp"
 #include "player/Player.hpp"
 #include "region/Hall.hpp"
 #include "screen/Menu.hpp"
+#include "screen/GameScreen.hpp"
 #include "window/Background.hpp"
 #include "TextFiling.hpp"
-#include "screen/GameScreen.hpp"
-#include "utils/Defaults.hpp"
 
 /* Declare the default font instantiated in utils/Defaults.hpp */
 sf::Font DEFAULT_FONT;

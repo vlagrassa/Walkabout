@@ -46,6 +46,10 @@ public:
         title.setFillColor(sf::Color::Black);
     }
     
+    void setTitle(std::string text) {
+        setTitle(*new sf::Text(text, DEFAULT_FONT));
+    }
+    
     sf::Vector2f getCenter() {
         return sf::Vector2f(getPosition().x + getSize().x/2, getPosition().y + getSize().y/2);
     }

@@ -17,7 +17,7 @@ public:
     
     void fitButtonsToRect(LinkedList<LinkedButton&>& buttons) {
         
-        unsigned int length = (height - (gap * (buttons.size-1))) / buttons.size;
+        unsigned int length = ((horizontal?width:height) - (gap * (buttons.size-1))) / buttons.size;
         
         for (unsigned int i = 0; i < buttons.size; i++) {
             LinkedButton& current = buttons.get(i);

@@ -20,11 +20,11 @@ public:
             LinkedButton& current = buttons.get(i);
             
             if (vertical) {
-                current.setPosition(left, top + i * (length + gap));
-                current.setSize(sf::Vector2f(width, length));
-            } else {
                 current.setPosition(left + i * (length + gap), top);
                 current.setSize(sf::Vector2f(length, height));
+            } else {
+                current.setPosition(left, top + i * (length + gap));
+                current.setSize(sf::Vector2f(width, length));
             }
 
             float scaleX = current.title.getGlobalBounds().width / current.getSize().x / 2;

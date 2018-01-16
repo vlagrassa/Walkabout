@@ -9,7 +9,7 @@ typedef int stat;
 struct Stats{
         stat body;
         stat mind;
-        stat mana;     
+        stat soul;     
     };
 
 class Player : public sf::Sprite {
@@ -174,14 +174,18 @@ public:
     
     bool isMovingLeft();
     
-    /*INVENTORY and EQUIPING*/
-    std::vector<Item> itemVector;
+    
     
     /*stats*/
-    
     Stats stats;
     
     void modify(Stats stat);
+    
+    /*Combat*/
+    int getDefence(stats.body,items.)
+    
+    /*INVENTORY and EQUIPING*/
+    std::vector<Item> itemVector;
     
     void addItem(Item& item);
     

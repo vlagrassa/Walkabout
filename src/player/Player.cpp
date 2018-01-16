@@ -85,7 +85,7 @@ bool Player::isMovingLeft() {
 void Player::modify(Stats stat){
     stats.body += stat.body;
     stats.mind += stat.mind;
-    stats.mana += stat.mana;
+    stats.soul += stat.soul;
 }
 /*INVENTORY and EQUIPING*/
     

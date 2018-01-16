@@ -12,6 +12,9 @@ public:
     ButtonList(int left, int top, int width, int height, unsigned int gap = 0):
     sf::IntRect(left, top, width, height), gap(gap) {};
     
+    ButtonList(sf::IntRect rect, unsigned int gap = 0) :
+    ButtonList(rect.left, rect.top, rect.width, rect.height, gap) {};
+    
     void fitButtonsToRect(LinkedList<LinkedButton&>& buttons) {
         
         unsigned int length = (height - (gap * (buttons.size-1))) / buttons.size;

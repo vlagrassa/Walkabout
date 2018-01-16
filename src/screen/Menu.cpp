@@ -27,7 +27,3 @@ void Menu::addButton(std::string text, ScreenMode* link, sf::Font& font) {
     ScreenMode::addButton(*temp);
     buttonline.fitButtonsToRect(buttons);
 }
-
-int Menu::get1() const {
-    return 1;	
-}

@@ -17,8 +17,6 @@ public:
     
     virtual void addButton(std::string title, ScreenMode* link, sf::Font& font = DEFAULT_FONT);
     virtual void addButton(std::string title, ScreenMode& link, sf::Font& font = DEFAULT_FONT);
-    
-    int get1() const;
 private:
 };
 

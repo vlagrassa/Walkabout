@@ -14,7 +14,10 @@
 #include "window/Background.hpp"
 #include "TextFiling.hpp"
 #include "screen/GameScreen.hpp"
+#include "utils/Defaults.hpp"
 
+/* Declare the default font instantiated in utils/Defaults.hpp */
+sf::Font DEFAULT_FONT;
 
 void quitGame(sf::Window& window) {
     window.close();
@@ -24,6 +27,8 @@ void quitGame(sf::Window& window) {
 int main() {
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
     
+    /* Instantiate the default font */
+    DEFAULT_FONT.loadFromFile("resources/Courier.dfont");
     
     /* Identify the resource directory */
     std::string resourceDir = "resources/";
@@ -34,13 +39,6 @@ int main() {
     // See https://en.sfml-dev.org/forums/index.php?topic=20033.msg144271#msg144271 for explanation of following lines
     window.setFramerateLimit(0);
     window.setVerticalSyncEnabled(true);
-    
-    
-    /* Instantiate the default font (Courier) */
-    sf::Font font;
-    if (!font.loadFromFile("resources/Courier.dfont")) {
-        return -1;
-    }
     
     
     /* Instantiate Player */
@@ -57,11 +55,11 @@ int main() {
     Menu mainMenu(window, 300, 250, 180, 20);
     GameScreen testGameScreen(window, player, background);
     
-    mainMenu.addButton("Play", font, testGameScreen);
-    mainMenu.addButton("Settings", font, &testGameScreen);
-    mainMenu.addButton("Quit", font, 0);
+    mainMenu.addButton("Play", testGameScreen);
+    mainMenu.addButton("Settings", &testGameScreen);
+    mainMenu.addButton("Quit", 0);
     
-    testGameScreen.addButton("Quit", font, 0);
+    testGameScreen.addButton("Quit", 0);
     
     listOfScreens.push(mainMenu);
     
@@ -102,7 +100,7 @@ int main() {
     
     /* Create the debugging text tracking the current hall */
     sf::Text hallText;
-    hallText.setFont(font);
+    hallText.setFont(DEFAULT_FONT);
     hallText.setCharacterSize(20);
     hallText.setFillColor(sf::Color::Black);
     hallText.setPosition(0, 400);

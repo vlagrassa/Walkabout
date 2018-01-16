@@ -6,6 +6,7 @@
 #include <iostream>
 
 #include "../utils/Utils.hpp"
+#include "../utils/Defaults.hpp"
 
 class LinkedButton;
 class ScreenMode;
@@ -89,11 +90,11 @@ public:
         buttons.add(b);
     }
     
-    virtual void addButton(std::string title, sf::Font& font, ScreenMode& link) {
-        addButton(title, font, &link);
+    virtual void addButton(std::string title, ScreenMode& link, sf::Font& font = DEFAULT_FONT) {
+        addButton(title, &link, font);
     }
     
-    virtual void addButton(std::string title, sf::Font& font, ScreenMode* link) {
+    virtual void addButton(std::string title, ScreenMode* link, sf::Font& font = DEFAULT_FONT) {
         LinkedButton* temp = new LinkedButton(link, window);
         temp->setTitle(*new sf::Text(title, font));
         addButton(*temp);

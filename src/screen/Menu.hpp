@@ -4,6 +4,7 @@
 #include "ScreenMode.hpp"
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
+#include "../utils/Defaults.hpp"
 
 class Menu: public ScreenMode {
 public:
@@ -14,8 +15,8 @@ public:
     Menu(const Menu&);
     virtual ~Menu();
     
-    virtual void addButton(std::string title, sf::Font& font, ScreenMode* link);
-    virtual void addButton(std::string title, sf::Font& font, ScreenMode& link);
+    virtual void addButton(std::string title, ScreenMode* link, sf::Font& font = DEFAULT_FONT);
+    virtual void addButton(std::string title, ScreenMode& link, sf::Font& font = DEFAULT_FONT);
     void fitButtonsToRect();
     void resizeButtonSpace(unsigned int topOffset, unsigned int leftOffset, unsigned int height);
     

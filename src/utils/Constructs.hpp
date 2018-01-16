@@ -4,16 +4,16 @@
 #include <SFML/Graphics.hpp>
 #include "Utils.hpp"
 
-class ButtonList : sf::IntRect {
+class ButtonLine : sf::IntRect {
 public:
     bool vertical;
     unsigned int gap;
     
-    ButtonList(int left, int top, int width, int height, unsigned int gap = 0):
+    ButtonLine(int left, int top, int width, int height, unsigned int gap = 0):
     sf::IntRect(left, top, width, height), gap(gap) {};
     
-    ButtonList(sf::IntRect rect, unsigned int gap = 0) :
-    ButtonList(rect.left, rect.top, rect.width, rect.height, gap) {};
+    ButtonLine(sf::IntRect rect, unsigned int gap = 0) :
+    ButtonLine(rect.left, rect.top, rect.width, rect.height, gap) {};
     
     void fitButtonsToRect(LinkedList<LinkedButton&>& buttons) {
         

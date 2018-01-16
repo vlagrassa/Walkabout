@@ -4,11 +4,11 @@
 #include <SFML/Graphics.hpp>
 
 Menu::Menu(sf::Window& window, unsigned int topOffset, unsigned int leftOffset, unsigned int height, unsigned int gap)
-: ScreenMode(window), buttonSpace(sf::IntRect(leftOffset, topOffset, window.getSize().x - leftOffset*2, height), gap) {
+: ScreenMode(window), buttonline(sf::IntRect(leftOffset, topOffset, window.getSize().x - leftOffset*2, height), gap) {
     
 }
 
-Menu::Menu(const Menu& orig) : ScreenMode(orig.window), buttonSpace(orig.buttonSpace) {
+Menu::Menu(const Menu& orig) : ScreenMode(orig.window), buttonline(orig.buttonline) {
    
 }
 
@@ -25,7 +25,7 @@ void Menu::addButton(std::string text, ScreenMode* link, sf::Font& font) {
     temp->setTitle(*new sf::Text(text, font));
     temp->setOutlineColor(sf::Color::Black);
     ScreenMode::addButton(*temp);
-    buttonSpace.fitButtonsToRect(buttons);
+    buttonline.fitButtonsToRect(buttons);
 }
 
 int Menu::get1() const {

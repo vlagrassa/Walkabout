@@ -8,7 +8,7 @@ Menu::Menu(sf::Window& window, unsigned int topOffset, unsigned int leftOffset, 
     
 }
 
-Menu::Menu(const Menu& orig) : ScreenMode(orig.window), buttonline(orig.buttonline) {
+Menu::Menu(const Menu& orig) : ScreenMode(orig), buttonline(orig.buttonline) {
    
 }
 

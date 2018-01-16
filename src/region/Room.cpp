@@ -26,7 +26,7 @@ Room::Room(unsigned int size, Encounterable* enc) : encounter(enc), length(size)
  * 
  * @param seed The seed for the Room
  */
-Room::Room(unsigned int seed, sf::Window& window) : Room((seed%15)+2, genRandomEncounterable(seed, window)) {}
+Room::Room(unsigned int seed, sf::Window& window) : Room((seed%15)+42, genRandomEncounterable(seed, window)) {}
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * 

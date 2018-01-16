@@ -1,14 +1,14 @@
 #ifndef GAMESCREEN_H
 #define GAMESCREEN_H
 
-#include "ScreenMode.hpp"
+#include "Menu.hpp"
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 #include "../player/Player.hpp"
 #include "../region/Hall.hpp"
 #include "../window/Background.hpp"
 
-class GameScreen: public ScreenMode {
+class GameScreen: public Menu {
 public:
     GameScreen(sf::Window& window, Player& player, Background& background);
     GameScreen(sf::Window& window, Player& player, Background& background, Hall& hall);

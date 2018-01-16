@@ -59,7 +59,8 @@ int main() {
     mainMenu.addButton("Settings", &testGameScreen);
     mainMenu.addButton("Quit", 0);
     
-    testGameScreen.addButton("Quit", 0);
+    testGameScreen.addButton("Hiii", 0);
+    testGameScreen.addButton("Main Menu", 0);
     
     listOfScreens.push(mainMenu);
     

@@ -3,7 +3,8 @@
 
 GameScreen::GameScreen(sf::Window& window, Player& player, Background& background) : GameScreen(window, player, background, *new Hall(player, window)) {};
 
-GameScreen::GameScreen(sf::Window& window, Player& player, Background& background, Hall& hall) : ScreenMode(window), player(player), hall(hall), background(background) {
+GameScreen::GameScreen(sf::Window& window, Player& player, Background& background, Hall& hall) : Menu(window, 475, 10, 75, 20), player(player), hall(hall), background(background) {
+    buttonline.horizontal = true;
     std::cout << "Hall is " << &hall << ", Player is " << &player << "\n";
     unsigned int numRooms = 3;
     for (unsigned i = 0; i < numRooms; i++) {
@@ -12,7 +13,7 @@ GameScreen::GameScreen(sf::Window& window, Player& player, Background& backgroun
     std::cout << hall << "\n";
 };
 
-GameScreen::GameScreen(const GameScreen& orig) : ScreenMode(orig.window), player(orig.player), hall(orig.hall), background(orig.background) {};
+GameScreen::GameScreen(const GameScreen& orig) : Menu(orig), player(orig.player), hall(orig.hall), background(orig.background) {};
 
 GameScreen::~GameScreen() {};
 

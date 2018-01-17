@@ -87,6 +87,29 @@ void Player::modify(Stats stat){
     stats.mind += stat.mind;
     stats.soul += stat.soul;
 }
+
+/*Combat*/
+int getCombat(){
+    int num = 0;
+    num = stats.body + items.head.stats.body + items.chest.stats.body +items.hand.stats.body +
+items.pocket1.stats.body + items.pocket2.stats.body;
+    return num;
+}
+
+int getSkill(){
+    int num = 0;
+    num = stats.mind + items.head.stats.mind + items.chest.stats.mind + items.hand.stats.mind +
+items.pocket1.stats.mind + items.pocket2.stats.mind;
+    return num;
+}
+
+int getMagic(){
+    int num = 0;
+    num = stats.soul+ items.head.stats.soul + items.chest.stats.soul + items.hand.stats.soul +
+items.pocket1.stats.soul + items.pocket2.stats.soul;
+    return num;
+}
+
 /*INVENTORY and EQUIPING*/
     
 void Player::addItem(Item& item){

@@ -182,7 +182,12 @@ public:
     void modify(Stats stat);
     
     /*Combat*/
-    int getDefence(stats.body,items.)
+    
+    int getCombat()
+    
+    int getSkill()
+    
+    int getMagic()
     
     /*INVENTORY and EQUIPING*/
     std::vector<Item> itemVector;
@@ -193,7 +198,7 @@ public:
         Item& head;
         Item& chest;
         Item& hand;
-        Item& pocke1;
+        Item& pocket1;
         Item& pocket2;
     };
     equipped items;

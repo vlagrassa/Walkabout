@@ -52,13 +52,22 @@ int main() {
     Stack<ScreenMode&> listOfScreens;
     Menu mainMenu(window, 300, 250, 180, 20);
     GameScreen testGameScreen(window, player, background);
+    Menu testMenu1(window, 10, 10, 50);
+    Menu testMenu2(window, 85, 10, 50);
+    Menu testMenu3(window, 160, 10, 50);
+    Menu testMenu4(window, 235, 10, 50);
     
     mainMenu.addButton("Play", testGameScreen);
-    mainMenu.addButton("Settings", &testGameScreen);
+    mainMenu.addButton("Settings", testMenu1);
     mainMenu.addButton("Quit", 0);
     
     testGameScreen.addButton("Hiii", 0);
     testGameScreen.addButton("Main Menu", 0);
+    
+    testMenu1.addButton("In menu 1", testMenu2);
+    testMenu2.addButton("In menu 2", testMenu3);
+    testMenu3.addButton("In menu 3", testMenu4);
+    testMenu4.addButton("Go back to main", mainMenu);
     
     listOfScreens.push(mainMenu);
     
@@ -149,9 +158,24 @@ int main() {
                 std::cout << "Removed screen:\n" << listOfScreens << "\n";
             }
             else if (nextScreen != &listOfScreens.top->data) {
-                /* If the next screen is different from the current screen, push it onto the stack */
-                listOfScreens.push(*nextScreen);
-                std::cout << "Added screen:\n" << listOfScreens << "\n";
+                ScreenMode* backScreen = NULL;
+                for (Node<ScreenMode&>* n = listOfScreens.top; n != 0; n = n->next) {
+                    if (&n->data == nextScreen) {
+                        backScreen = &n->data;
+                        break;
+                    }
+                }
+                
+                if (backScreen == NULL) {
+                    /* If the next screen is different from the current screen, push it onto the stack */
+                    listOfScreens.push(*nextScreen);
+                    std::cout << "Added screen:\n" << listOfScreens << "\n";
+                } else {
+                    while (&listOfScreens.top->data != backScreen) {
+                        listOfScreens.pop();
+                    }
+                    std::cout << "Moved back to screen:\n" << listOfScreens << "\n";
+                }
             }
             /* If neither of the above happened then the next screen is the same as the current screen - don't do anything */
             

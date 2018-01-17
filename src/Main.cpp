@@ -127,7 +127,10 @@ int main() {
                 case (sf::Event::KeyPressed):
                     if (event.key.code == sf::Keyboard::Q) {
                         //If the q key is pressed, go back to the previous screen (if possible)
-                        if (listOfScreens.top->hasNext()) listOfScreens.pop();
+                        if (listOfScreens.top->hasNext()) {
+                            listOfScreens.pop();
+                            std::cout << "Quit screen:\n" << listOfScreens << "\n";
+                        }
                     }
                     break;
                 default:

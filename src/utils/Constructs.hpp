@@ -61,10 +61,10 @@ public:
      * 
      * Run in the main loop to update periodically.
      */
-    void updateFrames(time_t newUpdateTime) {
+    void updateFrames(time_t newUpdateTime, sf::Event event) {
         if (prevUpdateTime + frameRate <= newUpdateTime) {
             prevUpdateTime = newUpdateTime;
-            run();
+            run(event);
         }
     };
     
@@ -74,7 +74,7 @@ public:
      * based on the given frame rate as long as updateFrames is
      * called.
      */
-    virtual void run() = 0;
+    virtual void run(sf::Event event) = 0;
 };
 
 class Oscillator : public sf::RectangleShape, public FrameRate {
@@ -87,7 +87,7 @@ public:
     Oscillator(const Oscillator& orig) {};
     virtual ~Oscillator() {};
     
-    void run() {
+    void run(sf::Event event) {
         currentPos += dir;
         if (currentPos >= 500 || currentPos <= 0) dir *= -1;
         setSize(sf::Vector2f(getPosition().x, currentPos));

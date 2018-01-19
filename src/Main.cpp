@@ -197,7 +197,7 @@ int main() {
             quitGame(window);
         }
         
-        testOsc.updateFrames(gameclock.getElapsedTime().asMicroseconds());
+        testOsc.updateFrames(gameclock.getElapsedTime().asMicroseconds(), event);
         window.draw(testOsc);
         
         /* Draw the paper texture (for aesthetics) and the debugging text (for help) */

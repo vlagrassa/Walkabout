@@ -192,14 +192,13 @@ public:
     
     void addItem(Item& item);
     
-    struct equipped{
+    struct {
         Item& head;
         Item& chest;
         Item& hand;
         Item& pocket1;
         Item& pocket2;
-    };
-    equipped items;
+    } items;
     
     void equip(Item& item);
     

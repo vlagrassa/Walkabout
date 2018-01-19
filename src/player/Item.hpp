@@ -25,8 +25,6 @@ public:
     Item(const Item&);
     virtual ~Item();
     
-    bool isEquipable();
-    
     const enum ItemType type;
     const std::string name;
     /*Stats*/

@@ -87,7 +87,17 @@ void Player::modify(Stats stat){
     stats.mind += stat.mind;
     stats.soul += stat.soul;
 }
+unsigned money = 0;
+void addMoney(int amount){
+    if(amount > money){
+        throw out_of_range("cost exceed value")
+    }
+    money += amount;
+}
 
+    
+}
+        
 /*Combat*/
 int getCombat(){
     int num = 0;

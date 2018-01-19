@@ -180,6 +180,8 @@ public:
     Stats stats;
     
     void modify(Stats stat);
+    unsigned money;
+    void addMoney(int amount);
     
     /*Combat*/
     
@@ -204,6 +206,9 @@ public:
     equipped items;
     
     void equip(Item& item);
+    
+    /*Saving data*/
+    
     
 private:
     /* Absolute position of the Player - in context of Hall */

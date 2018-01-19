@@ -11,7 +11,7 @@ Item::~Item() {
     
 }
 Item::Item(ItemType kind, std::string name, Stats stats): type(kind), name(name),
-stats(stats);
+stats(stats), unsigned int(value);
 
 
 

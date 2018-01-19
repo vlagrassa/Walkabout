@@ -81,29 +81,36 @@ public:
     virtual void run(sf::Event event) = 0;
 };
 
-class Oscillator : public sf::RectangleShape, public FrameRate {
+class Oscillator : public sf::Drawable, public FrameRate {
 public:
-    unsigned int currentPos;
+    unsigned int currentPos = 20;
     unsigned int targetPos;
     int dir = 2;
+    sf::RectangleShape outline;
     sf::RectangleShape line;
     
-    Oscillator(sf::Vector2f vec, unsigned int frameRate) : sf::RectangleShape(vec), FrameRate(frameRate), line(sf::Vector2f(10,10)) {
+    Oscillator(sf::Vector2f vec, unsigned int frameRate) : FrameRate(frameRate), outline(vec), line(sf::Vector2f(10,10)) {
         line.setFillColor(sf::Color::Cyan);
         line.setOutlineColor(sf::Color::Black);
         line.setOutlineThickness(3);
         line.setPosition(10, 10);
-        setSize(sf::Vector2f(10, 500));
+        outline.setFillColor(sf::Color::Black);
+        outline.setOutlineColor(sf::Color::Black);
+        outline.setOutlineThickness(3);
+        outline.setPosition(10, 10);
     };
     Oscillator(const Oscillator& orig) : FrameRate(orig.frameRate) {};
     virtual ~Oscillator() {};
     
     void run(sf::Event event) {
         currentPos += dir;
-        //line.setPosition(getPosition().x, currentPos);
         if (currentPos >= 500 || currentPos <= 0) dir *= -1;
-        setSize(sf::Vector2f(getPosition().x, currentPos));
-        //line.setSize(sf::Vector2f(10, 500));
+        line.setSize(sf::Vector2f(line.getPosition().x, currentPos));
+    }
+    
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
+        target.draw(outline);
+        target.draw(line);
     }
 };
 

@@ -5,6 +5,14 @@
 #include <stdlib.h>
 #include <iostream>
 #include "Player.hpp"
+#include "../utils/Utils.hpp"
+
+typedef int st;
+struct Stats{
+        st body;
+        st mind;
+        st soul;     
+};
 
 enum ItemType{
     Head,
@@ -28,6 +36,6 @@ public:
     const enum ItemType type;
     const std::string name;
     /*Stats*/
-    const enum Stats stats;
+    const Stats stats;
 };
 #endif

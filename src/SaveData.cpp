@@ -11,7 +11,7 @@
  * Created on December 23, 2017, 10:50 AM
  */
 
-#include "TextFiling.hpp"
+#include "SaveData.hpp"
 #include <iostream>
 #include <fstream>
 
@@ -25,10 +25,13 @@ SaveData::SaveData(const SaveData& orig) {
 SaveData::~SaveData() {
     
 }
-
-void SaveData::killCount(){
-    std::ofstream data;
-    data.open("saveData");
-    data << "Writing this to a file.\n";
-    data.close();
+void saveData(){
+    std::ifstream inFile;
+    inFile.open("statFile.txt");
+    
+    if (!inFile) {
+    std::cerr << "Unable to open file datafile.txt";
+    std::exit(-1);   // call system to stop
 }
+}
+

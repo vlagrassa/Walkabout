@@ -82,10 +82,10 @@ bool Player::isMovingLeft() {
 }
 
 /*Stats*/
-void Player::modify(Stats stat){
-    stats.body += stat.body;
-    stats.mind += stat.mind;
-    stats.soul += stat.soul;
+void Player::modify(Stats playerStat){
+    stats.body += playerStat.body;
+    stats.mind += playerStat.mind;
+    stats.soul += playerStat.soul;
 }
 unsigned money = 0;
 void addMoney(int amount){

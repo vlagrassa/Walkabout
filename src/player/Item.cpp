@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Item.hpp"
-#include "utils/Utils.hpp"
 #include "Player.hpp"
+#include "../utils/Utils.hpp"
     
 
 Item::Item(const Item& orig) {

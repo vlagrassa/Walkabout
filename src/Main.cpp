@@ -12,7 +12,7 @@
 #include "region/Hall.hpp"
 #include "screen/Menu.hpp"
 #include "window/Background.hpp"
-#include "TextFiling.hpp"
+#include "SaveData.hpp"
 #include "screen/GameScreen.hpp"
 
 
@@ -42,8 +42,8 @@ int main() {
     
     
     /* Instantiate TextFiling*/
-    TextFiling textfile;
-    textfile.killCount();
+    SaveData savefile;
+    
     
     
     /* Instantiate Menu */

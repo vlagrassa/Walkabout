@@ -5,12 +5,8 @@
 #include <stdlib.h>
 #include "Item.hpp"
 
-typedef int stat;
-struct Stats{
-        stat body;
-        stat mind;
-        stat soul;     
-    };
+
+
 
 class Player : public sf::Sprite {
 public:
@@ -179,17 +175,17 @@ public:
     /*stats*/
     Stats stats;
     
-    void modify(Stats stat);
+    void modify(Stats playerStat);
     unsigned money;
     void addMoney(int amount);
     
     /*Combat*/
     
-    int getCombat()
+    int getCombat();
     
-    int getSkill()
+    int getSkill();
     
-    int getMagic()
+    int getMagic();
     
     /*INVENTORY and EQUIPING*/
     std::vector<Item> itemVector;

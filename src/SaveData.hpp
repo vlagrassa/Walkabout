@@ -17,13 +17,15 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 
+
 class SaveData {
 public:
     SaveData();
     SaveData(const SaveData&);
     virtual ~SaveData();
     
-    
+    void saveData();
+};
 
     
 

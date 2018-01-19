@@ -55,7 +55,7 @@ public:
      * 
      * The previous time the object was updated.
      */
-    time_t prevUpdateTime;
+    time_t prevUpdateTime = 0;
     
     FrameRate(unsigned int frameRate) : frameRate(frameRate) {};
     FrameRate(const FrameRate& orig) : frameRate(orig.frameRate), prevUpdateTime(orig.prevUpdateTime) {};

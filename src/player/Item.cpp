@@ -4,14 +4,15 @@
 #include "../utils/Utils.hpp"
     
 
-Item::Item(const Item& orig) {
+Item::Item(const Item& orig): type(orig.type), name(orig.name),
+stats(orig.stats){
     
 }
 Item::~Item() {
     
 }
 Item::Item(ItemType kind, std::string name, Stats stats): type(kind), name(name),
-stats(stats), unsigned int(value);
+stats(stats){};
 
 
 

@@ -86,15 +86,24 @@ public:
     unsigned int currentPos;
     unsigned int targetPos;
     int dir = 2;
+    sf::RectangleShape line;
     
-    Oscillator(sf::Vector2f vec, unsigned int frameRate) : sf::RectangleShape(vec), FrameRate(frameRate) {};
+    Oscillator(sf::Vector2f vec, unsigned int frameRate) : sf::RectangleShape(vec), FrameRate(frameRate), line(sf::Vector2f(10,10)) {
+        line.setFillColor(sf::Color::Cyan);
+        line.setOutlineColor(sf::Color::Black);
+        line.setOutlineThickness(3);
+        line.setPosition(10, 10);
+        setSize(sf::Vector2f(10, 500));
+    };
     Oscillator(const Oscillator& orig) : FrameRate(orig.frameRate) {};
     virtual ~Oscillator() {};
     
     void run(sf::Event event) {
         currentPos += dir;
+        //line.setPosition(getPosition().x, currentPos);
         if (currentPos >= 500 || currentPos <= 0) dir *= -1;
         setSize(sf::Vector2f(getPosition().x, currentPos));
+        //line.setSize(sf::Vector2f(10, 500));
     }
 };
 

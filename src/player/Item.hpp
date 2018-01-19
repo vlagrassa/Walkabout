@@ -4,7 +4,6 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 #include <iostream>
-#include "Player.hpp"
 #include "../utils/Utils.hpp"
 
 typedef int st;

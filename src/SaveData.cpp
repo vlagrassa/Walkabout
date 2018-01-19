@@ -32,6 +32,8 @@ void saveData(){
     if (!inFile) {
     std::cerr << "Unable to open file datafile.txt";
     std::exit(-1);   // call system to stop
+    
+    inFile.close("statFile.txt");
 }
 }
 

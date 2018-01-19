@@ -2,6 +2,7 @@
 #define UTILS_H
 
 #include <cstdlib>
+#include <typeinfo>
 
 template <class T> class Node;
 template <class T> class Stack;

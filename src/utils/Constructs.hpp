@@ -57,6 +57,10 @@ public:
      */
     time_t prevUpdateTime;
     
+    FrameRate(unsigned int frameRate) : frameRate(frameRate) {};
+    FrameRate(const FrameRate& orig) : frameRate(orig.frameRate), prevUpdateTime(orig.prevUpdateTime) {};
+    virtual ~FrameRate() {};
+    
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
      * Run in the main loop to update periodically.
@@ -83,8 +87,8 @@ public:
     unsigned int targetPos;
     int dir = 2;
     
-    Oscillator(sf::Vector2f vec, unsigned int frameRate) : sf::RectangleShape(vec), frameRate(frameRate) {};
-    Oscillator(const Oscillator& orig) {};
+    Oscillator(sf::Vector2f vec, unsigned int frameRate) : sf::RectangleShape(vec), FrameRate(frameRate) {};
+    Oscillator(const Oscillator& orig) : FrameRate(orig.frameRate) {};
     virtual ~Oscillator() {};
     
     void run(sf::Event event) {

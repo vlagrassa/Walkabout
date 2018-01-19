@@ -113,11 +113,10 @@ int main() {
     hallText.setFillColor(sf::Color::Black);
     hallText.setPosition(0, 400);
     
-    Oscillator testOsc(sf::Vector2f(10,10));
+    Oscillator testOsc(sf::Vector2f(10,10), 4);
     testOsc.setOutlineColor(sf::Color::Black);
     testOsc.setOutlineThickness(3);
     testOsc.setPosition(sf::Vector2f(10, 10));
-    testOsc.frameRate = 4;
     
     sf::Clock gameclock;
     

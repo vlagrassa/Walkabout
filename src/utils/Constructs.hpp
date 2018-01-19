@@ -38,4 +38,36 @@ public:
     }
 };
 
+class FrameRate {
+public:
+    unsigned int frameRate;
+    time_t prevUpdateTime;
+    
+    void updateFrames(time_t newUpdateTime) {
+        if (prevUpdateTime + frameRate <= newUpdateTime) {
+            prevUpdateTime = newUpdateTime;
+            run();
+        }
+    };
+    
+    virtual void run() = 0;
+};
+
+class Oscillator : public sf::RectangleShape, public FrameRate {
+public:
+    unsigned int currentPos;
+    unsigned int targetPos;
+    int dir = 2;
+    
+    Oscillator(sf::Vector2f vec, unsigned int frameRate) : sf::RectangleShape(vec), frameRate(frameRate) {};
+    Oscillator(const Oscillator& orig) {};
+    virtual ~Oscillator() {};
+    
+    void run() {
+        currentPos += dir;
+        if (currentPos >= 500 || currentPos <= 0) dir *= -1;
+        setSize(sf::Vector2f(getPosition().x, currentPos));
+    }
+};
+
 #endif /* CONSTRUCTS_H */

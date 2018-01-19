@@ -28,13 +28,13 @@ enum ItemType{
         
 class Item {
 public:
-    Item();
-    Item(const Item&);
+    Item(const Item& orig);
     virtual ~Item();
     
     const enum ItemType type;
     const std::string name;
     /*Stats*/
     const Stats stats;
+    Item(ItemType kind, std::string name, Stats stats);
 };
 #endif

@@ -10,6 +10,7 @@
 
 class LinkedButton;
 class ScreenMode;
+class TransitionScreen;
 
 class LinkedButton : public sf::RectangleShape {
 public:
@@ -106,6 +107,36 @@ public:
     
 private:
     std::vector<sf::Text> displayText;
+};
+
+class TransitionScreen : public ScreenMode {
+public:
+    ScreenMode* link;
+    bool forward = true;
+    
+    TransitionScreen(ScreenMode* link, sf::Window& window = DEFAULT_WINDOW) : ScreenMode(window), link(link) {};
+    TransitionScreen(const TransitionScreen& orig) : link(orig.link) {};
+    virtual ~TransitionScreen() {};
+    
+    virtual ScreenMode* run(sf::Event event) {
+        if (forward) {
+            return runForward();
+        } else {
+            return runBackward();
+        }
+    }
+    
+    virtual ScreenMode* runForward() {
+        std::cout << "Transitioning forward...\n";
+        forward = false;
+        return link;
+    };
+    
+    virtual ScreenMode* runBackward() {
+        forward = true;
+        std::cout << "Transitioning backward...\n";
+        return NULL;
+    };
 };
 
 #endif /* SCREENMODE_H */

@@ -14,11 +14,20 @@
 #include "window/Background.hpp"
 #include "TextFiling.hpp"
 
-/* Declare the default font instantiated in utils/Defaults.hpp */
+/* Declare the defaults instantiated in utils/Defaults.hpp */
 sf::Font DEFAULT_FONT;
 sf::RectangleShape DEFAULT_RECT;
 sf::RenderWindow DEFAULT_WINDOW(sf::VideoMode(800, 600), "Walkabout");
 
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ * Function to quit the game. At the moment, just closes the
+ * given window, but can be expanded to save the game.
+ * 
+ * Note that if no parameters are given, this will use the
+ * DEFAULT_WINDOW.
+ * 
+ * @PARAM window The game window (defaults to DEFAULT_WINDOW)
+ */
 void quitGame(sf::Window& window = DEFAULT_WINDOW) {
     window.close();
 }
@@ -27,23 +36,22 @@ void quitGame(sf::Window& window = DEFAULT_WINDOW) {
 int main() {
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
     
-    /* Instantiate the default font and rectangle */
+    /* Instantiate the defaults */
     DEFAULT_FONT.loadFromFile("resources/Courier.dfont");
+    
     DEFAULT_RECT.setSize(sf::Vector2f(100, 50));
     DEFAULT_RECT.setFillColor(sf::Color::White);
     DEFAULT_RECT.setOutlineColor(sf::Color::Black);
     DEFAULT_RECT.setOutlineThickness(5);
     DEFAULT_RECT.setPosition(5, 5);
     
-    /* Identify the resource directory */
-    std::string resourceDir = "resources/";
-    
-    
-    /* Create Window */
-    //sf::RenderWindow window(sf::VideoMode(800, 600), "Walkabout");
     // See https://en.sfml-dev.org/forums/index.php?topic=20033.msg144271#msg144271 for explanation of following lines
     DEFAULT_WINDOW.setFramerateLimit(0);
     DEFAULT_WINDOW.setVerticalSyncEnabled(true);
+    
+    
+    /* Identify the resource directory */
+    std::string resourceDir = "resources/";
     
     
     /* Instantiate Player */

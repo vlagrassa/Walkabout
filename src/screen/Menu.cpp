@@ -3,7 +3,7 @@
 #include "Menu.hpp"
 #include <SFML/Graphics.hpp>
 
-Menu::Menu(sf::Window& window, unsigned int topOffset, unsigned int leftOffset, unsigned int height, unsigned int gap)
+Menu::Menu(unsigned int topOffset, unsigned int leftOffset, unsigned int height, unsigned int gap, sf::Window& window)
 : ScreenMode(window), buttonline(sf::IntRect(leftOffset, topOffset, window.getSize().x - leftOffset*2, height), gap) {
     
 }

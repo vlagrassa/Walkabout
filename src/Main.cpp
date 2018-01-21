@@ -17,8 +17,9 @@
 /* Declare the default font instantiated in utils/Defaults.hpp */
 sf::Font DEFAULT_FONT;
 sf::RectangleShape DEFAULT_RECT;
+sf::RenderWindow DEFAULT_WINDOW(sf::VideoMode(800, 600), "Walkabout");
 
-void quitGame(sf::Window& window) {
+void quitGame(sf::Window& window = DEFAULT_WINDOW) {
     window.close();
 }
 
@@ -39,10 +40,10 @@ int main() {
     
     
     /* Create Window */
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Walkabout");
+    //sf::RenderWindow window(sf::VideoMode(800, 600), "Walkabout");
     // See https://en.sfml-dev.org/forums/index.php?topic=20033.msg144271#msg144271 for explanation of following lines
-    window.setFramerateLimit(0);
-    window.setVerticalSyncEnabled(true);
+    DEFAULT_WINDOW.setFramerateLimit(0);
+    DEFAULT_WINDOW.setVerticalSyncEnabled(true);
     
     
     /* Instantiate Player */
@@ -51,17 +52,17 @@ int main() {
     
     /* Create Ambience (like a texture pack) and Background */
     Ambience standard(resourceDir);
-    Background background(standard, window);
+    Background background(standard, DEFAULT_WINDOW);
     
     
     /* Initialize ScreenMode Stack, Menu, and GameScreen */
     Stack<ScreenMode&> listOfScreens;
-    Menu mainMenu(window, 300, 250, 180, 20);
-    GameScreen testGameScreen(window, player, background);
-    Menu testMenu1(window, 10, 10, 50);
-    Menu testMenu2(window, 85, 10, 50);
-    Menu testMenu3(window, 160, 10, 50);
-    Menu testMenu4(window, 235, 10, 50);
+    Menu mainMenu(300, 250, 180, 20);
+    GameScreen testGameScreen(player, background);
+    Menu testMenu1(10, 10, 50);
+    Menu testMenu2(85, 10, 50);
+    Menu testMenu3(160, 10, 50);
+    Menu testMenu4(235, 10, 50);
     
     mainMenu.addButton("Play", testGameScreen);
     mainMenu.addButton("Settings", testMenu1);
@@ -109,7 +110,7 @@ int main() {
     
     player.setTexture(playerTexture);
     //h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/4);
-    player.setPosition(0,window.getSize().x/4);
+    player.setPosition(0,DEFAULT_WINDOW.getSize().x/4);
     
     
     /* Create the debugging text tracking the current hall */
@@ -126,17 +127,17 @@ int main() {
     //int prevUpdateTime = gameclock.getElapsedTime().asMicroseconds();
     
     /* Main loop */
-    while (window.isOpen()) {
+    while (DEFAULT_WINDOW.isOpen()) {
         //std::cout << "Time elapsed = " << (gameclock.getElapsedTime().asMilliseconds() - prevUpdateTime) << "\n";
         //prevUpdateTime = gameclock.getElapsedTime().asMilliseconds();
         
         sf::Event event;
         
         /* Event loop */
-        while (window.pollEvent(event)) {
+        while (DEFAULT_WINDOW.pollEvent(event)) {
             switch(event.type) {
                 case (sf::Event::Closed):
-                    quitGame(window);
+                    quitGame();
                     break;
                 case (sf::Event::KeyPressed):
                     if (event.key.code == sf::Keyboard::Q) {
@@ -161,7 +162,7 @@ int main() {
         hallText.setString(temp);
         
         /* Clear the screen */
-        window.clear(sf::Color::White);
+        DEFAULT_WINDOW.clear(sf::Color::White);
         
         /* Figure out the active screen */
         if (!listOfScreens.isEmpty()) {
@@ -198,21 +199,21 @@ int main() {
             
             /* Draw the next screen - should this be changed to draw the top of the stack? does it matter? */
             if (nextScreen != NULL) {
-                window.draw(*nextScreen);
+                DEFAULT_WINDOW.draw(*nextScreen);
             }
         } else {
-            quitGame(window);
+            quitGame();
         }
         
         testOsc.updateFrames(gameclock.getElapsedTime().asMilliseconds(), event);
-        window.draw(testOsc);
+        DEFAULT_WINDOW.draw(testOsc);
         
         /* Draw the paper texture (for aesthetics) and the debugging text (for help) */
-        window.draw(paper);
+        DEFAULT_WINDOW.draw(paper);
         //window.draw(hallText);
         
         /* Display the screen */
-        window.display();
+        DEFAULT_WINDOW.display();
     }
     
     return EXIT_SUCCESS;

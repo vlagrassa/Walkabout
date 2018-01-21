@@ -1,9 +1,9 @@
 #include "GameScreen.hpp"
 #include <SFML/Graphics.hpp>
 
-GameScreen::GameScreen(sf::Window& window, Player& player, Background& background) : GameScreen(window, player, background, *new Hall(player, window)) {};
+GameScreen::GameScreen(Player& player, Background& background, sf::Window& window) : GameScreen(player, background, *new Hall(player, window), window) {};
 
-GameScreen::GameScreen(sf::Window& window, Player& player, Background& background, Hall& hall) : Menu(window, 475, 10, 75, 20), player(player), hall(hall), background(background) {
+GameScreen::GameScreen(Player& player, Background& background, Hall& hall, sf::Window& window) : Menu(475, 10, 75, 20, window), player(player), hall(hall), background(background) {
     buttonline.horizontal = true;
     std::cout << "Hall is " << &hall << ", Player is " << &player << "\n";
     unsigned int numRooms = 3;

@@ -17,13 +17,13 @@ public:
     sf::Window& window;
     sf::Text title;
     
-    LinkedButton(RectangleShape rect, ScreenMode& link, sf::Window& window) : RectangleShape(rect), link(link), window(window) {};
+    LinkedButton(RectangleShape rect, ScreenMode& link, sf::Window& window = DEFAULT_WINDOW) : RectangleShape(rect), link(link), window(window) {};
     
-    LinkedButton(RectangleShape rect, ScreenMode* link, sf::Window& window) : LinkedButton(rect, *link, window) {};
+    LinkedButton(RectangleShape rect, ScreenMode* link, sf::Window& window = DEFAULT_WINDOW) : LinkedButton(rect, *link, window) {};
     
-    LinkedButton(ScreenMode& link, sf::Window& window) : LinkedButton(DEFAULT_RECT, link, window) {};
+    LinkedButton(ScreenMode& link, sf::Window& window = DEFAULT_WINDOW) : LinkedButton(DEFAULT_RECT, link, window) {};
     
-    LinkedButton(ScreenMode* link, sf::Window& window) : LinkedButton(*link, window) {};
+    LinkedButton(ScreenMode* link, sf::Window& window = DEFAULT_WINDOW) : LinkedButton(*link, window) {};
     
     LinkedButton(const LinkedButton& orig) : RectangleShape(orig), link(orig.link), window(orig.window), title(orig.title) {
         setSize(sf::Vector2f(100, 50));
@@ -67,7 +67,7 @@ public:
     LinkedList<LinkedButton&> buttons;
     sf::Window& window;
     
-    ScreenMode(sf::Window& window) : window(window) {};
+    ScreenMode(sf::Window& window = DEFAULT_WINDOW) : window(window) {};
     ScreenMode(const ScreenMode& orig) : window(orig.window) {};
     virtual ~ScreenMode() {};
     

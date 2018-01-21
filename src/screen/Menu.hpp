@@ -11,7 +11,7 @@ class Menu: public ScreenMode {
 public:
     ButtonLine buttonline;
     
-    Menu(sf::Window& window, unsigned int topOffset, unsigned int leftOffset, unsigned int height, unsigned int gap = 0); //sf::Vector2i topLeft?
+    Menu(unsigned int topOffset, unsigned int leftOffset, unsigned int height, unsigned int gap = 0, sf::Window& window = DEFAULT_WINDOW); //sf::Vector2i topLeft?
     Menu(const Menu&);
     virtual ~Menu();
     

@@ -17,21 +17,15 @@ public:
     sf::Window& window;
     sf::Text title;
     
-    LinkedButton(ScreenMode& link, sf::Window& window) : link(link), window(window) {
-        setSize(sf::Vector2f(100, 50));
-        setOutlineColor(sf::Color::Red);
-        setOutlineThickness(5);
-        setPosition(10, 20);
-    };
+    LinkedButton(RectangleShape rect, ScreenMode& link, sf::Window& window) : RectangleShape(rect), link(link), window(window) {};
     
-    LinkedButton(ScreenMode* link, sf::Window& window) : link(*link), window(window) {
-        setSize(sf::Vector2f(100, 50));
-        setOutlineColor(sf::Color::Cyan);
-        setOutlineThickness(5);
-        setPosition(350, 20);
-    }
+    LinkedButton(RectangleShape rect, ScreenMode* link, sf::Window& window) : LinkedButton(rect, *link, window) {};
     
-    LinkedButton(const LinkedButton& orig) : link(orig.link), window(orig.window), title(orig.title) {
+    LinkedButton(ScreenMode& link, sf::Window& window) : LinkedButton(DEFAULT_RECT, link, window) {};
+    
+    LinkedButton(ScreenMode* link, sf::Window& window) : LinkedButton(*link, window) {};
+    
+    LinkedButton(const LinkedButton& orig) : RectangleShape(orig), link(orig.link), window(orig.window), title(orig.title) {
         setSize(sf::Vector2f(100, 50));
         setOutlineColor(sf::Color::Green);
         setOutlineThickness(5);

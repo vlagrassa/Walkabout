@@ -16,6 +16,7 @@
 
 /* Declare the default font instantiated in utils/Defaults.hpp */
 sf::Font DEFAULT_FONT;
+sf::RectangleShape DEFAULT_RECT;
 
 void quitGame(sf::Window& window) {
     window.close();
@@ -25,8 +26,13 @@ void quitGame(sf::Window& window) {
 int main() {
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
     
-    /* Instantiate the default font */
+    /* Instantiate the default font and rectangle */
     DEFAULT_FONT.loadFromFile("resources/Courier.dfont");
+    DEFAULT_RECT.setSize(sf::Vector2f(100, 50));
+    DEFAULT_RECT.setFillColor(sf::Color::White);
+    DEFAULT_RECT.setOutlineColor(sf::Color::Black);
+    DEFAULT_RECT.setOutlineThickness(5);
+    DEFAULT_RECT.setPosition(5, 5);
     
     /* Identify the resource directory */
     std::string resourceDir = "resources/";

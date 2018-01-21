@@ -117,14 +117,12 @@ int main() {
     
     sf::Clock gameclock;
     
-    int prevUpdateTime = gameclock.getElapsedTime().asMicroseconds();
+    //int prevUpdateTime = gameclock.getElapsedTime().asMicroseconds();
     
     /* Main loop */
     while (window.isOpen()) {
-        std::cout << "Time elapsed = " << (gameclock.getElapsedTime().asMilliseconds() - prevUpdateTime) << "\n";
-        
-        prevUpdateTime = gameclock.getElapsedTime().asMilliseconds();
-        
+        //std::cout << "Time elapsed = " << (gameclock.getElapsedTime().asMilliseconds() - prevUpdateTime) << "\n";
+        //prevUpdateTime = gameclock.getElapsedTime().asMilliseconds();
         
         sf::Event event;
         

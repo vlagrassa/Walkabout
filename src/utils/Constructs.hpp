@@ -67,7 +67,7 @@ public:
      */
     void updateFrames(time_t newUpdateTime, sf::Event event) {
         if (prevUpdateTime + frameRate <= newUpdateTime) {
-            std::cout << "Previous: " << prevUpdateTime << "\t\tNew: " << newUpdateTime << "\n";
+            //std::cout << "Previous: " << prevUpdateTime << "\t\tNew: " << newUpdateTime << "\n";
             prevUpdateTime = newUpdateTime;
             run(event);
         }

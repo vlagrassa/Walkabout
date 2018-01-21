@@ -155,6 +155,12 @@ int main() {
                             std::cout << "Quit screen:\n" << listOfScreens << "\n";
                         }
                     }
+                    if (event.key.code == sf::Keyboard::A) {
+                        testGameScreen.buttons.first->data.isActive = true;
+                    }
+                    if (event.key.code == sf::Keyboard::D) {
+                        testGameScreen.buttons.first->data.isActive = false;
+                    }
                     break;
                 default:
                     break;

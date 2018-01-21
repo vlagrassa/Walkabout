@@ -17,6 +17,7 @@ public:
     ScreenMode& link;
     sf::Window& window;
     sf::Text title;
+    bool isActive = true;
     
     LinkedButton(ScreenMode& link, RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : RectangleShape(rect), link(link), window(window) {};
     
@@ -45,7 +46,7 @@ public:
     }
     
     bool clicked() {
-        return touchingMouse() && sf::Mouse().isButtonPressed(sf::Mouse().Left);
+        return touchingMouse() && sf::Mouse().isButtonPressed(sf::Mouse().Left) && isActive;
     }
     
 private:
@@ -100,8 +101,10 @@ public:
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
         for (Node<LinkedButton&>* n = buttons.first; n != 0; n = n->next) {
-            target.draw(n->data);
-            target.draw(n->data.title);
+            if (n->data.isActive) {
+                target.draw(n->data);
+                target.draw(n->data.title);
+            }
         }
     }
     

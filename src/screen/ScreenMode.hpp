@@ -114,8 +114,12 @@ public:
     ScreenMode* link;
     bool forward = true;
     
-    TransitionScreen(ScreenMode* link, sf::Window& window = DEFAULT_WINDOW) : ScreenMode(window), link(link) {};
+    TransitionScreen(ScreenMode* link, sf::Window& window = DEFAULT_WINDOW) : ScreenMode(window), link(link) {
+        showPrevious = true;
+    };
+    
     TransitionScreen(const TransitionScreen& orig) : link(orig.link) {};
+    
     virtual ~TransitionScreen() {};
     
     virtual ScreenMode* run(sf::Event event) {

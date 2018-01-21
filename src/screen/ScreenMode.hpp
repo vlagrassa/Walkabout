@@ -17,20 +17,11 @@ public:
     sf::Window& window;
     sf::Text title;
     
-    LinkedButton(RectangleShape rect, ScreenMode& link, sf::Window& window = DEFAULT_WINDOW) : RectangleShape(rect), link(link), window(window) {};
+    LinkedButton(ScreenMode& link, RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : RectangleShape(rect), link(link), window(window) {};
     
-    LinkedButton(RectangleShape rect, ScreenMode* link, sf::Window& window = DEFAULT_WINDOW) : LinkedButton(rect, *link, window) {};
+    LinkedButton(ScreenMode* link, RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : LinkedButton(*link, rect, window) {};
     
-    LinkedButton(ScreenMode& link, sf::Window& window = DEFAULT_WINDOW) : LinkedButton(DEFAULT_RECT, link, window) {};
-    
-    LinkedButton(ScreenMode* link, sf::Window& window = DEFAULT_WINDOW) : LinkedButton(*link, window) {};
-    
-    LinkedButton(const LinkedButton& orig) : RectangleShape(orig), link(orig.link), window(orig.window), title(orig.title) {
-        setSize(sf::Vector2f(100, 50));
-        setOutlineColor(sf::Color::Green);
-        setOutlineThickness(5);
-        setPosition(10, 20);
-    };
+    LinkedButton(const LinkedButton& orig) : RectangleShape(orig), link(orig.link), window(orig.window), title(orig.title) {};
     
     virtual ~LinkedButton() {};
     
@@ -94,7 +85,7 @@ public:
     }
     
     virtual void addButton(std::string title, ScreenMode* link, sf::Font& font = DEFAULT_FONT) {
-        LinkedButton* temp = new LinkedButton(link, window);
+        LinkedButton* temp = new LinkedButton(link, DEFAULT_RECT, window);
         temp->setTitle(*new sf::Text(title, font));
         addButton(*temp);
     }

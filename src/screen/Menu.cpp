@@ -21,9 +21,8 @@ void Menu::addButton(std::string text, ScreenMode& link, sf::Font& font) {
 }
 
 void Menu::addButton(std::string text, ScreenMode* link, sf::Font& font) {
-    LinkedButton* temp = new LinkedButton(link, window);
+    LinkedButton* temp = new LinkedButton(link, DEFAULT_RECT, window);
     temp->setTitle(*new sf::Text(text, font));
-    temp->setOutlineColor(sf::Color::Black);
     ScreenMode::addButton(*temp);
     buttonline.fitButtonsToRect(buttons);
 }

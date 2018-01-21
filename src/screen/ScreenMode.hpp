@@ -19,11 +19,11 @@ public:
     sf::RectangleShape outline;
     sf::Text title;
     
-    LinkedButton(ScreenMode& link, sf::RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : outline(rect), link(link), window(window) {};
+    LinkedButton(ScreenMode& link, sf::RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : link(link), window(window), outline(rect) {};
     
     LinkedButton(ScreenMode* link, sf::RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : LinkedButton(*link, rect, window) {};
     
-    LinkedButton(const LinkedButton& orig) : link(orig.link), outline(orig.outline), window(orig.window), title(orig.title) {};
+    LinkedButton(const LinkedButton& orig) : link(orig.link), window(orig.window), outline(orig.outline), title(orig.title) {};
     
     virtual ~LinkedButton() {};
     

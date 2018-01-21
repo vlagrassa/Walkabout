@@ -118,7 +118,7 @@ public:
         showPrevious = true;
     };
     
-    TransitionScreen(const TransitionScreen& orig) : link(orig.link) {};
+    TransitionScreen(const TransitionScreen& orig) : TransitionScreen(orig.link, orig.window) {};
     
     virtual ~TransitionScreen() {};
     

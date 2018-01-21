@@ -113,12 +113,19 @@ int main() {
     hallText.setFillColor(sf::Color::Black);
     hallText.setPosition(0, 400);
     
-    Oscillator testOsc(sf::Vector2f(10,500), 4);
+    Oscillator testOsc(sf::Vector2f(10,500), 80);
     
     sf::Clock gameclock;
     
+    int prevUpdateTime = gameclock.getElapsedTime().asMicroseconds();
+    
     /* Main loop */
     while (window.isOpen()) {
+        std::cout << "Time elapsed = " << (gameclock.getElapsedTime().asMilliseconds() - prevUpdateTime) << "\n";
+        
+        prevUpdateTime = gameclock.getElapsedTime().asMilliseconds();
+        
+        
         sf::Event event;
         
         /* Event loop */
@@ -193,7 +200,7 @@ int main() {
             quitGame(window);
         }
         
-        testOsc.updateFrames(gameclock.getElapsedTime().asMicroseconds(), event);
+        testOsc.updateFrames(gameclock.getElapsedTime().asMilliseconds(), event);
         window.draw(testOsc);
         
         /* Draw the paper texture (for aesthetics) and the debugging text (for help) */

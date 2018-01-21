@@ -12,24 +12,25 @@ class LinkedButton;
 class ScreenMode;
 class TransitionScreen;
 
-class LinkedButton : public sf::RectangleShape {
+class LinkedButton : public sf::Drawable {
 public:
     ScreenMode& link;
     sf::Window& window;
+    sf::RectangleShape outline;
     sf::Text title;
     bool isActive = true;
     
-    LinkedButton(ScreenMode& link, RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : RectangleShape(rect), link(link), window(window) {};
+    LinkedButton(ScreenMode& link, sf::RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : outline(rect), link(link), window(window) {};
     
-    LinkedButton(ScreenMode* link, RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : LinkedButton(*link, rect, window) {};
+    LinkedButton(ScreenMode* link, sf::RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : LinkedButton(*link, rect, window) {};
     
-    LinkedButton(const LinkedButton& orig) : RectangleShape(orig), link(orig.link), window(orig.window), title(orig.title) {};
+    LinkedButton(const LinkedButton& orig) : link(orig.link), outline(orig.outline), window(orig.window), title(orig.title) {};
     
     virtual ~LinkedButton() {};
     
     void setTitle(sf::Text& text) {
         title = text;
-        title.setPosition(getPosition());
+        title.setPosition(outline.getPosition());
         title.setFillColor(sf::Color::Black);
     }
     
@@ -38,15 +39,20 @@ public:
     }
     
     sf::Vector2f getCenter() {
-        return sf::Vector2f(getPosition().x + getSize().x/2, getPosition().y + getSize().y/2);
+        return sf::Vector2f(outline.getPosition().x + outline.getSize().x/2, outline.getPosition().y + outline.getSize().y/2);
     }
     
     bool touchingMouse() {
-        return getGlobalBounds().contains(sf::Mouse().getPosition(window).x, sf::Mouse().getPosition(window).y);
+        return outline.getGlobalBounds().contains(sf::Mouse().getPosition(window).x, sf::Mouse().getPosition(window).y);
     }
     
     bool clicked() {
         return touchingMouse() && sf::Mouse().isButtonPressed(sf::Mouse().Left) && isActive;
+    }
+    
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
+        target.draw(outline);
+        target.draw(title);
     }
     
 private:
@@ -103,7 +109,6 @@ public:
         for (Node<LinkedButton&>* n = buttons.first; n != 0; n = n->next) {
             if (n->data.isActive) {
                 target.draw(n->data);
-                target.draw(n->data.title);
             }
         }
     }

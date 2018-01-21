@@ -23,17 +23,17 @@ public:
             LinkedButton& current = buttons.get(i);
             
             if (horizontal) {
-                current.setPosition(left + i * (length + gap), top);
-                current.setSize(sf::Vector2f(length, height));
+                current.outline.setPosition(left + i * (length + gap), top);
+                current.outline.setSize(sf::Vector2f(length, height));
             } else {
-                current.setPosition(left, top + i * (length + gap));
-                current.setSize(sf::Vector2f(width, length));
+                current.outline.setPosition(left, top + i * (length + gap));
+                current.outline.setSize(sf::Vector2f(width, length));
             }
 
-            float scaleX = current.title.getGlobalBounds().width / current.getSize().x / 2;
-            float scaleY = current.title.getGlobalBounds().height / current.getSize().y;
+            float scaleX = current.title.getGlobalBounds().width / current.outline.getSize().x / 2;
+            float scaleY = current.title.getGlobalBounds().height / current.outline.getSize().y;
 
-            current.title.setPosition(current.getCenter().x - (scaleX*current.getSize().x), current.getCenter().y - (scaleY*current.getSize().y));
+            current.title.setPosition(current.getCenter().x - (scaleX*current.outline.getSize().x), current.getCenter().y - (scaleY*current.outline.getSize().y));
         }
     }
 };

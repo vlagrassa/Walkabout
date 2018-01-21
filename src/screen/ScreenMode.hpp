@@ -18,7 +18,6 @@ public:
     sf::Window& window;
     sf::RectangleShape outline;
     sf::Text title;
-    bool isActive = true;
     
     LinkedButton(ScreenMode& link, sf::RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : outline(rect), link(link), window(window) {};
     
@@ -47,7 +46,7 @@ public:
     }
     
     bool clicked() {
-        return touchingMouse() && sf::Mouse().isButtonPressed(sf::Mouse().Left) && isActive;
+        return touchingMouse() && sf::Mouse().isButtonPressed(sf::Mouse().Left) && active;
     }
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -55,7 +54,25 @@ public:
         target.draw(title);
     }
     
+    bool isActive() {
+        return active;
+    }
+    
+    void setActive(bool b) {
+        active = b;
+    }
+    
+    void activate() {
+        setActive(true);
+    }
+    
+    void deactivate() {
+        setActive(false);
+    }
+    
 private:
+    bool active = true;
+    
     friend std::ostream& operator<<(std::ostream &strm, const LinkedButton& l) {
         return strm << "\"" << std::string(l.title.getString()) << "\" linked to " << &l.link << " in window " << &l.window << "\n";
     }
@@ -107,7 +124,7 @@ public:
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
         for (Node<LinkedButton&>* n = buttons.first; n != 0; n = n->next) {
-            if (n->data.isActive) {
+            if (n->data.isActive()) {
                 target.draw(n->data);
             }
         }

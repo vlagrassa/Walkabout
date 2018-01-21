@@ -156,10 +156,10 @@ int main() {
                         }
                     }
                     if (event.key.code == sf::Keyboard::A) {
-                        testGameScreen.buttons.first->data.isActive = true;
+                        testGameScreen.buttons.first->data.setActive(true);
                     }
                     if (event.key.code == sf::Keyboard::D) {
-                        testGameScreen.buttons.first->data.isActive = false;
+                        testGameScreen.buttons.first->data.setActive(false);
                     }
                     break;
                 default:

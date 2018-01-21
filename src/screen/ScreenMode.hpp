@@ -66,6 +66,7 @@ class ScreenMode : public sf::Drawable {
 public:
     LinkedList<LinkedButton&> buttons;
     sf::Window& window;
+    bool showPrevious = false;
     
     ScreenMode(sf::Window& window = DEFAULT_WINDOW) : window(window) {};
     ScreenMode(const ScreenMode& orig) : window(orig.window) {};

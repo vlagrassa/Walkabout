@@ -205,9 +205,12 @@ int main() {
             }
             /* If neither of the above happened then the next screen is the same as the current screen - don't do anything */
             
-            /* Draw the next screen - should this be changed to draw the top of the stack? does it matter? */
-            if (nextScreen != NULL) {
-                DEFAULT_WINDOW.draw(*nextScreen);
+            /* Draw the top of the stack (and the previous screen if necessary) */
+            if (!listOfScreens.isEmpty()) {
+                if (listOfScreens.top->hasNext() && listOfScreens.top->data.showPrevious) {
+                    DEFAULT_WINDOW.draw(listOfScreens.top->next->data);
+                }
+                DEFAULT_WINDOW.draw(listOfScreens.top->data);
             }
         } else {
             quitGame();

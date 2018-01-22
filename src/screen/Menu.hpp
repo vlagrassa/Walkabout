@@ -15,8 +15,8 @@ public:
     Menu(const Menu&);
     virtual ~Menu();
     
-    virtual void addButton(std::string title, ScreenMode* link, sf::Font& font = DEFAULT_FONT);
-    virtual void addButton(std::string title, ScreenMode& link, sf::Font& font = DEFAULT_FONT);
+    virtual void addButton(std::string title, ScreenMode* link, sf::Keyboard::Key key = sf::Keyboard::Unknown, sf::Font& font = DEFAULT_FONT);
+    virtual void addButton(std::string title, ScreenMode& link, sf::Keyboard::Key key = sf::Keyboard::Unknown, sf::Font& font = DEFAULT_FONT);
 private:
 };
 

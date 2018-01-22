@@ -72,12 +72,12 @@ int main() {
     Menu testMenu3(160, 10, 50);
     Menu testMenu4(235, 10, 50);
     
-    mainMenu.addButton("Play", testGameScreen);
-    mainMenu.addButton("Settings", testMenu1);
-    mainMenu.addButton("Quit", 0);
+    mainMenu.addButton("Play [P]", testGameScreen, sf::Keyboard::P);
+    mainMenu.addButton("Settings [S]", testMenu1, sf::Keyboard::S);
+    mainMenu.addButton("Quit [Q]", 0, sf::Keyboard::Q);
     
     testGameScreen.addButton("Hiii", 0);
-    testGameScreen.addButton("Main Menu", 0);
+    testGameScreen.addButton("Main Menu [M]", 0, sf::Keyboard::M);
     
     testMenu1.addButton("In menu 1", testMenu2);
     testMenu2.addButton("In menu 2", testMenu3);

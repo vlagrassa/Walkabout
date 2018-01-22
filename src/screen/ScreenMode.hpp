@@ -20,6 +20,7 @@ public:
     sf::Text title;
     std::string onText = "";
     std::string offText = "";
+    sf::Keyboard::Key key = sf::Keyboard::Unknown;
     
     LinkedButton(ScreenMode& link, sf::RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : link(link), window(window), outline(rect) {};
     
@@ -28,6 +29,10 @@ public:
     LinkedButton(const LinkedButton& orig) : link(orig.link), window(orig.window), outline(orig.outline), title(orig.title) {};
     
     virtual ~LinkedButton() {};
+    
+    void setKey(sf::Keyboard::Key k) {
+        key = k;
+    }
     
     void setTitle(sf::Text& text) {
         title = text;
@@ -98,12 +103,12 @@ public:
     virtual ~ScreenMode() {};
     
     virtual ScreenMode* run(sf::Event event) {
-        return checkButtons();
+        return checkButtons(event);
     };
     
-    ScreenMode* checkButtons() {
+    ScreenMode* checkButtons(sf::Event event) {
         for (Node<LinkedButton&>* n = buttons.first; n != 0; n = n->next) {
-            if (n->data.clicked()) {
+            if (n->data.clicked() || (event.key.code == n->data.key)) {
                 return &n->data.link;
             }
         }
@@ -114,12 +119,13 @@ public:
         buttons.add(b);
     }
     
-    virtual void addButton(std::string title, ScreenMode& link, sf::Font& font = DEFAULT_FONT) {
-        addButton(title, &link, font);
+    virtual void addButton(std::string title, ScreenMode& link, sf::Keyboard::Key key = sf::Keyboard::Unknown, sf::Font& font = DEFAULT_FONT) {
+        addButton(title, &link, key, font);
     }
     
-    virtual void addButton(std::string title, ScreenMode* link, sf::Font& font = DEFAULT_FONT) {
+    virtual void addButton(std::string title, ScreenMode* link, sf::Keyboard::Key key = sf::Keyboard::Unknown, sf::Font& font = DEFAULT_FONT) {
         LinkedButton* temp = new LinkedButton(link, DEFAULT_RECT, window);
+        temp->setKey(key);
         temp->setTitle(*new sf::Text(title, font));
         addButton(*temp);
     }

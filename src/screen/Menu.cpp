@@ -16,14 +16,15 @@ Menu::~Menu() {
     
 }
 
-void Menu::addButton(std::string text, ScreenMode& link, sf::Font& font) {
-    addButton(text, &link, font);
+void Menu::addButton(std::string text, ScreenMode& link, sf::Keyboard::Key key, sf::Font& font) {
+    addButton(text, &link, key, font);
 }
 
-void Menu::addButton(std::string text, ScreenMode* link, sf::Font& font) {
+void Menu::addButton(std::string text, ScreenMode* link, sf::Keyboard::Key key, sf::Font& font) {
     LinkedButton* temp = new LinkedButton((link == NULL ? NULL : new TransitionScreen(link, window)), DEFAULT_RECT, window);
     temp->setTitle(*new sf::Text(text, font));
     temp->setTitles(text, "Not in range");
+    temp->setKey(key);
     ScreenMode::addButton(*temp);
     buttonline.fitButtonsToRect(buttons);
 }

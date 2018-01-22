@@ -48,7 +48,7 @@ ScreenMode* GameScreen::run(sf::Event event) {
     if (hall.canEncounter() && !hall.getActiveRoom()->getEncounter()->isSkippable()) {
         return hall.getEncounterScreen();
     }
-    return ScreenMode::checkButtons();
+    return ScreenMode::checkButtons(event);
 };
 
 void GameScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const {

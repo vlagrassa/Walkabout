@@ -18,6 +18,8 @@ public:
     sf::Window& window;
     sf::RectangleShape outline;
     sf::Text title;
+    std::string onText;
+    std::string offText;
     
     LinkedButton(ScreenMode& link, sf::RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : link(link), window(window), outline(rect) {};
     
@@ -35,6 +37,11 @@ public:
     
     void setTitle(std::string text) {
         setTitle(*new sf::Text(text, DEFAULT_FONT));
+    }
+    
+    void setTitles(std::string text1, std::string text2) {
+        onText = text1;
+        offText = text2;
     }
     
     sf::Vector2f getCenter() {
@@ -64,10 +71,12 @@ public:
     
     void activate() {
         setActive(true);
+        setTitle(onText);
     }
     
     void deactivate() {
         setActive(false);
+        setTitle(offText);
     }
     
 private:
@@ -124,9 +133,9 @@ public:
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
         for (Node<LinkedButton&>* n = buttons.first; n != 0; n = n->next) {
-            if (n->data.isActive()) {
+            //if (n->data.isActive()) {
                 target.draw(n->data);
-            }
+            //}
         }
     }
     

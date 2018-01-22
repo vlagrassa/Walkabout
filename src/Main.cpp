@@ -156,10 +156,12 @@ int main() {
                         }
                     }
                     if (event.key.code == sf::Keyboard::A) {
-                        testGameScreen.buttons.first->data.setActive(true);
+                        //testGameScreen.buttons.first->data.setTitle("On");
+                        testGameScreen.buttons.first->data.activate();
                     }
                     if (event.key.code == sf::Keyboard::D) {
-                        testGameScreen.buttons.first->data.setActive(false);
+                        //testGameScreen.buttons.first->data.setTitle("Off");
+                        testGameScreen.buttons.first->data.deactivate();
                     }
                     break;
                 default:

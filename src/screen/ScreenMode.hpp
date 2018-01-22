@@ -18,8 +18,8 @@ public:
     sf::Window& window;
     sf::RectangleShape outline;
     sf::Text title;
-    std::string onText;
-    std::string offText;
+    std::string onText = "";
+    std::string offText = "";
     
     LinkedButton(ScreenMode& link, sf::RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : link(link), window(window), outline(rect) {};
     

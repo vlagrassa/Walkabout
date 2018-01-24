@@ -4,7 +4,6 @@
 #include <cstdlib>
 #include <iostream>
 
-
 Player::Player() : posX(0), posInRoom(0), stepSize(10), stats({0, 0, 0}) {
     std::cout << "hi";
 }

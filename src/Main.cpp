@@ -25,7 +25,8 @@ int main() {
     window.setFramerateLimit(0); // Fixes stuff, see https://en.sfml-dev.org/forums/index.php?topic=20033.msg144271#msg144271
     window.setVerticalSyncEnabled(true); // This line too
     
-    
+    /* Instantiate Items*/
+    Item testItem(Bow, "testBow", {1,1,1});
     /* Instantiate Player */
     Player player;
     

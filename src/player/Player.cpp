@@ -96,7 +96,7 @@ void addMoney(int amount){
 }
 
     
-}
+
         
 /*Combat*/
 int getCombat(){

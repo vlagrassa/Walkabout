@@ -192,7 +192,7 @@ public:
     
     void addItem(Item& item);
     
-    struct {
+    struct equipped{
         Item& head;
         Item& chest;
         Item& hand;

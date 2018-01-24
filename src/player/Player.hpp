@@ -3,8 +3,9 @@
 
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
+#include "../utils/AnimatedSprite.hpp"
 
-class Player : public sf::Sprite {
+class Player : public AnimatedSprite {
 public:
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

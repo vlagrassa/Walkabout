@@ -54,8 +54,28 @@ int main() {
     std::string resourceDir = "resources/";
     
     
+    /* Create other textures */
+    sf::Texture monsterTexture;
+    sf::Texture playerTexture;
+    if (!monsterTexture.loadFromFile(resourceDir + "monster.png"))
+    {
+        return -1;
+    }
+    if (!playerTexture.loadFromFile(resourceDir + "player.png"))
+    {
+        return -1;
+    }
+    monsterTexture.setSmooth(true);
+    playerTexture.setSmooth(true);
+    
     /* Instantiate Player */
     Player player;
+    player.addAnimation(playerTexture, 3,3);
+    player.setAnimation();
+    //h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/4);
+    player.setPosition(0,DEFAULT_WINDOW.getSize().x/4);
+    
+    
     
     
     /* Create Ambience (like a texture pack) and Background */
@@ -102,23 +122,7 @@ int main() {
     paper.setTexture(paperTexture);
     
     
-    /* Create other textures */
-    sf::Texture monsterTexture;
-    sf::Texture playerTexture;
-    if (!monsterTexture.loadFromFile(resourceDir + "monster.png"))
-    {
-        return -1;
-    }
-    if (!playerTexture.loadFromFile(resourceDir + "player.png"))
-    {
-        return -1;
-    }
-    monsterTexture.setSmooth(true);
-    playerTexture.setSmooth(true);
     
-    player.setTexture(playerTexture);
-    //h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/4);
-    player.setPosition(0,DEFAULT_WINDOW.getSize().x/4);
     
     
     /* Create the debugging text tracking the current hall */

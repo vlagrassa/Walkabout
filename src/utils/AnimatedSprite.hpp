@@ -13,7 +13,7 @@ public:
     AnimatedSprite();
     AnimatedSprite(const AnimatedSprite& orig);
     virtual ~AnimatedSprite();
-    void addAnimation(sf::Texture spriteSheet, int rowNum, int colNum );
+    void addAnimation(sf::Texture& spriteSheet, int rowNum, int colNum );
     void setAnimation();
     Animation& getAnimation();
     

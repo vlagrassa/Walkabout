@@ -33,8 +33,14 @@ void FrameRate::updateFrames(time_t newUpdateTime, sf::Event event) {
 
 void Oscillator::run(sf::Event event) {
     currentPos += dir;
-    if (currentPos >= 500 || currentPos <= 0) dir *= -1;
-    line.setSize(sf::Vector2f(line.getPosition().x, currentPos));
+    if (currentPos >= 500) {
+        dir = std::abs(dir) * -1;
+        currentPos = 500;
+    } else if (currentPos <= 0) {
+        dir = std::abs(dir);
+        currentPos = 0;
+    }
+    line.setPosition(sf::Vector2f(line.getPosition().x, currentPos));
 }
 
 void Oscillator::draw(sf::RenderTarget& target, sf::RenderStates states) const {

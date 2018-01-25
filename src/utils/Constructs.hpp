@@ -2,6 +2,7 @@
 #define CONSTRUCTS_H
 
 #include <SFML/Graphics.hpp>
+#include <cmath>
 #include "Utils.hpp"
 #include "../screen/ScreenMode.hpp"
 

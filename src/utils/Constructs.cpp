@@ -33,14 +33,14 @@ void FrameRate::updateFrames(time_t newUpdateTime, sf::Event event) {
 
 void Oscillator::run(sf::Event event) {
     currentPos += dir;
-    if (currentPos >= outline.getPosition().y + outline.getSize().y - line.getSize().y) {
+    if (currentPos >= outline.getPosition().x + outline.getSize().x - line.getSize().x) {
         dir = std::abs(dir) * -1;
-        currentPos = outline.getPosition().y + outline.getSize().y - line.getSize().y;
-    } else if (currentPos <= outline.getPosition().y) {
+        currentPos = outline.getPosition().x + outline.getSize().x - line.getSize().x;
+    } else if (currentPos <= outline.getPosition().x) {
         dir = std::abs(dir);
-        currentPos = outline.getPosition().y;
+        currentPos = outline.getPosition().x;
     }
-    line.setPosition(sf::Vector2f(line.getPosition().x, currentPos));
+    line.setPosition(sf::Vector2f(currentPos, line.getPosition().y));
 }
 
 void Oscillator::draw(sf::RenderTarget& target, sf::RenderStates states) const {

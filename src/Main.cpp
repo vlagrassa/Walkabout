@@ -132,8 +132,6 @@ int main() {
     hallText.setFillColor(sf::Color::Black);
     hallText.setPosition(0, 400);
     
-    Oscillator testOsc(sf::Vector2f(10,436), sf::Vector2f(780,154), 8);
-    
     sf::Clock gameclock;
     
     //int prevUpdateTime = gameclock.getElapsedTime().asMicroseconds();
@@ -227,9 +225,6 @@ int main() {
         } else {
             quitGame();
         }
-        
-        testOsc.updateFrames(gameclock.getElapsedTime().asMilliseconds(), event);
-        DEFAULT_WINDOW.draw(testOsc);
         
         /* Draw the paper texture (for aesthetics) and the debugging text (for help) */
         DEFAULT_WINDOW.draw(paper);

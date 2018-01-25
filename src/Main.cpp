@@ -18,6 +18,7 @@
 sf::Font DEFAULT_FONT;
 sf::RectangleShape DEFAULT_RECT;
 sf::RenderWindow DEFAULT_WINDOW(sf::VideoMode(800, 600), "Walkabout");
+sf::Clock DEFAULT_GAMECLOCK;
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * Function to quit the game. At the moment, just closes the
@@ -131,8 +132,6 @@ int main() {
     hallText.setCharacterSize(20);
     hallText.setFillColor(sf::Color::Black);
     hallText.setPosition(0, 400);
-    
-    sf::Clock gameclock;
     
     //int prevUpdateTime = gameclock.getElapsedTime().asMicroseconds();
     

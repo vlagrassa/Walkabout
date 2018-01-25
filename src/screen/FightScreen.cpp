@@ -1,4 +1,5 @@
 #include "EncounterScreen.hpp"
+#include "../utils/Defaults.hpp"
 #include <SFML/Graphics.hpp>
 
 FightScreen::FightScreen(sf::Window& window) : EncounterScreen(window), attackBar(sf::Vector2f(10,436), sf::Vector2f(780,154), 8) {
@@ -21,6 +22,6 @@ void FightScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const 
 }
 
 ScreenMode* FightScreen::run(sf::Event event) {
-    //attackBar.updateFrames(event);
+    attackBar.updateFrames(DEFAULT_GAMECLOCK.getElapsedTime().asMilliseconds(), event);
     return EncounterScreen::run(event);
 };

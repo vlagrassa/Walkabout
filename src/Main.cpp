@@ -132,7 +132,7 @@ int main() {
     hallText.setFillColor(sf::Color::Black);
     hallText.setPosition(0, 400);
     
-    Oscillator testOsc(sf::Vector2f(10,500), 80);
+    Oscillator testOsc(sf::Vector2f(10,436), sf::Vector2f(780,154), 8);
     
     sf::Clock gameclock;
     

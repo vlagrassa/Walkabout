@@ -33,12 +33,12 @@ void FrameRate::updateFrames(time_t newUpdateTime, sf::Event event) {
 
 void Oscillator::run(sf::Event event) {
     currentPos += dir;
-    if (currentPos >= 500) {
+    if (currentPos >= outline.getPosition().y + outline.getSize().y - line.getSize().y) {
         dir = std::abs(dir) * -1;
-        currentPos = 500;
-    } else if (currentPos <= 0) {
+        currentPos = outline.getPosition().y + outline.getSize().y - line.getSize().y;
+    } else if (currentPos <= outline.getPosition().y) {
         dir = std::abs(dir);
-        currentPos = 0;
+        currentPos = outline.getPosition().y;
     }
     line.setPosition(sf::Vector2f(line.getPosition().x, currentPos));
 }
@@ -48,13 +48,13 @@ void Oscillator::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(line);
 }
 
-void Oscillator::initShapes() {
+void Oscillator::initShapes(sf::Vector2f pos) {
     line.setFillColor(sf::Color::Cyan);
     line.setOutlineColor(sf::Color::Black);
     line.setOutlineThickness(3);
-    line.setPosition(10, 10);
+    line.setPosition(pos);
     outline.setFillColor(sf::Color::Black);
     outline.setOutlineColor(sf::Color::Black);
     outline.setOutlineThickness(3);
-    outline.setPosition(10, 10);
+    outline.setPosition(pos);
 }

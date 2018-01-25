@@ -66,8 +66,8 @@ public:
     sf::RectangleShape outline;
     sf::RectangleShape line;
     
-    Oscillator(sf::Vector2f vec, unsigned int frameRate) : FrameRate(frameRate), outline(vec), line(sf::Vector2f(10,10)) {
-        initShapes();
+    Oscillator(sf::Vector2f pos, sf::Vector2f size, unsigned int frameRate) : FrameRate(frameRate), outline(size), line(sf::Vector2f(size.x,10)) {
+        initShapes(pos);
     };
     
     Oscillator(const Oscillator& orig) : FrameRate(orig.frameRate) {};
@@ -80,7 +80,7 @@ public:
     
 private:
     
-    void initShapes();
+    void initShapes(sf::Vector2f pos);
 };
 
 #endif /* CONSTRUCTS_H */

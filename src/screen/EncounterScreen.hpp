@@ -5,6 +5,7 @@
 #include "../utils/Defaults.hpp"
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
+#include "../utils/Constructs.hpp"
 
 class EncounterScreen: public ScreenMode {
 public:
@@ -23,6 +24,12 @@ public:
     FightScreen(sf::Window &window = DEFAULT_WINDOW);
     FightScreen(const FightScreen&);
     virtual ~FightScreen();
+    
+    Oscillator attackBar;
+    
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+    
+    virtual ScreenMode* run(sf::Event event);
     
     std::string testThing();
 private:

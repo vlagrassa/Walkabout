@@ -94,7 +94,7 @@ int main() {
     
     mainMenu.addButton("Play [P]", testGameScreen, sf::Keyboard::P);
     mainMenu.addButton("Settings [S]", testMenu1, sf::Keyboard::S);
-    mainMenu.addButton("Quit [Q]", 0, sf::Keyboard::Q);
+    mainMenu.addButton("Quit [W]", 0, sf::Keyboard::W);
     
     testGameScreen.addButton("Hiii", 0);
     testGameScreen.addButton("Main Menu [M]", 0, sf::Keyboard::M);

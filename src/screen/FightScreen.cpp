@@ -22,6 +22,6 @@ void FightScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const 
 }
 
 ScreenMode* FightScreen::run(sf::Event event) {
-    attackBar.updateFrames(DEFAULT_GAMECLOCK.getElapsedTime().asMilliseconds(), event);
+    attackBar.updateFrames(DEFAULT_GAMECLOCK, event);
     return EncounterScreen::run(event);
 };

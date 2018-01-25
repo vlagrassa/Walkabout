@@ -47,7 +47,7 @@ public:
      * 
      * Run in the main loop to update periodically.
      */
-    void updateFrames(time_t newUpdateTime, sf::Event event);
+    void updateFrames(sf::Clock clock, sf::Event event);
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

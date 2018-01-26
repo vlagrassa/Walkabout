@@ -20,6 +20,7 @@ sf::RectangleShape DEFAULT_RECT;
 sf::RenderWindow DEFAULT_WINDOW(sf::VideoMode(800, 600), "Walkabout");
 sf::Clock DEFAULT_GAMECLOCK;
 
+
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * Function to quit the game. At the moment, just closes the
  * given window, but can be expanded to save the game.
@@ -36,7 +37,7 @@ void quitGame(sf::Window& window = DEFAULT_WINDOW) {
  
 int main() {
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
-    
+    sf::Clock AnimationClock;
     /* Instantiate the defaults */
     DEFAULT_FONT.loadFromFile("resources/Courier.dfont");
     

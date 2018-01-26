@@ -23,10 +23,11 @@ void Animation::setSpriteSheet(int rowNum, int colNum){
     
     
     for(int i = 0; i <rowNum; i++){
-        for(int j = 0; i < colNum; i++){
-            frames.append(sf::IntRect(j, i, width, height));
+        for(int j = 0; j < colNum; j++){
+            frames.append(sf::IntRect(j*width, i*height, width, height));
         }
     }
+    //std::cout<< "boom shakalaka " << (frames.getStart().left==frames.getEnd().left) ;
 }
 
 sf::Texture& Animation::getTexture(){

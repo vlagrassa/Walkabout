@@ -4,12 +4,12 @@
 #include "Utils.hpp"
 #include "AnimatedSprite.hpp"
 
-AnimatedSprite::AnimatedSprite(){
+AnimatedSprite::AnimatedSprite() : FrameRate(1000){
     
 }
 
 
-AnimatedSprite::AnimatedSprite(const AnimatedSprite& orig){
+AnimatedSprite::AnimatedSprite(const AnimatedSprite& orig) : FrameRate(1000){
     
 }
 AnimatedSprite::~AnimatedSprite(){
@@ -21,7 +21,30 @@ void AnimatedSprite::addAnimation(sf::Texture& spriteSheet, int rowNum, int colN
 }
 void AnimatedSprite::setAnimation(){
     this->setTexture(Animations.getActive().getTexture());
+    this->setTextureRect(Animations.getActive().frames.getStart());
 }
+
+void AnimatedSprite::run(sf::Event event){
+    if (event.type == sf::Event::KeyPressed){
+        //std::cout << "hello hello";
+        switch (event.key.code){
+            case(sf::Keyboard::Up):
+                Animations.getActive().frames.shiftNode();
+                this->setTextureRect(Animations.getActive().frames.getActive());
+        }
+    }
+    
+}
+
+//void AnimatedSprite::update(sf::Clock clock){
+//    framerate.update(clock, )
+//    if(clock.getElapsedTime() => framerate){
+//        
+//        clock.reset
+//    }
+//}
+
+
 
 Animation& AnimatedSprite::getAnimation(){
     

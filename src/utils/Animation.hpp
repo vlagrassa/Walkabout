@@ -14,12 +14,13 @@ public:
     virtual ~Animation();
     void setSpriteSheet(int rowNum, int colNum);
     sf::Texture& getTexture();
+    Loop<sf::IntRect> frames;
     
 private:
     float rectWidth;
     float heightWidth;
     
-    Loop<sf::IntRect> frames;
+    
     sf::Texture& texture;
     
     

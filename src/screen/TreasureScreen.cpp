@@ -1,4 +1,4 @@
-#include "TreasureScreen.hpp"
+#include "EncounterScreen.hpp"
 #include <SFML/Graphics.hpp>
 
 TreasureScreen::TreasureScreen(sf::Window& window) : EncounterScreen(window) {

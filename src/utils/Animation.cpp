@@ -28,3 +28,7 @@ void Animation::setSpriteSheet(int rowNum, int colNum){
         }
     }
 }
+
+sf::Texture& Animation::getTexture(){
+    return texture;
+}

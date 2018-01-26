@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <SFML/Graphics.hpp>
 #include "Encounterable.hpp"
-#include "../screen/FightScreen.hpp"
+#include "../screen/EncounterScreen.hpp"
 
 enum MonsterSpecies {
     dinosaur

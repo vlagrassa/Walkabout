@@ -1,6 +1,4 @@
 #include "Treasure.hpp"
-#include "Encounterable.hpp"
-#include "../screen/EncounterScreen.hpp"
 #include <cstdlib>
 #include <iostream>
 

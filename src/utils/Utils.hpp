@@ -2,10 +2,13 @@
 #define UTILS_H
 
 #include <cstdlib>
+#include <typeinfo>
 
 template <class T> class Node;
 template <class T> class Stack;
 template <class T> class Queue;
+template <class T> class LinkedList;
+template <class T> class ActiveList;
 template <class T> class Loop;
 template <class T> class ActiveVector;
 
@@ -220,6 +223,7 @@ private:
         for (Node<T>* n = s.top; n != 0; n = n->next) {
             strm << "  " << *n;
         }
+        strm << "[End of Stack " << &s << "]\n";
         return strm;
     };
 };
@@ -389,14 +393,302 @@ public:
         return ((head == 0) && (tail == 0));
     }
     
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Get the number of items in the Queue as an unsigned int.
+     * 
+     * @return Length of Queue
+     */
+    unsigned int getLength() {
+        unsigned int i = 0;
+        for (Node<T>* n = head; n != 0; n = n->next) {
+            i++;
+        }
+        return i;
+    }
+    
 private:
     friend std::ostream& operator<<(std::ostream &strm, const Queue<T> &q) {
         strm << "Queue " << &q << ":\n";
         for (Node<T>* n = q.head; n != 0; n = n->next) {
             strm << "  " << *n;
         }
+        strm << "[End of Queue " << &q << "]\n";
         return strm;
     };
+};
+
+template <class T> class LinkedList {
+public:
+    Node<T>* first;
+    Node<T>* last;
+    unsigned int size;
+    
+    LinkedList() : first(NULL), last(NULL), size(0) {};
+    LinkedList(const LinkedList& orig) : first(NULL), last(NULL), size(0) {};
+    virtual ~LinkedList() {};
+    
+    Node<T> getNode(unsigned int index) {
+        Node<T>* temp = first;
+        for (unsigned int i = 0; i < index; i++) {
+            temp = temp->next;
+        }
+        return *temp;
+    }
+    
+    T get(unsigned int index) {
+        return getNode(index).data;
+    }
+    
+    void add(unsigned int index, Node<T>& next) {
+        if (index > size) {
+            throw std::out_of_range("Adding to LinkedList.");
+        }
+        else if (isEmpty()) {
+            addEmpty(next);
+        }
+        else if (index == 0) {
+            addFirst(next);
+        }
+        else if (index == size) {
+            addLast(next);
+        }
+        else {
+            Node<T>* temp = first;
+            for (unsigned int i = 0; i < index-1; i++) {
+                temp = temp->next;
+            }
+            next.next = temp->next;
+            temp->next = &next;
+            size++;
+        }
+    }
+    
+    void add(unsigned int index, T const& data) {
+        add(index, *(new Node<T>(data)));
+    }
+    
+    void addFirst(Node<T>& next) {
+        if (isEmpty()) {
+            addEmpty(next);
+        } else {
+            next.next = first;
+            first = &next;
+            size++;
+        }
+    }
+    
+    void addFirst(T const& data) {
+        addFirst(*(new Node<T>(data)));
+    }
+    
+    void addLast(Node<T>& next) {
+        if (isEmpty()) {
+            addEmpty(next);
+        } else {
+            last->next = &next;
+            last = &next;
+            size++;
+        }
+    }
+    
+    void addLast(T const& data) {
+        addLast(*(new Node<T>(data)));
+    }
+    
+    void add(Node<T>& next) {
+        addLast(next);
+    }
+    
+    void add(T const& data) {
+        addLast(data);
+    }
+    
+    Node<T> removeNode(unsigned int index) {
+        if (index >= size) {
+            throw std::out_of_range("Removing from LinkedList.");
+        }
+        else if (first == last) {
+            Node<T> temp = *first;
+            first = 0;
+            last = 0;
+            size--;
+            return temp;
+        }
+        else if (index == 0) {
+            return removeFirstNode();
+        }
+        else if (index == size-1) {
+            return removeLastNode();
+        }
+        else {
+            Node<T>* temp = first;
+            for (unsigned int i = 0; i < index-1; i++) {
+                temp = temp->next;
+            }
+            Node<T> result = *temp->next;
+            temp->next = temp->next->next;
+            size--;
+            return result;
+        }
+    }
+    
+    T remove(unsigned int index) {
+        return removeNode(index).data;
+    }
+    
+    Node<T> removeFirstNode() {
+        if (isEmpty()) {
+            throw std::out_of_range("Trying to remove first from empty LinkedList.");
+        }
+        Node<T> temp = *first;
+        
+        if (first == last) {
+            first = 0;
+            last = 0;
+        } else {
+            first = first->next;
+        }
+        size--;
+        
+        return temp;
+    }
+    
+    T removeFirst() {
+        return removeFirstNode().data;
+    }
+    
+    Node<T> removeLastNode() {
+        if (isEmpty()) {
+            throw std::out_of_range("Trying to remove last from empty LinkedList.");
+        }
+        
+        Node<T> temp = *last;
+        for (Node<T>* current = first; current != 0; current = current->next) {
+            if (current->next == last) {
+                last = current;
+                last->next = 0;
+                size--;
+                return temp;
+            }
+        }
+    }
+    
+    T removeLast() {
+        return removeLastNode().data;
+    }
+    
+    bool isEmpty() {
+        return first == 0 && last == 0;
+    }
+    
+private:
+    void addEmpty(Node<T>& next) {
+        first = &next;
+        last = &next;
+        next.next = 0;
+        size++;
+    }
+    
+    friend std::ostream& operator<<(std::ostream &strm, const LinkedList<T> &l) {
+        strm << "LinkedList " << &l << ":\n";
+        for (Node<T>* n = l.first; n != 0; n = n->next) {
+            strm << "  " << *n;
+        }
+        strm << "[End of LinkedList " <<&l << "]\n";
+        return strm;
+    };
+};
+
+template <class T> class ActiveList : public LinkedList<T> {
+public:
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default constructor. Initializes active index to 0.
+     */
+    ActiveList() : activeIndex(0) {};
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Copy constructor.
+     */
+    ActiveList(const ActiveList& orig) {};
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Default destructor.
+     */
+    virtual ~ActiveList() {};
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Gets the Node at the active index.
+     * 
+     * @return Active Node
+     */
+    Node<T> getActiveNode() {
+        return this->get(activeIndex);
+    };
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Gets the item at the active index.
+     * 
+     * @return Active item
+     */
+    T getActive() {
+        return getActiveNode().data;
+    }
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Add a node at the active index. Note that this shifts the
+     * current node at the active index down by one.
+     */
+    void addAtActive(Node<T> next) {
+        add(activeIndex, next);
+    }
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Add item at the active index. Note that this shifts the
+     * current item at the active index down by one.
+     */
+    void addAtActive(T data) {
+        add(activeIndex, data);
+    }
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * Remove the item at the current active index. Note that if
+     * this makes the active index greater than the size -- that
+     * is, if the active index used to be the final index of the
+     * List -- it will be set to the new size.
+     */
+    void removeAtActive() {
+        remove(activeIndex);
+        if (activeIndex > this->size-1) activeIndex = this->size-1;
+    }
+    
+    unsigned int getActiveIndex() {
+        return activeIndex;
+    }
+    
+    void setActiveIndex(unsigned int n) {
+        if (n >= this->size) {
+            throw std::out_of_range(std::string("New activeIndex ") + std::to_string(n) + std::string(" out of range for size ") + std::to_string(this->size) + std::string(" ActiveList."));
+        } else {
+            activeIndex = n;
+        }
+    }
+    
+private:
+    
+    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 
+     * The active index of the List.
+     */
+    unsigned int activeIndex;
 };
 
 template <class T> class Loop {

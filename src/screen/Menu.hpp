@@ -4,16 +4,20 @@
 #include "ScreenMode.hpp"
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
+#include "../utils/Defaults.hpp"
+#include "../utils/Constructs.hpp"
 
 class Menu: public ScreenMode {
 public:
-    Menu(sf::Window& window);
+    ButtonLine buttonline;
+    
+    Menu(unsigned int topOffset, unsigned int leftOffset, unsigned int height, unsigned int gap = 0, sf::Window& window = DEFAULT_WINDOW); //sf::Vector2i topLeft?
     Menu(const Menu&);
     virtual ~Menu();
     
-    int get1() const;
+    virtual void addButton(std::string title, ScreenMode* link, sf::Keyboard::Key key = sf::Keyboard::Unknown, sf::Font& font = DEFAULT_FONT);
+    virtual void addButton(std::string title, ScreenMode& link, sf::Keyboard::Key key = sf::Keyboard::Unknown, sf::Font& font = DEFAULT_FONT);
 private:
-    void runStuff();
 };
 
 #endif /* MENU_H */

@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 EncounterScreen::EncounterScreen(sf::Window& window) : ScreenMode(window) {
-    
+    showPrevious = true;
 }
 EncounterScreen::EncounterScreen(const EncounterScreen& orig) : ScreenMode(orig.window) {
     

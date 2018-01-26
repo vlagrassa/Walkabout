@@ -13,6 +13,7 @@ public:
     Animation(const Animation& orig);
     virtual ~Animation();
     void setSpriteSheet(int rowNum, int colNum);
+    sf::Texture& getTexture();
     
 private:
     float rectWidth;

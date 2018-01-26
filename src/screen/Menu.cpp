@@ -3,11 +3,12 @@
 #include "Menu.hpp"
 #include <SFML/Graphics.hpp>
 
-Menu::Menu(sf::Window& window) : ScreenMode(window) {
+Menu::Menu(unsigned int topOffset, unsigned int leftOffset, unsigned int height, unsigned int gap, sf::Window& window)
+: ScreenMode(window), buttonline(sf::IntRect(leftOffset, topOffset, window.getSize().x - leftOffset*2, height), gap) {
     
 }
 
-Menu::Menu(const Menu& orig) : ScreenMode(orig.window) {
+Menu::Menu(const Menu& orig) : ScreenMode(orig), buttonline(orig.buttonline) {
    
 }
 
@@ -15,9 +16,15 @@ Menu::~Menu() {
     
 }
 
-int Menu::get1() const {
-    return 1;	
+void Menu::addButton(std::string text, ScreenMode& link, sf::Keyboard::Key key, sf::Font& font) {
+    addButton(text, &link, key, font);
 }
-void Menu::runStuff(){
-    std::cout << "This is a Menu";
+
+void Menu::addButton(std::string text, ScreenMode* link, sf::Keyboard::Key key, sf::Font& font) {
+    LinkedButton* temp = new LinkedButton((link == NULL ? NULL : new TransitionScreen(link, window)), DEFAULT_RECT, window);
+    temp->setTitle(*new sf::Text(text, font));
+    temp->setTitles(text, "Not in range");
+    temp->setKey(key);
+    ScreenMode::addButton(*temp);
+    buttonline.fitButtonsToRect(buttons);
 }

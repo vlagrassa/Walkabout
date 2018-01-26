@@ -89,7 +89,7 @@ void Player::modify(Stats playerStat){
 unsigned money = 0;
 void addMoney(int amount){
     if(amount > money){
-        throw out_of_range("cost exceed value")
+        throw std::out_of_range("cost exceed value");
     }
     money += amount;
 }
@@ -98,49 +98,51 @@ void addMoney(int amount){
 
         
 /*Combat*/
-int getCombat(){
+int Player::getCombat(){
     int num = 0;
-    num = stats.body + items.head.stats.body + items.chest.stats.body +items.hand.stats.body +
-items.pocket1.stats.body + items.pocket2.stats.body;
+    num = stats.body + equipment.head->stats.body + equipment.chest->stats.body + equipment.hand->stats.body +
+equipment.pocket1->stats.body;
     return num;
 }
 
-int getSkill(){
+int Player::getSkill(){
     int num = 0;
-    num = stats.mind + items.head.stats.mind + items.chest.stats.mind + items.hand.stats.mind +
-items.pocket1.stats.mind + items.pocket2.stats.mind;
+    num = stats.mind + equipment.head->stats.mind + equipment.chest->stats.mind + equipment.hand->stats.mind +
+equipment.pocket1->stats.mind;
     return num;
 }
 
-int getMagic(){
+int Player::getMagic(){
     int num = 0;
-    num = stats.soul+ items.head.stats.soul + items.chest.stats.soul + items.hand.stats.soul +
-items.pocket1.stats.soul + items.pocket2.stats.soul;
+    num = stats.soul+ equipment.head->stats.soul + equipment.chest->stats.soul + equipment.hand->stats.soul +
+equipment.pocket1->stats.soul;
     return num;
 }
 
 /*INVENTORY and EQUIPING*/
-    
+Item Player::testEmpty = Item(Bow, "testEmpty",{0,0,0});
+
+
 void Player::addItem(Item& item){
     itemVector.push_back(item);
 }
 
 void Player::equip(Item& item){
     switch(item.type){
-        case(head):
-            equipped.head = item;
+        case(Head):
+            equipment.head = &item;
             break;
         case(Chest):
-            equipped.chest = item;
+            equipment.chest = &item;
             break;
-        case(hand):
-            equipped.hand = item;
+        case(Sword):
+        case(Bow):
+        case(Staff):
+            equipment.hand = &item;
             break;
-        case(pocket1):
-            equipped.pocket1 = item;
-            break;
-        case(pocket2):
-            equipped.pocket2 = item;
+        case(Book):
+        case(Potion):      
+            equipment.pocket1 = &item;
             break;
         default:
             /*throw error*/

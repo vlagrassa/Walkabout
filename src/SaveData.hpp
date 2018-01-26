@@ -24,7 +24,7 @@ public:
     SaveData(const SaveData&);
     virtual ~SaveData();
     
-    void saveData();
+    //void saveData();
 };
 
     

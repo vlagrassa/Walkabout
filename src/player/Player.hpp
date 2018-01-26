@@ -192,15 +192,14 @@ public:
     
     void addItem(Item& item);
     
-    static Item testEmpty = Item(Bow, "testEmpty",{0,0,0});
+    static Item testEmpty;
     
     struct equipped{
-        Item& head = testEmpty;
-        Item& chest = testEmpty;
-        Item& hand = testEmpty;
-        Item& pocket1 = testEmpty;
-        Item& pocket2 = testEmpty;
-    } items;
+        Item* head = &testEmpty;
+        Item* chest = &testEmpty;
+        Item* hand = &testEmpty;
+        Item* pocket1 = &testEmpty;
+    } equipment;
     
     void equip(Item& item);
     

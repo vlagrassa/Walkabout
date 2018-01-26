@@ -25,6 +25,7 @@ SaveData::SaveData(const SaveData& orig) {
 SaveData::~SaveData() {
     
 }
+/*
 void saveData(){
     std::ifstream inFile;
     inFile.open("statFile.txt");
@@ -35,5 +36,4 @@ void saveData(){
     
     inFile.close("statFile.txt");
 }
-}
-
+*/

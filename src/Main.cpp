@@ -73,7 +73,7 @@ int main() {
     player.addAnimation(playerTexture, 3,3);
     player.setAnimation();
     //h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/4);
-    player.setPosition(0,DEFAULT_WINDOW.getSize().x/4);
+    player.setPosition(DEFAULT_WINDOW.getSize().x/20,DEFAULT_WINDOW.getSize().y/4);
     
     
     

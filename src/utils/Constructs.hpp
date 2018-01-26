@@ -6,6 +6,8 @@
 #include "Utils.hpp"
 #include "../screen/ScreenMode.hpp"
 
+class Oscillator;
+
 class ButtonLine : sf::IntRect {
 public:
     bool horizontal;
@@ -60,21 +62,22 @@ public:
 
 class Slider : public sf::RectangleShape, public FrameRate {
 public:
-    Slider(sf::Vector2f size, int frameRate) : RectangleShape(size), FrameRate(frameRate) {};
-    Slider(const Slider& orig) : RectangleShape(orig), FrameRate(orig) {};
+    unsigned int currentPos = 20;
+    int dir = 2;
+    Oscillator& base;
+    Slider(sf::Vector2f size, int frameRate, Oscillator& base) : RectangleShape(size), FrameRate(frameRate), base(base) {};
+    Slider(const Slider& orig) : RectangleShape(orig), FrameRate(orig), base(orig.base) {};
     
     void run(sf::Event event) {};
 };
 
 class Oscillator : public sf::Drawable, public FrameRate {
 public:
-    unsigned int currentPos = 20;
     unsigned int targetPos;
-    int dir = 2;
     sf::RectangleShape outline;
     Slider attackSlider;
     
-    Oscillator(sf::Vector2f pos, sf::Vector2f size, unsigned int frameRate) : FrameRate(frameRate), outline(size), attackSlider(sf::Vector2f(10,size.y), frameRate) {
+    Oscillator(sf::Vector2f pos, sf::Vector2f size, unsigned int frameRate) : FrameRate(frameRate), outline(size), attackSlider(sf::Vector2f(10,size.y), frameRate, *this) {
         initShapes(pos);
     };
     

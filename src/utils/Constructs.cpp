@@ -33,15 +33,15 @@ void FrameRate::updateFrames(sf::Clock clock, sf::Event event) {
 
 
 void Oscillator::run(sf::Event event) {
-    currentPos += dir;
-    if (currentPos >= outline.getPosition().x + outline.getSize().x - attackSlider.getSize().x) {
-        dir = std::abs(dir) * -1;
-        currentPos = outline.getPosition().x + outline.getSize().x - attackSlider.getSize().x;
-    } else if (currentPos <= outline.getPosition().x) {
-        dir = std::abs(dir);
-        currentPos = outline.getPosition().x;
+    attackSlider.currentPos += attackSlider.dir;
+    if (attackSlider.currentPos >= outline.getPosition().x + outline.getSize().x - attackSlider.getSize().x) {
+        attackSlider.dir = std::abs(attackSlider.dir) * -1;
+        attackSlider.currentPos = outline.getPosition().x + outline.getSize().x - attackSlider.getSize().x;
+    } else if (attackSlider.currentPos <= outline.getPosition().x) {
+        attackSlider.dir = std::abs(attackSlider.dir);
+        attackSlider.currentPos = outline.getPosition().x;
     }
-    attackSlider.setPosition(sf::Vector2f(currentPos, attackSlider.getPosition().y));
+    attackSlider.setPosition(sf::Vector2f(attackSlider.currentPos, attackSlider.getPosition().y));
 }
 
 void Oscillator::draw(sf::RenderTarget& target, sf::RenderStates states) const {

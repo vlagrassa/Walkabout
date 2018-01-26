@@ -81,6 +81,11 @@ bool Player::isMovingLeft() {
 }
 
 /*Stats*/
+unsigned maxHealth = 0;
+unsigned health = 0;
+void Player::changeHealth(int amount){
+    health += amount;
+}
 void Player::modify(Stats playerStat){
     stats.body += playerStat.body;
     stats.mind += playerStat.mind;

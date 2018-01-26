@@ -26,7 +26,43 @@ int main() {
     window.setVerticalSyncEnabled(true); // This line too
     
     /* Instantiate Items*/
+        //Head
+    Item boringHat(Head,"Boring Hat",{0,1,0});
+    Item thinkingCap(Head,"Thinking Cap", {0,2,0});
+    Item telepatheticHat(Head,"Telepathetic Hat",{0,3,0});
+    Item cardboardBox(Head,"Cardboard Box",{0,1,1});
+    Item bucketwithHoles(Head,"Bucket with Holes",{2,0,0});
+    Item duck(Head,"Duck",{1,0,1});
+    //Item a(a,"",{,,});
+        //Staff
+    Item stick(Staff,"Stick",{0,0,1});
+    Item bigStick(Staff,"Big Stick",{0,0,2});
+    Item stickyStick(Staff,"Sticky Stick",{0,0,3});
+    Item dowsingStick(Staff,"Dowsing Stick",{0,0,4});
+    Item boringStaff(Staff,"Boring Staff",{0,1,4});
+        //Potions
+    Item awesomeSauce(Potion,"Awesome Sauce",{0,0,2});
+    Item coffee(Potion,"Coffee",{0,2,0});
+    Item otherPeoplesBlood(Potion,"Other Peoples Blood",{0,0,0});
+    Item secretSauce(Potion,"Secret Sauce",{1,0,3});
+    Item strenghPotion(Potion,"Strength Potion",{4,0,0});
+        //Chest
+    Item lotsOfShirts(Chest,"Lots of Shirts",{1,0,0});
+    Item dinnerPlate(Chest,"Dinner Plate",{2,0,0});
+    Item tinFoil(Chest,"Tin Foil",{1,0,1});
+    Item shoulderPads(Chest,"Shoulder Pads",{2,0,1});
+    Item bathrobe(Chest,"Bathrobe",{0,0,4});
+    //Item a(a,"",{,,});
+    //Item a(a,"",{,,});
+    //Item a(a,"",{,,});
+    //Item a(a,"",{,,});
+    //Item a(a,"",{,,});
+    //Item a(a,"",{,,});
+    
+    
+    
     Item testItem(Bow, "testBow", {1,1,1});
+    
     /* Instantiate Player */
     Player player;
     

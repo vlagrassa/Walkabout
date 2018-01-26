@@ -86,7 +86,7 @@ public:
      * 
      * Default constructor method.
      */
-    Stack<T>() {};
+    Stack<T>() : top(NULL) {};
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

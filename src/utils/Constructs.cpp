@@ -34,26 +34,26 @@ void FrameRate::updateFrames(sf::Clock clock, sf::Event event) {
 
 void Oscillator::run(sf::Event event) {
     currentPos += dir;
-    if (currentPos >= outline.getPosition().x + outline.getSize().x - line.getSize().x) {
+    if (currentPos >= outline.getPosition().x + outline.getSize().x - attackSlider.getSize().x) {
         dir = std::abs(dir) * -1;
-        currentPos = outline.getPosition().x + outline.getSize().x - line.getSize().x;
+        currentPos = outline.getPosition().x + outline.getSize().x - attackSlider.getSize().x;
     } else if (currentPos <= outline.getPosition().x) {
         dir = std::abs(dir);
         currentPos = outline.getPosition().x;
     }
-    line.setPosition(sf::Vector2f(currentPos, line.getPosition().y));
+    attackSlider.setPosition(sf::Vector2f(currentPos, attackSlider.getPosition().y));
 }
 
 void Oscillator::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(outline);
-    target.draw(line);
+    target.draw(attackSlider);
 }
 
 void Oscillator::initShapes(sf::Vector2f pos) {
-    line.setFillColor(sf::Color::Cyan);
-    line.setOutlineColor(sf::Color::Black);
-    line.setOutlineThickness(3);
-    line.setPosition(pos);
+    attackSlider.setFillColor(sf::Color::Cyan);
+    attackSlider.setOutlineColor(sf::Color::Black);
+    attackSlider.setOutlineThickness(3);
+    attackSlider.setPosition(pos);
     outline.setFillColor(sf::Color::Black);
     outline.setOutlineColor(sf::Color::Black);
     outline.setOutlineThickness(3);

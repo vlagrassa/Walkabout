@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "Item.hpp"
 #include "../utils/AnimatedSprite.hpp"
+#include "iostream"
 
 class Player : public AnimatedSprite {
 public:
@@ -204,7 +205,8 @@ public:
     void equip(Item& item);
     
     /*Saving data*/
-    
+    void writeData(std::ostream &saveData);
+    Player(std::istream &saveData);
     
 private:
     /* Absolute position of the Player - in context of Hall */

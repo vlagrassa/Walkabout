@@ -201,6 +201,9 @@ int main() {
                         //testGameScreen.buttons.first->data.setTitle("Off");
                         testGameScreen.buttons.first->data.deactivate();
                     }
+                    if (event.key.code == sf::Keyboard::S) {
+                        player.writeData(std::cout);
+                    }
                     break;
                 default:
                     break;

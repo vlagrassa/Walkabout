@@ -12,6 +12,7 @@
  */
 
 #include "SaveData.hpp"
+#include "player/Player.hpp"
 #include <iostream>
 #include <fstream>
 
@@ -23,6 +24,14 @@ SaveData::SaveData(const SaveData& orig) {
     
 }
 SaveData::~SaveData() {
+    
+}
+
+void Player::writeData(std::istream &saveData){
+    
+}
+
+Player::Player(std::istream& saveData){
     
 }
 /*

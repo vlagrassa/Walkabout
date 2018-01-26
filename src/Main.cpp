@@ -18,6 +18,7 @@
 sf::Font DEFAULT_FONT;
 sf::RectangleShape DEFAULT_RECT;
 sf::RenderWindow DEFAULT_WINDOW(sf::VideoMode(800, 600), "Walkabout");
+sf::Clock DEFAULT_GAMECLOCK;
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * Function to quit the game. At the moment, just closes the
@@ -94,7 +95,7 @@ int main() {
     
     mainMenu.addButton("Play [P]", testGameScreen, sf::Keyboard::P);
     mainMenu.addButton("Settings [S]", testMenu1, sf::Keyboard::S);
-    mainMenu.addButton("Quit [Q]", 0, sf::Keyboard::Q);
+    mainMenu.addButton("Quit [W]", 0, sf::Keyboard::W);
     
     testGameScreen.addButton("Hiii", 0);
     testGameScreen.addButton("Main Menu [M]", 0, sf::Keyboard::M);
@@ -131,10 +132,6 @@ int main() {
     hallText.setCharacterSize(20);
     hallText.setFillColor(sf::Color::Black);
     hallText.setPosition(0, 400);
-    
-    Oscillator testOsc(sf::Vector2f(10,500), 80);
-    
-    sf::Clock gameclock;
     
     //int prevUpdateTime = gameclock.getElapsedTime().asMicroseconds();
     
@@ -227,9 +224,6 @@ int main() {
         } else {
             quitGame();
         }
-        
-        testOsc.updateFrames(gameclock.getElapsedTime().asMilliseconds(), event);
-        DEFAULT_WINDOW.draw(testOsc);
         
         /* Draw the paper texture (for aesthetics) and the debugging text (for help) */
         DEFAULT_WINDOW.draw(paper);

@@ -17,13 +17,13 @@ public:
     void addAnimation(sf::Texture& spriteSheet, int rowNum, int colNum );
     void setAnimation();
     Animation& getAnimation();
-    void run(sf::Event event);
+    ActiveList<Animation&> Animations;
     
     
     
     
 private:
-    ActiveList<Animation&> Animations;
+    
     
         
     

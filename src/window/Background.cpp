@@ -1,6 +1,7 @@
 #include "Background.hpp"
 #include "Ambience.hpp"
 #include <SFML/Graphics.hpp>
+#include "../utils/Defaults.hpp"
 
 Background::Background(Ambience& setting, sf::RenderWindow& window) {
        /*put textures into background sprite objects*/
@@ -32,9 +33,30 @@ Background::~Background() {
 }
 
 void Background::move(int stepSize) {
-    horizonBg.move(stepSize/2,0);
-    imBg.move(stepSize,0);
-    ground.move(stepSize,0);
+    //horizonBg.move(stepSize/2,0);
+    horizonBg.setTextureRect(sf::IntRect(
+        horizonBg.getTextureRect().left - stepSize/2,
+        0,
+        static_cast<int>(DEFAULT_WINDOW.getSize().x),
+        static_cast<int>(horizonBg.getTexture()->getSize().y)
+        )
+    );
+    //imBg.move(stepSize,0);
+    imBg.setTextureRect(sf::IntRect(
+        imBg.getTextureRect().left - stepSize,
+        0,
+        static_cast<int>(DEFAULT_WINDOW.getSize().x),
+        static_cast<int>(imBg.getTexture()->getSize().y)
+        )
+    );
+    ground.setTextureRect(sf::IntRect(
+        ground.getTextureRect().left - stepSize,
+        0,
+        static_cast<int>(DEFAULT_WINDOW.getSize().x),
+        static_cast<int>(ground.getTexture()->getSize().y)
+        )
+    );
+    //ground.move(stepSize,0);
 }
 
 void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const {

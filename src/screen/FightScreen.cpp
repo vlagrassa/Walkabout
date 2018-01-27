@@ -42,14 +42,14 @@ void Oscillator::scramble() {
     TargetArea second = attackOnLeft ? defendArea : attackArea;
     
     sf::Color colors[] = {
-        sf::Color::Black,
-        sf::Color::Black,
-        (attackOnLeft) ? sf::Color::Green : sf::Color::Red,
-        sf::Color::Black,
-        sf::Color::Black,
-        (attackOnLeft) ? sf::Color::Red : sf::Color::Green,
-        sf::Color::Black,
-        sf::Color::Black,
+        backgroundColor,
+        backgroundColor,
+        first.color,
+        backgroundColor,
+        backgroundColor,
+        second.color,
+        backgroundColor,
+        backgroundColor,
     };
     
     int coords[] = {
@@ -79,8 +79,10 @@ void Oscillator::initShapes(sf::Vector2f pos) {
     outline.setPosition(pos);
     attackArea.center = 100;
     attackArea.width = 50;
+    attackArea.color = sf::Color::Green;
     defendArea.center = 200;
     defendArea.width = 50;
+    defendArea.color = sf::Color::Red;
 }
 
 void Oscillator::updateArea() {

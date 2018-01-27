@@ -32,7 +32,7 @@ void Oscillator::scramble() {
     srand(DEFAULT_GAMECLOCK.getElapsedTime().asMilliseconds());
     
     attackArea.center = (rand() % static_cast<int>(outline.getSize().x - 2*attackArea.width)) + attackArea.width;
-    defendArea.center = (rand() % static_cast<int>(outline.getSize().x - 2*defendArea.width)) + defendArea.width;
+    defendArea.center = attackArea.center;
     while (std::abs(defendArea.center-attackArea.center) < attackArea.width + defendArea.width) {
         defendArea.center = (rand() % static_cast<int>(outline.getSize().x - 2*defendArea.width)) + defendArea.width;
     }

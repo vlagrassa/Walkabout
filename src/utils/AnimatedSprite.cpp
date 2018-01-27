@@ -26,7 +26,6 @@ void AnimatedSprite::setAnimation(){
 
 void AnimatedSprite::run(sf::Event event){
     if (event.type == sf::Event::KeyPressed){
-        //std::cout << "hello hello";
         switch (event.key.code){
             case(sf::Keyboard::Up):
                 Animations.getActive().frames.shiftNode();
@@ -38,16 +37,6 @@ void AnimatedSprite::run(sf::Event event){
     }
     
 }
-
-//void AnimatedSprite::update(sf::Clock clock){
-//    framerate.update(clock, )
-//    if(clock.getElapsedTime() => framerate){
-//        
-//        clock.reset
-//    }
-//}
-
-
 
 Animation& AnimatedSprite::getAnimation(){
     

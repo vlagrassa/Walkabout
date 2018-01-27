@@ -17,7 +17,6 @@ public:
     void addAnimation(sf::Texture& spriteSheet, int rowNum, int colNum );
     void setAnimation();
     Animation& getAnimation();
-    void update(sf::Clock clock);
     void run(sf::Event event);
     
     

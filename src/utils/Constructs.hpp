@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include "Utils.hpp"
+#include "Defaults.hpp"
 #include "../screen/ScreenMode.hpp"
 
 class Oscillator;
@@ -75,6 +76,7 @@ class Oscillator : public sf::Drawable, public FrameRate {
 public:
     unsigned int targetPos;
     sf::RectangleShape outline;
+    sf::Vertex areas[28];
     Slider attackSlider;
     enum {
         empty,
@@ -85,6 +87,7 @@ public:
     
     Oscillator(sf::Vector2f pos, sf::Vector2f size, unsigned int frameRate) : FrameRate(frameRate), outline(size), attackSlider(sf::Vector2f(10,size.y), frameRate, *this) {
         initShapes(pos);
+        scramble();
     };
     
     Oscillator(const Oscillator& orig) : FrameRate(orig.frameRate), attackSlider(orig.attackSlider) {};

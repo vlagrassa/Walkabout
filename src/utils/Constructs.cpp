@@ -45,6 +45,7 @@ void Oscillator::run(sf::Event event) {
 }
 
 void Oscillator::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    target.draw(areas, 4, sf::TriangleStrip);
     target.draw(outline);
     target.draw(attackSlider);
 }
@@ -54,7 +55,19 @@ float Oscillator::getStrength() {
 }
 
 void Oscillator::scramble() {
-    
+    srand(DEFAULT_GAMECLOCK.getElapsedTime().asMilliseconds());
+    bool attackOnLeft = rand()%2;
+    if (attackOnLeft) {
+        areas[0] = sf::Vertex(outline.getPosition()                                                                                 , sf::Color::Green);
+        areas[1] = sf::Vertex(sf::Vector2f(outline.getPosition().x                    , outline.getPosition().y+outline.getSize().y), sf::Color::Green);
+        areas[2] = sf::Vertex(sf::Vector2f(outline.getPosition().x+outline.getSize().x, outline.getPosition().y                    ), sf::Color::Black);
+        areas[3] = sf::Vertex(sf::Vector2f(outline.getPosition().x+outline.getSize().x, outline.getPosition().y+outline.getSize().y), sf::Color::Black);
+    } else {
+        areas[0] = sf::Vertex(outline.getPosition()                                                                                 , sf::Color::Black);
+        areas[1] = sf::Vertex(sf::Vector2f(outline.getPosition().x                    , outline.getPosition().y+outline.getSize().y), sf::Color::Black);
+        areas[2] = sf::Vertex(sf::Vector2f(outline.getPosition().x+outline.getSize().x, outline.getPosition().y                    ), sf::Color::Green);
+        areas[3] = sf::Vertex(sf::Vector2f(outline.getPosition().x+outline.getSize().x, outline.getPosition().y+outline.getSize().y), sf::Color::Green);
+    }
 }
 
 void Oscillator::initShapes(sf::Vector2f pos) {
@@ -62,7 +75,7 @@ void Oscillator::initShapes(sf::Vector2f pos) {
     attackSlider.setOutlineColor(sf::Color::Black);
     attackSlider.setOutlineThickness(3);
     attackSlider.setPosition(pos);
-    outline.setFillColor(sf::Color::Black);
+    outline.setFillColor(sf::Color::Transparent);
     outline.setOutlineColor(sf::Color::Black);
     outline.setOutlineThickness(3);
     outline.setPosition(pos);

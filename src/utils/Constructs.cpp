@@ -45,7 +45,7 @@ void Oscillator::run(sf::Event event) {
 }
 
 void Oscillator::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    target.draw(areas, 4, sf::TriangleStrip);
+    target.draw(areas, 16, sf::TriangleStrip);
     target.draw(outline);
     target.draw(attackSlider);
 }
@@ -57,16 +57,19 @@ float Oscillator::getStrength() {
 void Oscillator::scramble() {
     srand(DEFAULT_GAMECLOCK.getElapsedTime().asMilliseconds());
     bool attackOnLeft = rand()%2;
-    if (attackOnLeft) {
-        areas[0] = sf::Vertex(outline.getPosition()                                                                                 , sf::Color::Green);
-        areas[1] = sf::Vertex(sf::Vector2f(outline.getPosition().x                    , outline.getPosition().y+outline.getSize().y), sf::Color::Green);
-        areas[2] = sf::Vertex(sf::Vector2f(outline.getPosition().x+outline.getSize().x, outline.getPosition().y                    ), sf::Color::Black);
-        areas[3] = sf::Vertex(sf::Vector2f(outline.getPosition().x+outline.getSize().x, outline.getPosition().y+outline.getSize().y), sf::Color::Black);
-    } else {
-        areas[0] = sf::Vertex(outline.getPosition()                                                                                 , sf::Color::Black);
-        areas[1] = sf::Vertex(sf::Vector2f(outline.getPosition().x                    , outline.getPosition().y+outline.getSize().y), sf::Color::Black);
-        areas[2] = sf::Vertex(sf::Vector2f(outline.getPosition().x+outline.getSize().x, outline.getPosition().y                    ), sf::Color::Green);
-        areas[3] = sf::Vertex(sf::Vector2f(outline.getPosition().x+outline.getSize().x, outline.getPosition().y+outline.getSize().y), sf::Color::Green);
+    sf::Color colors[] = {
+        sf::Color::Black,
+        sf::Color::Black,
+        (attackOnLeft) ? sf::Color::Green : sf::Color::Red,
+        sf::Color::Black,
+        sf::Color::Black,
+        (attackOnLeft) ? sf::Color::Red : sf::Color::Green,
+        sf::Color::Black,
+        sf::Color::Black,
+    };
+    for (unsigned int i = 0; i < 16; i+=2) {
+        areas[i]   = sf::Vertex(sf::Vector2f(outline.getPosition().x + outline.getSize().x/7*i/2, outline.getPosition().y                      ), colors[i/2]);
+        areas[i+1] = sf::Vertex(sf::Vector2f(outline.getPosition().x + outline.getSize().x/7*i/2, outline.getPosition().y + outline.getSize().y), colors[i/2]);
     }
 }
 

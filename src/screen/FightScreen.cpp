@@ -38,9 +38,23 @@ void Oscillator::scramble() {
         sf::Color::Black,
         sf::Color::Black,
     };
+    attackArea.center = 100;
+    attackArea.width = 50;
+    defendArea.center = 250;
+    defendArea.width = 50;
+    int coords[] = {
+        0,
+        attackArea.center - attackArea.width,
+        attackArea.center,
+        attackArea.center + attackArea.width,
+        defendArea.center - defendArea.width,
+        defendArea.center,
+        defendArea.center + defendArea.width,
+        static_cast<int>(outline.getSize().x)
+    };
     for (unsigned int i = 0; i < 16; i+=2) {
-        areas[i]   = sf::Vertex(sf::Vector2f(outline.getPosition().x + outline.getSize().x/7*i/2, outline.getPosition().y                      ), colors[i/2]);
-        areas[i+1] = sf::Vertex(sf::Vector2f(outline.getPosition().x + outline.getSize().x/7*i/2, outline.getPosition().y + outline.getSize().y), colors[i/2]);
+        areas[i]   = sf::Vertex(sf::Vector2f(outline.getPosition().x + coords[i/2], outline.getPosition().y                      ), colors[i/2]);
+        areas[i+1] = sf::Vertex(sf::Vector2f(outline.getPosition().x + coords[i/2], outline.getPosition().y + outline.getSize().y), colors[i/2]);
     }
 }
 

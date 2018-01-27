@@ -35,9 +35,16 @@ public:
     void run(sf::Event event) {};
 };
 
+struct TargetArea {
+    int center;
+    int width;
+    sf::Color color;
+};
+
 class Oscillator : public sf::Drawable, public FrameRate {
 public:
-    unsigned int targetPos;
+    TargetArea attackArea;
+    TargetArea defendArea;
     sf::RectangleShape outline;
     sf::Vertex areas[16];
     Slider attackSlider;

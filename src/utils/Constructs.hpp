@@ -76,6 +76,12 @@ public:
     unsigned int targetPos;
     sf::RectangleShape outline;
     Slider attackSlider;
+    enum {
+        empty,
+        attack,
+        defend,
+        critical
+    } area;
     
     Oscillator(sf::Vector2f pos, sf::Vector2f size, unsigned int frameRate) : FrameRate(frameRate), outline(size), attackSlider(sf::Vector2f(10,size.y), frameRate, *this) {
         initShapes(pos);
@@ -89,9 +95,13 @@ public:
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
+    void scramble(); //Should be called after a hit
+    
 private:
     
     void initShapes(sf::Vector2f pos);
+    
+    void updateArea(); //Should be called in run())
 };
 
 #endif /* CONSTRUCTS_H */

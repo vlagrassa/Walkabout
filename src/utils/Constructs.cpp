@@ -49,6 +49,10 @@ void Oscillator::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(attackSlider);
 }
 
+void Oscillator::scramble() {
+    
+}
+
 void Oscillator::initShapes(sf::Vector2f pos) {
     attackSlider.setFillColor(sf::Color::Cyan);
     attackSlider.setOutlineColor(sf::Color::Black);
@@ -58,4 +62,8 @@ void Oscillator::initShapes(sf::Vector2f pos) {
     outline.setOutlineColor(sf::Color::Black);
     outline.setOutlineThickness(3);
     outline.setPosition(pos);
+}
+
+void Oscillator::updateArea() {
+    
 }

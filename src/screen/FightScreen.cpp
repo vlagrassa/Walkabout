@@ -23,5 +23,15 @@ void FightScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const 
 
 ScreenMode* FightScreen::run(sf::Event event) {
     attackBar.updateFrames(DEFAULT_GAMECLOCK, event);
+    
+    //Previous line will update which region the attack bar is currently in
+    //If space pressed, grab the strength & switch the attack bar's current area
+    //Case attack region: take that from the monster's health
+    //Case defend region: take from the player's health, but decreased
+    //Case crit region: take double from the monster's health??
+    //Case blank region: don't really do anything
+    //After switch statement, scramble the areas to reset
+    //If the bar passes the defense region without space, take full damage
+    
     return EncounterScreen::run(event);
 };

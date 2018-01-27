@@ -76,7 +76,7 @@ class Oscillator : public sf::Drawable, public FrameRate {
 public:
     unsigned int targetPos;
     sf::RectangleShape outline;
-    sf::Vertex areas[28];
+    sf::Vertex areas[16];
     Slider attackSlider;
     enum {
         empty,

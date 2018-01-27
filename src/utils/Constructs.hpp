@@ -95,6 +95,8 @@ public:
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
+    float getStrength();
+    
     void scramble(); //Should be called after a hit
     
 private:

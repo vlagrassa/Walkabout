@@ -49,6 +49,10 @@ void Oscillator::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(attackSlider);
 }
 
+float Oscillator::getStrength() {
+    return 1.0;
+}
+
 void Oscillator::scramble() {
     
 }

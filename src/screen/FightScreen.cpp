@@ -26,11 +26,22 @@ ScreenMode* FightScreen::run(sf::Event event) {
     
     //Previous line will update which region the attack bar is currently in
     //If space pressed, grab the strength & switch the attack bar's current area
-    //Case attack region: take that from the monster's health
-    //Case defend region: take from the player's health, but decreased
-    //Case crit region: take double from the monster's health??
-    //Case blank region: don't really do anything
-    //After switch statement, scramble the areas to reset
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
+        float strength = attackBar.getStrength();
+        switch (attackBar.area) {
+            case (Oscillator::attack):
+                //Case attack region: take that from the monster's health
+            case (Oscillator::defend):
+                //Case defend region: take from the player's health, but decreased
+            case (Oscillator::critical):
+                //Case crit region: take double from the monster's health??
+            case (Oscillator::empty):
+                //Case blank region: don't really do anything
+                break;
+        }
+        //After switch statement, scramble the areas to reset
+        attackBar.scramble();
+    }
     //If the bar passes the defense region without space, take full damage
     
     return EncounterScreen::run(event);

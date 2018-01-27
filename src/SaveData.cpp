@@ -27,8 +27,8 @@ SaveData::~SaveData() {
     
 }
 
-void Player::writeData(std::istream &saveData){
-    
+void Player::writeData(std::ostream &saveData){
+    saveData << "SAVING DATA REALLY LOUDLY";
 }
 
 Player::Player(std::istream& saveData){

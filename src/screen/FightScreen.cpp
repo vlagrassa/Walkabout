@@ -32,12 +32,10 @@ void Oscillator::scramble() {
     srand(DEFAULT_GAMECLOCK.getElapsedTime().asMilliseconds());
     
     attackArea.center = (rand() % static_cast<int>(outline.getSize().x - 2*attackArea.width)) + attackArea.width;
-    attackArea.width = 50;
     defendArea.center = (rand() % static_cast<int>(outline.getSize().x - 2*defendArea.width)) + defendArea.width;
     while (std::abs(defendArea.center-attackArea.center) < attackArea.width + defendArea.width) {
         defendArea.center = (rand() % static_cast<int>(outline.getSize().x - 2*defendArea.width)) + defendArea.width;
     }
-    defendArea.width = 50;
     
     bool attackOnLeft = attackArea.center < defendArea.center;
     TargetArea first  = attackOnLeft ? attackArea : defendArea;
@@ -68,7 +66,6 @@ void Oscillator::scramble() {
         areas[i]   = sf::Vertex(sf::Vector2f(outline.getPosition().x + coords[i/2], outline.getPosition().y                      ), colors[i/2]);
         areas[i+1] = sf::Vertex(sf::Vector2f(outline.getPosition().x + coords[i/2], outline.getPosition().y + outline.getSize().y), colors[i/2]);
     }
-    std::cout << "Attack: " << attackArea.center << ", Defend: " << defendArea.center << "\n";
 }
 
 void Oscillator::initShapes(sf::Vector2f pos) {
@@ -80,6 +77,10 @@ void Oscillator::initShapes(sf::Vector2f pos) {
     outline.setOutlineColor(sf::Color::Black);
     outline.setOutlineThickness(3);
     outline.setPosition(pos);
+    attackArea.center = 100;
+    attackArea.width = 50;
+    defendArea.center = 200;
+    defendArea.width = 50;
 }
 
 void Oscillator::updateArea() {

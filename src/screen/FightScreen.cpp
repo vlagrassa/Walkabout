@@ -4,6 +4,9 @@
 
 
 void Oscillator::run(sf::Event event) {
+    if (event.key.code == sf::Keyboard::T) {
+        scramble();
+    }
     attackSlider.currentPos += attackSlider.dir;
     if (attackSlider.currentPos >= outline.getPosition().x + outline.getSize().x - attackSlider.getSize().x) {
         attackSlider.dir = std::abs(attackSlider.dir) * -1;
@@ -27,7 +30,19 @@ float Oscillator::getStrength() {
 
 void Oscillator::scramble() {
     srand(DEFAULT_GAMECLOCK.getElapsedTime().asMilliseconds());
-    bool attackOnLeft = rand()%2;
+    
+    attackArea.center = (rand() % static_cast<int>(outline.getSize().x - 2*attackArea.width)) + attackArea.width;
+    attackArea.width = 50;
+    defendArea.center = (rand() % static_cast<int>(outline.getSize().x - 2*defendArea.width)) + defendArea.width;
+    while (std::abs(defendArea.center-attackArea.center) < attackArea.width + defendArea.width) {
+        defendArea.center = (rand() % static_cast<int>(outline.getSize().x - 2*defendArea.width)) + defendArea.width;
+    }
+    defendArea.width = 50;
+    
+    bool attackOnLeft = attackArea.center < defendArea.center;
+    TargetArea first  = attackOnLeft ? attackArea : defendArea;
+    TargetArea second = attackOnLeft ? defendArea : attackArea;
+    
     sf::Color colors[] = {
         sf::Color::Black,
         sf::Color::Black,
@@ -38,24 +53,22 @@ void Oscillator::scramble() {
         sf::Color::Black,
         sf::Color::Black,
     };
-    attackArea.center = 100;
-    attackArea.width = 50;
-    defendArea.center = 250;
-    defendArea.width = 50;
+    
     int coords[] = {
         0,
-        attackArea.center - attackArea.width,
-        attackArea.center,
-        attackArea.center + attackArea.width,
-        defendArea.center - defendArea.width,
-        defendArea.center,
-        defendArea.center + defendArea.width,
+        first.center - first.width,
+        first.center,
+        first.center + first.width,
+        second.center - second.width,
+        second.center,
+        second.center + second.width,
         static_cast<int>(outline.getSize().x)
     };
     for (unsigned int i = 0; i < 16; i+=2) {
         areas[i]   = sf::Vertex(sf::Vector2f(outline.getPosition().x + coords[i/2], outline.getPosition().y                      ), colors[i/2]);
         areas[i+1] = sf::Vertex(sf::Vector2f(outline.getPosition().x + coords[i/2], outline.getPosition().y + outline.getSize().y), colors[i/2]);
     }
+    std::cout << "Attack: " << attackArea.center << ", Defend: " << defendArea.center << "\n";
 }
 
 void Oscillator::initShapes(sf::Vector2f pos) {

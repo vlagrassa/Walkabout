@@ -33,6 +33,9 @@ void AnimatedSprite::run(sf::Event event){
                 this->setTextureRect(Animations.getActive().frames.getActive());
         }
     }
+    else {
+        this->setTextureRect(sf::IntRect(0,0,0,2));
+    }
     
 }
 

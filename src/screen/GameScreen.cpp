@@ -19,7 +19,7 @@ GameScreen::~GameScreen() {};
 
 ScreenMode* GameScreen::run(sf::Event event) {
     hall.updateIndex();
-    player.run(event);
+    player.updateFrames(DEFAULT_GAMECLOCK, event);
     if (event.type == sf::Event::KeyPressed) {
         switch (event.key.code) {
             case (sf::Keyboard::Left):

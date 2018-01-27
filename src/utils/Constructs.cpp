@@ -24,7 +24,7 @@ void ButtonLine::fitButtonsToRect(LinkedList<LinkedButton&>& buttons) {
 
 
 void FrameRate::updateFrames(sf::Clock clock, sf::Event event) {
-    time_t newUpdateTime = clock.getElapsedTime().asMilliseconds();
+    int newUpdateTime = clock.getElapsedTime().asMilliseconds();
     if (prevUpdateTime + frameRate <= newUpdateTime) {
         prevUpdateTime = newUpdateTime;
         run(event);

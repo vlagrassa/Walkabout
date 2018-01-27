@@ -4,12 +4,12 @@
 #include "Utils.hpp"
 #include "AnimatedSprite.hpp"
 
-AnimatedSprite::AnimatedSprite() : FrameRate(1000){
+AnimatedSprite::AnimatedSprite() : FrameRate(83){
     
 }
 
 
-AnimatedSprite::AnimatedSprite(const AnimatedSprite& orig) : FrameRate(1000){
+AnimatedSprite::AnimatedSprite(const AnimatedSprite& orig) : FrameRate(83){
     
 }
 AnimatedSprite::~AnimatedSprite(){

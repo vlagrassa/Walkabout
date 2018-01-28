@@ -3,7 +3,7 @@
 
 GameScreen::GameScreen(Player& player, Background& background, sf::Window& window) : GameScreen(player, background, *new Hall(player, window), window) {};
 
-GameScreen::GameScreen(Player& player, Background& background, Hall& hall, sf::Window& window) : Menu(475, 10, 75, 20, window), player(player), hall(hall), background(background) {
+GameScreen::GameScreen(Player& player, Background& background, Hall& hall, sf::Window& window) : Menu(475, 10, 75, 20, window), player(player), hall(hall), background(background), playerhealth(sf::Vector2f(100, 100), sf::Vector2f(300, 75), player.health) {
     buttonline.horizontal = true;
     std::cout << "Hall is " << &hall << ", Player is " << &player << "\n";
     unsigned int numRooms = 3;
@@ -13,13 +13,14 @@ GameScreen::GameScreen(Player& player, Background& background, Hall& hall, sf::W
     std::cout << hall << "\n";
 };
 
-GameScreen::GameScreen(const GameScreen& orig) : Menu(orig), player(orig.player), hall(orig.hall), background(orig.background) {};
+GameScreen::GameScreen(const GameScreen& orig) : Menu(orig), player(orig.player), hall(orig.hall), background(orig.background), playerhealth(playerhealth) {};
 
 GameScreen::~GameScreen() {};
 
 ScreenMode* GameScreen::run(sf::Event event) {
     hall.updateIndex();
     player.updateFrames(DEFAULT_GAMECLOCK, event);
+    playerhealth.update();
     if (event.type == sf::Event::KeyPressed) {
         switch (event.key.code) {
             case (sf::Keyboard::Left):
@@ -62,5 +63,6 @@ void GameScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(background);
     target.draw(hall);
     target.draw(player);
+    target.draw(playerhealth);
     ScreenMode::draw(target, states);
 };

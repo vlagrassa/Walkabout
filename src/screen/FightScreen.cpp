@@ -94,7 +94,7 @@ void Oscillator::updateArea() {
 }
 
 
-FightScreen::FightScreen(sf::Window& window) : EncounterScreen(window), attackBar(sf::Vector2f(10,436), sf::Vector2f(780,154), 8) {
+FightScreen::FightScreen(sf::Window& window) : EncounterScreen(window), attackBar(sf::Vector2f(164,436), sf::Vector2f(626,104), 8) {
     
 }
 FightScreen::FightScreen(const FightScreen& orig) : FightScreen(orig.window) {

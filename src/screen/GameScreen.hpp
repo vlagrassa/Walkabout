@@ -7,19 +7,7 @@
 #include "../player/Player.hpp"
 #include "../region/Hall.hpp"
 #include "../window/Background.hpp"
-
-class HealthBar : public sf::Drawable {
-public:
-    sf::RectangleShape outline;
-    sf::RectangleShape health;
-    unsigned int& source;
-    
-    HealthBar(sf::Vector2f pos, sf::Vector2f size, unsigned int& source);
-    HealthBar(const HealthBar& orig);
-    
-    void update();
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-};
+#include "../utils/Constructs.hpp"
 
 class GameScreen: public Menu {
 public:

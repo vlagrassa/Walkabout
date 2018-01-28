@@ -53,8 +53,22 @@ void Oscillator::scramble() {
     };
     
     for (unsigned int i = 0; i < 16; i+=2) {
-        areas[i]   = sf::Vertex(sf::Vector2f(outline.getPosition().x + coords[i/2], outline.getPosition().y                      ), ((i/2+1) % 3 == 0) ? tempAreas[((i/2)-2)/3].color : backgroundColor);
-        areas[i+1] = sf::Vertex(sf::Vector2f(outline.getPosition().x + coords[i/2], outline.getPosition().y + outline.getSize().y), ((i/2+1) % 3 == 0) ? tempAreas[((i/2)-2)/3].color : backgroundColor);
+        areas[i]   = sf::Vertex(
+                        sf::Vector2f(
+                            outline.getPosition().x + coords[i/2],
+                            outline.getPosition().y
+                        ),
+                        ((i/2+1) % 3 == 0) ?
+                            tempAreas[((i/2)-2)/3].color :
+                            backgroundColor);
+        areas[i+1] = sf::Vertex(
+                        sf::Vector2f(
+                            outline.getPosition().x + coords[i/2],
+                            outline.getPosition().y + outline.getSize().y
+                        ),
+                        ((i/2+1) % 3 == 0) ?
+                            tempAreas[((i/2)-2)/3].color :
+                            backgroundColor);
     }
 }
 

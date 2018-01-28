@@ -41,17 +41,6 @@ void Oscillator::scramble() {
     tempAreas[0] = attackArea.center < defendArea.center ? attackArea : defendArea;
     tempAreas[1] = attackArea.center < defendArea.center ? defendArea : attackArea;
     
-    sf::Color colors[] = {
-        backgroundColor,
-        backgroundColor,
-        tempAreas[0].color,
-        backgroundColor,
-        backgroundColor,
-        tempAreas[1].color,
-        backgroundColor,
-        backgroundColor,
-    };
-    
     int coords[] = {
         0,
         tempAreas[0].center - tempAreas[0].width,
@@ -62,9 +51,10 @@ void Oscillator::scramble() {
         tempAreas[1].center + tempAreas[1].width,
         static_cast<int>(outline.getSize().x)
     };
+    
     for (unsigned int i = 0; i < 16; i+=2) {
-        areas[i]   = sf::Vertex(sf::Vector2f(outline.getPosition().x + coords[i/2], outline.getPosition().y                      ), colors[i/2]);
-        areas[i+1] = sf::Vertex(sf::Vector2f(outline.getPosition().x + coords[i/2], outline.getPosition().y + outline.getSize().y), colors[i/2]);
+        areas[i]   = sf::Vertex(sf::Vector2f(outline.getPosition().x + coords[i/2], outline.getPosition().y                      ), ((i/2+1) % 3 == 0) ? tempAreas[((i/2)-2)/3].color : backgroundColor);
+        areas[i+1] = sf::Vertex(sf::Vector2f(outline.getPosition().x + coords[i/2], outline.getPosition().y + outline.getSize().y), ((i/2+1) % 3 == 0) ? tempAreas[((i/2)-2)/3].color : backgroundColor);
     }
 }
 

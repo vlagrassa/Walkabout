@@ -37,28 +37,29 @@ void Oscillator::scramble() {
         defendArea.center = (rand() % static_cast<int>(outline.getSize().x - 2*defendArea.width)) + defendArea.width;
     }
     
-    TargetArea first  = attackArea.center < defendArea.center ? attackArea : defendArea;
-    TargetArea second = attackArea.center < defendArea.center ? defendArea : attackArea;
+    TargetArea tempAreas[2];
+    tempAreas[0] = attackArea.center < defendArea.center ? attackArea : defendArea;
+    tempAreas[1] = attackArea.center < defendArea.center ? defendArea : attackArea;
     
     sf::Color colors[] = {
         backgroundColor,
         backgroundColor,
-        first.color,
+        tempAreas[0].color,
         backgroundColor,
         backgroundColor,
-        second.color,
+        tempAreas[1].color,
         backgroundColor,
         backgroundColor,
     };
     
     int coords[] = {
         0,
-        first.center - first.width,
-        first.center,
-        first.center + first.width,
-        second.center - second.width,
-        second.center,
-        second.center + second.width,
+        tempAreas[0].center - tempAreas[0].width,
+        tempAreas[0].center,
+        tempAreas[0].center + tempAreas[0].width,
+        tempAreas[1].center - tempAreas[1].width,
+        tempAreas[1].center,
+        tempAreas[1].center + tempAreas[1].width,
         static_cast<int>(outline.getSize().x)
     };
     for (unsigned int i = 0; i < 16; i+=2) {

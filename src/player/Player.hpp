@@ -205,6 +205,7 @@ public:
     
     /*Saving data*/
     
+    void run(sf::Event event);
     
 private:
     /* Absolute position of the Player - in context of Hall */

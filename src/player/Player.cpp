@@ -153,6 +153,19 @@ void Player::equip(Item& item){
             /*throw error*/
             break;
     }
+}
+
+void Player::run(sf::Event event){
+    if (event.type == sf::Event::KeyPressed){
+        switch (event.key.code){
+            case(sf::Keyboard::Up):
+                Animations.getActive().frames.shiftNode();
+                this->setTextureRect(Animations.getActive().frames.getActive());
+        }
+    }
+    else {
+        this->setTextureRect(sf::IntRect(0,0,0,2));
+    }
     
 }
 

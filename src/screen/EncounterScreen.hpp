@@ -27,10 +27,9 @@ private:
 class Slider : public sf::RectangleShape, public FrameRate {
 public:
     unsigned int currentPos = 20;
-    int dir = 2;
-    Oscillator& base;
-    Slider(sf::Vector2f size, int frameRate, Oscillator& base) : RectangleShape(size), FrameRate(frameRate), base(base) {};
-    Slider(const Slider& orig) : RectangleShape(orig), FrameRate(orig), base(orig.base) {};
+    int dir;
+    Slider(sf::Vector2f size, int frameRate, unsigned int speed = 5) : RectangleShape(size), FrameRate(frameRate), dir(speed) {};
+    Slider(const Slider& orig) : RectangleShape(orig), FrameRate(orig), dir(orig.dir) {};
     
     void run(sf::Event event) {};
 };
@@ -56,7 +55,7 @@ public:
     } area;
     sf::Color backgroundColor;
     
-    Oscillator(sf::Vector2f pos, sf::Vector2f size, unsigned int frameRate) : FrameRate(frameRate), outline(size), attackSlider(sf::Vector2f(10,size.y), frameRate, *this) {
+    Oscillator(sf::Vector2f pos, sf::Vector2f size, unsigned int frameRate) : FrameRate(frameRate), outline(size), attackSlider(sf::Vector2f(10,size.y), frameRate, 5) {
         initShapes(pos);
         scramble();
     };

@@ -26,7 +26,8 @@ void HealthBar::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 GameScreen::GameScreen(Player& player, Background& background, sf::Window& window) : GameScreen(player, background, *new Hall(player, window), window) {};
 
-GameScreen::GameScreen(Player& player, Background& background, Hall& hall, sf::Window& window) : Menu(475, 10, 75, 20, window), player(player), hall(hall), background(background), playerhealth(sf::Vector2f(100, 100), sf::Vector2f(300, 75), player.health) {
+GameScreen::GameScreen(Player& player, Background& background, Hall& hall, sf::Window& window) : Menu(475, 10, 75, 20, window), player(player), hall(hall), background(background), playerhealth(sf::Vector2f(164, 550), sf::Vector2f(626, 25), player.health) {
+    buttonline = ButtonLine(164, 436, 626, 104, 20);
     buttonline.horizontal = true;
     std::cout << "Hall is " << &hall << ", Player is " << &player << "\n";
     unsigned int numRooms = 3;

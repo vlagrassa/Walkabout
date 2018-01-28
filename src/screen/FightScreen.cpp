@@ -37,9 +37,8 @@ void Oscillator::scramble() {
         defendArea.center = (rand() % static_cast<int>(outline.getSize().x - 2*defendArea.width)) + defendArea.width;
     }
     
-    bool attackOnLeft = attackArea.center < defendArea.center;
-    TargetArea first  = attackOnLeft ? attackArea : defendArea;
-    TargetArea second = attackOnLeft ? defendArea : attackArea;
+    TargetArea first  = attackArea.center < defendArea.center ? attackArea : defendArea;
+    TargetArea second = attackArea.center < defendArea.center ? defendArea : attackArea;
     
     sf::Color colors[] = {
         backgroundColor,

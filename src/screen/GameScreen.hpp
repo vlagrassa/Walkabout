@@ -14,26 +14,11 @@ public:
     sf::RectangleShape health;
     unsigned int& source;
     
-    HealthBar(sf::Vector2f pos, sf::Vector2f size, unsigned int& source) : outline(size), health(size), source(source) {
-        outline.setPosition(pos);
-        outline.setFillColor(sf::Color::Transparent);
-        outline.setOutlineColor(sf::Color::Black);
-        outline.setOutlineThickness(2);
-        health.setPosition(pos);
-        health.setFillColor(sf::Color::Green);
-        health.setOutlineThickness(0);
-    }
+    HealthBar(sf::Vector2f pos, sf::Vector2f size, unsigned int& source);
+    HealthBar(const HealthBar& orig);
     
-    HealthBar(const HealthBar& orig) : outline(orig.outline), health(orig.health), source(orig.source) {};
-    
-    void update() {
-        health.setSize(sf::Vector2f(source*5, health.getSize().y));
-    }
-    
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
-        target.draw(health);
-        target.draw(outline);
-    };
+    void update();
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 
 class GameScreen: public Menu {

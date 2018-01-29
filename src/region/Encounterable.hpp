@@ -3,7 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
-#include "../screen/EncounterScreen.hpp"
 #include "../player/Player.hpp"
 
 enum RoomType {
@@ -47,14 +46,6 @@ public:
      */
     virtual std::vector<int> getReward() const;
     
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
-     * Get the EncounterScreen associated with the Encounterable.
-     * Will be overwritten by each subclass.
-     * @return EncounterScreen representing the encounter
-     */
-    virtual EncounterScreen* getEncounterScreen() const;
-    
     
     /* Abstract Methods */
     
@@ -93,8 +84,6 @@ public:
     virtual void encounter(Player& player) = 0;
     
 private:
-    /* A pointer to the associated EncounterScreen */
-    EncounterScreen* screen;
     
     /* The list of Items associated with the given Encounterable */
     std::vector<int> reward;

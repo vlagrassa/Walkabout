@@ -10,8 +10,6 @@ Monster::Monster(MonsterSpecies s, sf::Window& window) {
     health = maxHealth;
     species = s;
     
-    battle_screen = new FightScreen(window);
-    
     monster_texture = new sf::Texture();
     if (!monster_texture->loadFromFile("resources/" + getSpeciesTexture())) {
         std::cout << "Failed to load Monster texture " << getSpeciesTexture() << " from directory " << "resources/" << "\n";
@@ -20,23 +18,10 @@ Monster::Monster(MonsterSpecies s, sf::Window& window) {
     setTexture(*monster_texture);
 }
 
-Monster::Monster(const Monster& orig) {
-    battle_screen = new FightScreen(orig.getEncounterScreen()->window); //@TODO THIS IS BAD FIX THIS
-}
+Monster::Monster(const Monster& orig) {}
 
 Monster::~Monster() {
-    delete battle_screen;
     delete monster_texture;
-}
-
-// </editor-fold>
-
-// <editor-fold defaultstate="collapsed" desc=" Inherited Methods ">
-
-/* Returns the FightScreen associated with the Monster */
-FightScreen* Monster::getEncounterScreen() const {
-    std::cout << "Returning fight screen!" << "\n";
-    return battle_screen;
 }
 
 // </editor-fold>

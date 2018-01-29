@@ -35,17 +35,6 @@ public:
     virtual ~Monster();
     
     
-    /* Inherited Methods */
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
-     * Get the EncounterScreen associated with the Encounterable.
-     * Overwritten to return a FightScreen.
-     * @return FightScreen representing fight with Monster
-     */
-    FightScreen* getEncounterScreen() const;
-    
-    
     /* Implemented Abstract Methods */
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -124,9 +113,6 @@ private:
     
     /* The current health*/
     int health;
-    
-    /* The associated FightScreen */
-    FightScreen* battle_screen;
     
     /* Pointer to the Monster texture */
     sf::Texture* monster_texture;

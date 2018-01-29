@@ -5,8 +5,6 @@
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
 Treasure::Treasure(sf::Window& window) {
-    treasure_screen = new TreasureScreen(window); //@TODO THIS IS BAD FIX THIS
-    
     treasure_texture = new sf::Texture();
     if (!treasure_texture->loadFromFile("resources/treasure_chest.png")) {
         std::cout << "Failed to load Treasure texture " << "treasure_chest.png" << " from directory " << "resources/" << "\n";
@@ -15,24 +13,13 @@ Treasure::Treasure(sf::Window& window) {
     setTexture(*treasure_texture);
 }
 
-Treasure::Treasure(const Treasure& orig) {
-    treasure_screen = new TreasureScreen(orig.getEncounterScreen()->window); //@TODO THIS IS BAD FIX THIS
-}
+Treasure::Treasure(const Treasure& orig) {}
 
 Treasure::~Treasure() {
-    delete treasure_screen;
     delete treasure_texture;
 }
 
 // </editor-fold>
-
-// <editor-fold defaultstate="collapsed" desc=" Inherited Methods ">
-
-/* Returns the TreasureScreen associated with the Treasure */
-TreasureScreen* Treasure::getEncounterScreen() const {
-    std::cout << "Returning treasure screen!" << "\n";
-    return treasure_screen;
-}
 
 // </editor-fold>
 

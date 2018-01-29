@@ -94,7 +94,7 @@ void Oscillator::updateArea() {
 }
 
 
-FightScreen::FightScreen(sf::Window& window) : EncounterScreen(window), attackBar(sf::Vector2f(164,436), sf::Vector2f(626,90), 8) {
+FightScreen::FightScreen(sf::Window& window) : Room(5, window), attackBar(sf::Vector2f(164,436), sf::Vector2f(626,90), 8) {
     
 }
 FightScreen::FightScreen(const FightScreen& orig) : FightScreen(orig.window) {
@@ -110,7 +110,7 @@ std::string FightScreen::testThing() {
 
 void FightScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(attackBar, states);
-    EncounterScreen::draw(target, states);
+    Room::draw(target, states);
 }
 
 ScreenMode* FightScreen::run(sf::Event event) {
@@ -136,5 +136,5 @@ ScreenMode* FightScreen::run(sf::Event event) {
     }
     //If the bar passes the defense region without space, take full damage
     
-    return EncounterScreen::run(event);
+    return Room::run(event);
 };

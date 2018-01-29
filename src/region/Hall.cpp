@@ -72,8 +72,8 @@ bool Hall::canEncounter() {
     return player.getPosInRoom() == at(activeIndex)->getLength()-1;
 }
 
-EncounterScreen* Hall::getEncounterScreen() {
-    return at(activeIndex)->getScreen();
+Room* Hall::getEncounterScreen() {
+    return at(activeIndex);
 }
 
 // </editor-fold>
@@ -102,7 +102,7 @@ void Hall::setActiveRoomPlayerX(unsigned int n) {
 void Hall::addRoom(Room* r) {
     push_back(r);
     totalLength += r->getLength();
-    r->getEncounter()->setPosition( (totalLength-player.getX()) * player.getStepSize(), 100); //Ideally the Room itself should handle this
+    r->encounter->setPosition( (totalLength-player.getX()) * player.getStepSize(), 100); //Ideally the Room itself should handle this
     setActiveRoom();
 }
 
@@ -183,9 +183,9 @@ void Hall::updateIndex() {
 void Hall::updateRoomPositions() {
     for (Room* r : *this) {
         if (player.isMovingRight()) {
-            r->getEncounter()->move(-player.getStepSize(), 0);
+            r->encounter->move(-player.getStepSize(), 0);
         } else {
-            r->getEncounter()->move(player.getStepSize(), 0);
+            r->encounter->move(player.getStepSize(), 0);
         }
     }
     if (size() - getActiveIndex() < 3) {

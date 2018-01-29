@@ -1,28 +1,14 @@
 #ifndef ENCOUNTERSCREEN_H
 #define ENCOUNTERSCREEN_H
 
-#include "ScreenMode.hpp"
-#include "../utils/Defaults.hpp"
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
-#include "../utils/Constructs.hpp"
+#include "../region/Room.hpp"
 
-class EncounterScreen;
 class Slider;
 class Oscillator;
 class FightScreen;
 class TreasureScreen;
-
-class EncounterScreen: public ScreenMode {
-public:
-    EncounterScreen(sf::Window& window = DEFAULT_WINDOW);
-    EncounterScreen(const EncounterScreen&);
-    virtual ~EncounterScreen();
-    
-    virtual std::string testThing();
-private:
-    
-};
 
 class Slider : public sf::RectangleShape, public FrameRate {
 public:
@@ -80,7 +66,7 @@ private:
 };
 
 
-class FightScreen: public EncounterScreen {
+class FightScreen: public Room {
 public:
     FightScreen(sf::Window &window = DEFAULT_WINDOW);
     FightScreen(const FightScreen&);
@@ -98,7 +84,7 @@ private:
 };
 
 
-class TreasureScreen: public EncounterScreen {
+class TreasureScreen: public Room {
 public:
     TreasureScreen(sf::Window& window = DEFAULT_WINDOW);
     TreasureScreen(const TreasureScreen&);

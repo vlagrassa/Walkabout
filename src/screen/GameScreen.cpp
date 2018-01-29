@@ -51,10 +51,10 @@ ScreenMode* GameScreen::run(sf::Event event) {
             return hall.getEncounterScreen();
         }
     }
-    if (hall.canEncounter() && !hall.getActiveRoom()->getEncounter()->isSkippable()) {
+    if (hall.canEncounter() && !hall.getActiveRoom()->encounter->isSkippable()) {
         return hall.getEncounterScreen();
     }
-    if (hall.canEncounter() && !hall.getActiveRoom()->getEncounter()->isSkippable()) {
+    if (hall.canEncounter() && !hall.getActiveRoom()->encounter->isSkippable()) {
         return hall.getEncounterScreen();
     }
     return ScreenMode::checkButtons(event);

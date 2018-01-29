@@ -17,7 +17,9 @@
  * @param size The size of the Room
  * @param enc The Encounterable held in the Room
  */
-Room::Room(unsigned int size, Encounterable* enc) : encounter(enc), length(size), active(false) {}
+Room::Room(unsigned int size, Encounterable* enc) : encounter(enc), length(size), active(false) {
+    showPrevious = true;
+}
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * 
@@ -66,38 +68,6 @@ unsigned int Room::getLength() const {
  */
 unsigned int getDistance() {
     return 0; //Temporary default value
-}
-
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
- * 
- * Get RoomType enumerator value representing the subclass
- * of Encounterable held in the Room.
- * 
- * @return Type of Encounterable in Room
- */
-RoomType Room::getType() const {
-    return encounter->getType();
-}
-
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
- * 
- * Get the Encounterable of the Room.
- * 
- * @return The Room's Encounterable
- */
-Encounterable* Room::getEncounter() const {
-    return encounter;
-}
-
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
- * 
- * Get EncounterScreen subclass from the Encounterable held
- * in the Room.
- * 
- * @return EncounterScreen of Encounterable
- */
-EncounterScreen* Room::getScreen() const {
-    return getEncounter()->getEncounterScreen();
 }
 
 // </editor-fold>
@@ -222,7 +192,7 @@ std::ostream& operator<<(std::ostream &strm, const Room &r) {
     } else {
         strm << " Inactive ";
     }
-    strm << "size " << std::to_string(r.getLength()) << " " << r.getEncounter()->getTypeName();
+    strm << "size " << std::to_string(r.getLength()) << " " << r.encounter->getTypeName();
     return strm;
 }
 

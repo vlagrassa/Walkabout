@@ -4,8 +4,10 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 #include "Encounterable.hpp"
+#include "../screen/ScreenMode.hpp"
+#include "../utils/Defaults.hpp"
 
-class Room : public sf::Drawable {
+class Room : public ScreenMode {
 public:
     /* Con/Destructors */
     
@@ -67,32 +69,6 @@ public:
      * @return Distance
      */
     unsigned int getDistance() const;
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
-     * Get RoomType enumerator value representing the subclass
-     * of Encounterable held in the Room.
-     * 
-     * @return Type of Encounterable in Room
-     */
-    RoomType getType() const;
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
-     * Get the Encounterable of the Room.
-     * 
-     * @return The Room's Encounterable
-     */
-    Encounterable* getEncounter() const;
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
-     * Get EncounterScreen subclass from the Encounterable held
-     * in the Room.
-     * 
-     * @return EncounterScreen of Encounterable
-     */
-    EncounterScreen* getScreen() const;
     
     
     /* Graphical Methods */
@@ -174,13 +150,14 @@ public:
         temp += "size ";
         temp += std::to_string(this->getLength());
         temp += " ";
-        temp += this->getEncounter()->getTypeName();
+        temp += this->encounter->getTypeName();
         return temp;
     };
     
-private:
     /* Encounterable held by the Room */
     Encounterable* encounter;
+    
+private:
     
     /* Number of tics in the Room */
     const unsigned int length;

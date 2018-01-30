@@ -3,8 +3,8 @@
 
 GameScreen::GameScreen(Player& player, Background& background, sf::Window& window) : GameScreen(player, background, *new Hall(player, window), window) {};
 
-GameScreen::GameScreen(Player& player, Background& background, Hall& hall, sf::Window& window) : Menu(475, 10, 75, 20, window), player(player), hall(hall), background(background) {
-    buttonline = ButtonLine(166, 438, 622, 86, 20);
+GameScreen::GameScreen(Player& player, Background& background, Hall& hall, sf::Window& window) : Menu(475, 10, 75, 20, window), player(player), hall(hall), background(background), icon(sf::RectangleShape(sf::Vector2f(141, 151))) {
+    buttonline = ButtonLine(166, 438, 622, 86, 15);
     buttonline.horizontal = true;
     std::cout << "Hall is " << &hall << ", Player is " << &player << "\n";
     unsigned int numRooms = 3;
@@ -12,9 +12,13 @@ GameScreen::GameScreen(Player& player, Background& background, Hall& hall, sf::W
         hall.addRoom();
     }
     std::cout << hall << "\n";
+    icon.setPosition(sf::Vector2f(10, 438));
+    icon.setOutlineThickness(5);
+    icon.setOutlineColor(sf::Color::Black);
+    icon.setFillColor(sf::Color::Transparent);
 };
 
-GameScreen::GameScreen(const GameScreen& orig) : Menu(orig), player(orig.player), hall(orig.hall), background(orig.background) {};
+GameScreen::GameScreen(const GameScreen& orig) : Menu(orig), player(orig.player), hall(orig.hall), background(orig.background), icon(orig.icon) {};
 
 GameScreen::~GameScreen() {};
 
@@ -65,5 +69,6 @@ void GameScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(hall);
     target.draw(player);
     target.draw(player.healthbar);
+    target.draw(icon);
     ScreenMode::draw(target, states);
 };

@@ -23,6 +23,8 @@ public:
     Hall& hall;
     Background& background;
     
+    sf::RectangleShape icon;
+    
     //HealthBar playerhealth;
 };
 

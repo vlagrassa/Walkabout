@@ -4,7 +4,7 @@
 
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
-Monster::Monster(MonsterSpecies s, sf::Window& window) : healthbar(sf::Vector2f(164, 566), sf::Vector2f(626, 25), health) {
+Monster::Monster(MonsterSpecies s, sf::Window& window) : healthbar(sf::Vector2f(164, 566), sf::Vector2f(626, 25), health, maxHealth) {
     name = "John";
     maxHealth = 20;
     health = maxHealth;
@@ -46,7 +46,9 @@ RoomType Monster::getType() const {
 
 /* Interact with the Encounterable */
 void Monster::encounter(Player& player) {
-    std::cout << "This is a monster!\n";
+    //std::cout << "This is a monster!\n";
+    health = player.health;
+    healthbar.update();
 }
 
 void Monster::drawExtras(sf::RenderTarget& target, sf::RenderStates states) const {

@@ -122,6 +122,7 @@ void FightScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const 
 ScreenMode* FightScreen::run(sf::Event event) {
     attackBar.updateFrames(DEFAULT_GAMECLOCK, event);
     player.healthbar.update();
+    encounter->encounter(player);
     
     //Previous line will update which region the attack bar is currently in
     //If space pressed, grab the strength & switch the attack bar's current area

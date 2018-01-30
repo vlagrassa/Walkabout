@@ -17,7 +17,8 @@
  * @param size The size of the Room
  * @param enc The Encounterable held in the Room
  */
-Room::Room(unsigned int size, Encounterable* enc) : encounter(enc), length(size), active(false) {
+Room::Room(unsigned int size, Encounterable& enc) : encounter(&enc), length(size), active(false) {
+    std::cout << "Inside Room Constructor\n";
     showPrevious = true;
 }
 
@@ -163,17 +164,9 @@ void Room::deactivate() {
  * 
  * @return Random Encounterable
  */
-Encounterable* Room::genRandomEncounterable(unsigned int seed, sf::Window& window) {
-    RoomType temp = static_cast<RoomType>(seed % 2);
-    if (temp == monster) {
-        return new Monster(dinosaur, window);
-    }
-    if (temp == treasure) {
-        return new Treasure(window);
-    }
-    std::cout << "Something went wrong in Room::genRandomEncounterable\n";
-    return NULL;
-}
+//Encounterable* Room::genRandomEncounterable(unsigned int seed, sf::Window& window) {
+//    
+//}
 
 // </editor-fold>
 

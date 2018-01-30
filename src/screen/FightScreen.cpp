@@ -1,6 +1,7 @@
 #include "EncounterScreen.hpp"
 #include "../utils/Defaults.hpp"
 #include <SFML/Graphics.hpp>
+#include "../region/Monster.hpp"
 
 
 void Oscillator::run(sf::Event event) {
@@ -94,12 +95,16 @@ void Oscillator::updateArea() {
 }
 
 
-FightScreen::FightScreen(sf::Window& window) : Room(5, window), attackBar(sf::Vector2f(164,436), sf::Vector2f(626,90), 8) {
+FightScreen::FightScreen(int seed, sf::Window& window) : 
+        //Room(seed, window), //This is the ideal but throws seg fault, for some reason
+        Room((seed%15)+42, genRandomEncounterable(seed, window)),
+        attackBar(sf::Vector2f(164,436), sf::Vector2f(626,90), 8)
+{}
+
+FightScreen::FightScreen(const FightScreen& orig) : FightScreen(5, orig.window) {
     
 }
-FightScreen::FightScreen(const FightScreen& orig) : FightScreen(orig.window) {
-    
-}
+
 FightScreen::~FightScreen() {
     
 }
@@ -138,3 +143,7 @@ ScreenMode* FightScreen::run(sf::Event event) {
     
     return Room::run(event);
 };
+
+Encounterable& FightScreen::genRandomEncounterable(unsigned int seed, sf::Window& window) {
+    return *new Monster(dinosaur, window);
+}

@@ -22,7 +22,7 @@ public:
      * @param size The size of the Room
      * @param enc The Encounterable held in the Room
      */
-    Room(unsigned int size, Encounterable* enc);
+    Room(unsigned int size, Encounterable& enc);
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -177,7 +177,7 @@ private:
      * 
      * @return Random Encounterable
      */
-    static Encounterable* genRandomEncounterable(unsigned int seed, sf::Window& window);
+    virtual Encounterable& genRandomEncounterable(unsigned int seed, sf::Window& window) = 0;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

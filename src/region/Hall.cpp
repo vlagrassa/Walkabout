@@ -4,6 +4,7 @@
 #include <iostream>
 #include <ctime>
 #include "../player/Player.hpp"
+#include "../screen/EncounterScreen.hpp"
 
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
@@ -112,7 +113,21 @@ void Hall::addRoom() {
     for (unsigned i = 0; i < size(); i++) {
         rand();
     }
-    Room* r = new Room(static_cast<unsigned int>(rand()), window);
+    
+    Room* r;
+    
+    RoomType temp = static_cast<RoomType>(rand() % 2);
+    switch (temp) {
+        case (monster):
+            r = new FightScreen(rand());
+            break;
+        case (treasure):
+            r = new TreasureScreen(rand());
+            break;
+        default:
+            throw std::runtime_error("Something went wrong generating a Room in Hall::addRoom()\n");
+            break;
+    }
     addRoom(r);
 }
 

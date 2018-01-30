@@ -68,7 +68,7 @@ private:
 
 class FightScreen: public Room {
 public:
-    FightScreen(sf::Window &window = DEFAULT_WINDOW);
+    FightScreen(int seed, sf::Window &window = DEFAULT_WINDOW);
     FightScreen(const FightScreen&);
     virtual ~FightScreen();
     
@@ -78,6 +78,8 @@ public:
     
     virtual ScreenMode* run(sf::Event event);
     
+    virtual Encounterable& genRandomEncounterable(unsigned int seed, sf::Window& window);
+    
     std::string testThing();
 private:
     
@@ -86,9 +88,11 @@ private:
 
 class TreasureScreen: public Room {
 public:
-    TreasureScreen(sf::Window& window = DEFAULT_WINDOW);
+    TreasureScreen(int seed, sf::Window& window = DEFAULT_WINDOW);
     TreasureScreen(const TreasureScreen&);
     virtual ~TreasureScreen();
+    
+    virtual Encounterable& genRandomEncounterable(unsigned int seed, sf::Window& window);
     
     std::string testThing();
 private:

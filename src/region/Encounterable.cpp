@@ -17,7 +17,7 @@ Encounterable::Encounterable() {}
  * Default constructor method.
  */
 Encounterable::Encounterable(const Encounterable& orig) {
-    
+    std::cout << "Inside Encounterable copy constructor\n";
 }
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

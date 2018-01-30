@@ -4,11 +4,12 @@
 
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
-Monster::Monster(MonsterSpecies s, sf::Window& window) {
+Monster::Monster(MonsterSpecies s, sf::Window& window) : healthbar(sf::Vector2f(164, 566), sf::Vector2f(626, 25), health) {
     name = "John";
     maxHealth = 20;
     health = maxHealth;
     species = s;
+    healthbar.health.setFillColor(sf::Color::Red);
     
     monster_texture = new sf::Texture();
     if (!monster_texture->loadFromFile("resources/" + getSpeciesTexture())) {
@@ -18,7 +19,7 @@ Monster::Monster(MonsterSpecies s, sf::Window& window) {
     setTexture(*monster_texture);
 }
 
-Monster::Monster(const Monster& orig) {}
+Monster::Monster(const Monster& orig) : healthbar(orig.healthbar) {}
 
 Monster::~Monster() {
     delete monster_texture;
@@ -46,6 +47,10 @@ RoomType Monster::getType() const {
 /* Interact with the Encounterable */
 void Monster::encounter(Player& player) {
     std::cout << "This is a monster!\n";
+}
+
+void Monster::drawExtras(sf::RenderTarget& target, sf::RenderStates states) const {
+    target.draw(healthbar, states);
 }
 
 // </editor-fold>

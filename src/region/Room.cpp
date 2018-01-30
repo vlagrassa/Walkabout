@@ -87,6 +87,7 @@ unsigned int getDistance() {
  */
 void Room::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(*encounter);
+    encounter->drawExtras(target, states);
 }
 
 // </editor-fold>

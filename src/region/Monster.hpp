@@ -69,6 +69,8 @@ public:
      */
     void encounter(Player& player);
     
+    virtual void drawExtras(sf::RenderTarget& target, sf::RenderStates states) const;
+    
     
     /* Original Methods */
     
@@ -104,15 +106,17 @@ public:
      */
     MonsterSpecies getSpecies() const;
     
+    HealthBar healthbar;
+    
 private:
     /* The Monster's name */
     std::string name;
     
     /* The maximum health possible */
-    int maxHealth;
+    unsigned int maxHealth;
     
     /* The current health*/
-    int health;
+    unsigned int health;
     
     /* Pointer to the Monster texture */
     sf::Texture* monster_texture;

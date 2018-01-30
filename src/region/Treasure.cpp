@@ -21,8 +21,6 @@ Treasure::~Treasure() {
 
 // </editor-fold>
 
-// </editor-fold>
-
 // <editor-fold defaultstate="collapsed" desc=" Implemented Abstract Methods ">
 
 /* Returns whether Treasure is a skippable Encounterable (true) */
@@ -43,6 +41,10 @@ RoomType Treasure::getType() const {
 /* Interact with the Encounterable */
 void Treasure::encounter(Player& player) {
     std::cout << "This is a treasure!\n";
+}
+
+void Treasure::drawExtras(sf::RenderTarget& target, sf::RenderStates states) const {
+    
 }
 
 // </editor-fold>

@@ -69,6 +69,8 @@ public:
      */
     void encounter(Player& player);
     
+    virtual void drawExtras(sf::RenderTarget& target, sf::RenderStates states) const;
+    
     /* Original Methods */
     
     

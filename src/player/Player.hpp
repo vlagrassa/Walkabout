@@ -168,6 +168,8 @@ public:
     
     bool isMovingLeft();
     
+    HealthBar healthbar;
+    
     
     
     /*stats*/

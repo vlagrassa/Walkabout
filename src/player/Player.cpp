@@ -4,11 +4,11 @@
 #include <cstdlib>
 #include <iostream>
 
-Player::Player() : posX(0), posInRoom(0), stepSize(10), stats({0, 0, 0}) {
+Player::Player() : posX(0), posInRoom(0), stepSize(10), stats({0, 0, 0}), healthbar(sf::Vector2f(164, 536), sf::Vector2f(626, 25), health) {
     std::cout << "hi";
 }
 
-Player::Player(const Player& p) : posX(p.getX()), posInRoom(p.getPosInRoom()), stepSize(p.getStepSize()) {
+Player::Player(const Player& p) : posX(p.getX()), posInRoom(p.getPosInRoom()), stepSize(p.getStepSize()), healthbar(p.healthbar) {
     std::cout << "hello";
 }
 

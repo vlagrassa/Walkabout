@@ -23,7 +23,7 @@ public:
     Hall& hall;
     Background& background;
     
-    HealthBar playerhealth;
+    //HealthBar playerhealth;
 };
 
 #endif /* GAMESCREEN_H */

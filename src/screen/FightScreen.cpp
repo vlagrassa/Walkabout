@@ -115,11 +115,13 @@ std::string FightScreen::testThing() {
 
 void FightScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(attackBar, states);
+    target.draw(player.healthbar, states);
     Room::draw(target, states);
 }
 
 ScreenMode* FightScreen::run(sf::Event event) {
     attackBar.updateFrames(DEFAULT_GAMECLOCK, event);
+    player.healthbar.update();
     
     //Previous line will update which region the attack bar is currently in
     //If space pressed, grab the strength & switch the attack bar's current area

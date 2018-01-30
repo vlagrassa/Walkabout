@@ -60,16 +60,20 @@ bool LinkedButton::isActive() {
 }
 
 void LinkedButton::setActive(bool b) {
-    active = b;
+    if (b) {
+        activate();
+    } else {
+        deactivate();
+    }
 }
 
 void LinkedButton::activate() {
-    setActive(true);
+    active = true;
     setTitle(onText);
 }
 
 void LinkedButton::deactivate() {
-    setActive(false);
+    active = false;
     setTitle(offText);
 }
 

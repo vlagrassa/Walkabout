@@ -137,7 +137,7 @@ void Hall::addRoom() {
 
 void Hall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     for (Room* r : getOnscreenRooms()) {
-        target.draw(*r);
+        target.draw(*r->encounter);
     }
 }
 

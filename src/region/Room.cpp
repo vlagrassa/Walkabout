@@ -18,7 +18,6 @@
  * @param enc The Encounterable held in the Room
  */
 Room::Room(Player& player, unsigned int size, Encounterable& enc) : player(player), encounter(&enc), length(size), active(false) {
-    std::cout << "Inside Room Constructor\n";
     showPrevious = true;
 }
 

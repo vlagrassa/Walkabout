@@ -6,12 +6,10 @@ GameScreen::GameScreen(Player& player, Background& background, sf::Window& windo
 GameScreen::GameScreen(Player& player, Background& background, Hall& hall, sf::Window& window) : Menu(475, 10, 75, 20, window), player(player), hall(hall), background(background), icon(sf::RectangleShape(sf::Vector2f(141, 151))) {
     buttonline = ButtonLine(166, 438, 622, 86, 15);
     buttonline.horizontal = true;
-    std::cout << "Hall is " << &hall << ", Player is " << &player << "\n";
     unsigned int numRooms = 3;
     for (unsigned i = 0; i < numRooms; i++) {
         hall.addRoom();
     }
-    std::cout << hall << "\n";
     icon.setPosition(sf::Vector2f(10, 438));
     icon.setOutlineThickness(5);
     icon.setOutlineColor(sf::Color::Black);

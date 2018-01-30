@@ -22,8 +22,7 @@ void Menu::addButton(std::string text, ScreenMode& link, sf::Keyboard::Key key, 
 
 void Menu::addButton(std::string text, ScreenMode* link, sf::Keyboard::Key key, sf::Font& font) {
     LinkedButton* temp = new LinkedButton((link == NULL ? NULL : new TransitionScreen(link, window)), DEFAULT_RECT, window);
-    temp->setTitle(*new sf::Text(text, font));
-    temp->setTitles(text, "Not in range");
+    temp->setTitles(text, "Unavailable");
     temp->setKey(key);
     ScreenMode::addButton(*temp);
     buttonline.fitButtonsToRect(buttons);

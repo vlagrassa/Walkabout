@@ -138,8 +138,9 @@ int main() {
     mainMenu.addButton("Quit [W]", 0, sf::Keyboard::W);
     
     
-    testGameScreen.addButton("Hiii", 0);
-    testGameScreen.addButton("Main Menu [M]", 0, sf::Keyboard::M);
+    testGameScreen.addButton("Throw Sword\n    [A]", 0);
+    testGameScreen.addButton("Inventory\n   [I]", 0, sf::Keyboard::I);
+    testGameScreen.addButton("Main Menu\n   [M]", 0, sf::Keyboard::M);
     
     testMenu1.addButton("In menu 1", testMenu2);
     testMenu2.addButton("In menu 2", testMenu3);

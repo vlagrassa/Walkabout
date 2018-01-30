@@ -22,11 +22,19 @@ public:
     std::string offText = "";
     sf::Keyboard::Key key = sf::Keyboard::Unknown;
     
-    LinkedButton(ScreenMode& link, sf::RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : link(link), window(window), outline(rect) {};
+    LinkedButton(ScreenMode& link, sf::RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : link(link), window(window), outline(rect) {
+        activate();
+        title.setFillColor(sf::Color::Black);
+        title.setFont(DEFAULT_FONT);
+    };
     
     LinkedButton(ScreenMode* link, sf::RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : LinkedButton(*link, rect, window) {};
     
-    LinkedButton(const LinkedButton& orig) : link(orig.link), window(orig.window), outline(orig.outline), title(orig.title) {};
+    LinkedButton(const LinkedButton& orig) : LinkedButton(orig.link, orig.outline, orig.window) {
+        key = orig.key;
+        onText = orig.onText;
+        offText = orig.offText;
+    };
     
     virtual ~LinkedButton() {};
     
@@ -34,19 +42,22 @@ public:
         key = k;
     }
     
-    void setTitle(sf::Text& text) {
-        title = text;
-        title.setPosition(outline.getPosition());
-        title.setFillColor(sf::Color::Black);
-    }
-    
     void setTitle(std::string text) {
-        setTitle(*new sf::Text(text, DEFAULT_FONT));
+        title.setString(text);
+        title.setPosition(
+                outline.getPosition().x + outline.getSize().x/2 - title.getGlobalBounds().width/2,
+                outline.getPosition().y + outline.getSize().y/2 - title.getGlobalBounds().height*3/4
+        );
     }
     
     void setTitles(std::string text1, std::string text2) {
         onText = text1;
         offText = text2;
+        if (active) {
+            setTitle(onText);
+        } else {
+            setTitle(offText);
+        }
     }
     
     sf::Vector2f getCenter() {
@@ -126,7 +137,7 @@ public:
     virtual void addButton(std::string title, ScreenMode* link, sf::Keyboard::Key key = sf::Keyboard::Unknown, sf::Font& font = DEFAULT_FONT) {
         LinkedButton* temp = new LinkedButton(link, DEFAULT_RECT, window);
         temp->setKey(key);
-        temp->setTitle(*new sf::Text(title, font));
+        temp->setTitles(title, "Unavailable");
         addButton(*temp);
     }
     

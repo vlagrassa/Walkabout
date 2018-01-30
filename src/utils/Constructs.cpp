@@ -14,11 +14,11 @@ void ButtonLine::fitButtonsToRect(LinkedList<LinkedButton&>& buttons) {
             current.outline.setPosition(left, top + i * (length + gap));
             current.outline.setSize(sf::Vector2f(width, length));
         }
-
-        float scaleX = current.title.getGlobalBounds().width / current.outline.getSize().x / 2;
-        float scaleY = current.title.getGlobalBounds().height / current.outline.getSize().y;
-
-        current.title.setPosition(current.getCenter().x - (scaleX*current.outline.getSize().x), current.getCenter().y - (scaleY*current.outline.getSize().y));
+        
+        current.title.setPosition(
+                current.outline.getPosition().x + current.outline.getSize().x/2 - current.title.getGlobalBounds().width/2,
+                current.outline.getPosition().y + current.outline.getSize().y/2 - current.title.getGlobalBounds().height*3/4
+        );
     }
 };
 

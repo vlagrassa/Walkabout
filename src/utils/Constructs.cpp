@@ -32,7 +32,7 @@ void FrameRate::updateFrames(sf::Clock clock, sf::Event event) {
 };
 
 
-HealthBar::HealthBar(sf::Vector2f pos, sf::Vector2f size, unsigned int& source) : outline(size), health(size), source(source) {
+HealthBar::HealthBar(sf::Vector2f pos, sf::Vector2f size, unsigned int& source, unsigned int& max) : outline(size), health(size), source(source), max(max) {
     outline.setPosition(pos);
     outline.setFillColor(sf::Color::Transparent);
     outline.setOutlineColor(sf::Color::Black);
@@ -42,10 +42,15 @@ HealthBar::HealthBar(sf::Vector2f pos, sf::Vector2f size, unsigned int& source) 
     health.setOutlineThickness(0);
 }
 
-HealthBar::HealthBar(const HealthBar& orig) : outline(orig.outline), health(orig.health), source(orig.source) {};
+HealthBar::HealthBar(const HealthBar& orig) : outline(orig.outline), health(orig.health), source(orig.source), max(orig.max) {};
 
 void HealthBar::update() {
-    health.setSize(sf::Vector2f(source*5, health.getSize().y));
+    //std::cout << "Health: " << source << "/" << max << "\n";
+    if (max == 0) {
+        health.setSize(sf::Vector2f(0, health.getSize().y));
+    } else {
+        health.setSize(sf::Vector2f(source/static_cast<float>(max)*outline.getSize().x, health.getSize().y));
+    }
 }
 
 void HealthBar::draw(sf::RenderTarget& target, sf::RenderStates states) const {

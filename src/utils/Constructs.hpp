@@ -66,8 +66,9 @@ public:
     sf::RectangleShape outline;
     sf::RectangleShape health;
     unsigned int& source;
+    unsigned int& max;
     
-    HealthBar(sf::Vector2f pos, sf::Vector2f size, unsigned int& source);
+    HealthBar(sf::Vector2f pos, sf::Vector2f size, unsigned int& source, unsigned int& max);
     HealthBar(const HealthBar& orig);
     
     void update();

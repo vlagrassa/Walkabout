@@ -173,8 +173,8 @@ public:
     
     
     /*stats*/
-    unsigned maxHealth;
-    unsigned health;
+    unsigned maxHealth = 50;
+    unsigned health = 50;
     void changeHealth(int amount);
     Stats stats;
     void modify(Stats playerStat);

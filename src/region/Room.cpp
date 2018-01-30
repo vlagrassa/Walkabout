@@ -17,7 +17,7 @@
  * @param size The size of the Room
  * @param enc The Encounterable held in the Room
  */
-Room::Room(unsigned int size, Encounterable& enc) : encounter(&enc), length(size), active(false) {
+Room::Room(Player& player, unsigned int size, Encounterable& enc) : player(player), encounter(&enc), length(size), active(false) {
     std::cout << "Inside Room Constructor\n";
     showPrevious = true;
 }
@@ -29,7 +29,7 @@ Room::Room(unsigned int size, Encounterable& enc) : encounter(&enc), length(size
  * 
  * @param seed The seed for the Room
  */
-Room::Room(unsigned int seed, sf::Window& window) : Room((seed%15)+42, genRandomEncounterable(seed, window)) {}
+Room::Room(Player& player, unsigned int seed, sf::Window& window) : Room(player, (seed%15)+42, genRandomEncounterable(seed, window)) {}
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * 
@@ -38,7 +38,7 @@ Room::Room(unsigned int seed, sf::Window& window) : Room((seed%15)+42, genRandom
  * 
  * @param Original Room
  */
-Room::Room(const Room& orig) : length(orig.getLength()) {}
+Room::Room(const Room& orig) : player(orig.player), length(orig.getLength()) {}
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * 

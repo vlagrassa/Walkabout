@@ -22,7 +22,7 @@ public:
      * @param size The size of the Room
      * @param enc The Encounterable held in the Room
      */
-    Room(unsigned int size, Encounterable& enc);
+    Room(Player& player, unsigned int size, Encounterable& enc);
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -31,7 +31,7 @@ public:
      * 
      * @param seed The seed for the Room
      */
-    Room(unsigned int seed, sf::Window& window);
+    Room(Player& player, unsigned int seed, sf::Window& window);
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -156,6 +156,8 @@ public:
     
     /* Encounterable held by the Room */
     Encounterable* encounter;
+    
+    Player& player;
     
 private:
     

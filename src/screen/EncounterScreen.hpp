@@ -68,7 +68,7 @@ private:
 
 class FightScreen: public Room {
 public:
-    FightScreen(int seed, sf::Window &window = DEFAULT_WINDOW);
+    FightScreen(Player& player, int seed, sf::Window &window = DEFAULT_WINDOW);
     FightScreen(const FightScreen&);
     virtual ~FightScreen();
     
@@ -88,7 +88,7 @@ private:
 
 class TreasureScreen: public Room {
 public:
-    TreasureScreen(int seed, sf::Window& window = DEFAULT_WINDOW);
+    TreasureScreen(Player& player, int seed, sf::Window& window = DEFAULT_WINDOW);
     TreasureScreen(const TreasureScreen&);
     virtual ~TreasureScreen();
     

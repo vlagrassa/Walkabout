@@ -119,10 +119,10 @@ void Hall::addRoom() {
     RoomType temp = static_cast<RoomType>(rand() % 2);
     switch (temp) {
         case (monster):
-            r = new FightScreen(rand());
+            r = new FightScreen(player, rand());
             break;
         case (treasure):
-            r = new TreasureScreen(rand());
+            r = new TreasureScreen(player, rand());
             break;
         default:
             throw std::runtime_error("Something went wrong generating a Room in Hall::addRoom()\n");

@@ -147,7 +147,8 @@ ScreenMode* FightScreen::update(sf::Event event) {
                 break;
         }
         //After switch statement, scramble the areas to reset
-        attackBar.scramble();
+        if (attackBar.area != Oscillator::empty)
+            attackBar.scramble();
     }
     //If the bar passes the defense region without space, take full damage
     

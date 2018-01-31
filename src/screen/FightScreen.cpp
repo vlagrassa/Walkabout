@@ -151,7 +151,7 @@ ScreenMode* FightScreen::update(sf::Event event) {
         switch (attackBar.area) {
             case (Oscillator::attack):
                 //Case attack region: take that from the monster's health
-                monster->health -= strength * 5;
+                monster->changeHealth(-strength * 5);
                 break;
             case (Oscillator::defend):
                 //Case defend region: take from the player's health, but decreased
@@ -164,7 +164,7 @@ ScreenMode* FightScreen::update(sf::Event event) {
                 //Case blank region: don't really do anything
                 break;
         }
-        if (monster->health <= 0) {
+        if (monster->getHealth() <= 0) {
             passed = true;
             return 0;
         }
@@ -182,7 +182,7 @@ ScreenMode* FightScreen::run(sf::Event event) {
     player.healthbar.update();
     encounter->encounter(player);
     
-    if (monster->health <= 0) {
+    if (monster->getHealth() <= 0) {
         passed = true;
         return 0;
     }

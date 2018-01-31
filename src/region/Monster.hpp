@@ -105,10 +105,9 @@ public:
      */
     MonsterSpecies getSpecies() const;
     
-    HealthBar healthbar;
+    void changeHealth(int n);
     
-    /* The current health*/
-    unsigned int health;
+    HealthBar healthbar;
     
 private:
     /* The Monster's name */
@@ -116,6 +115,9 @@ private:
     
     /* The maximum health possible */
     unsigned int maxHealth;
+    
+    /* The current health*/
+    unsigned int health;
     
     /* Pointer to the Monster texture */
     sf::Texture* monster_texture;

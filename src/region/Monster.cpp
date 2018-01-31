@@ -86,3 +86,16 @@ std::string Monster::getSpeciesTexture() {
     }
     return "";
 }
+
+void Monster::changeHealth(int n) {
+    if (static_cast<signed int>(health) + n <= 0) {
+        std::cout << "  Changing health (" << health << ") by " << n << "\n";
+        health = 0;
+    }
+    else if (health + n > maxHealth) {
+        health = maxHealth;
+    }
+    else {
+        health += n;
+    }
+}

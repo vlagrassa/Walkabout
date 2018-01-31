@@ -27,7 +27,20 @@ void Oscillator::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 }
 
 float Oscillator::getStrength() {
-    return 1.0;
+    switch (area) {
+        case (attack):
+//            attackSlider.currentPos = attackArea.center + outline.getPosition().x; // In the middle -> 1.0
+//            attackSlider.currentPos = attackArea.center + attackArea.width/2 + outline.getPosition().x; //Halfway between -> 0.5
+//            attackSlider.currentPos = attackArea.center + attackArea.width + outline.getPosition().x; //On the edge -> 0.0
+            return 1-abs((outline.getPosition().x + attackArea.center - attackSlider.currentPos) / attackArea.width);
+            break;
+        case (defend):
+            return 1-abs((outline.getPosition().x + defendArea.center - attackSlider.currentPos) / defendArea.width);
+            break;
+        default:
+            break;
+    }
+    return 0;
 }
 
 void Oscillator::scramble() {

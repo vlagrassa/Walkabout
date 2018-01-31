@@ -76,6 +76,7 @@ public:
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
+    virtual ScreenMode* update(sf::Event event);
     virtual ScreenMode* run(sf::Event event);
     
     virtual Encounterable& genRandomEncounterable(unsigned int seed, sf::Window& window);

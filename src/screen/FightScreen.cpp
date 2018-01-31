@@ -119,14 +119,9 @@ void FightScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const 
     Room::draw(target, states);
 }
 
-ScreenMode* FightScreen::run(sf::Event event) {
-    attackBar.updateFrames(DEFAULT_GAMECLOCK, event);
-    player.healthbar.update();
-    encounter->encounter(player);
-    
-    //Previous line will update which region the attack bar is currently in
+ScreenMode* FightScreen::update(sf::Event event) {
     //If space pressed, grab the strength & switch the attack bar's current area
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
+    if (event.key.code == sf::Keyboard::Space) {
         float strength = attackBar.getStrength();
         switch (attackBar.area) {
             case (Oscillator::attack):
@@ -143,6 +138,17 @@ ScreenMode* FightScreen::run(sf::Event event) {
         attackBar.scramble();
     }
     //If the bar passes the defense region without space, take full damage
+    
+    return Room::update(event);
+}
+
+ScreenMode* FightScreen::run(sf::Event event) {
+    attackBar.updateFrames(DEFAULT_GAMECLOCK, event);
+    player.healthbar.update();
+    encounter->encounter(player);
+    
+    //Previous line will update which region the attack bar is currently in
+    
     
     return Room::run(event);
 };

@@ -46,8 +46,6 @@ RoomType Monster::getType() const {
 
 /* Interact with the Encounterable */
 void Monster::encounter(Player& player) {
-    //std::cout << "This is a monster!\n";
-    health = player.health;
     healthbar.update();
 }
 

@@ -42,7 +42,7 @@ ScreenMode* GameScreen::run(sf::Event event) {
                 
             case (sf::Keyboard::Up):
                 if (hall.canEncounter()) {
-                    return hall.getEncounterScreen();
+                    return hall.getActive();
                 }
                 break;
                 
@@ -50,7 +50,7 @@ ScreenMode* GameScreen::run(sf::Event event) {
                 break;
         }
         if (event.key.code == sf::Keyboard::Up && hall.canEncounter()) {
-            return hall.getEncounterScreen();
+            return hall.getActive();
         }
     }
     if (hall.canEncounter() && !hall.getActiveRoom()->encounter->isSkippable()) {
@@ -58,6 +58,9 @@ ScreenMode* GameScreen::run(sf::Event event) {
         buttons.first->data.activate();
     } else {
         buttons.first->data.deactivate();
+    }
+    if (hall.mustEncounter()) {
+        return hall.getActive();
     }
     return ScreenMode::checkButtons(event);
 };

@@ -74,8 +74,8 @@ bool Hall::canEncounter() {
     return !at(activeIndex)->passed && (at(activeIndex)->getLength() - player.getPosInRoom()) < 20;
 }
 
-Room* Hall::getEncounterScreen() {
-    return at(activeIndex);
+bool Hall::mustEncounter() {
+    return !at(activeIndex)->encounter->isSkippable() && !at(activeIndex)->passed && (player.getPosInRoom() >= at(activeIndex)->getLength()-5);
 }
 
 // </editor-fold>

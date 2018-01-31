@@ -243,6 +243,10 @@ int main() {
                 default:
                     break;
             }
+            if (!listOfScreens.isEmpty()) {
+                ScreenMode* nextScreen = listOfScreens.top->data.update(event);
+                handleNextScreen(listOfScreens, nextScreen);
+            }
         }
         
         /* Update the debugging text */

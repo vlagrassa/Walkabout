@@ -84,6 +84,10 @@ ScreenMode::ScreenMode(const ScreenMode& orig) : window(orig.window) {};
 
 ScreenMode::~ScreenMode() {};
 
+ScreenMode* ScreenMode::update(sf::Event event) {
+    return this;
+}
+
 ScreenMode* ScreenMode::run(sf::Event event) {
     return checkButtons(event);
 };

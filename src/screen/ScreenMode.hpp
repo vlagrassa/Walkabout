@@ -61,6 +61,7 @@ public:
     ScreenMode(const ScreenMode& orig);
     virtual ~ScreenMode();
     
+    virtual ScreenMode* update(sf::Event event);
     virtual ScreenMode* run(sf::Event event);
     ScreenMode* checkButtons(sf::Event event);
     

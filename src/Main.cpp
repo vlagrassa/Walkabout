@@ -34,6 +34,36 @@ void quitGame(sf::Window& window = DEFAULT_WINDOW) {
     window.close();
 }
 
+
+void handleNextScreen(Stack<ScreenMode&>& listOfScreens, ScreenMode* nextScreen) {
+    if (nextScreen == 0) {
+        /* If next screen is 0x0 (NULL), pop the current screen (go back) */
+        listOfScreens.pop();
+        std::cout << "Removed screen:\n" << listOfScreens << "\n";
+    }
+    else if (nextScreen != &listOfScreens.top->data) {
+        ScreenMode* backScreen = NULL;
+        for (Node<ScreenMode&>* n = listOfScreens.top; n != 0; n = n->next) {
+            if (&n->data == nextScreen) {
+                backScreen = &n->data;
+                break;
+            }
+        }
+
+        if (backScreen == NULL) {
+            /* If the next screen is different from the current screen, push it onto the stack */
+            listOfScreens.push(*nextScreen);
+            std::cout << "Added screen:\n" << listOfScreens << "\n";
+        } else {
+            while (&listOfScreens.top->data != backScreen) {
+                listOfScreens.pop();
+            }
+            std::cout << "Moved back to screen:\n" << listOfScreens << "\n";
+        }
+    }
+    /* If neither of the above happened then the next screen is the same as the current screen - don't do anything */
+}
+
  
 int main() {
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
@@ -231,33 +261,7 @@ int main() {
             
             /* Get the next screen */
             ScreenMode* nextScreen = listOfScreens.top->data.run(event);
-            
-            if (nextScreen == 0) {
-                /* If next screen is 0x0 (NULL), pop the current screen (go back) */
-                listOfScreens.pop();
-                std::cout << "Removed screen:\n" << listOfScreens << "\n";
-            }
-            else if (nextScreen != &listOfScreens.top->data) {
-                ScreenMode* backScreen = NULL;
-                for (Node<ScreenMode&>* n = listOfScreens.top; n != 0; n = n->next) {
-                    if (&n->data == nextScreen) {
-                        backScreen = &n->data;
-                        break;
-                    }
-                }
-                
-                if (backScreen == NULL) {
-                    /* If the next screen is different from the current screen, push it onto the stack */
-                    listOfScreens.push(*nextScreen);
-                    std::cout << "Added screen:\n" << listOfScreens << "\n";
-                } else {
-                    while (&listOfScreens.top->data != backScreen) {
-                        listOfScreens.pop();
-                    }
-                    std::cout << "Moved back to screen:\n" << listOfScreens << "\n";
-                }
-            }
-            /* If neither of the above happened then the next screen is the same as the current screen - don't do anything */
+            handleNextScreen(listOfScreens, nextScreen);
             
             /* Draw the top of the stack (and the previous screen if necessary) */
             if (!listOfScreens.isEmpty()) {

@@ -17,6 +17,7 @@ void Oscillator::run(sf::Event event) {
         attackSlider.currentPos = outline.getPosition().x;
     }
     attackSlider.setPosition(sf::Vector2f(attackSlider.currentPos, attackSlider.getPosition().y));
+    updateArea();
 }
 
 void Oscillator::draw(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -91,7 +92,18 @@ void Oscillator::initShapes(sf::Vector2f pos) {
 }
 
 void Oscillator::updateArea() {
-    
+    if (abs(outline.getPosition().x + attackArea.center - attackSlider.currentPos) < attackArea.width) {
+        area = attack;
+        attackSlider.setFillColor(sf::Color::Yellow);
+    }
+    else if (abs(outline.getPosition().x + defendArea.center - attackSlider.currentPos) < defendArea.width) {
+        area = defend;
+        attackSlider.setFillColor(sf::Color::Magenta);
+    }
+    else {
+        area = empty;
+        attackSlider.setFillColor(sf::Color::Cyan);
+    }
 }
 
 

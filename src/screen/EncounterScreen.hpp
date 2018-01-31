@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 #include "../region/Room.hpp"
+#include "../region/Monster.hpp"
 
 class Slider;
 class Oscillator;
@@ -82,6 +83,8 @@ public:
     virtual Encounterable& genRandomEncounterable(unsigned int seed, sf::Window& window);
     
     std::string testThing();
+    
+    Monster* monster;
 private:
     
 };

@@ -112,7 +112,7 @@ FightScreen::FightScreen(Player& player, int seed, sf::Window& window) :
         Room(player, (seed%15)+42, genRandomEncounterable(seed, window)),
         attackBar(sf::Vector2f(164,436), sf::Vector2f(626,90), 8)
 {}
-
+    
 FightScreen::FightScreen(const FightScreen& orig) : FightScreen(orig.player, 5, orig.window) {
     
 }
@@ -138,9 +138,11 @@ ScreenMode* FightScreen::update(sf::Event event) {
         switch (attackBar.area) {
             case (Oscillator::attack):
                 //Case attack region: take that from the monster's health
+                monster->health -= 5;
                 break;
             case (Oscillator::defend):
                 //Case defend region: take from the player's health, but decreased
+                player.health -= 5;
                 break;
             case (Oscillator::critical):
                 //Case crit region: take double from the monster's health??
@@ -170,5 +172,6 @@ ScreenMode* FightScreen::run(sf::Event event) {
 };
 
 Encounterable& FightScreen::genRandomEncounterable(unsigned int seed, sf::Window& window) {
-    return *new Monster(dinosaur, window);
+    monster = new Monster(dinosaur, window);
+    return *monster;
 }

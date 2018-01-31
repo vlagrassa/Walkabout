@@ -32,10 +32,10 @@ float Oscillator::getStrength() {
 //            attackSlider.currentPos = attackArea.center + outline.getPosition().x; // In the middle -> 1.0
 //            attackSlider.currentPos = attackArea.center + attackArea.width/2 + outline.getPosition().x; //Halfway between -> 0.5
 //            attackSlider.currentPos = attackArea.center + attackArea.width + outline.getPosition().x; //On the edge -> 0.0
-            return 1-abs((outline.getPosition().x + attackArea.center - attackSlider.currentPos) / attackArea.width);
+            return 1-std::abs((outline.getPosition().x + attackArea.center - attackSlider.currentPos) / attackArea.width);
             break;
         case (defend):
-            return 1-abs((outline.getPosition().x + defendArea.center - attackSlider.currentPos) / defendArea.width);
+            return 1-std::abs((outline.getPosition().x + defendArea.center - attackSlider.currentPos) / defendArea.width);
             break;
         default:
             break;
@@ -105,11 +105,11 @@ void Oscillator::initShapes(sf::Vector2f pos) {
 }
 
 void Oscillator::updateArea() {
-    if (abs(outline.getPosition().x + attackArea.center - attackSlider.currentPos) < attackArea.width) {
+    if (std::abs(outline.getPosition().x + attackArea.center - attackSlider.currentPos) < attackArea.width) {
         area = attack;
         attackSlider.setFillColor(sf::Color::Yellow);
     }
-    else if (abs(outline.getPosition().x + defendArea.center - attackSlider.currentPos) < defendArea.width) {
+    else if (std::abs(outline.getPosition().x + defendArea.center - attackSlider.currentPos) < defendArea.width) {
         area = defend;
         attackSlider.setFillColor(sf::Color::Magenta);
     }

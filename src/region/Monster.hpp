@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <SFML/Graphics.hpp>
 #include "Encounterable.hpp"
-#include "../screen/EncounterScreen.hpp"
 
 enum MonsterSpecies {
     dinosaur
@@ -108,15 +107,15 @@ public:
     
     HealthBar healthbar;
     
+    /* The current health*/
+    unsigned int health;
+    
 private:
     /* The Monster's name */
     std::string name;
     
     /* The maximum health possible */
     unsigned int maxHealth;
-    
-    /* The current health*/
-    unsigned int health;
     
     /* Pointer to the Monster texture */
     sf::Texture* monster_texture;

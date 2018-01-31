@@ -121,7 +121,7 @@ void FightScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const 
 
 ScreenMode* FightScreen::update(sf::Event event) {
     //If space pressed, grab the strength & switch the attack bar's current area
-    if (event.key.code == sf::Keyboard::Space) {
+    if (event.type != sf::Event::KeyReleased && event.key.code == sf::Keyboard::Space) {
         float strength = attackBar.getStrength();
         switch (attackBar.area) {
             case (Oscillator::attack):

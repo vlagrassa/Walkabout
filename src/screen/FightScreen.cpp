@@ -164,6 +164,10 @@ ScreenMode* FightScreen::update(sf::Event event) {
                 //Case blank region: don't really do anything
                 break;
         }
+        if (monster->health <= 0) {
+            passed = true;
+            return 0;
+        }
         //After switch statement, scramble the areas to reset
         if (attackBar.area != Oscillator::empty)
             attackBar.scramble();
@@ -177,6 +181,11 @@ ScreenMode* FightScreen::run(sf::Event event) {
     attackBar.updateFrames(DEFAULT_GAMECLOCK, event);
     player.healthbar.update();
     encounter->encounter(player);
+    
+    if (monster->health <= 0) {
+        passed = true;
+        return 0;
+    }
     
     //Previous line will update which region the attack bar is currently in
     

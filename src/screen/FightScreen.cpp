@@ -151,11 +151,11 @@ ScreenMode* FightScreen::update(sf::Event event) {
         switch (attackBar.area) {
             case (Oscillator::attack):
                 //Case attack region: take that from the monster's health
-                monster->health -= 5;
+                monster->health -= strength * 5;
                 break;
             case (Oscillator::defend):
                 //Case defend region: take from the player's health, but decreased
-                player.health -= 5;
+                player.health -= 5 - (strength * 5);
                 break;
             case (Oscillator::critical):
                 //Case crit region: take double from the monster's health??

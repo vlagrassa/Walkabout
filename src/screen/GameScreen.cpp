@@ -54,7 +54,10 @@ ScreenMode* GameScreen::run(sf::Event event) {
         }
     }
     if (hall.canEncounter() && !hall.getActiveRoom()->encounter->isSkippable()) {
-        return hall.getEncounterScreen();
+        //return hall.getEncounterScreen();
+        buttons.first->data.activate();
+    } else {
+        buttons.first->data.deactivate();
     }
     return ScreenMode::checkButtons(event);
 };

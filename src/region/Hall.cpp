@@ -70,7 +70,8 @@ Player& Hall::getPlayer() const {
 }
 
 bool Hall::canEncounter() {
-    return player.getPosInRoom() == at(activeIndex)->getLength()-1;
+    //return player.getPosInRoom() == at(activeIndex)->getLength()-1;
+    return !at(activeIndex)->passed && (at(activeIndex)->getLength() - player.getPosInRoom()) < 20;
 }
 
 Room* Hall::getEncounterScreen() {

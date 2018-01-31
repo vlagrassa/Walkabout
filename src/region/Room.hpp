@@ -159,6 +159,9 @@ public:
     
     Player& player;
     
+    /* Whether the Room has been "defeated" or not */
+    bool passed = false;
+    
 private:
     
     /* Number of tics in the Room */
@@ -166,9 +169,6 @@ private:
     
     /* Whether the Room is the current active room of its Hall */
     bool active;
-    
-    /* Whether the Room has been "defeated" or not */
-    bool passed;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

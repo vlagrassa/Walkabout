@@ -205,8 +205,8 @@ public:
     void equip(Item& item);
     
     /*Saving data*/
-    void writeData(std::ostream &saveData);
-    Player(std::istream &saveData);
+    void writeData(std::ostream &saveData,Item items[]);
+    Player(std::istream& saveData,Item items[]);
     
 private:
     /* Absolute position of the Player - in context of Hall */

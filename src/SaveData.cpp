@@ -27,11 +27,15 @@ SaveData::~SaveData() {
     
 }
 
-void Player::writeData(std::ostream &saveData){
-    saveData << "SAVING DATA REALLY LOUDLY";
+void Player::writeData(std::ostream &saveData,Item items[]){
+    saveData << std::distance(items, std::find(items, items + 26, *equipment.head)) 
+    << std::distance(items, std::find(items, items + 26, *equipment.hand))
+    <<std::distance(items, std::find(items, items + 26, *equipment.chest)) 
+    <<std::distance(items, std::find(items, items + 26, *equipment.pocket1))<< std::endl;
+    saveData.flush();
 }
 
-Player::Player(std::istream& saveData){
+Player::Player(std::istream& saveData,Item items[]){
     
 }
 /*

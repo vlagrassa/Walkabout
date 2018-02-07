@@ -13,6 +13,7 @@
 #include "screen/GameScreen.hpp"
 #include "window/Background.hpp"
 #include "screen/GameScreen.hpp"
+#include "Player/Item.hpp"
 
 /* Declare the defaults instantiated in utils/Defaults.hpp */
 sf::Font DEFAULT_FONT;
@@ -54,14 +55,13 @@ int main() {
     /* Identify the resource directory */
     std::string resourceDir = "resources/";
     
-    
     /* Instantiate Items*/
         //Head
     Item boringHat(Head,"Boring Hat",{0,1,0});
     Item thinkingCap(Head,"Thinking Cap", {0,2,0});
     Item telepatheticHat(Head,"Telepathetic Hat",{0,3,0});
     Item cardboardBox(Head,"Cardboard Box",{0,1,1});
-    Item bucketwithHoles(Head,"Bucket with Holes",{2,0,0});
+    Item bucketWithHoles(Head,"Bucket with Holes",{2,0,0});
     Item duck(Head,"Duck",{1,0,1});
     //Item a(a,"",{,,});
         //Staff
@@ -75,25 +75,34 @@ int main() {
     Item coffee(Potion,"Coffee",{0,2,0});
     Item otherPeoplesBlood(Potion,"Other Peoples Blood",{0,0,0});
     Item secretSauce(Potion,"Secret Sauce",{1,0,3});
-    Item strenghPotion(Potion,"Strength Potion",{4,0,0});
+    Item strengthPotion(Potion,"Strength Potion",{4,0,0});
         //Chest
     Item lotsOfShirts(Chest,"Lots of Shirts",{1,0,0});
     Item dinnerPlate(Chest,"Dinner Plate",{2,0,0});
     Item tinFoil(Chest,"Tin Foil",{1,0,1});
     Item shoulderPads(Chest,"Shoulder Pads",{2,0,1});
     Item bathrobe(Chest,"Bathrobe",{0,0,4});
+        //Sword
+    Item pointyStick(Sword,"Pointy Stick",{1,0,0});
+    Item butterKnife(Sword,"Butter Knife",{2,0,0});
+    Item notAKnife(Sword,"Not A Knife",{3,0,1});
+    Item boringSword(Sword,"Boring Sword",{3,1,1});
+    Item epicBlade(Sword,"Epic Sword",{4,1,2});
+        //Bow
     //Item a(a,"",{,,});
     //Item a(a,"",{,,});
     //Item a(a,"",{,,});
     //Item a(a,"",{,,});
     //Item a(a,"",{,,});
-    //Item a(a,"",{,,});
-    
-    
-    
+
     Item testItem(Bow, "testBow", {1,1,1});
-
-
+    
+    Item items[26] = {boringHat,thinkingCap,telepatheticHat,cardboardBox,
+    bucketWithHoles,duck,stick,bigStick,stickyStick,dowsingStick,boringStaff,awesomeSauce,
+    coffee,otherPeoplesBlood,secretSauce,strengthPotion,lotsOfShirts,dinnerPlate,
+    tinFoil,shoulderPads,bathrobe,pointyStick,butterKnife,notAKnife,boringSword,epicBlade};
+    
+    
     /* Create other textures */
     sf::Texture monsterTexture;
     sf::Texture playerTexture;
@@ -115,7 +124,7 @@ int main() {
     //h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/4);
     player.setPosition(0,DEFAULT_WINDOW.getSize().x/4);
     
-    
+    player.equip(stick);
     
     
     /* Create Ambience (like a texture pack) and Background */
@@ -201,8 +210,8 @@ int main() {
                         //testGameScreen.buttons.first->data.setTitle("Off");
                         testGameScreen.buttons.first->data.deactivate();
                     }
-                    if (event.key.code == sf::Keyboard::S) {
-                        player.writeData(std::cout);
+                    if (event.key.code == sf::Keyboard::L) {
+                        player.writeData(std::cout, items);
                     }
                     break;
                 default:

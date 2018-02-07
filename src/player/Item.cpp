@@ -14,5 +14,6 @@ Item::~Item() {
 Item::Item(ItemType kind, std::string name, Stats stats): type(kind), name(name),
 stats(stats){};
 
-
-
+bool Item::operator==(const Item &other) const{
+    return(other.name == name);
+}

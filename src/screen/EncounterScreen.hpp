@@ -38,6 +38,7 @@ public:
         empty,
         attack,
         defend,
+        damage,
         critical
     } area;
     sf::Color backgroundColor;

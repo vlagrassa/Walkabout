@@ -113,6 +113,10 @@ void Oscillator::updateArea() {
         area = defend;
         attackSlider.setFillColor(sf::Color::Magenta);
     }
+    else if (area == defend) {
+        area = damage;
+        attackSlider.setFillColor(sf::Color::Blue);
+    }
     else {
         area = empty;
         attackSlider.setFillColor(sf::Color::Cyan);
@@ -189,6 +193,9 @@ ScreenMode* FightScreen::run(sf::Event event) {
     
     //Previous line will update which region the attack bar is currently in
     
+    if (attackBar.area == Oscillator::damage) {
+        player.health -= 5;
+    }
     
     return Room::run(event);
 };

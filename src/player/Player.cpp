@@ -163,7 +163,7 @@ void Player::run(sf::Event event){
         }
     }
     else {
-        this->setTextureRect(sf::IntRect(0,0,0,2));
+        this->setTextureRect(sf::IntRect(0,0,getTexture()->getSize().x,getTexture()->getSize().y));
     }
     
 }

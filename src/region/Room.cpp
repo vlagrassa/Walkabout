@@ -164,9 +164,7 @@ void Room::deactivate() {
  * 
  * @return Random Encounterable
  */
-//Encounterable* Room::genRandomEncounterable(unsigned int seed, sf::Window& window) {
-//    
-//}
+Encounterable& Room::genRandomEncounterable(unsigned int seed, sf::Window& window) {};
 
 // </editor-fold>
 

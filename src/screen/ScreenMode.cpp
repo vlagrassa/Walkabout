@@ -112,7 +112,7 @@ void ScreenMode::addButton(std::string title, ScreenMode& link, sf::Keyboard::Ke
 void ScreenMode::addButton(std::string title, ScreenMode* link, sf::Keyboard::Key key, sf::Font& font) {
     LinkedButton* temp = new LinkedButton(link, DEFAULT_RECT, window);
     temp->setKey(key);
-    temp->setTitles(title, "Unavailable");
+    temp->setTitles(title, "");
     addButton(*temp);
 }
 

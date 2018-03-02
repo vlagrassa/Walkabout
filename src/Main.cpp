@@ -59,20 +59,73 @@ int main() {
     /* Create other textures */
     sf::Texture monsterTexture;
     sf::Texture playerTexture;
-    if (!monsterTexture.loadFromFile(resourceDir + "monster.png"))
+    sf::Texture playerAttack;
+    sf::Texture playerBlock;
+    sf::Texture playerHit;
+    sf::Texture playerWalk;
+    sf::Texture playerStand;
+    sf::Texture playerFightStance;
+    sf::Texture playerWakeUp;
+    sf::Texture playerDie;
+    sf::Texture monsterAttack;
+    sf::Texture monsterStanding;
+    sf::Texture monsterHit;
+    sf::Texture monsterDie;
+    if (!monsterStanding.loadFromFile(resourceDir + "spritesheets/monster_standing.jpg"))
     {
         return -1;
     }
-    if (!playerTexture.loadFromFile(resourceDir + "player.png"))
+    if (!playerStand.loadFromFile(resourceDir + "spritesheets/stand.jpeg"))
     {
         return -1;
     }
+    if (!playerWalk.loadFromFile(resourceDir + "spritesheets/walk.png"))
+    {
+        return -1;
+    }
+    if (!playerHit.loadFromFile(resourceDir + "spritesheets/hit.png"))
+    {
+        return -1;
+    }
+    if (!playerAttack.loadFromFile(resourceDir + "spritesheets/sword_attack.jpeg"))
+    {
+        return -1;
+    }
+    if (!playerFightStance.loadFromFile(resourceDir + "spritesheets/fight_stance.png"))
+    {
+        return -1;
+    }
+    if (!playerWakeUp.loadFromFile(resourceDir + "spritesheets/wake_up.png"))
+    {
+        return -1;
+    }
+    if (!playerDie.loadFromFile(resourceDir + "spritesheets/die.jpg"))
+    {
+        return -1;
+    }
+    if (!playerBlock.loadFromFile(resourceDir + "spritesheets/block.png"))
+    {
+        return -1;
+    }
+    if (!monsterAttack.loadFromFile(resourceDir + "spritesheets/monster_attack.png"))
+    {
+        return -1;
+    }
+    if (!monsterDie.loadFromFile(resourceDir + "spritesheets/monster_die.png"))
+    {
+        return -1;
+    }
+    if (!monsterHit.loadFromFile(resourceDir + "spritesheets/monster_hit.png"))
+    {
+        return -1;
+    }
+    
     monsterTexture.setSmooth(true);
     playerTexture.setSmooth(true);
     
     /* Instantiate Player */
     Player player;
-    player.addAnimation(playerTexture, 3,3);
+    player.addAnimation(playerStand, 6,3);
     player.setAnimation();
     //h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/4);
     player.setPosition(DEFAULT_WINDOW.getSize().x/20,DEFAULT_WINDOW.getSize().y/4);

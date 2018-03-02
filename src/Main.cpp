@@ -14,7 +14,7 @@
 #include "screen/GameScreen.hpp"
 #include "window/Background.hpp"
 #include "screen/GameScreen.hpp"
-#include "Player/Item.hpp"
+#include "player/Item.hpp"
 
 /* Declare the defaults instantiated in utils/Defaults.hpp */
 sf::Font DEFAULT_FONT;

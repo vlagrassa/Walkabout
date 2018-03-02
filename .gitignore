@@ -105,6 +105,9 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+#Save Data stuff
+savefile.txt
+
 # End of https://www.gitignore.io/api/vim,c++,macos,windows,netbeans
 
 

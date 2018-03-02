@@ -15,6 +15,7 @@
 #include "player/Player.hpp"
 #include <iostream>
 #include <fstream>
+#include <string>
 
 
 SaveData::SaveData() {
@@ -28,25 +29,26 @@ SaveData::~SaveData() {
 }
 
 void Player::writeData(std::ostream &saveData,Item items[]){
-    saveData << std::distance(items, std::find(items, items + 26, *equipment.head)) 
-    << std::distance(items, std::find(items, items + 26, *equipment.hand))
-    <<std::distance(items, std::find(items, items + 26, *equipment.chest)) 
-    <<std::distance(items, std::find(items, items + 26, *equipment.pocket1))<< std::endl;
-    saveData.flush();
+    saveData << std::distance(items, std::find(items, items + 26, *equipment.head))
+            << "," << std::distance(items, std::find(items, items + 26, *equipment.hand))
+            << "," <<std::distance(items, std::find(items, items + 26, *equipment.chest)) 
+            << "," <<std::distance(items, std::find(items, items + 26, *equipment.pocket1))
+            << "," << std::endl;
+            saveData.flush();
 }
 
-Player::Player(std::istream& saveData,Item items[]){
-    
+Player::Player(std::istream& saveData,Item items[]){ 
+    char s[3];
+    saveData.getline(s,3,',');
+    equipment.head = &items[std::stoi(s)];
+    std::cout << s;
+    saveData.getline(s,3,',');
+    equipment.hand = &items[std::stoi(s)];
+    std::cout << s;
+    saveData.getline(s,3,',');
+    equipment.chest = &items[std::stoi(s)];
+    std::cout << s;
+    saveData.getline(s,3,',');
+    equipment.pocket1 = &items[std::stoi(s)];
+    std::cout << s;
 }
-/*
-void saveData(){
-    std::ifstream inFile;
-    inFile.open("statFile.txt");
-    
-    if (!inFile) {
-    std::cerr << "Unable to open file datafile.txt";
-    std::exit(-1);   // call system to stop
-    
-    inFile.close("statFile.txt");
-}
-*/

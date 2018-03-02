@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include <fstream>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -88,13 +89,7 @@ int main() {
     Item notAKnife(Sword,"Not A Knife",{3,0,1});
     Item boringSword(Sword,"Boring Sword",{3,1,1});
     Item epicBlade(Sword,"Epic Sword",{4,1,2});
-        //Bow
-    //Item a(a,"",{,,});
-    //Item a(a,"",{,,});
-    //Item a(a,"",{,,});
-    //Item a(a,"",{,,});
-    //Item a(a,"",{,,});
-
+ 
     Item testItem(Bow, "testBow", {1,1,1});
     
     Item items[26] = {boringHat,thinkingCap,telepatheticHat,cardboardBox,
@@ -211,7 +206,19 @@ int main() {
                         testGameScreen.buttons.first->data.deactivate();
                     }
                     if (event.key.code == sf::Keyboard::L) {
-                        player.writeData(std::cout, items);
+                        std::ofstream savefile;
+                        savefile.open("savefile.txt");
+                        player.writeData(savefile, items);
+                        savefile.close();
+                        //Player z=Player(std::cin,items);
+                    }
+                    if (event.key.code == sf::Keyboard::K) {
+                        std::ifstream savefile;
+                        savefile.open("savefile.txt");
+                        //player.writeData(savefile, items);
+                        Player z=Player(savefile,items);
+                        savefile.close();
+                        
                     }
                     break;
                 default:

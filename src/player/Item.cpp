@@ -17,3 +17,7 @@ stats(stats){};
 bool Item::operator==(const Item &other) const{
     return(other.name == name);
 }
+Item& Item::operator =(const Item& other){
+    return *this;
+}
+

@@ -30,14 +30,14 @@ struct TargetArea {
 class Oscillator : public sf::Drawable, public FrameRate {
 public:
     TargetArea attackArea;
-    TargetArea defendArea;
+//    TargetArea defendArea;
     sf::RectangleShape outline;
-    sf::Vertex areas[16];
+    sf::Vertex areas[10];
     Slider attackSlider;
     enum {
         empty,
         attack,
-        defend,
+//        defend,
         damage,
         critical
     } area;

@@ -5,12 +5,13 @@
 #include <SFML/Graphics.hpp>
 #include "Encounterable.hpp"
 #include "../screen/EncounterScreen.hpp"
+#include "../utils/AnimatedSprite.hpp"
 
 enum MonsterSpecies {
     dinosaur
 };
 
-class Monster: public Encounterable {
+class Monster: public Encounterable, public AnimatedSprite {
 public:
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -114,6 +115,8 @@ public:
      * @return The Monster's type as an enum
      */
     MonsterSpecies getSpecies() const;
+    
+    virtual void run(sf::Event event) {};
     
 private:
     /* The Monster's name */

@@ -40,6 +40,9 @@ void Player::writeData(std::ostream &saveData,Item items[]){
 Player::Player(std::istream& saveData,Item items[]){ 
     char s[3];
     saveData.getline(s,3,',');
+    if(s[0] =='\0'){
+        std::cerr << "***no file to read** AHHHHHHHHHHHHH UUUUGGGGGGHHHHHH*";
+    }
     equipment.head = &items[std::stoi(s)];
     std::cout << s;
     saveData.getline(s,3,',');

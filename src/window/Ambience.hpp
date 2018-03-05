@@ -17,7 +17,10 @@ public:
     sf::Texture* getHorizonBg();
     sf::Texture* getImBg();
     sf::Texture* getGround();
-    
+    sf::Texture* getMonsterAttack();
+    sf::Texture* getMonsterDie();
+    sf::Texture* getMonsterHit();
+    sf::Texture* getMonsterStanding();
     
     //sf::Animation monster1; //create array of frames for monster
     
@@ -28,6 +31,13 @@ private:
     sf::Texture imBgTexture;
     sf::Texture groundTexture;
     
+    sf::Texture monsterAttack;
+    sf::Texture monsterStanding;
+    sf::Texture monsterHit;
+    sf::Texture monsterDie;
+
+    
+
     void initTextures();
 };
 

@@ -87,6 +87,12 @@ std::string Monster::getSpeciesTexture() {
     return "";
 }
 
+void Monster::run(sf::Event event){
+    Animations.getActive().frames.shiftNode();
+    this->setTextureRect(Animations.getActive().frames.getActive());
+    
+}
+
 void Monster::changeHealth(int n) {
     if (static_cast<signed int>(health) + n <= 0) {
         std::cout << "  Changing health (" << health << ") by " << n << "\n";

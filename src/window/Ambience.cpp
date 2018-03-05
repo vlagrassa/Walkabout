@@ -23,6 +23,22 @@ Ambience::Ambience(std::string resources) {
         std::cout << "Failed to load image ground_outside.png from directory " << resources << "\n";
     }
      
+    if (!monsterStanding.loadFromFile(resourceDir + "spritesheets/monster_standing.jpg"))
+    {
+        std::cout<< "\n" << "monster standing error" << "\n";
+    }
+     if (!monsterAttack.loadFromFile(resourceDir + "spritesheets/monster_attack.png"))
+    {
+        std::cout<< "\n" << "monster attack error" << "\n";
+    }
+    if (!monsterDie.loadFromFile(resourceDir + "spritesheets/monster_die.png"))
+    {
+        std::cout<< "\n monster die error \n";
+    }
+    if (!monsterHit.loadFromFile(resourceDir + "spritesheets/monster_hit.png"))
+    {
+       std::cout<< "\n monster hit error \n";
+    }
      initTextures();
 }
 

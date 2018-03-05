@@ -21,7 +21,7 @@ void AnimatedSprite::addAnimation(sf::Texture& spriteSheet, int rowNum, int colN
 }
 void AnimatedSprite::setAnimation(){
     this->setTexture(Animations.getActive().getTexture());
-    this->setTextureRect(Animations.getActive().frames.getStart());
+//    this->setTextureRect(Animations.getActive().frames.getStart());
 }
 
 

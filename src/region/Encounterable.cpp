@@ -10,26 +10,21 @@
  * Default constructor method - can't be used anyways, this
  * is an abstract class.
  */
-Encounterable::Encounterable() {
-    screen = new EncounterScreen(*new sf::Window()); //@TODO THIS IS BAD FIX THIS
-}
+Encounterable::Encounterable() {}
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * 
  * Default constructor method.
  */
 Encounterable::Encounterable(const Encounterable& orig) {
-    
+    std::cout << "Inside Encounterable copy constructor\n";
 }
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * 
- * Default destructor method. Deletes:
- *   -EncounterScreen screen
+ * Default destructor method.
  */
-Encounterable::~Encounterable() {
-    delete screen;
-}
+Encounterable::~Encounterable() {}
 
 // </editor-fold>
 
@@ -51,10 +46,10 @@ std::vector<int> Encounterable::getReward() const {
  * Will be overwritten by each subclass.
  * @return EncounterScreen representing the encounter
  */
-EncounterScreen* Encounterable::getEncounterScreen() const {
-    std::cout << "Returning default encounter screen!" << "\n";
-    return screen;
-}
+//EncounterScreen* Encounterable::getEncounterScreen() const {
+//    std::cout << "Returning default encounter screen!" << "\n";
+//    return screen;
+//}
 
 // </editor-fold>
 

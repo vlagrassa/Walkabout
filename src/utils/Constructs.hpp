@@ -61,4 +61,18 @@ public:
     virtual void run(sf::Event event) = 0;
 };
 
+class HealthBar : public sf::Drawable {
+public:
+    sf::RectangleShape outline;
+    sf::RectangleShape health;
+    unsigned int& source;
+    unsigned int& max;
+    
+    HealthBar(sf::Vector2f pos, sf::Vector2f size, unsigned int& source, unsigned int& max);
+    HealthBar(const HealthBar& orig);
+    
+    void update();
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+};
+
 #endif /* CONSTRUCTS_H */

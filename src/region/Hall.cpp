@@ -4,6 +4,7 @@
 #include <iostream>
 #include <ctime>
 #include "../player/Player.hpp"
+#include "../screen/EncounterScreen.hpp"
 
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
@@ -69,11 +70,12 @@ Player& Hall::getPlayer() const {
 }
 
 bool Hall::canEncounter() {
-    return player.getPosInRoom() == at(activeIndex)->getLength()-1;
+    //return player.getPosInRoom() == at(activeIndex)->getLength()-1;
+    return !at(activeIndex)->passed && (at(activeIndex)->getLength() - player.getPosInRoom()) < 20;
 }
 
-EncounterScreen* Hall::getEncounterScreen() {
-    return at(activeIndex)->getScreen();
+bool Hall::mustEncounter() {
+    return !at(activeIndex)->encounter->isSkippable() && !at(activeIndex)->passed && (player.getPosInRoom() >= at(activeIndex)->getLength()-5);
 }
 
 // </editor-fold>
@@ -102,7 +104,7 @@ void Hall::setActiveRoomPlayerX(unsigned int n) {
 void Hall::addRoom(Room* r) {
     push_back(r);
     totalLength += r->getLength();
-    r->getEncounter()->setPosition( (totalLength-player.getX()) * player.getStepSize(), 100); //Ideally the Room itself should handle this
+    r->encounter->setPosition( (totalLength-player.getX()) * player.getStepSize(), 100); //Ideally the Room itself should handle this
     setActiveRoom();
 }
 
@@ -112,7 +114,21 @@ void Hall::addRoom() {
     for (unsigned i = 0; i < size(); i++) {
         rand();
     }
-    Room* r = new Room(static_cast<unsigned int>(rand()), window);
+    
+    Room* r;
+    
+    RoomType temp = static_cast<RoomType>(rand() % 2);
+    switch (temp) {
+        case (monster):
+            r = new FightScreen(player, rand());
+            break;
+        case (treasure):
+            r = new TreasureScreen(player, rand());
+            break;
+        default:
+            throw std::runtime_error("Something went wrong generating a Room in Hall::addRoom()\n");
+            break;
+    }
     addRoom(r);
 }
 
@@ -122,7 +138,7 @@ void Hall::addRoom() {
 
 void Hall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     for (Room* r : getOnscreenRooms()) {
-        target.draw(*r);
+        target.draw(*r->encounter);
     }
 }
 
@@ -183,9 +199,9 @@ void Hall::updateIndex() {
 void Hall::updateRoomPositions() {
     for (Room* r : *this) {
         if (player.isMovingRight()) {
-            r->getEncounter()->move(-player.getStepSize(), 0);
+            r->encounter->move(-player.getStepSize(), 0);
         } else {
-            r->getEncounter()->move(player.getStepSize(), 0);
+            r->encounter->move(player.getStepSize(), 0);
         }
     }
     if (size() - getActiveIndex() < 3) {

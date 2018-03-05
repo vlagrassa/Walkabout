@@ -35,7 +35,7 @@ void Player::writeData(std::ostream &saveData,Item items[]){
     saveData.flush();
 }
 
-Player::Player(std::istream& saveData,Item items[]){
+Player::Player(std::istream& saveData,Item items[]) : healthbar(sf::Vector2f(164, 536), sf::Vector2f(626, 25), health, maxHealth) {
     
 }
 /*

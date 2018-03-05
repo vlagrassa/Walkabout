@@ -13,7 +13,7 @@
 #include "screen/GameScreen.hpp"
 #include "window/Background.hpp"
 #include "screen/GameScreen.hpp"
-#include "Player/Item.hpp"
+#include "player/Item.hpp"
 
 /* Declare the defaults instantiated in utils/Defaults.hpp */
 sf::Font DEFAULT_FONT;
@@ -33,6 +33,36 @@ sf::Clock DEFAULT_GAMECLOCK;
  */
 void quitGame(sf::Window& window = DEFAULT_WINDOW) {
     window.close();
+}
+
+
+void handleNextScreen(Stack<ScreenMode&>& listOfScreens, ScreenMode* nextScreen) {
+    if (nextScreen == 0) {
+        /* If next screen is 0x0 (NULL), pop the current screen (go back) */
+        listOfScreens.pop();
+        std::cout << "Removed screen:\n" << listOfScreens << "\n";
+    }
+    else if (nextScreen != &listOfScreens.top->data) {
+        ScreenMode* backScreen = NULL;
+        for (Node<ScreenMode&>* n = listOfScreens.top; n != 0; n = n->next) {
+            if (&n->data == nextScreen) {
+                backScreen = &n->data;
+                break;
+            }
+        }
+
+        if (backScreen == NULL) {
+            /* If the next screen is different from the current screen, push it onto the stack */
+            listOfScreens.push(*nextScreen);
+            std::cout << "Added screen:\n" << listOfScreens << "\n";
+        } else {
+            while (&listOfScreens.top->data != backScreen) {
+                listOfScreens.pop();
+            }
+            std::cout << "Moved back to screen:\n" << listOfScreens << "\n";
+        }
+    }
+    /* If neither of the above happened then the next screen is the same as the current screen - don't do anything */
 }
 
  
@@ -208,8 +238,9 @@ int main() {
     mainMenu.addButton("Quit [W]", 0, sf::Keyboard::W);
     
     
-    testGameScreen.addButton("Hiii", 0);
-    testGameScreen.addButton("Main Menu [M]", 0, sf::Keyboard::M);
+    testGameScreen.addButton("Challenge\n   [^]", 0);
+    testGameScreen.addButton("Inventory\n   [I]", 0, sf::Keyboard::I);
+    testGameScreen.addButton("Main Menu\n   [M]", 0, sf::Keyboard::M);
     
     testMenu1.addButton("In menu 1", testMenu2);
     testMenu2.addButton("In menu 2", testMenu3);
@@ -264,13 +295,11 @@ int main() {
                             std::cout << "Quit screen:\n" << listOfScreens << "\n";
                         }
                     }
-                    if (event.key.code == sf::Keyboard::A) {
-                        //testGameScreen.buttons.first->data.setTitle("On");
-                        testGameScreen.buttons.first->data.activate();
+                    if (event.key.code == sf::Keyboard::U) {
+                        player.health -= 5;
                     }
-                    if (event.key.code == sf::Keyboard::D) {
-                        //testGameScreen.buttons.first->data.setTitle("Off");
-                        testGameScreen.buttons.first->data.deactivate();
+                    if (event.key.code == sf::Keyboard::I) {
+                        player.health += 5;
                     }
                     if (event.key.code == sf::Keyboard::L) {
                         player.writeData(std::cout, items);
@@ -278,6 +307,10 @@ int main() {
                     break;
                 default:
                     break;
+            }
+            if (!listOfScreens.isEmpty()) {
+                ScreenMode* nextScreen = listOfScreens.top->data.update(event);
+                handleNextScreen(listOfScreens, nextScreen);
             }
         }
         
@@ -297,33 +330,7 @@ int main() {
             
             /* Get the next screen */
             ScreenMode* nextScreen = listOfScreens.top->data.run(event);
-            
-            if (nextScreen == 0) {
-                /* If next screen is 0x0 (NULL), pop the current screen (go back) */
-                listOfScreens.pop();
-                std::cout << "Removed screen:\n" << listOfScreens << "\n";
-            }
-            else if (nextScreen != &listOfScreens.top->data) {
-                ScreenMode* backScreen = NULL;
-                for (Node<ScreenMode&>* n = listOfScreens.top; n != 0; n = n->next) {
-                    if (&n->data == nextScreen) {
-                        backScreen = &n->data;
-                        break;
-                    }
-                }
-                
-                if (backScreen == NULL) {
-                    /* If the next screen is different from the current screen, push it onto the stack */
-                    listOfScreens.push(*nextScreen);
-                    std::cout << "Added screen:\n" << listOfScreens << "\n";
-                } else {
-                    while (&listOfScreens.top->data != backScreen) {
-                        listOfScreens.pop();
-                    }
-                    std::cout << "Moved back to screen:\n" << listOfScreens << "\n";
-                }
-            }
-            /* If neither of the above happened then the next screen is the same as the current screen - don't do anything */
+            handleNextScreen(listOfScreens, nextScreen);
             
             /* Draw the top of the stack (and the previous screen if necessary) */
             if (!listOfScreens.isEmpty()) {

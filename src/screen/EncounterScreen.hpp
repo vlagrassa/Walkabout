@@ -1,28 +1,15 @@
 #ifndef ENCOUNTERSCREEN_H
 #define ENCOUNTERSCREEN_H
 
-#include "ScreenMode.hpp"
-#include "../utils/Defaults.hpp"
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
-#include "../utils/Constructs.hpp"
+#include "../region/Room.hpp"
+#include "../region/Monster.hpp"
 
-class EncounterScreen;
 class Slider;
 class Oscillator;
 class FightScreen;
 class TreasureScreen;
-
-class EncounterScreen: public ScreenMode {
-public:
-    EncounterScreen(sf::Window& window = DEFAULT_WINDOW);
-    EncounterScreen(const EncounterScreen&);
-    virtual ~EncounterScreen();
-    
-    virtual std::string testThing();
-private:
-    
-};
 
 class Slider : public sf::RectangleShape, public FrameRate {
 public:
@@ -43,14 +30,15 @@ struct TargetArea {
 class Oscillator : public sf::Drawable, public FrameRate {
 public:
     TargetArea attackArea;
-    TargetArea defendArea;
+//    TargetArea defendArea;
     sf::RectangleShape outline;
-    sf::Vertex areas[16];
+    sf::Vertex areas[10];
     Slider attackSlider;
     enum {
         empty,
         attack,
-        defend,
+//        defend,
+        damage,
         critical
     } area;
     sf::Color backgroundColor;
@@ -80,9 +68,9 @@ private:
 };
 
 
-class FightScreen: public EncounterScreen {
+class FightScreen: public Room {
 public:
-    FightScreen(sf::Window &window = DEFAULT_WINDOW);
+    FightScreen(Player& player, int seed, sf::Window &window = DEFAULT_WINDOW);
     FightScreen(const FightScreen&);
     virtual ~FightScreen();
     
@@ -90,19 +78,26 @@ public:
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
+    virtual ScreenMode* update(sf::Event event);
     virtual ScreenMode* run(sf::Event event);
     
+    virtual Encounterable& genRandomEncounterable(unsigned int seed, sf::Window& window);
+    
     std::string testThing();
+    
+    Monster* monster;
 private:
     
 };
 
 
-class TreasureScreen: public EncounterScreen {
+class TreasureScreen: public Room {
 public:
-    TreasureScreen(sf::Window& window = DEFAULT_WINDOW);
+    TreasureScreen(Player& player, int seed, sf::Window& window = DEFAULT_WINDOW);
     TreasureScreen(const TreasureScreen&);
     virtual ~TreasureScreen();
+    
+    virtual Encounterable& genRandomEncounterable(unsigned int seed, sf::Window& window);
     
     std::string testThing();
 private:

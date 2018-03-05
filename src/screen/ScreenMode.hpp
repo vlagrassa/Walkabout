@@ -22,67 +22,26 @@ public:
     std::string offText = "";
     sf::Keyboard::Key key = sf::Keyboard::Unknown;
     
-    LinkedButton(ScreenMode& link, sf::RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : link(link), window(window), outline(rect) {};
+    LinkedButton(ScreenMode& link, sf::RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW);
+    LinkedButton(ScreenMode* link, sf::RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW);
+    LinkedButton(const LinkedButton& orig);
+    virtual ~LinkedButton();
     
-    LinkedButton(ScreenMode* link, sf::RectangleShape rect = DEFAULT_RECT, sf::Window& window = DEFAULT_WINDOW) : LinkedButton(*link, rect, window) {};
+    void setKey(sf::Keyboard::Key k);
+    void setTitle(std::string text);
+    void setTitles(std::string text1, std::string text2);
     
-    LinkedButton(const LinkedButton& orig) : link(orig.link), window(orig.window), outline(orig.outline), title(orig.title) {};
+    sf::Vector2f getCenter();
     
-    virtual ~LinkedButton() {};
+    bool touchingMouse();
+    bool clicked();
     
-    void setKey(sf::Keyboard::Key k) {
-        key = k;
-    }
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
-    void setTitle(sf::Text& text) {
-        title = text;
-        title.setPosition(outline.getPosition());
-        title.setFillColor(sf::Color::Black);
-    }
-    
-    void setTitle(std::string text) {
-        setTitle(*new sf::Text(text, DEFAULT_FONT));
-    }
-    
-    void setTitles(std::string text1, std::string text2) {
-        onText = text1;
-        offText = text2;
-    }
-    
-    sf::Vector2f getCenter() {
-        return sf::Vector2f(outline.getPosition().x + outline.getSize().x/2, outline.getPosition().y + outline.getSize().y/2);
-    }
-    
-    bool touchingMouse() {
-        return outline.getGlobalBounds().contains(sf::Mouse().getPosition(window).x, sf::Mouse().getPosition(window).y);
-    }
-    
-    bool clicked() {
-        return touchingMouse() && sf::Mouse().isButtonPressed(sf::Mouse().Left) && active;
-    }
-    
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
-        target.draw(outline);
-        target.draw(title);
-    }
-    
-    bool isActive() {
-        return active;
-    }
-    
-    void setActive(bool b) {
-        active = b;
-    }
-    
-    void activate() {
-        setActive(true);
-        setTitle(onText);
-    }
-    
-    void deactivate() {
-        setActive(false);
-        setTitle(offText);
-    }
+    bool isActive();
+    void setActive(bool b);
+    void activate();
+    void deactivate();
     
 private:
     bool active = true;
@@ -98,52 +57,21 @@ public:
     sf::Window& window;
     bool showPrevious = false;
     
-    ScreenMode(sf::Window& window = DEFAULT_WINDOW) : window(window) {};
-    ScreenMode(const ScreenMode& orig) : window(orig.window) {};
-    virtual ~ScreenMode() {};
+    ScreenMode(sf::Window& window = DEFAULT_WINDOW);
+    ScreenMode(const ScreenMode& orig);
+    virtual ~ScreenMode();
     
-    virtual ScreenMode* run(sf::Event event) {
-        return checkButtons(event);
-    };
+    virtual ScreenMode* update(sf::Event event);
+    virtual ScreenMode* run(sf::Event event);
+    ScreenMode* checkButtons(sf::Event event);
     
-    ScreenMode* checkButtons(sf::Event event) {
-        for (Node<LinkedButton&>* n = buttons.first; n != 0; n = n->next) {
-            if (n->data.clicked() || (event.key.code == n->data.key)) {
-                return &n->data.link;
-            }
-        }
-        return this;
-    };
-    
-    void addButton(LinkedButton& b) {
-        buttons.add(b);
-    }
-    
-    virtual void addButton(std::string title, ScreenMode& link, sf::Keyboard::Key key = sf::Keyboard::Unknown, sf::Font& font = DEFAULT_FONT) {
-        addButton(title, &link, key, font);
-    }
-    
-    virtual void addButton(std::string title, ScreenMode* link, sf::Keyboard::Key key = sf::Keyboard::Unknown, sf::Font& font = DEFAULT_FONT) {
-        LinkedButton* temp = new LinkedButton(link, DEFAULT_RECT, window);
-        temp->setKey(key);
-        temp->setTitle(*new sf::Text(title, font));
-        addButton(*temp);
-    }
+    void addButton(LinkedButton& b);
+    virtual void addButton(std::string title, ScreenMode& link, sf::Keyboard::Key key = sf::Keyboard::Unknown, sf::Font& font = DEFAULT_FONT);
+    virtual void addButton(std::string title, ScreenMode* link, sf::Keyboard::Key key = sf::Keyboard::Unknown, sf::Font& font = DEFAULT_FONT);
     
     void addText(sf::Text);
     
-    bool isActive();
-    void setActive();
-    void activate();
-    void deactivate();
-    
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
-        for (Node<LinkedButton&>* n = buttons.first; n != 0; n = n->next) {
-            //if (n->data.isActive()) {
-                target.draw(n->data);
-            //}
-        }
-    }
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
 private:
     std::vector<sf::Text> displayText;
@@ -154,33 +82,13 @@ public:
     ScreenMode* link;
     bool forward = true;
     
-    TransitionScreen(ScreenMode* link, sf::Window& window = DEFAULT_WINDOW) : ScreenMode(window), link(link) {
-        showPrevious = true;
-    };
+    TransitionScreen(ScreenMode* link, sf::Window& window = DEFAULT_WINDOW);
+    TransitionScreen(const TransitionScreen& orig);
+    virtual ~TransitionScreen();
     
-    TransitionScreen(const TransitionScreen& orig) : TransitionScreen(orig.link, orig.window) {};
-    
-    virtual ~TransitionScreen() {};
-    
-    virtual ScreenMode* run(sf::Event event) {
-        if (forward) {
-            return runForward();
-        } else {
-            return runBackward();
-        }
-    }
-    
-    virtual ScreenMode* runForward() {
-        std::cout << "Transitioning forward...\n";
-        forward = false;
-        return link;
-    };
-    
-    virtual ScreenMode* runBackward() {
-        forward = true;
-        std::cout << "Transitioning backward...\n";
-        return NULL;
-    };
+    virtual ScreenMode* run(sf::Event event);
+    virtual ScreenMode* runForward();
+    virtual ScreenMode* runBackward();
 };
 
 #endif /* SCREENMODE_H */

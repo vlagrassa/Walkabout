@@ -122,7 +122,7 @@ public:
     
     bool canEncounter();
     
-    EncounterScreen* getEncounterScreen();
+    bool mustEncounter();
     
     
     /* Setter methods */

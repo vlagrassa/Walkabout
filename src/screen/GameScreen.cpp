@@ -22,6 +22,7 @@ GameScreen::~GameScreen() {};
 
 ScreenMode* GameScreen::run(sf::Event event) {
     hall.updateIndex();
+    player.action(event);
     player.updateFrames(DEFAULT_GAMECLOCK, event);
     player.healthbar.update();
     if (event.type == sf::Event::KeyPressed) {

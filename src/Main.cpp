@@ -73,15 +73,15 @@ int main() {
     sf::Texture monsterDie;
     if (!monsterStanding.loadFromFile(resourceDir + "spritesheets/monster_standing.jpg"))
     {
-        return -1;
+        std::cout<< "\n" << "monster standing error" << "n/";
     }
     if (!playerStand.loadFromFile(resourceDir + "spritesheets/stand.jpeg"))
     {
-        return -1;
+        std::cout << "\n" << "stand error" << "\n";
     }
     if (!playerWalk.loadFromFile(resourceDir + "spritesheets/walk.png"))
     {
-        return -1;
+        std::cout <<  "\n" << "walk error" << "\n";
     }
     if (!playerHit.loadFromFile(resourceDir + "spritesheets/hit.png"))
     {
@@ -125,7 +125,15 @@ int main() {
     
     /* Instantiate Player */
     Player player;
+//    add animations to player
     player.addAnimation(playerStand, 6,3);
+    player.addAnimation(playerWalk, 5, 3);
+//    sf::Vector2u pop = player.Animations.get(2).getTexture().getSize();
+    
+    player.addAnimation(playerAttack, 5,2);
+    player.addAnimation(playerFightStance, 5,1);
+    std::cout << "/n" << (player.Animations.size)<< "/n";
+    
     player.setAnimation();
     //h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/4);
     player.setPosition(DEFAULT_WINDOW.getSize().x/20,DEFAULT_WINDOW.getSize().y/4);

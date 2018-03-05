@@ -206,8 +206,6 @@ int main() {
 //    add animations to player
     player.addAnimation(playerStand, 6,3);
     player.addAnimation(playerWalk, 5, 3);
-//    sf::Vector2u pop = player.Animations.get(2).getTexture().getSize();
-    
     player.addAnimation(playerAttack, 5,2);
     player.addAnimation(playerFightStance, 5,1);
     std::cout << "/n" << (player.Animations.size)<< "/n";

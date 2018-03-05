@@ -6,6 +6,7 @@
 #include "Encounterable.hpp"
 //#include "../screen/EncounterScreen.hpp"
 #include "../utils/AnimatedSprite.hpp"
+#include "../window/Ambience.hpp"
 
 
 class Monster: public Encounterable, public AnimatedSprite {
@@ -15,7 +16,7 @@ public:
      * Constructor method.
      * @param MonsterSpecies type
      */
-    Monster( sf::Window& window);
+    Monster( sf::Window& window, Ambience& ambience);
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

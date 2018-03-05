@@ -1,7 +1,7 @@
 #include "GameScreen.hpp"
 #include <SFML/Graphics.hpp>
 
-GameScreen::GameScreen(Player& player, Background& background, sf::Window& window) : GameScreen(player, background, *new Hall(player, window), window) {};
+GameScreen::GameScreen(Player& player, Background& background, sf::Window& window) : GameScreen(player, background, *new Hall(player, window, background.ambience), window) {};
 
 GameScreen::GameScreen(Player& player, Background& background, Hall& hall, sf::Window& window) : Menu(475, 10, 75, 20, window), player(player), hall(hall), background(background), icon(sf::RectangleShape(sf::Vector2f(141, 151))) {
     buttonline = ButtonLine(166, 438, 622, 86, 15);

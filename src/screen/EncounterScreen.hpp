@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "../region/Room.hpp"
 #include "../region/Monster.hpp"
+#include "../window/Ambience.hpp"
 
 class Slider;
 class Oscillator;
@@ -70,8 +71,9 @@ private:
 
 class FightScreen: public Room {
 public:
-    FightScreen(Player& player, int seed, sf::Window &window = DEFAULT_WINDOW);
+    FightScreen(Player& player, int seed, Ambience& ambience, sf::Window &window = DEFAULT_WINDOW);
     FightScreen(const FightScreen&);
+    
     virtual ~FightScreen();
     
     Oscillator attackBar;
@@ -85,6 +87,7 @@ public:
     
     std::string testThing();
     
+    Ambience& ambience;
     Monster* monster;
 private:
     

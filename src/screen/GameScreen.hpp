@@ -7,6 +7,7 @@
 #include "../player/Player.hpp"
 #include "../region/Hall.hpp"
 #include "../window/Background.hpp"
+#include "../utils/Constructs.hpp"
 
 class GameScreen: public Menu {
 public:
@@ -21,6 +22,10 @@ public:
     Player& player;
     Hall& hall;
     Background& background;
+    
+    sf::RectangleShape icon;
+    
+    //HealthBar playerhealth;
 };
 
 #endif /* GAMESCREEN_H */

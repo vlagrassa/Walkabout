@@ -3,22 +3,27 @@
 
 GameScreen::GameScreen(Player& player, Background& background, sf::Window& window) : GameScreen(player, background, *new Hall(player, window), window) {};
 
-GameScreen::GameScreen(Player& player, Background& background, Hall& hall, sf::Window& window) : Menu(475, 10, 75, 20, window), player(player), hall(hall), background(background) {
+GameScreen::GameScreen(Player& player, Background& background, Hall& hall, sf::Window& window) : Menu(475, 10, 75, 20, window), player(player), hall(hall), background(background), icon(sf::RectangleShape(sf::Vector2f(141, 151))) {
+    buttonline = ButtonLine(166, 438, 622, 86, 15);
     buttonline.horizontal = true;
-    std::cout << "Hall is " << &hall << ", Player is " << &player << "\n";
     unsigned int numRooms = 3;
     for (unsigned i = 0; i < numRooms; i++) {
         hall.addRoom();
     }
-    std::cout << hall << "\n";
+    icon.setPosition(sf::Vector2f(10, 438));
+    icon.setOutlineThickness(5);
+    icon.setOutlineColor(sf::Color::Black);
+    icon.setFillColor(sf::Color::Transparent);
 };
 
-GameScreen::GameScreen(const GameScreen& orig) : Menu(orig), player(orig.player), hall(orig.hall), background(orig.background) {};
+GameScreen::GameScreen(const GameScreen& orig) : Menu(orig), player(orig.player), hall(orig.hall), background(orig.background), icon(orig.icon) {};
 
 GameScreen::~GameScreen() {};
 
 ScreenMode* GameScreen::run(sf::Event event) {
     hall.updateIndex();
+    player.updateFrames(DEFAULT_GAMECLOCK, event);
+    player.healthbar.update();
     if (event.type == sf::Event::KeyPressed) {
         switch (event.key.code) {
             case (sf::Keyboard::Left):
@@ -37,7 +42,7 @@ ScreenMode* GameScreen::run(sf::Event event) {
                 
             case (sf::Keyboard::Up):
                 if (hall.canEncounter()) {
-                    return hall.getEncounterScreen();
+                    return hall.getActive();
                 }
                 break;
                 
@@ -45,14 +50,17 @@ ScreenMode* GameScreen::run(sf::Event event) {
                 break;
         }
         if (event.key.code == sf::Keyboard::Up && hall.canEncounter()) {
-            return hall.getEncounterScreen();
+            return hall.getActive();
         }
     }
-    if (hall.canEncounter() && !hall.getActiveRoom()->getEncounter()->isSkippable()) {
-        return hall.getEncounterScreen();
+    if (hall.canEncounter() && !hall.getActiveRoom()->encounter->isSkippable()) {
+        //return hall.getEncounterScreen();
+        buttons.first->data.activate();
+    } else {
+        buttons.first->data.deactivate();
     }
-    if (hall.canEncounter() && !hall.getActiveRoom()->getEncounter()->isSkippable()) {
-        return hall.getEncounterScreen();
+    if (hall.mustEncounter()) {
+        return hall.getActive();
     }
     return ScreenMode::checkButtons(event);
 };
@@ -61,5 +69,7 @@ void GameScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(background);
     target.draw(hall);
     target.draw(player);
+    target.draw(player.healthbar);
+    target.draw(icon);
     ScreenMode::draw(target, states);
 };

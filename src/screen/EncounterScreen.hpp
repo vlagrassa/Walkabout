@@ -1,27 +1,76 @@
 #ifndef ENCOUNTERSCREEN_H
 #define ENCOUNTERSCREEN_H
 
-#include "ScreenMode.hpp"
-#include "../utils/Defaults.hpp"
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
-#include "../utils/Constructs.hpp"
+#include "../region/Room.hpp"
+#include "../region/Monster.hpp"
 
-class EncounterScreen: public ScreenMode {
+class Slider;
+class Oscillator;
+class FightScreen;
+class TreasureScreen;
+
+class Slider : public sf::RectangleShape, public FrameRate {
 public:
-    EncounterScreen(sf::Window& window = DEFAULT_WINDOW);
-    EncounterScreen(const EncounterScreen&);
-    virtual ~EncounterScreen();
+    unsigned int currentPos = 20;
+    int dir;
+    Slider(sf::Vector2f size, int frameRate, unsigned int speed = 5) : RectangleShape(size), FrameRate(frameRate), dir(speed) {};
+    Slider(const Slider& orig) : RectangleShape(orig), FrameRate(orig), dir(orig.dir) {};
     
-    virtual std::string testThing();
+    void run(sf::Event event) {};
+};
+
+struct TargetArea {
+    int center;
+    int width;
+    sf::Color color;
+};
+
+class Oscillator : public sf::Drawable, public FrameRate {
+public:
+    TargetArea attackArea;
+//    TargetArea defendArea;
+    sf::RectangleShape outline;
+    sf::Vertex areas[10];
+    Slider attackSlider;
+    enum {
+        empty,
+        attack,
+//        defend,
+        damage,
+        critical
+    } area;
+    sf::Color backgroundColor;
+    
+    Oscillator(sf::Vector2f pos, sf::Vector2f size, unsigned int frameRate) : FrameRate(frameRate), outline(size), attackSlider(sf::Vector2f(10,size.y), frameRate, 5) {
+        initShapes(pos);
+        scramble();
+    };
+    
+    Oscillator(const Oscillator& orig) : FrameRate(orig.frameRate), attackSlider(orig.attackSlider) {};
+    
+    virtual ~Oscillator() {};
+    
+    void run(sf::Event event);
+    
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+    
+    float getStrength();
+    
+    void scramble(); //Should be called after a hit
+    
 private:
     
+    void initShapes(sf::Vector2f pos);
+    
+    void updateArea(); //Should be called in run())
 };
 
 
-class FightScreen: public EncounterScreen {
+class FightScreen: public Room {
 public:
-    FightScreen(sf::Window &window = DEFAULT_WINDOW);
+    FightScreen(Player& player, int seed, sf::Window &window = DEFAULT_WINDOW);
     FightScreen(const FightScreen&);
     virtual ~FightScreen();
     
@@ -29,19 +78,26 @@ public:
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
+    virtual ScreenMode* update(sf::Event event);
     virtual ScreenMode* run(sf::Event event);
     
+    virtual Encounterable& genRandomEncounterable(unsigned int seed, sf::Window& window);
+    
     std::string testThing();
+    
+    Monster* monster;
 private:
     
 };
 
 
-class TreasureScreen: public EncounterScreen {
+class TreasureScreen: public Room {
 public:
-    TreasureScreen(sf::Window& window = DEFAULT_WINDOW);
+    TreasureScreen(Player& player, int seed, sf::Window& window = DEFAULT_WINDOW);
     TreasureScreen(const TreasureScreen&);
     virtual ~TreasureScreen();
+    
+    virtual Encounterable& genRandomEncounterable(unsigned int seed, sf::Window& window);
     
     std::string testThing();
 private:

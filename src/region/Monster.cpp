@@ -4,39 +4,25 @@
 
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
-Monster::Monster(MonsterSpecies s, sf::Window& window) {
+Monster::Monster(MonsterSpecies s, sf::Window& window) : healthbar(sf::Vector2f(164, 566), sf::Vector2f(626, 25), health, maxHealth) {
     name = "John";
     maxHealth = 20;
     health = maxHealth;
     species = s;
-    
-    battle_screen = new FightScreen(window);
+    healthbar.health.setFillColor(sf::Color::Red);
     
     monster_texture = new sf::Texture();
     if (!monster_texture->loadFromFile("resources/" + getSpeciesTexture())) {
         std::cout << "Failed to load Monster texture " << getSpeciesTexture() << " from directory " << "resources/" << "\n";
     }
     monster_texture->setSmooth(true);
-    setTexture(*monster_texture);
+    Encounterable::setTexture(*monster_texture);
 }
 
-Monster::Monster(const Monster& orig) {
-    battle_screen = new FightScreen(orig.getEncounterScreen()->window); //@TODO THIS IS BAD FIX THIS
-}
+Monster::Monster(const Monster& orig) : healthbar(orig.healthbar) {}
 
 Monster::~Monster() {
-    delete battle_screen;
     delete monster_texture;
-}
-
-// </editor-fold>
-
-// <editor-fold defaultstate="collapsed" desc=" Inherited Methods ">
-
-/* Returns the FightScreen associated with the Monster */
-FightScreen* Monster::getEncounterScreen() const {
-    std::cout << "Returning fight screen!" << "\n";
-    return battle_screen;
 }
 
 // </editor-fold>
@@ -60,7 +46,11 @@ RoomType Monster::getType() const {
 
 /* Interact with the Encounterable */
 void Monster::encounter(Player& player) {
-    std::cout << "This is a monster!\n";
+    healthbar.update();
+}
+
+void Monster::drawExtras(sf::RenderTarget& target, sf::RenderStates states) const {
+    target.draw(healthbar, states);
 }
 
 // </editor-fold>
@@ -95,4 +85,17 @@ std::string Monster::getSpeciesTexture() {
             return "monster.png";
     }
     return "";
+}
+
+void Monster::changeHealth(int n) {
+    if (static_cast<signed int>(health) + n <= 0) {
+        std::cout << "  Changing health (" << health << ") by " << n << "\n";
+        health = 0;
+    }
+    else if (health + n > maxHealth) {
+        health = maxHealth;
+    }
+    else {
+        health += n;
+    }
 }

@@ -17,7 +17,9 @@
  * @param size The size of the Room
  * @param enc The Encounterable held in the Room
  */
-Room::Room(unsigned int size, Encounterable* enc) : encounter(enc), length(size), active(false) {}
+Room::Room(Player& player, unsigned int size, Encounterable& enc) : player(player), encounter(&enc), length(size), active(false) {
+    showPrevious = true;
+}
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * 
@@ -26,7 +28,7 @@ Room::Room(unsigned int size, Encounterable* enc) : encounter(enc), length(size)
  * 
  * @param seed The seed for the Room
  */
-Room::Room(unsigned int seed, sf::Window& window) : Room((seed%15)+42, genRandomEncounterable(seed, window)) {}
+Room::Room(Player& player, unsigned int seed, sf::Window& window) : Room(player, (seed%15)+42, genRandomEncounterable(seed, window)) {}
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * 
@@ -35,7 +37,7 @@ Room::Room(unsigned int seed, sf::Window& window) : Room((seed%15)+42, genRandom
  * 
  * @param Original Room
  */
-Room::Room(const Room& orig) : length(orig.getLength()) {}
+Room::Room(const Room& orig) : player(orig.player), length(orig.getLength()) {}
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * 
@@ -68,38 +70,6 @@ unsigned int getDistance() {
     return 0; //Temporary default value
 }
 
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
- * 
- * Get RoomType enumerator value representing the subclass
- * of Encounterable held in the Room.
- * 
- * @return Type of Encounterable in Room
- */
-RoomType Room::getType() const {
-    return encounter->getType();
-}
-
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
- * 
- * Get the Encounterable of the Room.
- * 
- * @return The Room's Encounterable
- */
-Encounterable* Room::getEncounter() const {
-    return encounter;
-}
-
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
- * 
- * Get EncounterScreen subclass from the Encounterable held
- * in the Room.
- * 
- * @return EncounterScreen of Encounterable
- */
-EncounterScreen* Room::getScreen() const {
-    return getEncounter()->getEncounterScreen();
-}
-
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc=" Graphical Methods ">
@@ -116,6 +86,7 @@ EncounterScreen* Room::getScreen() const {
  */
 void Room::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(*encounter);
+    encounter->drawExtras(target, states);
 }
 
 // </editor-fold>
@@ -193,17 +164,7 @@ void Room::deactivate() {
  * 
  * @return Random Encounterable
  */
-Encounterable* Room::genRandomEncounterable(unsigned int seed, sf::Window& window) {
-    RoomType temp = static_cast<RoomType>(seed % 2);
-    if (temp == monster) {
-        return new Monster(dinosaur, window);
-    }
-    if (temp == treasure) {
-        return new Treasure(window);
-    }
-    std::cout << "Something went wrong in Room::genRandomEncounterable\n";
-    return NULL;
-}
+Encounterable& Room::genRandomEncounterable(unsigned int seed, sf::Window& window) {};
 
 // </editor-fold>
 
@@ -222,7 +183,7 @@ std::ostream& operator<<(std::ostream &strm, const Room &r) {
     } else {
         strm << " Inactive ";
     }
-    strm << "size " << std::to_string(r.getLength()) << " " << r.getEncounter()->getTypeName();
+    strm << "size " << std::to_string(r.getLength()) << " " << r.encounter->getTypeName();
     return strm;
 }
 

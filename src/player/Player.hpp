@@ -169,11 +169,13 @@ public:
     
     bool isMovingLeft();
     
+    HealthBar healthbar;
+    
     
     
     /*stats*/
-    unsigned maxHealth;
-    unsigned health;
+    unsigned maxHealth = 50;
+    unsigned health = 50;
     void changeHealth(int amount);
     Stats stats;
     void modify(Stats playerStat);
@@ -207,6 +209,8 @@ public:
     /*Saving data*/
     void writeData(std::ostream &saveData,Item items[]);
     Player(std::istream& saveData,Item items[]);
+    
+    void run(sf::Event event);
     
 private:
     /* Absolute position of the Player - in context of Hall */

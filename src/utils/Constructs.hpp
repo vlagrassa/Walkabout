@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include "Utils.hpp"
+#include "Defaults.hpp"
 #include "../screen/ScreenMode.hpp"
 
 class Oscillator;
@@ -60,38 +61,18 @@ public:
     virtual void run(sf::Event event) = 0;
 };
 
-class Slider : public sf::RectangleShape, public FrameRate {
+class HealthBar : public sf::Drawable {
 public:
-    unsigned int currentPos = 20;
-    int dir = 2;
-    Oscillator& base;
-    Slider(sf::Vector2f size, int frameRate, Oscillator& base) : RectangleShape(size), FrameRate(frameRate), base(base) {};
-    Slider(const Slider& orig) : RectangleShape(orig), FrameRate(orig), base(orig.base) {};
-    
-    void run(sf::Event event) {};
-};
-
-class Oscillator : public sf::Drawable, public FrameRate {
-public:
-    unsigned int targetPos;
     sf::RectangleShape outline;
-    Slider attackSlider;
+    sf::RectangleShape health;
+    unsigned int& source;
+    unsigned int& max;
     
-    Oscillator(sf::Vector2f pos, sf::Vector2f size, unsigned int frameRate) : FrameRate(frameRate), outline(size), attackSlider(sf::Vector2f(10,size.y), frameRate, *this) {
-        initShapes(pos);
-    };
+    HealthBar(sf::Vector2f pos, sf::Vector2f size, unsigned int& source, unsigned int& max);
+    HealthBar(const HealthBar& orig);
     
-    Oscillator(const Oscillator& orig) : FrameRate(orig.frameRate), attackSlider(orig.attackSlider) {};
-    
-    virtual ~Oscillator() {};
-    
-    void run(sf::Event event);
-    
+    void update();
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-    
-private:
-    
-    void initShapes(sf::Vector2f pos);
 };
 
 #endif /* CONSTRUCTS_H */

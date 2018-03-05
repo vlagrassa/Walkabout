@@ -37,7 +37,8 @@ void Player::writeData(std::ostream &saveData,Item items[]){
             saveData.flush();
 }
 
-Player::Player(std::istream& saveData,Item items[]){ 
+
+Player::Player(std::istream& saveData,Item items[]) : healthbar(sf::Vector2f(164, 536), sf::Vector2f(626, 25), health, maxHealth){ 
     char s[3];
     saveData.getline(s,3,',');
     if(s[0] =='\0'){
@@ -55,3 +56,6 @@ Player::Player(std::istream& saveData,Item items[]){
     equipment.pocket1 = &items[std::stoi(s)];
     std::cout << s;
 }
+
+
+

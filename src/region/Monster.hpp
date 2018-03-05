@@ -4,13 +4,14 @@
 #include <stdlib.h>
 #include <SFML/Graphics.hpp>
 #include "Encounterable.hpp"
-#include "../screen/EncounterScreen.hpp"
+//#include "../screen/EncounterScreen.hpp"
+#include "../utils/AnimatedSprite.hpp"
 
 enum MonsterSpecies {
     dinosaur
 };
 
-class Monster: public Encounterable {
+class Monster: public Encounterable, public AnimatedSprite {
 public:
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -33,17 +34,6 @@ public:
      *   -Texture (temporary)
      */
     virtual ~Monster();
-    
-    
-    /* Inherited Methods */
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
-     * Get the EncounterScreen associated with the Encounterable.
-     * Overwritten to return a FightScreen.
-     * @return FightScreen representing fight with Monster
-     */
-    FightScreen* getEncounterScreen() const;
     
     
     /* Implemented Abstract Methods */
@@ -80,6 +70,8 @@ public:
      */
     void encounter(Player& player);
     
+    virtual void drawExtras(sf::RenderTarget& target, sf::RenderStates states) const;
+    
     
     /* Original Methods */
     
@@ -115,18 +107,20 @@ public:
      */
     MonsterSpecies getSpecies() const;
     
+    virtual void run(sf::Event event) {};
+    void changeHealth(int n);
+    
+    HealthBar healthbar;
+    
 private:
     /* The Monster's name */
     std::string name;
     
     /* The maximum health possible */
-    int maxHealth;
+    unsigned int maxHealth;
     
     /* The current health*/
-    int health;
-    
-    /* The associated FightScreen */
-    FightScreen* battle_screen;
+    unsigned int health;
     
     /* Pointer to the Monster texture */
     sf::Texture* monster_texture;

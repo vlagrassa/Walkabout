@@ -32,18 +32,6 @@ public:
     virtual ~Treasure();
     
     
-    /* Inherited Methods */
-    
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
-     * Get the EncounterScreen associated with the Encounterable.
-     * Overwritten to return a TreasureScreen.
-     * 
-     * @return FightScreen representing fight with Monster
-     */
-    TreasureScreen* getEncounterScreen() const;
-    
-    
     /* Implemented Abstract Methods */
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -81,12 +69,12 @@ public:
      */
     void encounter(Player& player);
     
+    virtual void drawExtras(sf::RenderTarget& target, sf::RenderStates states) const;
+    
     /* Original Methods */
     
     
 private:
-    /* The associated TreasureScreen */
-    TreasureScreen* treasure_screen;
     
     /* Pointer to the Treasure texture */
     sf::Texture* treasure_texture;

@@ -22,6 +22,7 @@ sf::RectangleShape DEFAULT_RECT;
 sf::RenderWindow DEFAULT_WINDOW(sf::VideoMode(800, 600), "Walkabout");
 sf::Clock DEFAULT_GAMECLOCK;
 
+
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * Function to quit the game. At the moment, just closes the
  * given window, but can be expanded to save the game.
@@ -35,10 +36,40 @@ void quitGame(sf::Window& window = DEFAULT_WINDOW) {
     window.close();
 }
 
+
+void handleNextScreen(Stack<ScreenMode&>& listOfScreens, ScreenMode* nextScreen) {
+    if (nextScreen == 0) {
+        /* If next screen is 0x0 (NULL), pop the current screen (go back) */
+        listOfScreens.pop();
+        std::cout << "Removed screen:\n" << listOfScreens << "\n";
+    }
+    else if (nextScreen != &listOfScreens.top->data) {
+        ScreenMode* backScreen = NULL;
+        for (Node<ScreenMode&>* n = listOfScreens.top; n != 0; n = n->next) {
+            if (&n->data == nextScreen) {
+                backScreen = &n->data;
+                break;
+            }
+        }
+
+        if (backScreen == NULL) {
+            /* If the next screen is different from the current screen, push it onto the stack */
+            listOfScreens.push(*nextScreen);
+            std::cout << "Added screen:\n" << listOfScreens << "\n";
+        } else {
+            while (&listOfScreens.top->data != backScreen) {
+                listOfScreens.pop();
+            }
+            std::cout << "Moved back to screen:\n" << listOfScreens << "\n";
+        }
+    }
+    /* If neither of the above happened then the next screen is the same as the current screen - don't do anything */
+}
+
  
 int main() {
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
-    
+    sf::Clock AnimationClock;
     /* Instantiate the defaults */
     DEFAULT_FONT.loadFromFile("resources/Courier.dfont");
     
@@ -101,23 +132,82 @@ int main() {
     /* Create other textures */
     sf::Texture monsterTexture;
     sf::Texture playerTexture;
-    if (!monsterTexture.loadFromFile(resourceDir + "monster.png"))
+    sf::Texture playerAttack;
+    sf::Texture playerBlock;
+    sf::Texture playerHit;
+    sf::Texture playerWalk;
+    sf::Texture playerStand;
+    sf::Texture playerFightStance;
+    sf::Texture playerWakeUp;
+    sf::Texture playerDie;
+    sf::Texture monsterAttack;
+    sf::Texture monsterStanding;
+    sf::Texture monsterHit;
+    sf::Texture monsterDie;
+    if (!monsterStanding.loadFromFile(resourceDir + "spritesheets/monster_standing.jpg"))
+    {
+        std::cout<< "\n" << "monster standing error" << "n/";
+    }
+    if (!playerStand.loadFromFile(resourceDir + "spritesheets/stand.jpeg"))
+    {
+        std::cout << "\n" << "stand error" << "\n";
+    }
+    if (!playerWalk.loadFromFile(resourceDir + "spritesheets/walk.png"))
+    {
+        std::cout <<  "\n" << "walk error" << "\n";
+    }
+    if (!playerHit.loadFromFile(resourceDir + "spritesheets/hit.png"))
     {
         return -1;
     }
-    if (!playerTexture.loadFromFile(resourceDir + "player.png"))
+    if (!playerAttack.loadFromFile(resourceDir + "spritesheets/sword_attack.jpeg"))
     {
         return -1;
     }
+    if (!playerFightStance.loadFromFile(resourceDir + "spritesheets/fight_stance.png"))
+    {
+        return -1;
+    }
+    if (!playerWakeUp.loadFromFile(resourceDir + "spritesheets/wake_up.png"))
+    {
+        return -1;
+    }
+    if (!playerDie.loadFromFile(resourceDir + "spritesheets/die.jpg"))
+    {
+        return -1;
+    }
+    if (!playerBlock.loadFromFile(resourceDir + "spritesheets/block.png"))
+    {
+        return -1;
+    }
+    if (!monsterAttack.loadFromFile(resourceDir + "spritesheets/monster_attack.png"))
+    {
+        return -1;
+    }
+    if (!monsterDie.loadFromFile(resourceDir + "spritesheets/monster_die.png"))
+    {
+        return -1;
+    }
+    if (!monsterHit.loadFromFile(resourceDir + "spritesheets/monster_hit.png"))
+    {
+        return -1;
+    }
+    
     monsterTexture.setSmooth(true);
     playerTexture.setSmooth(true);
     
     /* Instantiate Player */
     Player player;
-    player.addAnimation(playerTexture, 3,3);
+//    add animations to player
+    player.addAnimation(playerStand, 6,3);
+    player.addAnimation(playerWalk, 5, 3);
+    player.addAnimation(playerAttack, 5,2);
+    player.addAnimation(playerFightStance, 5,1);
+    std::cout << "/n" << (player.Animations.size)<< "/n";
+    
     player.setAnimation();
     //h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/4);
-    player.setPosition(0,DEFAULT_WINDOW.getSize().x/4);
+    player.setPosition(DEFAULT_WINDOW.getSize().x/20,DEFAULT_WINDOW.getSize().y/4);
     
     player.equip(stick);
     
@@ -141,8 +231,9 @@ int main() {
     mainMenu.addButton("Quit [W]", 0, sf::Keyboard::W);
     
     
-    testGameScreen.addButton("Hiii", 0);
-    testGameScreen.addButton("Main Menu [M]", 0, sf::Keyboard::M);
+    testGameScreen.addButton("Challenge\n   [^]", 0);
+    testGameScreen.addButton("Inventory\n   [I]", 0, sf::Keyboard::I);
+    testGameScreen.addButton("Main Menu\n   [M]", 0, sf::Keyboard::M);
     
     testMenu1.addButton("In menu 1", testMenu2);
     testMenu2.addButton("In menu 2", testMenu3);
@@ -197,13 +288,11 @@ int main() {
                             std::cout << "Quit screen:\n" << listOfScreens << "\n";
                         }
                     }
-                    if (event.key.code == sf::Keyboard::A) {
-                        //testGameScreen.buttons.first->data.setTitle("On");
-                        testGameScreen.buttons.first->data.activate();
+                    if (event.key.code == sf::Keyboard::U) {
+                        player.health -= 5;
                     }
-                    if (event.key.code == sf::Keyboard::D) {
-                        //testGameScreen.buttons.first->data.setTitle("Off");
-                        testGameScreen.buttons.first->data.deactivate();
+                    if (event.key.code == sf::Keyboard::I) {
+                        player.health += 5;
                     }
                     if (event.key.code == sf::Keyboard::L) {
                         std::ofstream savefile;
@@ -224,6 +313,10 @@ int main() {
                 default:
                     break;
             }
+            if (!listOfScreens.isEmpty()) {
+                ScreenMode* nextScreen = listOfScreens.top->data.update(event);
+                handleNextScreen(listOfScreens, nextScreen);
+            }
         }
         
         /* Update the debugging text */
@@ -242,33 +335,7 @@ int main() {
             
             /* Get the next screen */
             ScreenMode* nextScreen = listOfScreens.top->data.run(event);
-            
-            if (nextScreen == 0) {
-                /* If next screen is 0x0 (NULL), pop the current screen (go back) */
-                listOfScreens.pop();
-                std::cout << "Removed screen:\n" << listOfScreens << "\n";
-            }
-            else if (nextScreen != &listOfScreens.top->data) {
-                ScreenMode* backScreen = NULL;
-                for (Node<ScreenMode&>* n = listOfScreens.top; n != 0; n = n->next) {
-                    if (&n->data == nextScreen) {
-                        backScreen = &n->data;
-                        break;
-                    }
-                }
-                
-                if (backScreen == NULL) {
-                    /* If the next screen is different from the current screen, push it onto the stack */
-                    listOfScreens.push(*nextScreen);
-                    std::cout << "Added screen:\n" << listOfScreens << "\n";
-                } else {
-                    while (&listOfScreens.top->data != backScreen) {
-                        listOfScreens.pop();
-                    }
-                    std::cout << "Moved back to screen:\n" << listOfScreens << "\n";
-                }
-            }
-            /* If neither of the above happened then the next screen is the same as the current screen - don't do anything */
+            handleNextScreen(listOfScreens, nextScreen);
             
             /* Draw the top of the stack (and the previous screen if necessary) */
             if (!listOfScreens.isEmpty()) {

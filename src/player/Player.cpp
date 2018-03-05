@@ -4,11 +4,11 @@
 #include <cstdlib>
 #include <iostream>
 
-Player::Player() : posX(0), posInRoom(0), stepSize(10), stats({0, 0, 0}) {
+Player::Player() : posX(0), posInRoom(0), stepSize(10), stats({0, 0, 0}), healthbar(sf::Vector2f(164, 536), sf::Vector2f(626, 25), health, maxHealth) {
     std::cout << "hi";
 }
 
-Player::Player(const Player& p) : posX(p.getX()), posInRoom(p.getPosInRoom()), stepSize(p.getStepSize()) {
+Player::Player(const Player& p) : posX(p.getX()), posInRoom(p.getPosInRoom()), stepSize(p.getStepSize()), healthbar(p.healthbar) {
     std::cout << "hello";
 }
 
@@ -81,8 +81,7 @@ bool Player::isMovingLeft() {
 }
 
 /*Stats*/
-unsigned maxHealth = 0;
-unsigned health = 0;
+
 void Player::changeHealth(int amount){
     health += amount;
 }
@@ -152,6 +151,28 @@ void Player::equip(Item& item){
         default:
             /*throw error*/
             break;
+    }
+}
+
+void Player::run(sf::Event event){
+    if (event.type == sf::Event::KeyPressed){
+        switch (event.key.code){
+            case(sf::Keyboard::Up):
+                Animations.getActive().frames.shiftNode();
+                
+                this->setTextureRect(Animations.getActive().frames.getActive());
+            case(sf::Keyboard::Right):
+                Animations.setActiveIndex(1);
+                setAnimation();
+                Animations.getActive().frames.shiftNode();
+                this->setTextureRect(Animations.getActive().frames.getActive());
+        }
+    }
+    else {
+        Animations.setActiveIndex(0);
+        setAnimation();
+        Animations.getActive().frames.shiftNode();
+        this->setTextureRect(Animations.getActive().frames.getActive());
     }
     
 }

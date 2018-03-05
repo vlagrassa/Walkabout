@@ -14,17 +14,17 @@ void ButtonLine::fitButtonsToRect(LinkedList<LinkedButton&>& buttons) {
             current.outline.setPosition(left, top + i * (length + gap));
             current.outline.setSize(sf::Vector2f(width, length));
         }
-
-        float scaleX = current.title.getGlobalBounds().width / current.outline.getSize().x / 2;
-        float scaleY = current.title.getGlobalBounds().height / current.outline.getSize().y;
-
-        current.title.setPosition(current.getCenter().x - (scaleX*current.outline.getSize().x), current.getCenter().y - (scaleY*current.outline.getSize().y));
+        
+        current.title.setPosition(
+                current.outline.getPosition().x + current.outline.getSize().x/2 - current.title.getGlobalBounds().width/2,
+                current.outline.getPosition().y + current.outline.getSize().y/2 - current.title.getGlobalBounds().height*3/4
+        );
     }
 };
 
 
 void FrameRate::updateFrames(sf::Clock clock, sf::Event event) {
-    time_t newUpdateTime = clock.getElapsedTime().asMilliseconds();
+    int newUpdateTime = clock.getElapsedTime().asMilliseconds();
     if (prevUpdateTime + frameRate <= newUpdateTime) {
         prevUpdateTime = newUpdateTime;
         run(event);
@@ -32,30 +32,28 @@ void FrameRate::updateFrames(sf::Clock clock, sf::Event event) {
 };
 
 
-void Oscillator::run(sf::Event event) {
-    attackSlider.currentPos += attackSlider.dir;
-    if (attackSlider.currentPos >= outline.getPosition().x + outline.getSize().x - attackSlider.getSize().x) {
-        attackSlider.dir = std::abs(attackSlider.dir) * -1;
-        attackSlider.currentPos = outline.getPosition().x + outline.getSize().x - attackSlider.getSize().x;
-    } else if (attackSlider.currentPos <= outline.getPosition().x) {
-        attackSlider.dir = std::abs(attackSlider.dir);
-        attackSlider.currentPos = outline.getPosition().x;
-    }
-    attackSlider.setPosition(sf::Vector2f(attackSlider.currentPos, attackSlider.getPosition().y));
-}
-
-void Oscillator::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    target.draw(outline);
-    target.draw(attackSlider);
-}
-
-void Oscillator::initShapes(sf::Vector2f pos) {
-    attackSlider.setFillColor(sf::Color::Cyan);
-    attackSlider.setOutlineColor(sf::Color::Black);
-    attackSlider.setOutlineThickness(3);
-    attackSlider.setPosition(pos);
-    outline.setFillColor(sf::Color::Black);
-    outline.setOutlineColor(sf::Color::Black);
-    outline.setOutlineThickness(3);
+HealthBar::HealthBar(sf::Vector2f pos, sf::Vector2f size, unsigned int& source, unsigned int& max) : outline(size), health(size), source(source), max(max) {
     outline.setPosition(pos);
+    outline.setFillColor(sf::Color::Transparent);
+    outline.setOutlineColor(sf::Color::Black);
+    outline.setOutlineThickness(2);
+    health.setPosition(pos);
+    health.setFillColor(sf::Color::Green);
+    health.setOutlineThickness(0);
 }
+
+HealthBar::HealthBar(const HealthBar& orig) : outline(orig.outline), health(orig.health), source(orig.source), max(orig.max) {};
+
+void HealthBar::update() {
+    //std::cout << "Health: " << source << "/" << max << "\n";
+    if (max == 0) {
+        health.setSize(sf::Vector2f(0, health.getSize().y));
+    } else {
+        health.setSize(sf::Vector2f(source/static_cast<float>(max)*outline.getSize().x, health.getSize().y));
+    }
+}
+
+void HealthBar::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    target.draw(health);
+    target.draw(outline);
+};

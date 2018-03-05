@@ -17,8 +17,8 @@ Animation::~Animation() {
 
 void Animation::setSpriteSheet(int rowNum, int colNum){
     
-    int width = texture.getSize().x/rowNum;
-    int height = texture.getSize().y/colNum;
+    int width = texture.getSize().x/colNum;
+    int height = texture.getSize().y/rowNum;
     
     
     

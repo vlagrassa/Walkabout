@@ -204,10 +204,10 @@ int main() {
     /* Instantiate Player */
     Player player;
 //    add animations to player
-    player.addAnimation(playerStand, 6,3);
-    player.addAnimation(playerWalk, 5, 3);
-    player.addAnimation(playerAttack, 5,2);
-    player.addAnimation(playerFightStance, 5,1);
+    player.addAnimation(playerStand, 3,6);
+    player.addAnimation(playerWalk, 3, 5);
+    player.addAnimation(playerAttack, 2,5);
+    player.addAnimation(playerFightStance, 1,5);
     std::cout << "/n" << (player.Animations.size)<< "/n";
     
     player.setAnimation();

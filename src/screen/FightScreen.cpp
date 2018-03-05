@@ -213,6 +213,6 @@ ScreenMode* FightScreen::run(sf::Event event) {
 };
 
 Encounterable& FightScreen::genRandomEncounterable(unsigned int seed, sf::Window& window) {
-    monster = new Monster(dinosaur, window);
+    monster = new Monster( window);
     return *monster;
 }

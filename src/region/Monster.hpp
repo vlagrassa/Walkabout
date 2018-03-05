@@ -7,9 +7,6 @@
 //#include "../screen/EncounterScreen.hpp"
 #include "../utils/AnimatedSprite.hpp"
 
-enum MonsterSpecies {
-    dinosaur
-};
 
 class Monster: public Encounterable, public AnimatedSprite {
 public:
@@ -18,7 +15,7 @@ public:
      * Constructor method.
      * @param MonsterSpecies type
      */
-    Monster(MonsterSpecies s, sf::Window& window);
+    Monster( sf::Window& window);
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -99,15 +96,8 @@ public:
      */
     int getHealth() const;
     
-    /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-     * 
-     * Get a MonsterSpecies enumerator value representing the
-     * species (type) of Monster.
-     * @return The Monster's type as an enum
-     */
-    MonsterSpecies getSpecies() const;
-    
     virtual void run(sf::Event event) {};
+    
     void changeHealth(int n);
     
     HealthBar healthbar;
@@ -122,14 +112,6 @@ private:
     /* The current health*/
     unsigned int health;
     
-    /* Pointer to the Monster texture */
-    sf::Texture* monster_texture;
-    
-    /* Enum to hold what type of Monster */
-    MonsterSpecies species;
-    
-    /*  */
-    std::string getSpeciesTexture();
 };
 
 #endif /* MONSTER_H */

@@ -4,25 +4,19 @@
 
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
-Monster::Monster(MonsterSpecies s, sf::Window& window) : healthbar(sf::Vector2f(164, 566), sf::Vector2f(626, 25), health, maxHealth) {
+Monster::Monster( sf::Window& window) : healthbar(sf::Vector2f(164, 566), sf::Vector2f(626, 25), health, maxHealth) {
     name = "John";
     maxHealth = 20;
     health = maxHealth;
-    species = s;
     healthbar.health.setFillColor(sf::Color::Red);
     
-    monster_texture = new sf::Texture();
-    if (!monster_texture->loadFromFile("resources/" + getSpeciesTexture())) {
-        std::cout << "Failed to load Monster texture " << getSpeciesTexture() << " from directory " << "resources/" << "\n";
-    }
-    monster_texture->setSmooth(true);
-    Encounterable::setTexture(*monster_texture);
+    
 }
 
 Monster::Monster(const Monster& orig) : healthbar(orig.healthbar) {}
 
 Monster::~Monster() {
-    delete monster_texture;
+    
 }
 
 // </editor-fold>
@@ -72,20 +66,9 @@ int Monster::getHealth() const {
     return health;
 }
 
-/* Returns an enum MonsterSpecies value representing the monster's species */
-MonsterSpecies Monster::getSpecies() const {
-    return species;
-}
 
 // </editor-fold>
 
-std::string Monster::getSpeciesTexture() {
-    switch(species) {
-        case (dinosaur):
-            return "monster.png";
-    }
-    return "";
-}
 
 //void Monster::run(sf::Event event){
 //    Animations.getActive().frames.shiftNode();

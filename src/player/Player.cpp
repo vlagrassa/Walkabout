@@ -154,26 +154,23 @@ void Player::equip(Item& item){
     }
 }
 
-void Player::run(sf::Event event){
+void Player::action(sf::Event event){
     if (event.type == sf::Event::KeyPressed){
         switch (event.key.code){
-            case(sf::Keyboard::Up):
-                Animations.getActive().frames.shiftNode();
-                
-                this->setTextureRect(Animations.getActive().frames.getActive());
             case(sf::Keyboard::Right):
                 Animations.setActiveIndex(1);
                 setAnimation();
-                Animations.getActive().frames.shiftNode();
-                this->setTextureRect(Animations.getActive().frames.getActive());
         }
     }
     else {
         Animations.setActiveIndex(0);
         setAnimation();
-        Animations.getActive().frames.shiftNode();
-        this->setTextureRect(Animations.getActive().frames.getActive());
     }
+}
+
+void Player::run(sf::Event event){
+    Animations.getActive().frames.shiftNode();
+    this->setTextureRect(Animations.getActive().frames.getActive());
     
 }
 

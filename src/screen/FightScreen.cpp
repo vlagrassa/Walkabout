@@ -157,7 +157,7 @@ void FightScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const 
 }
 
 ScreenMode* FightScreen::update(sf::Event event) {
-    //If space pressed, grab the strength & switch the attack bar's current area
+    //If space pressed, take the strength & switch the attack bar's current area
     if (event.type != sf::Event::KeyReleased && event.key.code == sf::Keyboard::Space) {
         float strength = attackBar.getStrength();
         switch (attackBar.area) {
@@ -175,21 +175,17 @@ ScreenMode* FightScreen::update(sf::Event event) {
                 attackBar.scramble();
                 break;
             case (Oscillator::critical):
-                //Case crit region: take double from the monster's health??
+                //Case critical region: take double from the monster's health??
                 break;
             case (Oscillator::empty):
-                //Case blank region: don't really do anything
+                //Case blank region: no action necessary
                 break;
         }
         if (monster->getHealth() <= 0) {
             passed = true;
             return 0;
         }
-        //After switch statement, scramble the areas to reset
-//        if (attackBar.area != Oscillator::empty)
-//            attackBar.scramble();
     }
-    //If the bar passes the defense region without space, take full damage
     
     return Room::update(event);
 }

@@ -4,12 +4,12 @@
 #include "Utils.hpp"
 #include "AnimatedSprite.hpp"
 
-AnimatedSprite::AnimatedSprite(){
+AnimatedSprite::AnimatedSprite() : FrameRate(83){
     
 }
 
 
-AnimatedSprite::AnimatedSprite(const AnimatedSprite& orig){
+AnimatedSprite::AnimatedSprite(const AnimatedSprite& orig) : FrameRate(83){
     
 }
 AnimatedSprite::~AnimatedSprite(){
@@ -21,7 +21,10 @@ void AnimatedSprite::addAnimation(sf::Texture& spriteSheet, int rowNum, int colN
 }
 void AnimatedSprite::setAnimation(){
     this->setTexture(Animations.getActive().getTexture());
+    this->setTextureRect(Animations.getActive().frames.getStart());
 }
+
+
 
 Animation& AnimatedSprite::getAnimation(){
     

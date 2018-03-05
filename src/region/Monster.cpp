@@ -17,7 +17,7 @@ Monster::Monster(MonsterSpecies s, sf::Window& window) {
         std::cout << "Failed to load Monster texture " << getSpeciesTexture() << " from directory " << "resources/" << "\n";
     }
     monster_texture->setSmooth(true);
-    setTexture(*monster_texture);
+    Encounterable::setTexture(*monster_texture);
 }
 
 Monster::Monster(const Monster& orig) {

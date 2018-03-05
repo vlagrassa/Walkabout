@@ -21,6 +21,7 @@ sf::RectangleShape DEFAULT_RECT;
 sf::RenderWindow DEFAULT_WINDOW(sf::VideoMode(800, 600), "Walkabout");
 sf::Clock DEFAULT_GAMECLOCK;
 
+
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * Function to quit the game. At the moment, just closes the
  * given window, but can be expanded to save the game.
@@ -37,7 +38,7 @@ void quitGame(sf::Window& window = DEFAULT_WINDOW) {
  
 int main() {
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
-    
+    sf::Clock AnimationClock;
     /* Instantiate the defaults */
     DEFAULT_FONT.loadFromFile("resources/Courier.dfont");
     
@@ -106,23 +107,84 @@ int main() {
     /* Create other textures */
     sf::Texture monsterTexture;
     sf::Texture playerTexture;
-    if (!monsterTexture.loadFromFile(resourceDir + "monster.png"))
+    sf::Texture playerAttack;
+    sf::Texture playerBlock;
+    sf::Texture playerHit;
+    sf::Texture playerWalk;
+    sf::Texture playerStand;
+    sf::Texture playerFightStance;
+    sf::Texture playerWakeUp;
+    sf::Texture playerDie;
+    sf::Texture monsterAttack;
+    sf::Texture monsterStanding;
+    sf::Texture monsterHit;
+    sf::Texture monsterDie;
+    if (!monsterStanding.loadFromFile(resourceDir + "spritesheets/monster_standing.jpg"))
+    {
+        std::cout<< "\n" << "monster standing error" << "n/";
+    }
+    if (!playerStand.loadFromFile(resourceDir + "spritesheets/stand.jpeg"))
+    {
+        std::cout << "\n" << "stand error" << "\n";
+    }
+    if (!playerWalk.loadFromFile(resourceDir + "spritesheets/walk.png"))
+    {
+        std::cout <<  "\n" << "walk error" << "\n";
+    }
+    if (!playerHit.loadFromFile(resourceDir + "spritesheets/hit.png"))
     {
         return -1;
     }
-    if (!playerTexture.loadFromFile(resourceDir + "player.png"))
+    if (!playerAttack.loadFromFile(resourceDir + "spritesheets/sword_attack.jpeg"))
     {
         return -1;
     }
+    if (!playerFightStance.loadFromFile(resourceDir + "spritesheets/fight_stance.png"))
+    {
+        return -1;
+    }
+    if (!playerWakeUp.loadFromFile(resourceDir + "spritesheets/wake_up.png"))
+    {
+        return -1;
+    }
+    if (!playerDie.loadFromFile(resourceDir + "spritesheets/die.jpg"))
+    {
+        return -1;
+    }
+    if (!playerBlock.loadFromFile(resourceDir + "spritesheets/block.png"))
+    {
+        return -1;
+    }
+    if (!monsterAttack.loadFromFile(resourceDir + "spritesheets/monster_attack.png"))
+    {
+        return -1;
+    }
+    if (!monsterDie.loadFromFile(resourceDir + "spritesheets/monster_die.png"))
+    {
+        return -1;
+    }
+    if (!monsterHit.loadFromFile(resourceDir + "spritesheets/monster_hit.png"))
+    {
+        return -1;
+    }
+    
     monsterTexture.setSmooth(true);
     playerTexture.setSmooth(true);
     
     /* Instantiate Player */
     Player player;
-    player.addAnimation(playerTexture, 3,3);
+//    add animations to player
+    player.addAnimation(playerStand, 6,3);
+    player.addAnimation(playerWalk, 5, 3);
+//    sf::Vector2u pop = player.Animations.get(2).getTexture().getSize();
+    
+    player.addAnimation(playerAttack, 5,2);
+    player.addAnimation(playerFightStance, 5,1);
+    std::cout << "/n" << (player.Animations.size)<< "/n";
+    
     player.setAnimation();
     //h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/4);
-    player.setPosition(0,DEFAULT_WINDOW.getSize().x/4);
+    player.setPosition(DEFAULT_WINDOW.getSize().x/20,DEFAULT_WINDOW.getSize().y/4);
     
     player.equip(stick);
     

@@ -24,38 +24,9 @@ void ButtonLine::fitButtonsToRect(LinkedList<LinkedButton&>& buttons) {
 
 
 void FrameRate::updateFrames(sf::Clock clock, sf::Event event) {
-    time_t newUpdateTime = clock.getElapsedTime().asMilliseconds();
+    int newUpdateTime = clock.getElapsedTime().asMilliseconds();
     if (prevUpdateTime + frameRate <= newUpdateTime) {
         prevUpdateTime = newUpdateTime;
         run(event);
     }
 };
-
-
-void Oscillator::run(sf::Event event) {
-    attackSlider.currentPos += attackSlider.dir;
-    if (attackSlider.currentPos >= outline.getPosition().x + outline.getSize().x - attackSlider.getSize().x) {
-        attackSlider.dir = std::abs(attackSlider.dir) * -1;
-        attackSlider.currentPos = outline.getPosition().x + outline.getSize().x - attackSlider.getSize().x;
-    } else if (attackSlider.currentPos <= outline.getPosition().x) {
-        attackSlider.dir = std::abs(attackSlider.dir);
-        attackSlider.currentPos = outline.getPosition().x;
-    }
-    attackSlider.setPosition(sf::Vector2f(attackSlider.currentPos, attackSlider.getPosition().y));
-}
-
-void Oscillator::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    target.draw(outline);
-    target.draw(attackSlider);
-}
-
-void Oscillator::initShapes(sf::Vector2f pos) {
-    attackSlider.setFillColor(sf::Color::Cyan);
-    attackSlider.setOutlineColor(sf::Color::Black);
-    attackSlider.setOutlineThickness(3);
-    attackSlider.setPosition(pos);
-    outline.setFillColor(sf::Color::Black);
-    outline.setOutlineColor(sf::Color::Black);
-    outline.setOutlineThickness(3);
-    outline.setPosition(pos);
-}

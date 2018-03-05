@@ -145,14 +145,8 @@ int main() {
     sf::Texture playerFightStance;
     sf::Texture playerWakeUp;
     sf::Texture playerDie;
-    sf::Texture monsterAttack;
-    sf::Texture monsterStanding;
-    sf::Texture monsterHit;
-    sf::Texture monsterDie;
-    if (!monsterStanding.loadFromFile(resourceDir + "spritesheets/monster_standing.jpg"))
-    {
-        std::cout<< "\n" << "monster standing error" << "n/";
-    }
+   
+    
     if (!playerStand.loadFromFile(resourceDir + "spritesheets/stand.jpeg"))
     {
         std::cout << "\n" << "stand error" << "\n";
@@ -185,18 +179,7 @@ int main() {
     {
         return -1;
     }
-    if (!monsterAttack.loadFromFile(resourceDir + "spritesheets/monster_attack.png"))
-    {
-        return -1;
-    }
-    if (!monsterDie.loadFromFile(resourceDir + "spritesheets/monster_die.png"))
-    {
-        return -1;
-    }
-    if (!monsterHit.loadFromFile(resourceDir + "spritesheets/monster_hit.png"))
-    {
-        return -1;
-    }
+   
     
     monsterTexture.setSmooth(true);
     playerTexture.setSmooth(true);

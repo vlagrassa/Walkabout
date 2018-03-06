@@ -135,7 +135,6 @@ int main() {
     
     
     /* Create other textures */
-    sf::Texture monsterTexture;
     sf::Texture playerTexture;
     sf::Texture playerAttack;
     sf::Texture playerBlock;
@@ -181,7 +180,6 @@ int main() {
     }
    
     
-    monsterTexture.setSmooth(true);
     playerTexture.setSmooth(true);
     
     /* Instantiate Player */

@@ -7,6 +7,7 @@
 
 #include "utils/Utils.hpp"
 #include "utils/Defaults.hpp"
+#include "utils/GameInfo.hpp"
 #include "player/Player.hpp"
 #include "region/Hall.hpp"
 #include "screen/Menu.hpp"

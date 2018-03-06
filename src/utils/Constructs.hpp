@@ -76,14 +76,4 @@ public:
 };
 
 
-class Player;
-class Ambience;
-
-struct GameInfo {
-    Player& player;
-    sf::RenderWindow& window;
-    sf::Clock& gameclock;
-    Ambience& ambience;
-};
-
 #endif /* CONSTRUCTS_H */

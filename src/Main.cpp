@@ -86,6 +86,20 @@ int main() {
     /* Identify the resource directory */
     std::string resourceDir = "resources/";
     
+    /* Create Ambience (like a texture pack) and Background */
+    Ambience standard(resourceDir);
+    Background background(standard, DEFAULT_WINDOW);
+    
+    /* Instantiate Player */
+    Player player;
+    
+    GameInfo defaults {
+        player,
+        DEFAULT_WINDOW,
+        DEFAULT_GAMECLOCK,
+        standard
+    };
+    
     /* Instantiate Items*/
         //Head
     Item boringHat(Head,"Boring Hat",{0,1,0});
@@ -184,8 +198,6 @@ int main() {
     monsterTexture.setSmooth(true);
     playerTexture.setSmooth(true);
     
-    /* Instantiate Player */
-    Player player;
 //    add animations to player
     player.addAnimation(playerStand, 3,6);
     player.addAnimation(playerWalk, 3, 5);
@@ -200,9 +212,6 @@ int main() {
     player.equip(stick);
     
     
-    /* Create Ambience (like a texture pack) and Background */
-    Ambience standard(resourceDir);
-    Background background(standard, DEFAULT_WINDOW);
     
     
     /* Initialize ScreenMode Stack, Menu, and GameScreen */

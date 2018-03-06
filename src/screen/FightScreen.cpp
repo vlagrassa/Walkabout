@@ -134,10 +134,13 @@ void Oscillator::updateArea() {
 
 FightScreen::FightScreen(Player& player, int seed, Ambience& ambience, sf::Window& window ) : 
         //Room(seed, window), //This is the ideal but throws seg fault, for some reason
-        Room(player, (seed%15)+42, genRandomEncounterable(seed, window)),
-        attackBar(sf::Vector2f(164,436), sf::Vector2f(626,90), 8),
-        ambience(ambience)
-{}
+        ambience(ambience),
+        Room(player, (seed%15)+42, genRandomEncounterable(seed, window, ambience)),
+        attackBar(sf::Vector2f(164,436), sf::Vector2f(626,90), 8)
+        
+{
+std::cout << "Monster standing texture Fight Screen 1 @" << &this->ambience.monsterStanding << "\n";
+}
     
 FightScreen::FightScreen(const FightScreen& orig) : FightScreen(orig.player, 5,orig.ambience, orig.window) {
     
@@ -213,7 +216,8 @@ ScreenMode* FightScreen::run(sf::Event event) {
     return Room::run(event);
 };
 
-Encounterable& FightScreen::genRandomEncounterable(unsigned int seed, sf::Window& window) {
+Encounterable& FightScreen::genRandomEncounterable(unsigned int seed, sf::Window& window, Ambience& ambience) {
+    std::cout << "Monster standing texture Fight Screen @" << &ambience.monsterStanding << "\n";
     monster = new Monster( window, ambience);
     return *monster;
 }

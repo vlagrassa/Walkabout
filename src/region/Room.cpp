@@ -28,7 +28,7 @@ Room::Room(Player& player, unsigned int size, Encounterable& enc) : player(playe
  * 
  * @param seed The seed for the Room
  */
-Room::Room(Player& player, unsigned int seed, sf::Window& window) : Room(player, (seed%15)+42, genRandomEncounterable(seed, window)) {}
+Room::Room(Player& player, unsigned int seed, sf::Window& window, Ambience& ambience) : Room(player, (seed%15)+42, genRandomEncounterable(seed, window, ambience)) {}
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * 
@@ -164,7 +164,7 @@ void Room::deactivate() {
  * 
  * @return Random Encounterable
  */
-Encounterable& Room::genRandomEncounterable(unsigned int seed, sf::Window& window) {};
+Encounterable& Room::genRandomEncounterable(unsigned int seed, sf::Window& window, Ambience& ambience) {};
 
 // </editor-fold>
 

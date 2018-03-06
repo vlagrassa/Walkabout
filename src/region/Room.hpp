@@ -6,6 +6,7 @@
 #include "Encounterable.hpp"
 #include "../screen/ScreenMode.hpp"
 #include "../utils/Defaults.hpp"
+#include "../window/Ambience.hpp"
 
 class Room : public ScreenMode {
 public:
@@ -31,7 +32,7 @@ public:
      * 
      * @param seed The seed for the Room
      */
-    Room(Player& player, unsigned int seed, sf::Window& window);
+    Room(Player& player, unsigned int seed, sf::Window& window, Ambience& ambience);
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -179,7 +180,7 @@ private:
      * 
      * @return Random Encounterable
      */
-    virtual Encounterable& genRandomEncounterable(unsigned int seed, sf::Window& window) = 0;
+    virtual Encounterable& genRandomEncounterable(unsigned int seed, sf::Window& window, Ambience& ambience) = 0;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

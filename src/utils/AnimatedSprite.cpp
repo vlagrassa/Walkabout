@@ -16,8 +16,11 @@ AnimatedSprite::~AnimatedSprite(){
 }
 
 void AnimatedSprite::addAnimation(sf::Texture& spriteSheet, int rowNum, int colNum ){
+    std::cout<<"\n first test";
     Animation* newAnimation = new Animation(spriteSheet, rowNum, colNum);
+    std::cout<<"\n second test";
     Animations.add(*newAnimation);
+    std::cout<<"\n third test";
 }
 void AnimatedSprite::setAnimation(){
     this->setTexture(Animations.getActive().getTexture());

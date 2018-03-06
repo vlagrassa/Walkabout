@@ -15,6 +15,8 @@
 #include "screen/GameScreen.hpp"
 #include "player/Item.hpp"
 
+#include "region/Monster.hpp"
+
 /* Declare the defaults instantiated in utils/Defaults.hpp */
 sf::Font DEFAULT_FONT;
 sf::RectangleShape DEFAULT_RECT;
@@ -190,7 +192,7 @@ int main() {
     player.addAnimation(playerAttack, 2,5);
     player.addAnimation(playerFightStance, 1,5);
     std::cout << "/n" << (player.Animations.size)<< "/n";
-    
+   
     player.setAnimation();
     //h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/4);
     player.setPosition(DEFAULT_WINDOW.getSize().x/20,DEFAULT_WINDOW.getSize().y/4);
@@ -202,11 +204,16 @@ int main() {
     Ambience standard(resourceDir);
     Background background(standard, DEFAULT_WINDOW);
     
+    std::cout << "Making a monster...\n";
+    Monster m(DEFAULT_WINDOW, standard);
+    std::cout << "what have I done\n";
+    
+    
     
     /* Initialize ScreenMode Stack, Menu, and GameScreen */
     Stack<ScreenMode&> listOfScreens;
     Menu mainMenu(300, 250, 180, 20);
-    GameScreen testGameScreen(player, background);
+    GameScreen testGameScreen(player, background, standard);
     Menu testMenu1(10, 10, 50);
     Menu testMenu2(85, 10, 50);
     Menu testMenu3(160, 10, 50);
@@ -250,6 +257,9 @@ int main() {
     hallText.setCharacterSize(20);
     hallText.setFillColor(sf::Color::Black);
     hallText.setPosition(0, 400);
+//    sf::RectangleShape name;
+//    name.setTexture(&standard.monsterStanding);
+//    name.setSize(sf::Vector2f(100,100));
     
     //int prevUpdateTime = gameclock.getElapsedTime().asMicroseconds();
     
@@ -323,6 +333,7 @@ int main() {
         }
         
         /* Draw the paper texture (for aesthetics) and the debugging text (for help) */
+//        DEFAULT_WINDOW.draw(name);
         DEFAULT_WINDOW.draw(paper);
         //window.draw(hallText);
         

@@ -120,10 +120,11 @@ void Hall::addRoom() {
     RoomType temp = static_cast<RoomType>(rand() % 2);
     switch (temp) {
         case (monster):
+            std::cout << "Monster standing texture Hall @" << &ambience.monsterStanding << "\n";
             r = new FightScreen(player, rand(), ambience);
             break;
         case (treasure):
-            r = new TreasureScreen(player, rand());
+            r = new TreasureScreen(player, rand(), ambience);
             break;
         default:
             throw std::runtime_error("Something went wrong generating a Room in Hall::addRoom()\n");

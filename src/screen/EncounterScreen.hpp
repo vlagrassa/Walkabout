@@ -83,7 +83,7 @@ public:
     virtual ScreenMode* update(sf::Event event);
     virtual ScreenMode* run(sf::Event event);
     
-    virtual Encounterable& genRandomEncounterable(unsigned int seed, sf::Window& window);
+    virtual Encounterable& genRandomEncounterable(unsigned int seed, sf::Window& window, Ambience& ambience);
     
     std::string testThing();
     
@@ -96,11 +96,11 @@ private:
 
 class TreasureScreen: public Room {
 public:
-    TreasureScreen(Player& player, int seed, sf::Window& window = DEFAULT_WINDOW);
+    TreasureScreen(Player& player, int seed, Ambience& ambience, sf::Window& window = DEFAULT_WINDOW);
     TreasureScreen(const TreasureScreen&);
     virtual ~TreasureScreen();
     
-    virtual Encounterable& genRandomEncounterable(unsigned int seed, sf::Window& window);
+    virtual Encounterable& genRandomEncounterable(unsigned int seed, sf::Window& window, Ambience& ambience);
     
     std::string testThing();
 private:

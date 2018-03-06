@@ -23,22 +23,23 @@ Ambience::Ambience(std::string resources) {
         std::cout << "Failed to load image ground_outside.png from directory " << resources << "\n";
     }
      
-    if (!monsterStanding.loadFromFile(resources + "spritesheets/monster_standing.jpg"))
+    if (!monsterStanding.loadFromFile(resources + "spritesheets/monster_standing.png"))
     {
         std::cout<< "\n" << "monster standing error" << "\n";
     }
-     if (!monsterAttack.loadFromFile(resources + "spritesheets/monster_attack.png"))
-    {
-        std::cout<< "\n" << "monster attack error" << "\n";
-    }
-    if (!monsterDie.loadFromFile(resources + "spritesheets/monster_die.png"))
-    {
-        std::cout<< "\n monster die error \n";
-    }
-    if (!monsterHit.loadFromFile(resources + "spritesheets/monster_hit.png"))
-    {
-       std::cout<< "\n monster hit error \n";
-    }
+     std::cout<<"\n pow pow";
+//     if (!monsterAttack.loadFromFile(resources + "spritesheets/monster_attack.png"))
+//    {
+//        std::cout<< "\n" << "monster attack error" << "\n";
+//    }
+//    if (!monsterDie.loadFromFile(resources + "spritesheets/monster_die.jpg"))
+//    {
+//        std::cout<< "\n monster die error \n";
+//    }
+//    if (!monsterHit.loadFromFile(resources + "spritesheets/monster_hit.png"))
+//    {
+//       std::cout<< "\n monster hit error \n";
+//    }
      initTextures();
 }
 
@@ -75,21 +76,21 @@ sf::Texture* Ambience::getGround(){
     return &groundTexture;
 }
 
-sf::Texture* Ambience::getMonsterAttack() {
-    return &monsterAttack;
-}
-
-sf::Texture* Ambience::getMonsterDie() {
-    return &monsterDie;
-}
-
-sf::Texture* Ambience::getMonsterHit() {
-    return &monsterHit;
-}
-
-sf::Texture* Ambience::getMonsterStanding() {
-    return &monsterStanding;
-}
+//sf::Texture& Ambience::getMonsterAttack() {
+//    return monsterAttack;
+//}
+//
+//sf::Texture& Ambience::getMonsterDie() {
+//    return monsterDie;
+//}
+//
+//sf::Texture& Ambience::getMonsterHit() {
+//    return monsterHit;
+//}
+//
+//sf::Texture& Ambience::getMonsterStanding() {
+//    return monsterStanding;
+//}
 
 void Ambience::initTextures() {
     skyTexture.setRepeated(true);

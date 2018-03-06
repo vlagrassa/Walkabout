@@ -1,9 +1,9 @@
 #include "GameScreen.hpp"
 #include <SFML/Graphics.hpp>
 
-GameScreen::GameScreen(Player& player, Background& background, sf::Window& window) : GameScreen(player, background, *new Hall(player, window, background.ambience), window) {};
+GameScreen::GameScreen(Player& player, Background& background, Ambience& ambience, sf::Window& window ) : GameScreen(player, background, ambience, *new Hall(player, window, ambience), window) {};
 
-GameScreen::GameScreen(Player& player, Background& background, Hall& hall, sf::Window& window) : Menu(475, 10, 75, 20, window), player(player), hall(hall), background(background), icon(sf::RectangleShape(sf::Vector2f(141, 151))) {
+GameScreen::GameScreen(Player& player, Background& background, Ambience& ambience, Hall& hall, sf::Window& window) : Menu(475, 10, 75, 20, window), player(player), hall(hall), background(background), icon(sf::RectangleShape(sf::Vector2f(141, 151))) {
     buttonline = ButtonLine(166, 438, 622, 86, 15);
     buttonline.horizontal = true;
     unsigned int numRooms = 3;
@@ -14,6 +14,7 @@ GameScreen::GameScreen(Player& player, Background& background, Hall& hall, sf::W
     icon.setOutlineThickness(5);
     icon.setOutlineColor(sf::Color::Black);
     icon.setFillColor(sf::Color::Transparent);
+    std::cout << "Monster standing texture Game screen @" << &ambience.monsterStanding << "\n";
 };
 
 GameScreen::GameScreen(const GameScreen& orig) : Menu(orig), player(orig.player), hall(orig.hall), background(orig.background), icon(orig.icon) {};

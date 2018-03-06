@@ -11,8 +11,8 @@
 
 class GameScreen: public Menu {
 public:
-    GameScreen(Player& player, Background& background, sf::Window& window = DEFAULT_WINDOW);
-    GameScreen(Player& player, Background& background, Hall& hall, sf::Window& window = DEFAULT_WINDOW);
+    GameScreen(Player& player, Background& background, Ambience& ambience, sf::Window& window = DEFAULT_WINDOW);
+    GameScreen(Player& player, Background& background, Ambience& ambience, Hall& hall, sf::Window& window = DEFAULT_WINDOW);
     GameScreen(const GameScreen&);
     virtual ~GameScreen();
     

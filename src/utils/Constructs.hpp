@@ -75,4 +75,15 @@ public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 
+
+class Player;
+class Ambience;
+
+struct GameInfo {
+    Player& player;
+    sf::RenderWindow& window;
+    sf::Clock& gameclock;
+    Ambience& ambience;
+};
+
 #endif /* CONSTRUCTS_H */

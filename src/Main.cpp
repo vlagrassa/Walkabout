@@ -68,7 +68,7 @@ void handleNextScreen(Stack<ScreenMode&>& listOfScreens, ScreenMode* nextScreen)
  
 int main() {
     std::cout << "\n\n=-=-= This is the start of Main =-=-=\n\n";
-    sf::Clock AnimationClock;
+    
     /* Instantiate the defaults */
     DEFAULT_FONT.loadFromFile("resources/Courier.dfont");
     

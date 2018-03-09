@@ -201,7 +201,7 @@ ScreenMode* FightScreen::run(sf::Event event) {
     player.healthbar.update();
     player.updateFrames(DEFAULT_GAMECLOCK, event);
     encounter->encounter(player);
-    
+    monster->updateFrames(DEFAULT_GAMECLOCK, event);
     if (monster->getHealth() <= 0) {
         passed = true;
         return 0;

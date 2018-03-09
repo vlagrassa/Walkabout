@@ -30,5 +30,5 @@ void AnimatedSprite::setAnimation(){
 
 
 Animation& AnimatedSprite::getAnimation(){
-    
+    return Animations.getActive();
 }

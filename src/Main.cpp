@@ -204,9 +204,10 @@ int main() {
     Ambience standard(resourceDir);
     Background background(standard, DEFAULT_WINDOW);
     
-    std::cout << "Making a monster...\n";
-    Monster m(DEFAULT_WINDOW, standard);
-    std::cout << "what have I done\n";
+//    std::cout << "Making a monster...\n";
+//    Monster m(DEFAULT_WINDOW, standard);
+//    Encounterable* e = &m;
+//    std::cout << "what have I done\n";
     
     
     

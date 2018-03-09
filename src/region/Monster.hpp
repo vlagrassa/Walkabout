@@ -97,7 +97,7 @@ public:
      */
     int getHealth() const;
     
-    void run(sf::Event event) {};
+    void run(sf::Event event);
     
     void changeHealth(int n);
     

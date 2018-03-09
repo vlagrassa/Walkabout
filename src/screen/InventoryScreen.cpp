@@ -2,18 +2,18 @@
 #include <SFML/Graphics.hpp>
 #include "../utils/Defaults.hpp"
 
-ItemBox::ItemBox(Item anitem) : x(anitem) {
+ItemBox::ItemBox(Item anitem, int h) : x(anitem){
     background.setSize(sf::Vector2f(800,200));
-    background.setPosition(sf::Vector2f(0,0));
+    background.setPosition(sf::Vector2f(0,h));
     background.setFillColor(sf::Color(222,184,135));
     
     item.setSize(sf::Vector2f(200,200));
-    item.setPosition(sf::Vector2f(0,0));
+    item.setPosition(sf::Vector2f(0,h));
     item.setFillColor(sf::Color(205,133,63));
     
     info.setFont(DEFAULT_FONT);
     info.setFillColor(sf::Color::Black);
-    info.setPosition(200,50);
+    info.setPosition(200,h + 50);
     info.setString("blabla");
 }
 
@@ -27,11 +27,11 @@ void ItemBox::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(info);
 }
 
-InventoryScreen::InventoryScreen(Item anitem) : itembox1(anitem),itembox2(anitem){
+InventoryScreen::InventoryScreen(Item anitem) : itembox1(anitem, 0),itembox2(anitem, 200){
     
 }
 
-InventoryScreen::InventoryScreen(const InventoryScreen& orig) : itembox1(orig.itembox1.x), itembox2(orig.itembox2.x){
+InventoryScreen::InventoryScreen(const InventoryScreen& orig) : itembox1(orig.itembox1.x, 0), itembox2(orig.itembox2.x, 200){
     
 }
 

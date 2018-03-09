@@ -14,8 +14,8 @@ public:
     sf::RectangleShape item;
     sf::Text info;
     
-    ItemBox(Item anitem);
-    ItemBox(const ItemBox& orig) : ItemBox(orig.x) {};
+    ItemBox(Item anitem, int h);
+    ItemBox(const ItemBox& orig) : ItemBox(orig.x,1) {};
     ~ItemBox();
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

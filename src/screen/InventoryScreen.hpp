@@ -17,7 +17,7 @@ public:
     ItemBox(const ItemBox& orig) : ItemBox(orig.x) {};
     ~ItemBox();
     
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {};
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
     Item x;
 };

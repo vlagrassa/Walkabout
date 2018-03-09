@@ -2,11 +2,19 @@
 #include <SFML/Graphics.hpp>
 
 ItemBox::ItemBox(Item anitem) : x(anitem) {
+    background.setSize(sf::Vector2f(800,200));
+    background.setPosition(sf::Vector2f(0,0));
+    background.setFillColor(sf::Color::Red);
     
+    item.setSize(sf::Vector2f(100,50));
 }
 
 ItemBox::~ItemBox() {
     
+}
+
+void ItemBox::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    target.draw(background);
 }
 
 InventoryScreen::InventoryScreen(Item anitem) : itembox(anitem){

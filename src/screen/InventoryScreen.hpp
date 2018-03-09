@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "../player/Item.hpp"
 #include "../player/Player.hpp"
+#include "../utils/Defaults.hpp"
 
 
 class ItemBox : public sf::Drawable{
@@ -20,6 +21,8 @@ public:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
     Item x;
+
+    
 };
 
 class InventoryScreen : public ScreenMode{   
@@ -37,7 +40,9 @@ public:
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
-    ItemBox itembox;
+    ItemBox itembox1;
+    
+    ItemBox itembox2;
 };
 
 

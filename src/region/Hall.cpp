@@ -143,6 +143,13 @@ void Hall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     }
 }
 
+void Hall::doTheDo(sf::Event event){
+    for (Room* i : getOnscreenRooms()){
+        i->encounter->updateUpdate(event);
+    }
+    
+}
+
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc=" Print Methods ">

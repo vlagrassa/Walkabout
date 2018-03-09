@@ -3,8 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include "Utils.hpp"
 
-Animation::Animation (sf::Texture& texture, int rowNum, int colNum) :texture(texture), frames(){
-    setSpriteSheet(rowNum, colNum);
+Animation::Animation (sf::Texture& texture, int rowNum, int colNum, int extra) :texture(texture), frames(){
+    setSpriteSheet(rowNum, colNum, extra);
 }
 
 Animation::Animation(const Animation& orig) :texture(texture) {
@@ -15,7 +15,7 @@ Animation::~Animation() {
 }
 
 
-void Animation::setSpriteSheet(int rowNum, int colNum){
+void Animation::setSpriteSheet(int rowNum, int colNum, int extra){
     
     int width = texture.getSize().x/colNum;
     int height = texture.getSize().y/rowNum;
@@ -24,7 +24,9 @@ void Animation::setSpriteSheet(int rowNum, int colNum){
     
     for(int i = 0; i <rowNum; i++){
         for(int j = 0; j < colNum; j++){
-            frames.append(sf::IntRect(j*width, i*height, width, height));
+            if (((i)*colNum + j) < rowNum*colNum-extra){
+               frames.append(sf::IntRect(j*width, i*height, width, height));
+            }
         }
     }
     //std::cout<< "boom shakalaka " << (frames.getStart().left==frames.getEnd().left) ;

@@ -187,7 +187,7 @@ int main() {
     /* Instantiate Player */
     Player player;
 //    add animations to player
-    player.addAnimation(playerStand, 3,6);
+    player.addAnimation(playerStand, 3,6, 2);
     player.addAnimation(playerWalk, 3, 5);
     player.addAnimation(playerAttack, 2,5);
     player.addAnimation(playerFightStance, 1,5);

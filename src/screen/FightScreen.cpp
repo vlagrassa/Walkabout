@@ -9,6 +9,7 @@ void Oscillator::run(sf::Event event) {
         scramble();
     }
     attackSlider.currentPos += attackSlider.dir;
+    
     if (attackSlider.currentPos >= outline.getPosition().x + outline.getSize().x - attackSlider.getSize().x) {
         attackSlider.dir = std::abs(attackSlider.dir) * -1;
         attackSlider.currentPos = outline.getPosition().x + outline.getSize().x - attackSlider.getSize().x;

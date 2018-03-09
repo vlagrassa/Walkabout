@@ -9,10 +9,10 @@
 class Animation {
 public:
     
-    Animation(sf::Texture& texture, int rowNum, int colNum);
+    Animation(sf::Texture& texture, int rowNum, int colNum, int extra);
     Animation(const Animation& orig);
     virtual ~Animation();
-    void setSpriteSheet(int rowNum, int colNum);
+    void setSpriteSheet(int rowNum, int colNum, int extra);
     sf::Texture& getTexture();
     Loop<sf::IntRect> frames;
     

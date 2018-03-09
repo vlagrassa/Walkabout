@@ -99,6 +99,8 @@ public:
     
     void run(sf::Event event);
     
+    void updateUpdate(sf::Event event);
+    
     void changeHealth(int n);
     
     HealthBar healthbar;

@@ -95,3 +95,9 @@ void Monster::changeHealth(int n) {
         health += n;
     }
 }
+
+
+void Monster::updateUpdate(sf::Event event){
+//    std::cout<<"UPDATEEEEEEEE\n";
+    updateFrames(DEFAULT_GAMECLOCK, event);
+}

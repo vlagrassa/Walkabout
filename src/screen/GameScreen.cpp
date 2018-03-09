@@ -26,6 +26,7 @@ ScreenMode* GameScreen::run(sf::Event event) {
     player.action(event);
     player.updateFrames(DEFAULT_GAMECLOCK, event);
     player.healthbar.update();
+    hall.getActive()->encounter->updateUpdate(event);
     if (event.type == sf::Event::KeyPressed) {
         switch (event.key.code) {
             case (sf::Keyboard::Left):

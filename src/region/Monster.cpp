@@ -4,7 +4,7 @@
 
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
-Monster::Monster( sf::Window& window, Ambience& ambience) : healthbar(sf::Vector2f(164, 566), sf::Vector2f(626, 25), health, maxHealth) {
+Monster::Monster(GameInfo& defaults) : healthbar(sf::Vector2f(164, 566), sf::Vector2f(626, 25), health, maxHealth) {
     name = "John";
     maxHealth = 20;
     health = maxHealth;

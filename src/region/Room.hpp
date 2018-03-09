@@ -22,7 +22,7 @@ public:
      * @param size The size of the Room
      * @param enc The Encounterable held in the Room
      */
-    Room(Player& player, unsigned int size, Encounterable& enc);
+    Room(GameInfo& defaults, unsigned int size, Encounterable& enc);
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -31,7 +31,7 @@ public:
      * 
      * @param seed The seed for the Room
      */
-    Room(Player& player, unsigned int seed, sf::Window& window);
+    Room(GameInfo& defaults, unsigned int seed);
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -157,7 +157,7 @@ public:
     /* Encounterable held by the Room */
     Encounterable* encounter;
     
-    Player& player;
+//    Player& player;
     
     /* Whether the Room has been "defeated" or not */
     bool passed = false;
@@ -179,7 +179,7 @@ private:
      * 
      * @return Random Encounterable
      */
-    virtual Encounterable& genRandomEncounterable(unsigned int seed, sf::Window& window) = 0;
+    virtual Encounterable& genRandomEncounterable(GameInfo& defaults, unsigned int seed) = 0;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

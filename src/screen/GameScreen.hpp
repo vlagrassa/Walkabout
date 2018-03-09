@@ -11,15 +11,15 @@
 
 class GameScreen: public Menu {
 public:
-    GameScreen(Player& player, Background& background, sf::Window& window = DEFAULT_WINDOW);
-    GameScreen(Player& player, Background& background, Hall& hall, sf::Window& window = DEFAULT_WINDOW);
+    GameScreen(GameInfo& defaults, Background& background);
+    GameScreen(GameInfo& defaults, Background& background, Hall& hall);
     GameScreen(const GameScreen&);
     virtual ~GameScreen();
     
     virtual ScreenMode* run(sf::Event event);
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
-    Player& player;
+//    Player& player;
     Hall& hall;
     Background& background;
     

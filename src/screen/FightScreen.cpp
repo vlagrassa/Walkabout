@@ -132,14 +132,14 @@ void Oscillator::updateArea() {
 }
 
 
-FightScreen::FightScreen(Player& player, int seed, Ambience& ambience, sf::Window& window ) : 
+FightScreen::FightScreen(GameInfo& defaults, int seed) : 
         //Room(seed, window), //This is the ideal but throws seg fault, for some reason
-        Room(player, (seed%15)+42, genRandomEncounterable(seed, window)),
-        attackBar(sf::Vector2f(164,436), sf::Vector2f(626,90), 8),
-        ambience(ambience)
+        Room(defaults, (seed%15)+42, genRandomEncounterable(defaults, seed)),
+        attackBar(sf::Vector2f(164,436), sf::Vector2f(626,90), 8)
+//        ambience(ambience)
 {}
     
-FightScreen::FightScreen(const FightScreen& orig) : FightScreen(orig.player, 5,orig.ambience, orig.window) {
+FightScreen::FightScreen(const FightScreen& orig) : FightScreen(orig.defaults, 5) {
     
 }
 
@@ -153,7 +153,7 @@ std::string FightScreen::testThing() {
 
 void FightScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(attackBar, states);
-    target.draw(player.healthbar, states);
+    target.draw(defaults.player.healthbar, states);
     Room::draw(target, states);
 }
 
@@ -164,8 +164,8 @@ ScreenMode* FightScreen::update(sf::Event event) {
         switch (attackBar.area) {
             case (Oscillator::attack):
                 //Case attack region: take that from the monster's health
-                player.Animations.setActiveIndex(2);
-                player.setAnimation();
+                defaults.player.Animations.setActiveIndex(2);
+                defaults.player.setAnimation();
                 monster->changeHealth(-strength * 5);
                 attackBar.area = Oscillator::empty;
                 attackBar.scramble();
@@ -195,9 +195,9 @@ ScreenMode* FightScreen::update(sf::Event event) {
 
 ScreenMode* FightScreen::run(sf::Event event) {
     attackBar.updateFrames(DEFAULT_GAMECLOCK, event);
-    player.healthbar.update();
-    player.updateFrames(DEFAULT_GAMECLOCK, event);
-    encounter->encounter(player);
+    defaults.player.healthbar.update();
+    defaults.player.updateFrames(DEFAULT_GAMECLOCK, event);
+    encounter->encounter(defaults.player);
     
     if (monster->getHealth() <= 0) {
         passed = true;
@@ -207,13 +207,13 @@ ScreenMode* FightScreen::run(sf::Event event) {
     //Previous line will update which region the attack bar is currently in
     
     if (attackBar.area == Oscillator::damage) {
-        player.health -= 5;
+        defaults.player.health -= 5;
     }
     
     return Room::run(event);
 };
 
-Encounterable& FightScreen::genRandomEncounterable(unsigned int seed, sf::Window& window) {
-    monster = new Monster( window, ambience);
+Encounterable& FightScreen::genRandomEncounterable(GameInfo& defaults, unsigned int seed) {
+    monster = new Monster(defaults);
     return *monster;
 }

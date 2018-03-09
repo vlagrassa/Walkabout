@@ -7,6 +7,7 @@
 
 #include "../utils/Utils.hpp"
 #include "../utils/Defaults.hpp"
+#include "../utils/GameInfo.hpp"
 
 class LinkedButton;
 class ScreenMode;
@@ -54,10 +55,12 @@ private:
 class ScreenMode : public sf::Drawable {
 public:
     LinkedList<LinkedButton&> buttons;
-    sf::Window& window;
+//    sf::Window& window;
     bool showPrevious = false;
+    GameInfo& defaults;
     
-    ScreenMode(sf::Window& window = DEFAULT_WINDOW);
+//    ScreenMode(sf::Window& window = DEFAULT_WINDOW);
+    ScreenMode(GameInfo& defaults);
     ScreenMode(const ScreenMode& orig);
     virtual ~ScreenMode();
     
@@ -82,7 +85,7 @@ public:
     ScreenMode* link;
     bool forward = true;
     
-    TransitionScreen(ScreenMode* link, sf::Window& window = DEFAULT_WINDOW);
+    TransitionScreen(ScreenMode* link, GameInfo& defaults);
     TransitionScreen(const TransitionScreen& orig);
     virtual ~TransitionScreen();
     

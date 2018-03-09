@@ -3,8 +3,8 @@
 #include "Menu.hpp"
 #include <SFML/Graphics.hpp>
 
-Menu::Menu(unsigned int topOffset, unsigned int leftOffset, unsigned int height, unsigned int gap, sf::Window& window)
-: ScreenMode(window), buttonline(sf::IntRect(leftOffset, topOffset, window.getSize().x - leftOffset*2, height), gap) {
+Menu::Menu(GameInfo& defaults, unsigned int topOffset, unsigned int leftOffset, unsigned int height, unsigned int gap)
+: ScreenMode(defaults), buttonline(sf::IntRect(leftOffset, topOffset, defaults.window.getSize().x - leftOffset*2, height), gap) {
     
 }
 
@@ -21,7 +21,7 @@ void Menu::addButton(std::string text, ScreenMode& link, sf::Keyboard::Key key, 
 }
 
 void Menu::addButton(std::string text, ScreenMode* link, sf::Keyboard::Key key, sf::Font& font) {
-    LinkedButton* temp = new LinkedButton((link == NULL ? NULL : new TransitionScreen(link, window)), DEFAULT_RECT, window);
+    LinkedButton* temp = new LinkedButton((link == NULL ? NULL : new TransitionScreen(link, defaults)), DEFAULT_RECT, defaults.window);
     temp->setTitles(text, "");
     temp->setKey(key);
     ScreenMode::addButton(*temp);

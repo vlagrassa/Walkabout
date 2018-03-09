@@ -26,7 +26,7 @@ public:
      * @param p The Player object - saved to player
      * @param s The seed for the Hall - saved to seed
      */
-    Hall(Player& p, sf::Window& window, Ambience& ambience, unsigned int s = genRandomSeed());
+    Hall(GameInfo& defaults, unsigned int s = genRandomSeed());
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 
@@ -303,9 +303,9 @@ public:
     };
     
     //GameScreen& gamescreen;
-    sf::Window& window;
+//    sf::Window& window;
     
-    Ambience& ambience;
+//    Ambience& ambience;
     
 private:
     /* The seed to generate new Rooms */
@@ -315,7 +315,9 @@ private:
     int totalLength;
     
     /* Pointer to the Player object */
-    Player& player;
+//    Player& player;
+    
+    GameInfo& defaults;
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

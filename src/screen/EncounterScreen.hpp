@@ -71,7 +71,7 @@ private:
 
 class FightScreen: public Room {
 public:
-    FightScreen(Player& player, int seed, Ambience& ambience, sf::Window &window = DEFAULT_WINDOW);
+    FightScreen(GameInfo& defaults, int seed);
     FightScreen(const FightScreen&);
     
     virtual ~FightScreen();
@@ -83,11 +83,11 @@ public:
     virtual ScreenMode* update(sf::Event event);
     virtual ScreenMode* run(sf::Event event);
     
-    virtual Encounterable& genRandomEncounterable(unsigned int seed, sf::Window& window);
+    virtual Encounterable& genRandomEncounterable(GameInfo& defaults, unsigned int seed);
     
     std::string testThing();
     
-    Ambience& ambience;
+//    Ambience& ambience;
     Monster* monster;
 private:
     
@@ -96,11 +96,11 @@ private:
 
 class TreasureScreen: public Room {
 public:
-    TreasureScreen(Player& player, int seed, sf::Window& window = DEFAULT_WINDOW);
+    TreasureScreen(GameInfo& defaults, int seed);
     TreasureScreen(const TreasureScreen&);
     virtual ~TreasureScreen();
     
-    virtual Encounterable& genRandomEncounterable(unsigned int seed, sf::Window& window);
+    virtual Encounterable& genRandomEncounterable(GameInfo& defaults, unsigned int seed);
     
     std::string testThing();
 private:

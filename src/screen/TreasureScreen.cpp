@@ -2,9 +2,9 @@
 #include <SFML/Graphics.hpp>
 #include "../region/Treasure.hpp"
 
-TreasureScreen::TreasureScreen(Player& player, int seed, sf::Window& window) :
+TreasureScreen::TreasureScreen(GameInfo& defaults, int seed) :
         //Room(seed, window) //This is the ideal but throws seg fault, for some reason
-        Room(player, (seed%15)+42, genRandomEncounterable(seed, window))
+        Room(defaults, (seed%15)+42, genRandomEncounterable(defaults, seed))
 {}
 
 TreasureScreen::TreasureScreen(const TreasureScreen& orig) : Room(orig) {
@@ -19,6 +19,6 @@ std::string TreasureScreen::testThing() {
     return "This is a treasure screen!";
 }
 
-Encounterable& TreasureScreen::genRandomEncounterable(unsigned int seed, sf::Window& window) {
-    return *new Treasure(window);
+Encounterable& TreasureScreen::genRandomEncounterable(GameInfo& defaults, unsigned int seed) {
+    return *new Treasure(defaults.window);
 }

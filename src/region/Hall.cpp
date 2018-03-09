@@ -9,10 +9,10 @@
 // <editor-fold defaultstate="collapsed" desc=" Con/Destructors ">
 
 /* Constructor - takes optional argument s */
-Hall::Hall(Player& p, sf::Window& window, Ambience& ambience, unsigned int s) : window(window), seed(s), totalLength(0), player(p), ambience(ambience) {}
+Hall::Hall(GameInfo& defaults, unsigned int s) : defaults(defaults), seed(s), totalLength(0) {}
 
 /* Default constructor */
-Hall::Hall(const Hall& orig) : Hall(orig.getPlayer(), orig.window, orig.ambience, orig.getSeed()) {} // orig.gamescreen.window
+Hall::Hall(const Hall& orig) : Hall(orig.defaults, orig.getSeed()) {} // orig.gamescreen.window
 
 /* Default destructor */
 Hall::~Hall() {}
@@ -66,16 +66,16 @@ std::vector<Room*> Hall::getOnscreenRooms() const {
 }
 
 Player& Hall::getPlayer() const {
-    return player;
+    return defaults.player;
 }
 
 bool Hall::canEncounter() {
     //return player.getPosInRoom() == at(activeIndex)->getLength()-1;
-    return !at(activeIndex)->passed && (at(activeIndex)->getLength() - player.getPosInRoom()) < 20;
+    return !at(activeIndex)->passed && (at(activeIndex)->getLength() - defaults.player.getPosInRoom()) < 20;
 }
 
 bool Hall::mustEncounter() {
-    return !at(activeIndex)->encounter->isSkippable() && !at(activeIndex)->passed && (player.getPosInRoom() >= at(activeIndex)->getLength()-5);
+    return !at(activeIndex)->encounter->isSkippable() && !at(activeIndex)->passed && (defaults.player.getPosInRoom() >= at(activeIndex)->getLength()-5);
 }
 
 // </editor-fold>
@@ -93,7 +93,7 @@ void Hall::setActiveRoom() {
 }
 
 void Hall::setActiveRoomPlayerX(unsigned int n) {
-    player.setPosInRoom(n);
+    defaults.player.setPosInRoom(n);
 }
 
 // </editor-fold>
@@ -104,7 +104,7 @@ void Hall::setActiveRoomPlayerX(unsigned int n) {
 void Hall::addRoom(Room* r) {
     push_back(r);
     totalLength += r->getLength();
-    r->encounter->setPosition( (totalLength-player.getX()) * player.getStepSize(), 100); //Ideally the Room itself should handle this
+    r->encounter->setPosition( (totalLength-defaults.player.getX()) * defaults.player.getStepSize(), 100); //Ideally the Room itself should handle this
     setActiveRoom();
 }
 
@@ -120,10 +120,10 @@ void Hall::addRoom() {
     RoomType temp = static_cast<RoomType>(rand() % 2);
     switch (temp) {
         case (monster):
-            r = new FightScreen(player, rand(), ambience);
+            r = new FightScreen(defaults, rand());
             break;
         case (treasure):
-            r = new TreasureScreen(player, rand());
+            r = new TreasureScreen(defaults, rand());
             break;
         default:
             throw std::runtime_error("Something went wrong generating a Room in Hall::addRoom()\n");
@@ -151,13 +151,13 @@ std::string Hall::printDistances() const {
     output += "|";
     for (unsigned i = 0; i < size(); i++) {
         for (unsigned j = 0; j < (at(i)->getLength())-1; j++) {
-            if (i == getActiveIndex() && j == player.getPosInRoom()) {
+            if (i == getActiveIndex() && j == defaults.player.getPosInRoom()) {
                 output += "o";
             } else {
                 output += "_";
             }
         }
-        if (i == getActiveIndex() && at(i)->getLength()-1 == player.getPosInRoom()) {
+        if (i == getActiveIndex() && at(i)->getLength()-1 == defaults.player.getPosInRoom()) {
             output += "A|";
         } else {
             output += "X|";
@@ -198,10 +198,10 @@ void Hall::updateIndex() {
 
 void Hall::updateRoomPositions() {
     for (Room* r : *this) {
-        if (player.isMovingRight()) {
-            r->encounter->move(-player.getStepSize(), 0);
+        if (defaults.player.isMovingRight()) {
+            r->encounter->move(-defaults.player.getStepSize(), 0);
         } else {
-            r->encounter->move(player.getStepSize(), 0);
+            r->encounter->move(defaults.player.getStepSize(), 0);
         }
     }
     if (size() - getActiveIndex() < 3) {

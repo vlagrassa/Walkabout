@@ -194,7 +194,7 @@ int main() {
     {
         return -1;
     }
-   
+    
     
     monsterTexture.setSmooth(true);
     playerTexture.setSmooth(true);
@@ -217,12 +217,12 @@ int main() {
     
     /* Initialize ScreenMode Stack, Menu, and GameScreen */
     Stack<ScreenMode&> listOfScreens;
-    Menu mainMenu(300, 250, 180, 20);
-    GameScreen testGameScreen(player, background);
-    Menu testMenu1(10, 10, 50);
-    Menu testMenu2(85, 10, 50);
-    Menu testMenu3(160, 10, 50);
-    Menu testMenu4(235, 10, 50);
+    Menu mainMenu(defaults, 300, 250, 180, 20);
+    GameScreen testGameScreen(defaults, background);
+    Menu testMenu1(defaults, 10, 10, 50);
+    Menu testMenu2(defaults, 85, 10, 50);
+    Menu testMenu3(defaults, 160, 10, 50);
+    Menu testMenu4(defaults, 235, 10, 50);
     
     mainMenu.addButton("Play [P]", testGameScreen, sf::Keyboard::P);
     mainMenu.addButton("Settings [S]", testMenu1, sf::Keyboard::S);

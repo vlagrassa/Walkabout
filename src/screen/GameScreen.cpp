@@ -1,9 +1,9 @@
 #include "GameScreen.hpp"
 #include <SFML/Graphics.hpp>
 
-GameScreen::GameScreen(Player& player, Background& background, sf::Window& window) : GameScreen(player, background, *new Hall(player, window, background.ambience), window) {};
+GameScreen::GameScreen(GameInfo& defaults, Background& background) : GameScreen(defaults, background, *new Hall(defaults)) {};
 
-GameScreen::GameScreen(Player& player, Background& background, Hall& hall, sf::Window& window) : Menu(475, 10, 75, 20, window), player(player), hall(hall), background(background), icon(sf::RectangleShape(sf::Vector2f(141, 151))) {
+GameScreen::GameScreen(GameInfo& defaults, Background& background, Hall& hall) : Menu(defaults, 475, 10, 75, 20), hall(hall), background(background), icon(sf::RectangleShape(sf::Vector2f(141, 151))) {
     buttonline = ButtonLine(166, 438, 622, 86, 15);
     buttonline.horizontal = true;
     unsigned int numRooms = 3;
@@ -16,28 +16,28 @@ GameScreen::GameScreen(Player& player, Background& background, Hall& hall, sf::W
     icon.setFillColor(sf::Color::Transparent);
 };
 
-GameScreen::GameScreen(const GameScreen& orig) : Menu(orig), player(orig.player), hall(orig.hall), background(orig.background), icon(orig.icon) {};
+GameScreen::GameScreen(const GameScreen& orig) : Menu(orig), hall(orig.hall), background(orig.background), icon(orig.icon) {};
 
 GameScreen::~GameScreen() {};
 
 ScreenMode* GameScreen::run(sf::Event event) {
     hall.updateIndex();
-    player.action(event);
-    player.updateFrames(DEFAULT_GAMECLOCK, event);
-    player.healthbar.update();
+    defaults.player.action(event);
+    defaults.player.updateFrames(DEFAULT_GAMECLOCK, event);
+    defaults.player.healthbar.update();
     if (event.type == sf::Event::KeyPressed) {
         switch (event.key.code) {
             case (sf::Keyboard::Left):
-                if (player.getX() > 0) {
-                    player.stepLeft();
-                    background.move(player.getStepSize());
+                if (defaults.player.getX() > 0) {
+                    defaults.player.stepLeft();
+                    background.move(defaults.player.getStepSize());
                     hall.updateRoomPositions();
                 }
                 break;
                 
             case (sf::Keyboard::Right):
-                player.stepRight();
-                background.move(-player.getStepSize());
+                defaults.player.stepRight();
+                background.move(-defaults.player.getStepSize());
                 hall.updateRoomPositions();
                 break;
                 
@@ -69,8 +69,8 @@ ScreenMode* GameScreen::run(sf::Event event) {
 void GameScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(background);
     target.draw(hall);
-    target.draw(player);
-    target.draw(player.healthbar);
+    target.draw(defaults.player);
+    target.draw(defaults.player.healthbar);
     target.draw(icon);
     ScreenMode::draw(target, states);
 };

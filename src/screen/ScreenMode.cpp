@@ -78,9 +78,11 @@ void LinkedButton::deactivate() {
 }
 
 
-ScreenMode::ScreenMode(sf::Window& window) : window(window) {};
+//ScreenMode::ScreenMode(sf::Window& window) : window(window) {};
 
-ScreenMode::ScreenMode(const ScreenMode& orig) : window(orig.window) {};
+ScreenMode::ScreenMode(GameInfo& defaults) : defaults(defaults) {};
+
+ScreenMode::ScreenMode(const ScreenMode& orig) : defaults(orig.defaults) {};
 
 ScreenMode::~ScreenMode() {};
 
@@ -110,7 +112,7 @@ void ScreenMode::addButton(std::string title, ScreenMode& link, sf::Keyboard::Ke
 }
 
 void ScreenMode::addButton(std::string title, ScreenMode* link, sf::Keyboard::Key key, sf::Font& font) {
-    LinkedButton* temp = new LinkedButton(link, DEFAULT_RECT, window);
+    LinkedButton* temp = new LinkedButton(link, DEFAULT_RECT, defaults.window);
     temp->setKey(key);
     temp->setTitles(title, "");
     addButton(*temp);
@@ -125,11 +127,11 @@ void ScreenMode::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 }
 
 
-TransitionScreen::TransitionScreen(ScreenMode* link, sf::Window& window) : ScreenMode(window), link(link) {
+TransitionScreen::TransitionScreen(ScreenMode* link, GameInfo& defaults) : ScreenMode(defaults), link(link) {
     showPrevious = true;
 };
 
-TransitionScreen::TransitionScreen(const TransitionScreen& orig) : TransitionScreen(orig.link, orig.window) {};
+TransitionScreen::TransitionScreen(const TransitionScreen& orig) : TransitionScreen(orig.link, orig.defaults) {};
 
 TransitionScreen::~TransitionScreen() {};
 

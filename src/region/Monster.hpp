@@ -16,7 +16,7 @@ public:
      * Constructor method.
      * @param MonsterSpecies type
      */
-    Monster( sf::Window& window, Ambience& ambience);
+    Monster(GameInfo& defaults);
     
     /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
      * 

@@ -17,7 +17,7 @@
  * @param size The size of the Room
  * @param enc The Encounterable held in the Room
  */
-Room::Room(Player& player, unsigned int size, Encounterable& enc) : player(player), encounter(&enc), length(size), active(false) {
+Room::Room(GameInfo& defaults, unsigned int size, Encounterable& enc) : ScreenMode(defaults), encounter(&enc), length(size), active(false) {
     showPrevious = true;
 }
 
@@ -28,7 +28,7 @@ Room::Room(Player& player, unsigned int size, Encounterable& enc) : player(playe
  * 
  * @param seed The seed for the Room
  */
-Room::Room(Player& player, unsigned int seed, sf::Window& window) : Room(player, (seed%15)+42, genRandomEncounterable(seed, window)) {}
+Room::Room(GameInfo& defaults, unsigned int seed) : Room(defaults, (seed%15)+42, genRandomEncounterable(defaults, seed)) {}
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * 
@@ -37,7 +37,7 @@ Room::Room(Player& player, unsigned int seed, sf::Window& window) : Room(player,
  * 
  * @param Original Room
  */
-Room::Room(const Room& orig) : player(orig.player), length(orig.getLength()) {}
+Room::Room(const Room& orig) : ScreenMode(orig.defaults), length(orig.getLength()) {}
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  * 
@@ -164,7 +164,7 @@ void Room::deactivate() {
  * 
  * @return Random Encounterable
  */
-Encounterable& Room::genRandomEncounterable(unsigned int seed, sf::Window& window) {};
+Encounterable& Room::genRandomEncounterable(GameInfo& defaults, unsigned int seed) {};
 
 // </editor-fold>
 

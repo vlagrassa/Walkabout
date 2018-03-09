@@ -28,18 +28,18 @@ Ambience::Ambience(std::string resources) {
         std::cout<< "\n" << "monster standing error" << "\n";
     }
      std::cout<<"\n pow pow";
-//     if (!monsterAttack.loadFromFile(resources + "spritesheets/monster_attack.png"))
-//    {
-//        std::cout<< "\n" << "monster attack error" << "\n";
-//    }
-//    if (!monsterDie.loadFromFile(resources + "spritesheets/monster_die.jpg"))
-//    {
-//        std::cout<< "\n monster die error \n";
-//    }
-//    if (!monsterHit.loadFromFile(resources + "spritesheets/monster_hit.png"))
-//    {
-//       std::cout<< "\n monster hit error \n";
-//    }
+     if (!monsterAttack.loadFromFile(resources + "spritesheets/monster_attack.png"))
+    {
+        std::cout<< "\n" << "monster attack error" << "\n";
+    }
+    if (!monsterDie.loadFromFile(resources + "spritesheets/monster_die.jpg"))
+    {
+        std::cout<< "\n monster die error \n";
+    }
+    if (!monsterHit.loadFromFile(resources + "spritesheets/monster_hit.png"))
+    {
+       std::cout<< "\n monster hit error \n";
+    }
      initTextures();
 }
 

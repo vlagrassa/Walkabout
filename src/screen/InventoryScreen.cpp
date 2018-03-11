@@ -13,8 +13,8 @@ ItemBox::ItemBox(Item anitem, int h) : x(anitem){
     
     info.setFont(DEFAULT_FONT);
     info.setFillColor(sf::Color::Black);
-    info.setPosition(200,h + 50);
-    info.setString("blabla");
+    info.setPosition(220,h + 45);
+    info.setString("Stat");
 }
 
 ItemBox::~ItemBox() {
@@ -27,11 +27,13 @@ void ItemBox::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(info);
 }
 
-InventoryScreen::InventoryScreen(Item anitem) : itembox1(anitem, 0),itembox2(anitem, 200){
+InventoryScreen::InventoryScreen(Item anitem) : itembox1(anitem, 0),itembox2(anitem, 200), 
+        itembox3(anitem, 400){
     
 }
 
-InventoryScreen::InventoryScreen(const InventoryScreen& orig) : itembox1(orig.itembox1.x, 0), itembox2(orig.itembox2.x, 200){
+InventoryScreen::InventoryScreen(const InventoryScreen& orig) : itembox1(orig.itembox1.x, 0),
+        itembox2(orig.itembox2.x, 200), itembox3(orig.itembox3.x, 400){
     
 }
 
@@ -50,6 +52,7 @@ ScreenMode* InventoryScreen::run(sf::Event event) {
 void InventoryScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const{
     target.draw(itembox1);
     target.draw(itembox2);
+    target.draw(itembox3);
 }
 
 

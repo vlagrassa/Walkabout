@@ -43,6 +43,8 @@ public:
     ItemBox itembox1;
     
     ItemBox itembox2;
+    
+    ItemBox itembox3;
 };
 
 

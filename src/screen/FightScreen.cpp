@@ -207,6 +207,12 @@ ScreenMode* FightScreen::run(sf::Event event) {
         passed = true;
         return 0;
     }
+    if (player.health > player.maxHealth) {
+        DEFAULT_WINDOW.close();
+//        monster->changeHealth(-1000000);
+//        passed = true;
+//        return 0;
+    }
     
     //Previous line will update which region the attack bar is currently in
     

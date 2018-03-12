@@ -171,7 +171,7 @@ ScreenMode* FightScreen::update(sf::Event event) {
                 //Case attack region: take that from the monster's health
                 player.Animations.setActiveIndex(2);
                 player.setAnimation();
-                monster->changeHealth(-strength * 25);
+                monster->changeHealth(-strength * 5);
                 attackBar.area = Oscillator::empty;
                 attackBar.scramble();
                 break;
@@ -207,9 +207,8 @@ ScreenMode* FightScreen::run(sf::Event event) {
     std::cout<<monster->Encounterable::getTexture() << "\n";
     if (monster->getHealth() <= 0) {
         monster->setActiveAnimation(3);
-        
         monster->setTheAnimation();
-        std::cout<< "420 blaze it" <<monster->Encounterable::getTexture() << "\n";
+//        std::cout<< "420 blaze it" <<monster->Encounterable::getTexture() << "\n";
         passed = true;
         return 0;
     }
@@ -224,6 +223,8 @@ ScreenMode* FightScreen::run(sf::Event event) {
     //Previous line will update which region the attack bar is currently in
     
     if (attackBar.area == Oscillator::damage) {
+        monster->setActiveAnimation(1);
+        monster->setTheAnimation();
         player.health -= 5;
     }
     

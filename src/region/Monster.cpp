@@ -81,6 +81,15 @@ void Monster::run(sf::Event event){
     setAnimation();
     Animations.getActive().frames.shiftNode();
     Encounterable::setTextureRect(Animations.getActive().frames.getActive());
+//    std::cout<< &Animations.getActive() <<"\n";
+}
+
+void Monster::setActiveAnimation(int index){
+    Animations.setActiveIndex(index);
+}
+
+void Monster::setTheAnimation(){
+    setAnimation();
 }
 
 void Monster::changeHealth(int n) {

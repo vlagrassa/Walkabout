@@ -16,6 +16,7 @@ public:
     virtual ~AnimatedSprite();
     void addAnimation(sf::Texture& spriteSheet, int rowNum, int colNum, int extra = 0);
     void setAnimation();
+    void resetTo(int animationIndex);
     Animation& getAnimation();
     ActiveList<Animation&> Animations;
     

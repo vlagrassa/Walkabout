@@ -16,6 +16,7 @@
 #include "player/Item.hpp"
 
 #include "region/Monster.hpp"
+#include "screen/DeathScreen.hpp"
 
 /* Declare the defaults instantiated in utils/Defaults.hpp */
 sf::Font DEFAULT_FONT;
@@ -208,7 +209,8 @@ int main() {
 //    Monster m(DEFAULT_WINDOW, standard);
 //    Encounterable* e = &m;
 //    std::cout << "what have I done\n";
-    
+//    
+//    e.Animations.setActiveIndex(3);
     
     
     /* Initialize ScreenMode Stack, Menu, and GameScreen */
@@ -219,10 +221,11 @@ int main() {
     Menu testMenu2(85, 10, 50);
     Menu testMenu3(160, 10, 50);
     Menu testMenu4(235, 10, 50);
+    DeathScreen testDeath;
     
     mainMenu.addButton("Play [P]", testGameScreen, sf::Keyboard::P);
     mainMenu.addButton("Settings [S]", testMenu1, sf::Keyboard::S);
-    mainMenu.addButton("Quit [W]", 0, sf::Keyboard::W);
+    mainMenu.addButton("Quit [W]", testDeath, sf::Keyboard::W);
     
     
     testGameScreen.addButton("Challenge\n   [^]", 0);
@@ -335,6 +338,8 @@ int main() {
         
         /* Draw the paper texture (for aesthetics) and the debugging text (for help) */
 //        DEFAULT_WINDOW.draw(name);
+//        DEFAULT_WINDOW.draw(e);
+        
         DEFAULT_WINDOW.draw(paper);
         //window.draw(hallText);
         

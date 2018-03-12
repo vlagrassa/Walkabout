@@ -89,7 +89,7 @@ void Monster::setActiveAnimation(int index){
 }
 
 void Monster::setTheAnimation(){
-    setAnimation();
+    Encounterable::setTexture(Animations.getActive().getTexture());
 }
 
 void Monster::changeHealth(int n) {

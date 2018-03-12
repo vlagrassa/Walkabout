@@ -2,6 +2,7 @@
 #include "../utils/Defaults.hpp"
 #include <SFML/Graphics.hpp>
 #include "../region/Monster.hpp"
+#include "DeathScreen.hpp"
 
 
 void Oscillator::run(sf::Event event) {
@@ -170,7 +171,7 @@ ScreenMode* FightScreen::update(sf::Event event) {
                 //Case attack region: take that from the monster's health
                 player.Animations.setActiveIndex(2);
                 player.setAnimation();
-                monster->changeHealth(-strength * 5);
+                monster->changeHealth(-strength * 25);
                 attackBar.area = Oscillator::empty;
                 attackBar.scramble();
                 break;
@@ -188,10 +189,10 @@ ScreenMode* FightScreen::update(sf::Event event) {
                 //Case blank region: no action necessary
                 break;
         }
-        if (monster->getHealth() <= 0) {
-            passed = true;
-            return 0;
-        }
+//        if (monster->getHealth() <= 0) {
+//            passed = true;
+//            return 0;
+//        }
     }
     
     return Room::update(event);
@@ -203,12 +204,18 @@ ScreenMode* FightScreen::run(sf::Event event) {
     player.updateFrames(DEFAULT_GAMECLOCK, event);
     encounter->encounter(player);
     monster->updateFrames(DEFAULT_GAMECLOCK, event);
+    std::cout<<monster->Encounterable::getTexture() << "\n";
     if (monster->getHealth() <= 0) {
+        monster->setActiveAnimation(3);
+        
+        monster->setTheAnimation();
+        std::cout<< "420 blaze it" <<monster->Encounterable::getTexture() << "\n";
         passed = true;
         return 0;
     }
     if (player.health > player.maxHealth) {
-        DEFAULT_WINDOW.close();
+//        DEFAULT_WINDOW.close();
+        return new DeathScreen();
 //        monster->changeHealth(-1000000);
 //        passed = true;
 //        return 0;

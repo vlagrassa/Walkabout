@@ -25,10 +25,12 @@ void AnimatedSprite::addAnimation(sf::Texture& spriteSheet, int rowNum, int colN
 void AnimatedSprite::setAnimation(){
     
     if (getTexture() != &Animations.getActive().getTexture()){
+//        std::cout << this <<"helloooooooooooooo\n";
         setTextureRect(Animations.getActive().frames.getStart());
         Animations.getActive().frames.reset();
     }   
     setTexture(Animations.getActive().getTexture());
+    
 }
 
 

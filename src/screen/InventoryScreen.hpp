@@ -13,14 +13,17 @@ public:
     sf::RectangleShape background;
     sf::RectangleShape item;
     sf::Text info;
+    sf::Text name;
     
-    ItemBox(Item anitem, int h);
-    ItemBox(const ItemBox& orig) : ItemBox(orig.x,1) {};
+    ItemBox(Item anitem, int h, Player& player);
+    ItemBox(const ItemBox& orig) : ItemBox(orig.x,1,orig.player) {};
     ~ItemBox();
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
     Item x;
+    
+    Player& player;
 
     
 };
@@ -28,7 +31,7 @@ public:
 class InventoryScreen : public ScreenMode{   
 public:
 
-    InventoryScreen(Item item);
+    InventoryScreen(Item item, Player& player);
     
     InventoryScreen(const InventoryScreen& orig);
 
@@ -45,6 +48,8 @@ public:
     ItemBox itembox2;
     
     ItemBox itembox3;
+    
+    Player& player;
 };
 
 

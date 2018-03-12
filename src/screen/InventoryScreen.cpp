@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "../utils/Defaults.hpp"
 
-ItemBox::ItemBox(Item anitem, int h) : x(anitem){
+ItemBox::ItemBox(Item anitem, int h, Player& player) : x(anitem), player(player){
     background.setSize(sf::Vector2f(800,200));
     background.setPosition(sf::Vector2f(0,h));
     background.setFillColor(sf::Color(222,184,135));
@@ -14,7 +14,20 @@ ItemBox::ItemBox(Item anitem, int h) : x(anitem){
     info.setFont(DEFAULT_FONT);
     info.setFillColor(sf::Color::Black);
     info.setPosition(220,h + 45);
-    info.setString("Stat");
+    std::string s = "Mind: ";
+    s += std::to_string(player.equipment.hand->stats.mind) +"\n";
+    s += "Body: ";
+    s += std::to_string(player.equipment.hand->stats.body) + "\n";
+    s += "Soul: ";
+    s += std::to_string(player.equipment.hand->stats.soul) + "\n";
+    info.setString(s);
+    
+    name.setFont(DEFAULT_FONT);
+    name.setFillColor(sf::Color::Black);
+    name.setPosition(0,h + 45);
+    std::string n;
+    n += player.equipment.hand->name;
+    name.setString(n);
 }
 
 ItemBox::~ItemBox() {
@@ -25,15 +38,16 @@ void ItemBox::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(background);
     target.draw(item);
     target.draw(info);
+    target.draw(name);
 }
 
-InventoryScreen::InventoryScreen(Item anitem) : itembox1(anitem, 0),itembox2(anitem, 200), 
-        itembox3(anitem, 400){
+InventoryScreen::InventoryScreen(Item anitem, Player& player) : itembox1(anitem, 0, player), itembox2(anitem, 200, player), 
+        itembox3(anitem, 400, player), player(player){
     
 }
 
-InventoryScreen::InventoryScreen(const InventoryScreen& orig) : itembox1(orig.itembox1.x, 0),
-        itembox2(orig.itembox2.x, 200), itembox3(orig.itembox3.x, 400){
+InventoryScreen::InventoryScreen(const InventoryScreen& orig) : itembox1(orig.itembox1.x, 0, orig.player),
+        itembox2(orig.itembox2.x, 200, orig.player), itembox3(orig.itembox3.x, 400, orig.player), player(orig.player){
     
 }
 

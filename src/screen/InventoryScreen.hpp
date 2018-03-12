@@ -15,7 +15,7 @@ public:
     sf::Text info;
     sf::Text name;
     
-    ItemBox(Item anitem, int h, Player& player);
+    ItemBox(Item anitem,int h, Player& player);
     ItemBox(const ItemBox& orig) : ItemBox(orig.x,1,orig.player) {};
     ~ItemBox();
     
@@ -31,7 +31,7 @@ public:
 class InventoryScreen : public ScreenMode{   
 public:
 
-    InventoryScreen(Item item, Player& player);
+    InventoryScreen(Player& player);
     
     InventoryScreen(const InventoryScreen& orig);
 

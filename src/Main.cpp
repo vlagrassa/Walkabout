@@ -226,7 +226,7 @@ int main() {
     Menu testMenu2(85, 10, 50);
     Menu testMenu3(160, 10, 50);
     Menu testMenu4(235, 10, 50);
-    InventoryScreen testInventory(testItem, player);
+    InventoryScreen testInventory(player);
     
     mainMenu.addButton("Play [P]", testGameScreen, sf::Keyboard::P);
     mainMenu.addButton("Settings [S]", testMenu1, sf::Keyboard::S);

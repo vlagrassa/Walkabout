@@ -15,18 +15,18 @@ ItemBox::ItemBox(Item anitem, int h, Player& player) : x(anitem), player(player)
     info.setFillColor(sf::Color::Black);
     info.setPosition(220,h + 45);
     std::string s = "Mind: ";
-    s += std::to_string(player.equipment.hand->stats.mind) +"\n";
+    s += std::to_string(anitem.stats.mind) +"\n";
     s += "Body: ";
-    s += std::to_string(player.equipment.hand->stats.body) + "\n";
+    s += std::to_string(anitem.stats.body) + "\n";
     s += "Soul: ";
-    s += std::to_string(player.equipment.hand->stats.soul) + "\n";
+    s += std::to_string(anitem.stats.soul) + "\n";
     info.setString(s);
     
     name.setFont(DEFAULT_FONT);
     name.setFillColor(sf::Color::Black);
     name.setPosition(0,h + 45);
     std::string n;
-    n += player.equipment.hand->name;
+    n += anitem.name;
     name.setString(n);
 }
 
@@ -41,10 +41,11 @@ void ItemBox::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(name);
 }
 
-InventoryScreen::InventoryScreen(Item anitem, Player& player) : itembox1(anitem, 0, player), itembox2(anitem, 200, player), 
-        itembox3(anitem, 400, player), player(player){
-    
-}
+InventoryScreen::InventoryScreen(Player& player) : 
+        itembox1(*player.equipment.head, 0, player), 
+        itembox2(*player.equipment.chest, 200, player),
+        itembox3(*player.equipment.hand, 400, player), player(player)
+{}
 
 InventoryScreen::InventoryScreen(const InventoryScreen& orig) : itembox1(orig.itembox1.x, 0, orig.player),
         itembox2(orig.itembox2.x, 200, orig.player), itembox3(orig.itembox3.x, 400, orig.player), player(orig.player){

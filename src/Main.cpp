@@ -15,6 +15,7 @@
 #include "window/Background.hpp"
 #include "screen/GameScreen.hpp"
 #include "player/Item.hpp"
+#include "screen/InventoryScreen.hpp"
 
 /* Declare the defaults instantiated in utils/Defaults.hpp */
 sf::Font DEFAULT_FONT;
@@ -225,6 +226,7 @@ int main() {
     Menu testMenu2(85, 10, 50);
     Menu testMenu3(160, 10, 50);
     Menu testMenu4(235, 10, 50);
+    InventoryScreen testInventory(player);
     
     mainMenu.addButton("Play [P]", testGameScreen, sf::Keyboard::P);
     mainMenu.addButton("Settings [S]", testMenu1, sf::Keyboard::S);
@@ -232,7 +234,7 @@ int main() {
     
     
     testGameScreen.addButton("Challenge\n   [^]", 0);
-    testGameScreen.addButton("Inventory\n   [I]", 0, sf::Keyboard::I);
+    testGameScreen.addButton("Inventory\n   [I]", testInventory, sf::Keyboard::I);
     testGameScreen.addButton("Main Menu\n   [M]", 0, sf::Keyboard::M);
     
     testMenu1.addButton("In menu 1", testMenu2);

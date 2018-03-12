@@ -1,6 +1,6 @@
 #include "DeathScreen.hpp"
 
-DeathScreen::DeathScreen() :deathMessage("You Dead #Oof City", DEFAULT_FONT){
+DeathScreen::DeathScreen() :deathMessage("You Dead #Oof City", DEFAULT_FONT, 1){
     
     deathMessage.setPosition(200,200);
 //    deathMessage.setSize();
@@ -19,8 +19,10 @@ void DeathScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const{
     target.draw(deathMessage);
 }
 ScreenMode* DeathScreen::update(sf::Event event){
-    
+    return this;
 }
 ScreenMode* DeathScreen::run(sf::Event event){
-    
+    deathMessage.setCharacterSize(deathMessage.getCharacterSize()+1);
+    if (deathMessage.getCharacterSize() > 200) DEFAULT_WINDOW.close();
+    return this;
 }

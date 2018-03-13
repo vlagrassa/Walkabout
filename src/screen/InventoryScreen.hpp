@@ -43,6 +43,8 @@ public:
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     
+    void updateItem();
+    
     ItemBox itembox1;
     
     ItemBox itembox2;

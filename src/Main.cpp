@@ -210,7 +210,7 @@ int main() {
     //h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/4);
     player.setPosition(DEFAULT_WINDOW.getSize().x/20,DEFAULT_WINDOW.getSize().y/4);
     
-    player.equip(stick);
+    
     
     
     /* Create Ambience (like a texture pack) and Background */
@@ -310,6 +310,26 @@ int main() {
                         Player z=Player(savefile,items);
                         savefile.close();
                         
+                    }
+                    if (event.key.code == sf::Keyboard::X) {
+                        player.equip(boringHat);
+                        player.equip(stick);
+                        player.equip(lotsOfShirts);
+                        //std::cout << "x" << player.equipment.chest << "\n";
+                        std::cout << player << player.equipment.head;
+                        std::cout << testInventory.itembox2.x.name << "\n";
+                        testInventory.updateItem();
+                        std::cout << testInventory.itembox2.x.name << "\n";
+                    }
+                    if (event.key.code == sf::Keyboard::Z) {
+                        player.equip(bigStick);
+                        player.equip(thinkingCap);
+                        player.equip(bathrobe);
+                        //std::cout << "z" << player.equipment.chest << "\n";
+                        std::cout << player << player.equipment.head;
+                        std::cout << testInventory.itembox2.x.name << "\n";
+                        testInventory.updateItem();
+                        std::cout << testInventory.itembox2.x.name << "\n";
                     }
                     break;
                 default:

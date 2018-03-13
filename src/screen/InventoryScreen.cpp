@@ -15,7 +15,7 @@ ItemBox::ItemBox(Item anitem, int h, Player& player) : x(anitem), player(player)
     info.setFillColor(sf::Color::Black);
     info.setPosition(220,h + 45);
     std::string s = "Mind: ";
-    s += std::to_string(anitem.stats.mind) +"\n";
+    s += std::to_string(anitem.stats.mind) + "\n";
     s += "Body: ";
     s += std::to_string(anitem.stats.body) + "\n";
     s += "Soul: ";
@@ -61,6 +61,7 @@ ScreenMode* InventoryScreen::update(sf::Event event) {
 }
 
 ScreenMode* InventoryScreen::run(sf::Event event) {
+    
     return ScreenMode::run(event);
 };
 
@@ -68,6 +69,13 @@ void InventoryScreen::draw(sf::RenderTarget& target, sf::RenderStates states) co
     target.draw(itembox1);
     target.draw(itembox2);
     target.draw(itembox3);
+}
+
+void InventoryScreen::updateItem(){
+    itembox1.x = *player.equipment.head;
+    std::cout << player << player.equipment.head;
+    itembox2.x = *player.equipment.head;
+    itembox3.x = *player.equipment.head;
 }
 
 

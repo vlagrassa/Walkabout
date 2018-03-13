@@ -123,7 +123,7 @@ void Oscillator::updateArea() {
             attackSlider.setFillColor(sf::Color::Yellow);
         } else if (area == emptydefend) {
             area = defend;
-            attackSlider.setFillColor(sf::Color::Magenta);
+            attackSlider.setFillColor(sf::Color::Yellow);
         }
     }
 //    else if (std::abs(outline.getPosition().x + defendArea.center - attackSlider.currentPos) < defendArea.width) {

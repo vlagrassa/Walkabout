@@ -3,8 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include "../utils/Defaults.hpp"
 
-Background::Background(Ambience& setting, sf::RenderWindow& window) {
+Background::Background(Ambience& setting, sf::RenderWindow& window) : ambience(setting) {
        /*put textures into background sprite objects*/
+    
     sky.setTexture(*setting.getSky());
     horizonBg.setTexture(*setting.getHorizonBg());
     imBg.setTexture(*setting.getImBg());
@@ -25,7 +26,7 @@ Background::Background(Ambience& setting, sf::RenderWindow& window) {
     imBg.scale(1, .8);
     ground.setScale(1, .35);
 }
-Background::Background(const Background& orig) {
+Background::Background(const Background& orig) : ambience(orig.ambience) {
     
 }
 Background::~Background() {

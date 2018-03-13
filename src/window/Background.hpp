@@ -15,6 +15,7 @@ public:
     void move(int stepSize);
     
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+    Ambience ambience;
     
 private:
     sf::Sprite sky;

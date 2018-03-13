@@ -131,7 +131,6 @@ int main() {
     
     
     /* Create other textures */
-    sf::Texture monsterTexture;
     sf::Texture playerTexture;
     sf::Texture playerAttack;
     sf::Texture playerBlock;
@@ -141,14 +140,8 @@ int main() {
     sf::Texture playerFightStance;
     sf::Texture playerWakeUp;
     sf::Texture playerDie;
-    sf::Texture monsterAttack;
-    sf::Texture monsterStanding;
-    sf::Texture monsterHit;
-    sf::Texture monsterDie;
-    if (!monsterStanding.loadFromFile(resourceDir + "spritesheets/monster_standing.jpg"))
-    {
-        std::cout<< "\n" << "monster standing error" << "n/";
-    }
+   
+    
     if (!playerStand.loadFromFile(resourceDir + "spritesheets/stand.jpeg"))
     {
         std::cout << "\n" << "stand error" << "\n";
@@ -181,29 +174,17 @@ int main() {
     {
         return -1;
     }
-    if (!monsterAttack.loadFromFile(resourceDir + "spritesheets/monster_attack.png"))
-    {
-        return -1;
-    }
-    if (!monsterDie.loadFromFile(resourceDir + "spritesheets/monster_die.png"))
-    {
-        return -1;
-    }
-    if (!monsterHit.loadFromFile(resourceDir + "spritesheets/monster_hit.png"))
-    {
-        return -1;
-    }
+   
     
-    monsterTexture.setSmooth(true);
     playerTexture.setSmooth(true);
     
     /* Instantiate Player */
     Player player;
 //    add animations to player
-    player.addAnimation(playerStand, 6,3);
-    player.addAnimation(playerWalk, 5, 3);
-    player.addAnimation(playerAttack, 5,2);
-    player.addAnimation(playerFightStance, 5,1);
+    player.addAnimation(playerStand, 3,6);
+    player.addAnimation(playerWalk, 3, 5);
+    player.addAnimation(playerAttack, 2,5);
+    player.addAnimation(playerFightStance, 1,5);
     std::cout << "/n" << (player.Animations.size)<< "/n";
     
     player.setAnimation();

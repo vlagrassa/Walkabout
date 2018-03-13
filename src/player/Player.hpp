@@ -211,6 +211,7 @@ public:
     Player(std::istream& saveData,Item items[]);
     
     void run(sf::Event event);
+    void action(sf::Event event);
     
 private:
     /* Absolute position of the Player - in context of Hall */

@@ -37,6 +37,7 @@ public:
     const Stats stats;
     Item(ItemType kind, std::string name, Stats stats);
     bool operator==(const Item &other) const;
+    Item& operator=(const Item &other);
 };
 
 

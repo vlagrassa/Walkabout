@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include <fstream>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -15,6 +16,7 @@
 #include "window/Background.hpp"
 #include "screen/GameScreen.hpp"
 #include "player/Item.hpp"
+#include "screen/InventoryScreen.hpp"
 
 /* Declare the defaults instantiated in utils/Defaults.hpp */
 sf::Font DEFAULT_FONT;
@@ -134,13 +136,7 @@ int main() {
     Item notAKnife(Sword,"Not A Knife",{3,0,1});
     Item boringSword(Sword,"Boring Sword",{3,1,1});
     Item epicBlade(Sword,"Epic Sword",{4,1,2});
-        //Bow
-    //Item a(a,"",{,,});
-    //Item a(a,"",{,,});
-    //Item a(a,"",{,,});
-    //Item a(a,"",{,,});
-    //Item a(a,"",{,,});
-
+ 
     Item testItem(Bow, "testBow", {1,1,1});
     
     Item items[26] = {boringHat,thinkingCap,telepatheticHat,cardboardBox,
@@ -150,7 +146,6 @@ int main() {
     
     
     /* Create other textures */
-    sf::Texture monsterTexture;
     sf::Texture playerTexture;
     sf::Texture playerAttack;
     sf::Texture playerBlock;
@@ -196,7 +191,6 @@ int main() {
     }
    
     
-    monsterTexture.setSmooth(true);
     playerTexture.setSmooth(true);
     
 //    add animations to player
@@ -210,7 +204,7 @@ int main() {
     //h.getActiveRoom()->getEncounter()->setPosition((window.getSize().x)/2, (window.getSize().y)/4);
     player.setPosition(DEFAULT_WINDOW.getSize().x/20,DEFAULT_WINDOW.getSize().y/4);
     
-    player.equip(stick);
+    
     
     
     
@@ -223,6 +217,7 @@ int main() {
     Menu testMenu2(85, 10, 50);
     Menu testMenu3(160, 10, 50);
     Menu testMenu4(235, 10, 50);
+    InventoryScreen testInventory(player);
     
     mainMenu.addButton("Play [P]", testGameScreen, sf::Keyboard::P);
     mainMenu.addButton("Settings [S]", testMenu1, sf::Keyboard::S);
@@ -230,7 +225,7 @@ int main() {
     
     
     testGameScreen.addButton("Challenge\n   [^]", 0);
-    testGameScreen.addButton("Inventory\n   [I]", 0, sf::Keyboard::I);
+    testGameScreen.addButton("Inventory\n   [I]", testInventory, sf::Keyboard::I);
     testGameScreen.addButton("Main Menu\n   [M]", 0, sf::Keyboard::M);
     
     testMenu1.addButton("In menu 1", testMenu2);
@@ -293,7 +288,39 @@ int main() {
                         player.health += 5;
                     }
                     if (event.key.code == sf::Keyboard::L) {
-                        player.writeData(std::cout, items);
+                        std::ofstream savefile;
+                        savefile.open("savefile.txt");
+                        player.writeData(savefile, items);
+                        savefile.close();
+                        //Player z=Player(std::cin,items);
+                    }
+                    if (event.key.code == sf::Keyboard::K) {
+                        std::ifstream savefile;
+                        savefile.open("savefile.txt");
+                        //player.writeData(savefile, items);
+                        Player z=Player(savefile,items);
+                        savefile.close();
+                        
+                    }
+                    if (event.key.code == sf::Keyboard::X) {
+                        player.equip(boringHat);
+                        player.equip(stick);
+                        player.equip(lotsOfShirts);
+                        //std::cout << "x" << player.equipment.chest << "\n";
+                        std::cout << player << player.equipment.head;
+                        std::cout << testInventory.itembox2.x.name << "\n";
+                        testInventory.updateItem();
+                        std::cout << testInventory.itembox2.x.name << "\n";
+                    }
+                    if (event.key.code == sf::Keyboard::Z) {
+                        player.equip(bigStick);
+                        player.equip(thinkingCap);
+                        player.equip(bathrobe);
+                        //std::cout << "z" << player.equipment.chest << "\n";
+                        std::cout << player << player.equipment.head;
+                        std::cout << testInventory.itembox2.x.name << "\n";
+                        testInventory.updateItem();
+                        std::cout << testInventory.itembox2.x.name << "\n";
                     }
                     break;
                 default:

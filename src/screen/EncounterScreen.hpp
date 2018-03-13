@@ -37,8 +37,9 @@ public:
     Slider attackSlider;
     enum {
         empty,
+        emptydefend,
         attack,
-//        defend,
+        defend,
         damage,
         critical
     } area;
@@ -60,6 +61,8 @@ public:
     float getStrength();
     
     void scramble(); //Should be called after a hit
+    
+    void recalcAreaPoints();
     
 private:
     

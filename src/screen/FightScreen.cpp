@@ -59,6 +59,10 @@ void Oscillator::scramble() {
 //    tempAreas[0] = attackArea.center < defendArea.center ? attackArea : defendArea;
 //    tempAreas[1] = attackArea.center < defendArea.center ? defendArea : attackArea;
     
+    recalcAreaPoints();
+}
+
+void Oscillator::recalcAreaPoints() {
     int coords[] = {
         0,
         attackArea.center - attackArea.width,
@@ -114,20 +118,37 @@ void Oscillator::initShapes(sf::Vector2f pos) {
 
 void Oscillator::updateArea() {
     if (std::abs(outline.getPosition().x + attackArea.center - attackSlider.currentPos) < attackArea.width) {
-        area = attack;
-        attackSlider.setFillColor(sf::Color::Yellow);
+        if (area == empty) {
+            area = attack;
+            attackSlider.setFillColor(sf::Color::Yellow);
+        } else if (area == emptydefend) {
+            area = defend;
+            attackSlider.setFillColor(sf::Color::Magenta);
+        }
     }
 //    else if (std::abs(outline.getPosition().x + defendArea.center - attackSlider.currentPos) < defendArea.width) {
 //        area = defend;
 //        attackSlider.setFillColor(sf::Color::Magenta);
 //    }
     else if (area == attack) {
+//        area = damage;
+        std::cout << "Switching to defense\n";
+        area = emptydefend;
+        attackSlider.setFillColor(sf::Color::Blue);
+    }
+    else if (area == defend) {
         area = damage;
         attackSlider.setFillColor(sf::Color::Blue);
     }
-    else {
-        area = empty;
+    else if (area == empty) {
         attackSlider.setFillColor(sf::Color::Cyan);
+        attackArea.color = sf::Color::Green;
+        recalcAreaPoints();
+    }
+    else if (area == emptydefend) {
+        attackSlider.setFillColor(sf::Color::Magenta);
+        attackArea.color = sf::Color::Red;
+        recalcAreaPoints();
     }
 }
 
@@ -173,10 +194,12 @@ ScreenMode* FightScreen::update(sf::Event event) {
                 attackBar.area = Oscillator::empty;
                 attackBar.scramble();
                 break;
-            //case (Oscillator::defend):
-                // Case defend region: take from the player's health, but decreased
-                //player.health -= 5 - (strength * 5);
-                //break;
+            case (Oscillator::defend):
+//                 Case defend region: take from the player's health, but decreased
+                player.health -= 5 - (strength * 5);
+                attackBar.area = Oscillator::empty;
+                attackBar.scramble();
+                break;
             case (Oscillator::damage):
                 attackBar.scramble();
                 break;
@@ -184,6 +207,9 @@ ScreenMode* FightScreen::update(sf::Event event) {
                 //Case critical region: take double from the monster's health??
                 break;
             case (Oscillator::empty):
+                //Case blank region: no action necessary
+                break;
+            case (Oscillator::emptydefend):
                 //Case blank region: no action necessary
                 break;
         }
@@ -211,6 +237,7 @@ ScreenMode* FightScreen::run(sf::Event event) {
     
     if (attackBar.area == Oscillator::damage) {
         player.health -= 5;
+        attackBar.area = Oscillator::empty;
     }
     
     return Room::run(event);

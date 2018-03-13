@@ -208,6 +208,7 @@ ScreenMode* FightScreen::update(sf::Event event) {
                 break;
             case (Oscillator::empty):
                 //Case blank region: no action necessary
+                attackBar.area = Oscillator::emptydefend;
                 break;
             case (Oscillator::emptydefend):
                 //Case blank region: no action necessary

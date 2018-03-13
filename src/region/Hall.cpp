@@ -71,11 +71,15 @@ Player& Hall::getPlayer() const {
 
 bool Hall::canEncounter() {
     //return player.getPosInRoom() == at(activeIndex)->getLength()-1;
-    return !at(activeIndex)->passed && (at(activeIndex)->getLength() - player.getPosInRoom()) < 20;
+    if (at(activeIndex)->encounter->getType() == monster) {
+        return !at(activeIndex)->passed && (at(activeIndex)->getLength() - player.getPosInRoom()) < 60;
+    } else {
+        return !at(activeIndex)->passed && (at(activeIndex)->getLength() - player.getPosInRoom()) < 15;
+    }
 }
 
 bool Hall::mustEncounter() {
-    return !at(activeIndex)->encounter->isSkippable() && !at(activeIndex)->passed && (player.getPosInRoom() >= at(activeIndex)->getLength()-5);
+    return !at(activeIndex)->encounter->isSkippable() && !at(activeIndex)->passed && (player.getPosInRoom() >= at(activeIndex)->getLength()-35);
 }
 
 // </editor-fold>
@@ -141,6 +145,13 @@ void Hall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     for (Room* r : getOnscreenRooms()) {
         target.draw(*r->encounter);
     }
+}
+
+void Hall::doTheDo(sf::Event event){
+    for (Room* i : getOnscreenRooms()){
+        i->encounter->updateUpdate(event);
+    }
+    
 }
 
 // </editor-fold>

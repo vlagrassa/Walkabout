@@ -15,16 +15,22 @@ AnimatedSprite::AnimatedSprite(const AnimatedSprite& orig) : FrameRate(83){
 AnimatedSprite::~AnimatedSprite(){
 }
 
-void AnimatedSprite::addAnimation(sf::Texture& spriteSheet, int rowNum, int colNum ){
+void AnimatedSprite::addAnimation(sf::Texture& spriteSheet, int rowNum, int colNum, int extra){
     std::cout<<"\n first test";
-    Animation* newAnimation = new Animation(spriteSheet, rowNum, colNum);
+    Animation* newAnimation = new Animation(spriteSheet, rowNum, colNum, extra);
     std::cout<<"\n second test";
     Animations.add(*newAnimation);
     std::cout<<"\n third test";
 }
 void AnimatedSprite::setAnimation(){
-    this->setTexture(Animations.getActive().getTexture());
-//    this->setTextureRect(Animations.getActive().frames.getStart());
+    
+    if (getTexture() != &Animations.getActive().getTexture()){
+//        std::cout << this <<"helloooooooooooooo\n";
+        setTextureRect(Animations.getActive().frames.getStart());
+        Animations.getActive().frames.reset();
+    }   
+    setTexture(Animations.getActive().getTexture());
+    
 }
 
 

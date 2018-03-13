@@ -105,6 +105,9 @@ public:
     
     HealthBar healthbar;
     
+    void setActiveAnimation( int index);
+    void setTheAnimation();
+    
 private:
     /* The Monster's name */
     std::string name;

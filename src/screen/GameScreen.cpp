@@ -26,7 +26,7 @@ ScreenMode* GameScreen::run(sf::Event event) {
     player.action(event);
     player.updateFrames(DEFAULT_GAMECLOCK, event);
     player.healthbar.update();
-    hall.getActive()->encounter->updateUpdate(event);
+    hall.doTheDo(event);
     if (event.type == sf::Event::KeyPressed) {
         switch (event.key.code) {
             case (sf::Keyboard::Left):
@@ -56,7 +56,7 @@ ScreenMode* GameScreen::run(sf::Event event) {
             return hall.getActive();
         }
     }
-    if (hall.canEncounter() && !hall.getActiveRoom()->encounter->isSkippable()) {
+    if (hall.canEncounter() /*&& !hall.getActiveRoom()->encounter->isSkippable()*/) {
         //return hall.getEncounterScreen();
         buttons.first->data.activate();
     } else {

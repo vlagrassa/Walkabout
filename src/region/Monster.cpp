@@ -10,9 +10,9 @@ Monster::Monster( sf::Window& window, Ambience& ambience) : healthbar(sf::Vector
     health = maxHealth;
     healthbar.health.setFillColor(sf::Color::Red);
     std::cout << "Monster standing texture @" << &ambience.monsterStanding << "\n";
-    addAnimation(ambience.monsterStanding, 3, 5);
+    addAnimation(ambience.monsterStanding, 3, 5, 1);
     addAnimation(ambience.monsterAttack, 3, 10);
-    addAnimation(ambience.monsterHit, 3, 5);
+    addAnimation(ambience.monsterHit, 3, 5, 1);
     addAnimation(ambience.monsterDie, 3, 7);
     setAnimation();
     Encounterable::setTexture(Animations.getActive().getTexture());
@@ -81,6 +81,15 @@ void Monster::run(sf::Event event){
     setAnimation();
     Animations.getActive().frames.shiftNode();
     Encounterable::setTextureRect(Animations.getActive().frames.getActive());
+//    std::cout<< &Animations.getActive() <<"\n";
+}
+
+void Monster::setActiveAnimation(int index){
+    Animations.setActiveIndex(index);
+}
+
+void Monster::setTheAnimation(){
+    Encounterable::setTexture(Animations.getActive().getTexture());
 }
 
 void Monster::changeHealth(int n) {

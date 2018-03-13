@@ -261,6 +261,8 @@ public:
     
     void updateRoomPositions();
     
+    void doTheDo(sf::Event event);
+    
     
     /* Inherited methods (using) */
     
@@ -281,6 +283,7 @@ public:
     using ActiveVector<Room*>::getActive;
     using ActiveVector<Room*>::getActiveIndex;
     using ActiveVector<Room*>::setActiveIndex;
+    
     
     operator std::string() const {
         std::string temp;

@@ -2,6 +2,7 @@
 #include "../utils/Defaults.hpp"
 #include <SFML/Graphics.hpp>
 #include "../region/Monster.hpp"
+#include "DeathScreen.hpp"
 
 
 void Oscillator::run(sf::Event event) {
@@ -9,6 +10,7 @@ void Oscillator::run(sf::Event event) {
         scramble();
     }
     attackSlider.currentPos += attackSlider.dir;
+    
     if (attackSlider.currentPos >= outline.getPosition().x + outline.getSize().x - attackSlider.getSize().x) {
         attackSlider.dir = std::abs(attackSlider.dir) * -1;
         attackSlider.currentPos = outline.getPosition().x + outline.getSize().x - attackSlider.getSize().x;
@@ -156,7 +158,7 @@ void Oscillator::updateArea() {
 FightScreen::FightScreen(Player& player, int seed, Ambience& ambience, sf::Window& window ) : 
         //Room(seed, window), //This is the ideal but throws seg fault, for some reason
         ambience(ambience),
-        Room(player, (seed%15)+42, genRandomEncounterable(seed, window, ambience)),
+        Room(player, (seed%31)+100, genRandomEncounterable(seed, window, ambience)),
         attackBar(sf::Vector2f(164,436), sf::Vector2f(626,90), 8)
         
 {
@@ -214,10 +216,10 @@ ScreenMode* FightScreen::update(sf::Event event) {
                 //Case blank region: no action necessary
                 break;
         }
-        if (monster->getHealth() <= 0) {
-            passed = true;
-            return 0;
-        }
+//        if (monster->getHealth() <= 0) {
+//            passed = true;
+//            return 0;
+//        }
     }
     
     return Room::update(event);
@@ -229,14 +231,27 @@ ScreenMode* FightScreen::run(sf::Event event) {
     player.updateFrames(DEFAULT_GAMECLOCK, event);
     encounter->encounter(player);
     monster->updateFrames(DEFAULT_GAMECLOCK, event);
+    std::cout<<monster->Encounterable::getTexture() << "\n";
     if (monster->getHealth() <= 0) {
+        monster->setActiveAnimation(3);
+        monster->setTheAnimation();
+//        std::cout<< "420 blaze it" <<monster->Encounterable::getTexture() << "\n";
         passed = true;
         return 0;
+    }
+    if (player.health > player.maxHealth) {
+//        DEFAULT_WINDOW.close();
+        return new DeathScreen();
+//        monster->changeHealth(-1000000);
+//        passed = true;
+//        return 0;
     }
     
     //Previous line will update which region the attack bar is currently in
     
     if (attackBar.area == Oscillator::damage) {
+        monster->setActiveAnimation(1);
+        monster->setTheAnimation();
         player.health -= 5;
         attackBar.area = Oscillator::empty;
     }

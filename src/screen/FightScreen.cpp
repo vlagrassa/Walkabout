@@ -137,7 +137,7 @@ void Oscillator::updateArea() {
 FightScreen::FightScreen(Player& player, int seed, Ambience& ambience, sf::Window& window ) : 
         //Room(seed, window), //This is the ideal but throws seg fault, for some reason
         ambience(ambience),
-        Room(player, (seed%15)+42, genRandomEncounterable(seed, window, ambience)),
+        Room(player, (seed%31)+100, genRandomEncounterable(seed, window, ambience)),
         attackBar(sf::Vector2f(164,436), sf::Vector2f(626,90), 8)
         
 {

@@ -90,6 +90,10 @@ public:
     
     std::string testThing();
     
+    virtual void setEncounterForced() {
+        attackBar.area = Oscillator::emptydefend;
+    };
+    
     Ambience& ambience;
     Monster* monster;
 private:

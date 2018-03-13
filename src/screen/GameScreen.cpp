@@ -63,6 +63,7 @@ ScreenMode* GameScreen::run(sf::Event event) {
         buttons.first->data.deactivate();
     }
     if (hall.mustEncounter()) {
+        hall.getActive()->setEncounterForced();
         return hall.getActive();
     }
     return ScreenMode::checkButtons(event);

@@ -163,6 +163,8 @@ public:
     /* Whether the Room has been "defeated" or not */
     bool passed = false;
     
+    virtual void setEncounterForced() {};
+    
 private:
     
     /* Number of tics in the Room */

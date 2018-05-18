@@ -229,7 +229,7 @@ int main() {
     mainMenu.addButton("Quit [W]", testDeath, sf::Keyboard::W);
     
     
-    testGameScreen.addButton("Challenge\n   [^]", 0);
+    testGameScreen.addButton("Encounter\n   [^]", 0);
     testGameScreen.addButton("Inventory\n   [I]", 0, sf::Keyboard::I);
     testGameScreen.addButton("Main Menu\n   [M]", 0, sf::Keyboard::M);
     

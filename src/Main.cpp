@@ -192,6 +192,7 @@ int main() {
     player.addAnimation(playerWalk, 3, 5);
     player.addAnimation(playerAttack, 2,5);
     player.addAnimation(playerFightStance, 1,5);
+    player.addAnimation(playerHit, 5,5);
     std::cout << "/n" << (player.Animations.size)<< "/n";
    
     player.setAnimation();
@@ -261,6 +262,36 @@ int main() {
     hallText.setCharacterSize(20);
     hallText.setFillColor(sf::Color::Black);
     hallText.setPosition(0, 400);
+    Loop<int> pi;
+    pi.append(3);
+    pi.append(1);
+    pi.append(4);
+    pi.append(1);
+    pi.append(5);
+    pi.append(9);
+    
+    std::cout << pi << "\n";
+    
+    pi.shift();
+    std::cout << pi.active->data << "\n";
+    pi.shift();
+    std::cout << pi.active->data << "\n";
+    pi.shift();
+    std::cout << pi.active->data << "\n";
+    pi.shift();
+    std::cout << pi.active->data << "\n";
+    pi.reset();
+    std::cout << pi.active->data << "\n";
+    
+    pi.reset();
+//    pi.shift();
+    while (true) {
+//        pi.shift();
+//        std::cout << "" << pi.active->data;
+        std::cout << "" << pi.shift();
+        if (pi.isFinished()) break;
+    }
+    std::cout << "\n";
 //    sf::RectangleShape name;
 //    name.setTexture(&standard.monsterStanding);
 //    name.setSize(sf::Vector2f(100,100));

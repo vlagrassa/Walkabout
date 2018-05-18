@@ -32,7 +32,7 @@ Ambience::Ambience(std::string resources) {
     {
         std::cout<< "\n" << "monster attack error" << "\n";
     }
-    if (!monsterDie.loadFromFile(resources + "spritesheets/monster_die.jpg"))
+    if (!monsterDie.loadFromFile(resources + "spritesheets/monster_die.png"))
     {
         std::cout<< "\n monster die error \n";
     }
@@ -40,6 +40,9 @@ Ambience::Ambience(std::string resources) {
     {
        std::cout<< "\n monster hit error \n";
     }
+     if (!monsterDead.loadFromFile(resources + "monster.png")){
+         std::cout<< "\n monster dead error \n";
+     }
      initTextures();
 }
 

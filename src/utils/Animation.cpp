@@ -20,8 +20,6 @@ void Animation::setSpriteSheet(int rowNum, int colNum, int extra){
     int width = texture.getSize().x/colNum;
     int height = texture.getSize().y/rowNum;
     
-    
-    
     for(int i = 0; i <rowNum; i++){
         for(int j = 0; j < colNum; j++){
             if (((i)*colNum + j) < rowNum*colNum-extra){
@@ -29,7 +27,6 @@ void Animation::setSpriteSheet(int rowNum, int colNum, int extra){
             }
         }
     }
-    //std::cout<< "boom shakalaka " << (frames.getStart().left==frames.getEnd().left) ;
 }
 
 sf::Texture& Animation::getTexture(){

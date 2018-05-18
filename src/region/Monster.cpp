@@ -13,7 +13,8 @@ Monster::Monster( sf::Window& window, Ambience& ambience) : healthbar(sf::Vector
     addAnimation(ambience.monsterStanding, 3, 5, 1);
     addAnimation(ambience.monsterAttack, 3, 10);
     addAnimation(ambience.monsterHit, 3, 5, 1);
-    addAnimation(ambience.monsterDie, 3, 7);
+    addAnimation(ambience.monsterDie, 1, 6);
+    addAnimation(ambience.monsterDead, 1, 1);
     setAnimation();
     Encounterable::setTexture(Animations.getActive().getTexture());
     
@@ -92,6 +93,10 @@ void Monster::setTheAnimation(){
     Encounterable::setTexture(Animations.getActive().getTexture());
 }
 
+void Monster::resetToAnimation(int index){
+    resetTo(index);
+}
+
 void Monster::changeHealth(int n) {
     if (static_cast<signed int>(health) + n <= 0) {
         std::cout << "  Changing health (" << health << ") by " << n << "\n";
@@ -108,5 +113,12 @@ void Monster::changeHealth(int n) {
 
 void Monster::updateUpdate(sf::Event event){
 //    std::cout<<"UPDATEEEEEEEE\n";
+    if(getHealth() <= 0 ){
+        resetToAnimation(4);
+    }
+    else{
+        resetToAnimation(0);
+    }
+    setTheAnimation();
     updateFrames(DEFAULT_GAMECLOCK, event);
 }

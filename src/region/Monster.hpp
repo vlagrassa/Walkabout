@@ -107,6 +107,8 @@ public:
     
     void setActiveAnimation( int index);
     void setTheAnimation();
+    void resetToAnimation( int index);
+    
     
 private:
     /* The Monster's name */

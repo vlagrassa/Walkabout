@@ -25,6 +25,7 @@ public:
     sf::Texture monsterAttack;
     sf::Texture monsterHit;
     sf::Texture monsterDie;
+    sf::Texture monsterDead;
     
     //sf::Animation monster1; //create array of frames for monster
     
